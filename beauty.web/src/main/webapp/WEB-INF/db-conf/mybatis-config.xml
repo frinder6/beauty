@@ -6,7 +6,7 @@
 	</typeAliases>
 
 	<mappers>
-		<mapper resource="com/beauty/mybatis/security/security-mapping.xml" />
+		<!-- <mapper resource="com/beauty/mybatis/security/security-mapping.xml" /> -->
 	</mappers>
 
 </configuration>

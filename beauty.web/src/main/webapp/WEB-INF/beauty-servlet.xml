@@ -19,7 +19,10 @@
 	<mvc:annotation-driven />
 
 	<!-- 跳转目录设置prefix+point+suffix -->
-	<!-- <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> <property name="prefix" value="/content/" /> <property name="suffix" value=".jsp" /> </bean> -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
 
 	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="warnLogCategory" value="WARN"></property>

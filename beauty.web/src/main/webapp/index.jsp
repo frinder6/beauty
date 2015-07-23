@@ -1,5 +1,9 @@
-<html>
-<body>
-<h2>Hello World!</h2>
-</body>
-</html>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
+	request.setAttribute("basePath", basePath);
+	session.setAttribute("basePath", basePath);
+%>
+<script type="text/javascript">
+	window.location = '${basePath}/pages/index.jsp';
+</script>

@@ -10,7 +10,7 @@
 	<!-- ibatis的sqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:mybatis-conf/mybatis-config.xml" />
+		<property name="configLocation" value="/WEB-INF/db-conf/mybatis-config.xml" />
 		<property name="mapperLocations" value="classpath*:com/beauty/mapper/**/*Mapper.xml" />
 	</bean>
 

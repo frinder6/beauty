@@ -5,19 +5,13 @@
 		<artifactId>beauty.base</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>beauty.security</groupId>
-	<artifactId>beauty.security</artifactId>
+	<groupId>beauty.common</groupId>
+	<artifactId>beauty.common</artifactId>
 	<packaging>jar</packaging>
 
-	<name>beauty.security</name>
+	<name>beauty.common</name>
 	<url>http://maven.apache.org</url>
 
-
 	<dependencies>
-		<dependency>
-			<groupId>beauty.common</groupId>
-			<artifactId>beauty.common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 </project>

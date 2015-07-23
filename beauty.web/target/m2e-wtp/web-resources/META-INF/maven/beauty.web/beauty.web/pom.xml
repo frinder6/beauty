@@ -11,6 +11,25 @@
 	<name>beauty.web Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
+
+		<dependency>
+			<groupId>beauty.business</groupId>
+			<artifactId>beauty.business</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>beauty.common</groupId>
+			<artifactId>beauty.common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>beauty.security</groupId>
+			<artifactId>beauty.security</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
