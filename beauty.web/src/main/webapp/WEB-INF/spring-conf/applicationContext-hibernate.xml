@@ -18,7 +18,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan">
 			<list>
-				<value>com.beauty.entity</value>
+				<value>com.beauty.sys.entity</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -56,13 +56,14 @@
 			<tx:method name="load*" read-only="true" propagation="REQUIRED" />
 			<tx:method name="find*" read-only="true" propagation="REQUIRED" />
 			<tx:method name="get*" read-only="true" propagation="REQUIRED" />
+			<tx:method name="query*" read-only="true" propagation="REQUIRED" />
 			<tx:method name="*" read-only="true" propagation="REQUIRED" />
 		</tx:attributes>
 	</tx:advice>
 
 	<aop:config>
 		<!-- 只对业务逻辑层实施事务 -->
-		<aop:pointcut id="txPointcut" expression="execution(* com.beauty.service..*.*(..))" />
+		<aop:pointcut id="txPointcut" expression="execution(* com.beauty.*.service..*.*(..))" />
 		<!-- Advisor定义，切入点和通知分别为txPointcut、txAdvice -->
 		<aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice" />
 	</aop:config>

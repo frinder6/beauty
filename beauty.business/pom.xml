@@ -17,5 +17,10 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>beauty.base</groupId>
+			<artifactId>beauty.base</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>

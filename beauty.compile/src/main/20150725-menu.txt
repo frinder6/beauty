@@ -1,0 +1,30 @@
+out.print("<ul id=\"shortcuts\" role=\"complementary\" class=\"children-tooltip tooltip-right\">");
+out.print("<li><a href=\"./\" class=\"shortcut-dashboard\" title=\"主页\">主页</a></li>");
+out.print("<li class=\"current\"><a href=\"inbox.html\" class=\"shortcut-messages\" title=\"Messages\">Messages</a></li>");
+out.print("<li><a href=\"agenda.html\" class=\"shortcut-agenda\" title=\"Agenda\">Agenda</a></li>");
+out.print("<li><a href=\"tables.html\" class=\"shortcut-contacts\" title=\"Contacts\">Contacts</a></li>");
+out.print("<li><a href=\"explorer.html\" class=\"shortcut-medias\" title=\"Medias\">Medias</a></li>");
+out.print("<li><a href=\"sliders.html\" class=\"shortcut-stats\" title=\"Stats\">Stats</a></li>");
+out.print("<li><a href=\"form.html\" class=\"shortcut-settings\" title=\"Settings\">Settings</a></li>");
+out.print("<li><span class=\"shortcut-notes\" title=\"Notes\">Notes</span></li>");
+out.print("</ul>");
+
+INSERT INTO `beauty_menu` (`code`, `name`, `url`, `parent_id`, `level`, `group_id`, `remark`, `create_time`, `creater`, `last_update_time`, `modifier`, `is_deleted`, `def1`, `def2`, `def3`) VALUES ('MAIN_PAGE', '主页', 'index.jsp', 0, 0, 0, '主页', '1980-01-01 00:00:00', 'admin', '1980-01-01 00:00:00', 'admin', 1, 'current', 'shortcut-dashboard', '1980-01-01 00:00:00');
+
+
+INSERT INTO `beauty_menu` ( `code`, `name`, `url`, `parent_id`, `level`, `group_id`, `remark`, `create_time`, `creater`, `last_update_time`, `modifier`, `is_deleted`, `def1`, `def2`, `def3` ) VALUES ( 'SYS-M', '系统管理', 'index.jsp', 0, 0, 0, '系统管理', '1980-01-01 00:00:00', 'admin', '1980-01-01 00:00:00', 'admin', 1, '', 'shortcut-stats', '1980-01-01 00:00:00' );
+
+INSERT INTO `beauty_menu` ( `code`, `name`, `url`, `parent_id`, `level`, `group_id`, `remark`, `create_time`, `creater`, `last_update_time`, `modifier`, `is_deleted`, `def1`, `def2`, `def3` ) VALUES ( 'EMP-M', '员工管理', 'index.jsp', 0, 0, 0, '员工管理', '1980-01-01 00:00:00', 'admin', '1980-01-01 00:00:00', 'admin', 1, '', 'shortcut-medias', '1980-01-01 00:00:00' );
+
+INSERT INTO `beauty_menu` ( `code`, `name`, `url`, `parent_id`, `level`, `group_id`, `remark`, `create_time`, `creater`, `last_update_time`, `modifier`, `is_deleted`, `def1`, `def2`, `def3` ) VALUES ( 'VIP-M', '会员管理', 'index.jsp', 0, 0, 0, '会员管理', '1980-01-01 00:00:00', 'admin', '1980-01-01 00:00:00', 'admin', 1, '', 'shortcut-contacts', '1980-01-01 00:00:00' );
+
+INSERT INTO `beauty_menu` ( `code`, `name`, `url`, `parent_id`, `level`, `group_id`, `remark`, `create_time`, `creater`, `last_update_time`, `modifier`, `is_deleted`, `def1`, `def2`, `def3` ) VALUES ( 'CHK-M', '考勤管理', 'index.jsp', 0, 0, 0, '考勤管理', '1980-01-01 00:00:00', 'admin', '1980-01-01 00:00:00', 'admin', 1, '', 'shortcut-agenda', '1980-01-01 00:00:00' );
+
+INSERT INTO `beauty_menu` ( `code`, `name`, `url`, `parent_id`, `level`, `group_id`, `remark`, `create_time`, `creater`, `last_update_time`, `modifier`, `is_deleted`, `def1`, `def2`, `def3` ) VALUES ( 'PRT-M', '货品管理', 'index.jsp', 0, 0, 0, '货品管理', '1980-01-01 00:00:00', 'admin', '1980-01-01 00:00:00', 'admin', 1, '', 'shortcut-notes', '1980-01-01 00:00:00' );
+
+INSERT INTO `beauty_menu` ( `code`, `name`, `url`, `parent_id`, `level`, `group_id`, `remark`, `create_time`, `creater`, `last_update_time`, `modifier`, `is_deleted`, `def1`, `def2`, `def3` ) VALUES ( 'SET-M', '设置管理', 'index.jsp', 0, 0, 0, '设置管理', '1980-01-01 00:00:00', 'admin', '1980-01-01 00:00:00', 'admin', 1, '', 'shortcut-settings', '1980-01-01 00:00:00' );
+
+INSERT INTO `beauty_menu` ( `code`, `name`, `url`, `parent_id`, `level`, `group_id`, `remark`, `create_time`, `creater`, `last_update_time`, `modifier`, `is_deleted`, `def1`, `def2`, `def3` ) VALUES ( 'MSG-M', '消息管理', 'index.jsp', 0, 0, 0, '消息管理', '1980-01-01 00:00:00', 'admin', '1980-01-01 00:00:00', 'admin', 1, '', 'shortcut-messages', '1980-01-01 00:00:00' );
+
+
+

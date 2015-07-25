@@ -3,10 +3,12 @@
 <configuration>
 
 	<typeAliases>
+		<typeAlias type="com.beauty.sys.entity.BeautyAuthority" alias="Authority"/>
 	</typeAliases>
 
 	<mappers>
-		<!-- <mapper resource="com/beauty/mybatis/security/security-mapping.xml" /> -->
+		<mapper resource="com/beauty/sys/ibatis/common-mapping.xml" />
+		<mapper resource="com/beauty/sys/ibatis/menu-mapping.xml" />
 	</mappers>
 
 </configuration>
