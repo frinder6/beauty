@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://frinder.net/taglibs.tld" prefix="my" %>
 <jsp:include page="header.jsp" />
-<body class="clearfix with-menu with-shortcuts">
+<body class="clearfix with-menu with-shortcuts" style="overflow: hidden;">
 
 	<!-- Title bar -->
 	<header role="banner" id="title-bar">
@@ -11,32 +11,28 @@
 
 	<!-- Button to open/hide menu -->
 	<a href="#" id="open-menu"><span>Menu</span></a>
-
 	<!-- Button to open/hide shortcuts -->
 	<a href="#" id="open-shortcuts"><span class="icon-thumbs"></span></a>
+	<!-- Button to open/hide menu -->
 	
 	
 	<!-- Main content -->
-	<section role="main" id="main">
+	<section role="main" id="main" class="scrollable" style="height: 642px;">
 		<iframe src="content.jsp" id="iframe-main" frameborder="0" width="100%" scrolling="no"></iframe>
 	</section>
 	<!-- End main content -->
 
 	<!-- Side tabs shortcuts -->
-	<!-- <ul id="shortcuts" role="complementary" class="children-tooltip tooltip-right">
-		<li><a href="./" class="shortcut-dashboard" title="主页">主页</a></li>
-		<li class="current"><a href="inbox.html" class="shortcut-messages" title="Messages">Messages</a></li>
-		<li><a href="agenda.html" class="shortcut-agenda" title="Agenda">Agenda</a></li>
-		<li><a href="tables.html" class="shortcut-contacts" title="Contacts">Contacts</a></li>
-		<li><a href="explorer.html" class="shortcut-medias" title="Medias">Medias</a></li>
-		<li><a href="sliders.html" class="shortcut-stats" title="Stats">Stats</a></li>
-		<li><a href="form.html" class="shortcut-settings" title="Settings">Settings</a></li>
-		<li><span class="shortcut-notes" title="Notes">Notes</span></li>
-	</ul> -->
 	<my:load-main-menu />
+	<!-- Side tabs shortcuts -->
 
 	<!-- Sidebar/drop-down menu -->
-	<%@include file="left-menu.jsp" %>
+	<section id="menu" role="complementary">
+		<header>
+			当前用户
+		</header>
+		<iframe src="left-menu.jsp?id=1" id="iframe-left-menu" frameborder="0" width="100%" scrolling="no"></iframe>
+	</section>
 	<!-- End sidebar/drop-down menu -->
 
 	<!-- import js file -->
@@ -44,9 +40,21 @@
 	<!-- import js file -->
 	
 	<script>
-
 		// Call template init (optional, but faster if called manually)
 		$.template.init();
+		
+		
+		$(function(){
+			
+			// 切换菜单
+			$('#shortcuts').find('li').click(function(){
+				$('#shortcuts').find('li').removeClass('current');
+				$(this).addClass('current');
+				var url = "left-menu.jsp?url={0}";
+				var param = $(this).attr('data-href');
+				$('#iframe-left-menu').attr("src", url.format(param));
+			});
+		});
 	</script>
 </body>
 </html>

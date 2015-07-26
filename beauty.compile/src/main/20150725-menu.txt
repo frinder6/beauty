@@ -26,5 +26,17 @@ INSERT INTO `beauty_menu` ( `code`, `name`, `url`, `parent_id`, `level`, `group_
 
 INSERT INTO `beauty_menu` ( `code`, `name`, `url`, `parent_id`, `level`, `group_id`, `remark`, `create_time`, `creater`, `last_update_time`, `modifier`, `is_deleted`, `def1`, `def2`, `def3` ) VALUES ( 'MSG-M', '消息管理', 'index.jsp', 0, 0, 0, '消息管理', '1980-01-01 00:00:00', 'admin', '1980-01-01 00:00:00', 'admin', 1, '', 'shortcut-messages', '1980-01-01 00:00:00' );
 
+INSERT INTO `beauty_menu` ( `code`, `name`, `url`, `parent_id`, `level`, `group_id`, `remark`, `create_time`, `creater`, `last_update_time`, `modifier`, `is_deleted`, `def1`, `def2`, `def3` ) VALUES ( 'SYS-M-S1', 'AAAA', 'index.jsp', 2, 0, 0, 'AAAA', '1980-01-01 00:00:00', 'admin', '1980-01-01 00:00:00', 'admin', 1, '', 'shortcut-stats', '1980-01-01 00:00:00' );
 
+
+INSERT INTO `beauty_menu` ( `code`, `name`, `url`, `parent_id`, `level`, `group_id`, `remark`, `create_time`, `creater`, `last_update_time`, `modifier`, `is_deleted`, `def1`, `def2`, `def3` ) VALUES ( 'SYS-M-S2', 'BBBB', 'index.jsp', 2, 0, 0, 'BBBB', '1980-01-01 00:00:00', 'admin', '1980-01-01 00:00:00', 'admin', 1, '', 'shortcut-stats', '1980-01-01 00:00:00' );
+
+INSERT INTO `beauty_menu` ( `code`, `name`, `url`, `parent_id`, `level`, `group_id`, `remark`, `create_time`, `creater`, `last_update_time`, `modifier`, `is_deleted`, `def1`, `def2`, `def3` ) VALUES ( 'SYS-M-S3', 'CCCC', 'index.jsp', 2, 0, 0, 'CCCC', '1980-01-01 00:00:00', 'admin', '1980-01-01 00:00:00', 'admin', 1, '', 'shortcut-stats', '1980-01-01 00:00:00' );
+
+INSERT INTO `beauty_menu` ( `code`, `name`, `url`, `parent_id`, `level`, `group_id`, `remark`, `create_time`, `creater`, `last_update_time`, `modifier`, `is_deleted`, `def1`, `def2`, `def3` ) VALUES ( 'SYS-M-S4', 'DDDD', 'index.jsp', 2, 0, 0, 'DDDD', '1980-01-01 00:00:00', 'admin', '1980-01-01 00:00:00', 'admin', 1, '', 'shortcut-stats', '1980-01-01 00:00:00' );
+
+
+INSERT INTO `beauty_menu` ( `code`, `name`, `url`, `parent_id`, `level`, `group_id`, `remark`, `create_time`, `creater`, `last_update_time`, `modifier`, `is_deleted`, `def1`, `def2`, `def3` ) VALUES ( 'SYS-M-S1-S1', 'AAAA-1', 'index.jsp', 9, 0, 0, 'AAAA-1', '1980-01-01 00:00:00', 'admin', '1980-01-01 00:00:00', 'admin', 1, '', 'shortcut-stats', '1980-01-01 00:00:00' );
+
+INSERT INTO `beauty_menu` ( `code`, `name`, `url`, `parent_id`, `level`, `group_id`, `remark`, `create_time`, `creater`, `last_update_time`, `modifier`, `is_deleted`, `def1`, `def2`, `def3` ) VALUES ( 'SYS-M-S1-S2', 'AAAA-2', 'index.jsp', 9, 0, 0, '-2', '1980-01-01 00:00:00', 'admin', '1980-01-01 00:00:00', 'admin', 1, '', 'shortcut-stats', '1980-01-01 00:00:00' );
 

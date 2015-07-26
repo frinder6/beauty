@@ -1,16 +1,18 @@
-<!-- Sidebar/drop-down menu -->
-<section id="menu" role="complementary">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://frinder.net/taglibs.tld" prefix="my" %>
+<jsp:include page="header.jsp" />
+
+
+<body>
+	
+	<my:load-level-menu parentId="2"/>
 
 	<!-- This wrapper is used by several responsive layouts -->
 	<div id="menu-content">
 
-		<header>
-			Administrator
-		</header>
-
 		<div id="profile">
 			<img src="${basePath}/resources/developr/img/user.png" width="64" height="64" alt="User name" class="user-icon">
-			Hello
+			你好：
 			<span class="name">John <b>Doe</b></span>
 		</div>
 
@@ -19,7 +21,7 @@
 			<li><a href="inbox.html" title="Messages"><span class="icon-inbox"></span><span class="count">2</span></a></li>
 			<li><a href="calendars.html" title="Calendar"><span class="icon-calendar"></span></a></li>
 			<li><a href="login.html" title="Profile"><span class="icon-user"></span></a></li>
-			<li class="disabled"><span class="icon-gear"></span></li>
+			<li><a href="setting.html" title="Setting"><span class="icon-gear"></span></a></li>
 		</ul>
 
 		<section class="navigable">
@@ -144,6 +146,20 @@
 			<label for="auto-refresh">Auto-refresh</label>
 		</p>
 	</footer>
+	
 
-</section>
-<!-- End sidebar/drop-down menu -->
+	<%@include file="import-js.jsp" %>
+
+	<script type="text/javascript">
+		$(function() {
+			$(window.parent.document).find("#iframe-left-menu").load(function() {
+				var main = $(window.parent.document).find("#iframe-left-menu");
+				var height = $(document).height();
+				main.height(height);
+			});
+		});
+	</script>
+
+</body>
+
+</html>

@@ -3,6 +3,8 @@ package com.beauty.base.service;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.criterion.DetachedCriteria;
+
 public interface IService<T> {
 	/**
 	 * 
@@ -65,7 +67,7 @@ public interface IService<T> {
 	 * @date 2015年7月25日 下午10:20:33
 	 * @throws
 	 */
-	public List<?> query(Class<T> clazz);
+	public List<?> query(DetachedCriteria criteria);
 
 	/**
 	 * 

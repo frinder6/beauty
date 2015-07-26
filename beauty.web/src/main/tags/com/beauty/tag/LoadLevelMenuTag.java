@@ -1,23 +1,25 @@
 package com.beauty.tag;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.jsp.JspWriter;
 
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.tags.RequestContextAwareTag;
 
-import com.beauty.sys.entity.BeautyMenu;
+import com.alibaba.fastjson.JSON;
 import com.beauty.sys.service.MenuService;
 import com.beauty.tag.util.BeanUtil;
 
 @Component
-public class LoadMainMenuTag extends RequestContextAwareTag {
+public class LoadLevelMenuTag extends RequestContextAwareTag {
 
 	private MenuService menuService;
+
+	private Long parentId;
 
 	/**
 	 * @Fields serialVersionUID
@@ -49,18 +51,11 @@ public class LoadMainMenuTag extends RequestContextAwareTag {
 	 */
 	private void createMainMenu() throws IOException {
 		JspWriter out = this.pageContext.getOut();
-		// 查询一级菜单
-		DetachedCriteria criteria = DetachedCriteria.forClass(BeautyMenu.class);
-		criteria.add(Restrictions.eq("parentId", 0L));
-		List<?> menus = this.menuService.query(criteria);
-		BeautyMenu menu = null;
-		out.print("<ul id=\"shortcuts\" role=\"complementary\" class=\"children-tooltip tooltip-right\">");
-		String li = "<li class=\"%s\" data-id=\"%s\" data-href=\"%s\"><a href=\"javascript:void(0)\" class=\"%s\" title=\"%s\">%s</a></li>";
-		for (Object obj : menus) {
-			menu = (BeautyMenu) obj;
-			out.print(String.format(li, menu.getDef1(), menu.getId(), menu.getUrl(), menu.getDef2(), menu.getName(), menu.getName()));
-		}
-		out.print("</ul>");
+		// 查询二/三/...级菜单
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", parentId);
+		List<?> menus = this.menuService.query("query-level2-menu", params);
+		System.out.println(JSON.toJSONString(menus));
 	}
 
 	public static void main(String[] args) {
@@ -69,6 +64,21 @@ public class LoadMainMenuTag extends RequestContextAwareTag {
 		for (String s : ss) {
 			System.out.println(String.format("out.print(\"%s\")", s));
 		}
+	}
+
+	/**
+	 * @return the parentId
+	 */
+	public Long getParentId() {
+		return parentId;
+	}
+
+	/**
+	 * @param parentId
+	 *            the parentId to set
+	 */
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
 	}
 
 }

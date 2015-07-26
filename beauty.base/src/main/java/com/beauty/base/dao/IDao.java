@@ -3,6 +3,8 @@ package com.beauty.base.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.criterion.DetachedCriteria;
+
 public interface IDao<T> {
 
 	/**
@@ -66,7 +68,7 @@ public interface IDao<T> {
 	 * @date 2015年7月25日 下午10:20:33
 	 * @throws
 	 */
-	public List<?> query(Class<T> clazz);
+	public List<?> query(DetachedCriteria criteria);
 
 	/**
 	 * 

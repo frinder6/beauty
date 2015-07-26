@@ -10,4 +10,16 @@
 		<tag-class>com.beauty.tag.LoadMainMenuTag</tag-class>
 		<body-content>empty</body-content>
 	</tag>
+	<tag>
+		<name>load-level-menu</name>
+		<description>加载次级菜单</description>
+		<tag-class>com.beauty.tag.LoadLevelMenuTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>parentId</name>
+			<required>true</required>
+			<type>java.lang.Long</type>
+			<description>父菜单id</description>
+		</attribute>
+	</tag>
 </taglib>

@@ -3,6 +3,7 @@ package com.beauty.base.service;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -39,9 +40,9 @@ public class BaseService<T> implements IService<T> {
 	}
 
 	@Override
-	public List<?> query(Class<T> clazz) {
+	public List<?> query(DetachedCriteria criteria) {
 		// TODO Auto-generated method stub
-		return this.baseDao.query(clazz);
+		return this.baseDao.query(criteria);
 	}
 
 	@Override

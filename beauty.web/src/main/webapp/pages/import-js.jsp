@@ -14,11 +14,17 @@
 <script src="${basePath}/resources/developr/js/developr.confirm.js"></script>
 <script src="${basePath}/resources/developr/js/developr.agenda.js"></script>
 <script src="${basePath}/resources/developr/js/developr.content-panel.js"></script>
+
 <!-- Must be loaded last -->
 <script src="${basePath}/resources/developr/js/developr.tabs.js"></script>
 
 <!-- Tinycon -->
 <script src="${basePath}/resources/developr/js/libs/tinycon.min.js"></script>
-
-
 <script src="${basePath}/resources/developr/js/jsapi.js"></script>
+
+<!-- Plugins -->
+<script src="${basePath}/resources/developr/js/libs/jquery.tablesorter.min.js"></script>
+<script src="${basePath}/resources/developr/js/libs/DataTables/jquery.dataTables.min.js"></script>
+
+<!-- my js -->
+<script src="${basePath}/resources/developr/js/beauty-sys.js"></script>

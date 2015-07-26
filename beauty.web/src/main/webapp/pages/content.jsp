@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="header.jsp" />
-<body style="width: 100%; height: 100%;">
 
-
-
+<body>
 
 	<noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work as expected...</noscript>
 
@@ -13,14 +10,20 @@
 	</hgroup>
 
 	<div class="with-padding">
+		
+		<!-- <div class="table-header button-height">
+			<div class="float-right">
+				Search&nbsp;<input type="text" name="table_search" id="table_search" value="" class="input mid-margin-left">
+			</div>
 
-		<p class="wrapped left-icon icon-info-round">Tables are responsive, too! Try resizing your browser</p>
-
-		<h4>Styled table with advanced sorting  <a href="${basePath}/menu/load.action">Test</a></h4>
-
-		<p>
-			This example uses the plugin <a href="http://datatables.net">DataTables</a>:
-		</p>
+			Show&nbsp;<select name="range" class="select blue-gradient glossy">
+				<option value="1">10</option>
+				<option value="2" selected="selected">20</option>
+				<option value="3">40</option>
+				<option value="4">100</option>
+			</select> entries
+		</div> -->
+		
 
 		<table class="table responsive-table" id="sorting-advanced">
 
@@ -200,6 +203,23 @@
 				var height = $(document).height();
 				main.height(height);
 			});
+			
+			// Table sort - DataTables
+			var table = $('#sorting-advanced');
+			table.dataTable({
+				'aoColumnDefs': [
+					{ 'bSortable': false, 'aTargets': [ 0, 5 ] }
+				],
+				'sPaginationType': 'full_numbers',
+				'sDom': '<"dataTables_header"lfr>t<"dataTables_footer"ip>',
+				'fnInitComplete': function( oSettings )
+				{
+					// Style length select
+					table.closest('.dataTables_wrapper').find('.dataTables_length select').addClass('select blue-gradient glossy').styleSelect();
+					tableStyled = true;
+				}
+			});
+
 		});
 	</script>
 

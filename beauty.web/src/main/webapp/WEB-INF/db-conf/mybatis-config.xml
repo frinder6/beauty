@@ -3,7 +3,7 @@
 <configuration>
 
 	<typeAliases>
-		<typeAlias type="com.beauty.sys.entity.BeautyAuthority" alias="Authority"/>
+		<typeAlias type="com.beauty.sys.entity.BeautyMenu" alias="Menu"/>
 	</typeAliases>
 
 	<mappers>

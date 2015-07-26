@@ -46,9 +46,8 @@ public class BaseDao<T> implements IDao<T> {
 	}
 
 	@Override
-	public List<?> query(Class<T> clazz) {
+	public List<?> query(DetachedCriteria criteria) {
 		// TODO Auto-generated method stub
-		DetachedCriteria criteria = DetachedCriteria.forClass(clazz);
 		return this.hibernateTemplate.findByCriteria(criteria);
 	}
 
