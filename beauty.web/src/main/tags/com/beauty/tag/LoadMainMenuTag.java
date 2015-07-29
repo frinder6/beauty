@@ -12,7 +12,7 @@ import org.springframework.web.servlet.tags.RequestContextAwareTag;
 
 import com.beauty.sys.entity.BeautyMenu;
 import com.beauty.sys.service.MenuService;
-import com.beauty.tag.util.BeanUtil;
+import com.beauty.tag.util.TagUtil;
 
 @Component
 public class LoadMainMenuTag extends RequestContextAwareTag {
@@ -28,7 +28,7 @@ public class LoadMainMenuTag extends RequestContextAwareTag {
 	protected int doStartTagInternal() throws Exception {
 		// TODO Auto-generated method stub
 		try {
-			this.menuService = (MenuService) BeanUtil.getBean(this.getRequestContext().getWebApplicationContext(), "menuService");
+			this.menuService = (MenuService) TagUtil.getBean(this.getRequestContext().getWebApplicationContext(), "menuService");
 			this.createMainMenu();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -27,4 +27,8 @@
 <script src="${basePath}/resources/developr/js/libs/DataTables/jquery.dataTables.min.js"></script>
 
 <!-- my js -->
-<script src="${basePath}/resources/developr/js/beauty-sys.js"></script>
+<script src="${basePath}/resources/customer/beauty-sys.js"></script>
+
+<script type="text/javascript">
+var _BASE = '${basePath}';
+</script>

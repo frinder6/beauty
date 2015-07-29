@@ -9,3 +9,10 @@ String.prototype.format = function() {
 	}
 	return s;
 };
+
+/**
+ * 添加根路径
+ */
+var _PATH = function(url){
+	return _BASE + url;
+};

@@ -4,6 +4,7 @@ package com.beauty.sys.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class BeautyMenu implements java.io.Serializable {
 	private String def2;
 	private Date def3;
 
-	private List<BeautyMenu> children;
+	private List<BeautyMenu> children = new ArrayList<BeautyMenu>();
 
 	public BeautyMenu() {
 	}

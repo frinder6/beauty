@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://frinder.net/taglibs.tld" prefix="my" %>
 <jsp:include page="header.jsp" />
-<body class="clearfix with-menu with-shortcuts" style="overflow: hidden;">
+<body class="clearfix with-menu with-shortcuts">
 
 	<!-- Title bar -->
 	<header role="banner" id="title-bar">
@@ -15,10 +15,15 @@
 	<a href="#" id="open-shortcuts"><span class="icon-thumbs"></span></a>
 	<!-- Button to open/hide menu -->
 	
-	
 	<!-- Main content -->
 	<section role="main" id="main" class="scrollable" style="height: 642px;">
-		<iframe src="content.jsp" id="iframe-main" frameborder="0" width="100%" scrolling="no"></iframe>
+		<noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work as expected...</noscript>
+
+		<hgroup id="main-title" class="thin">
+			<h1>Tables</h1>
+		</hgroup>
+		
+		<iframe src="content.jsp" id="iframe-main" frameborder="0" width="100%" scrolling="no" style="margin-top: -20px;"></iframe>
 	</section>
 	<!-- End main content -->
 
@@ -28,33 +33,43 @@
 
 	<!-- Sidebar/drop-down menu -->
 	<section id="menu" role="complementary">
-		<header>
-			当前用户
-		</header>
-		<iframe src="left-menu.jsp?id=1" id="iframe-left-menu" frameborder="0" width="100%" scrolling="no"></iframe>
+		<!-- <header> 当前用户</header> -->
+		<!-- This wrapper is used by several responsive layouts -->
+		<div id="menu-content">
+	
+			<div id="profile">
+				<img src="${basePath}/resources/developr/img/user.png" width="64" height="64" alt="User name" class="user-icon">
+				你好：
+				<span class="name">John <b>Doe</b>&nbsp;&nbsp;<a style="font-size: 12px;" href="#">[注销]</a></span>
+			</div>
+	
+			<!-- By default, this section is made for 4 icons, see the doc to learn how to change this, in "basic markup explained" -->
+			<ul id="access" class="children-tooltip">
+				<li><a href="inbox.html" title="Messages"><span class="icon-inbox"></span><span class="count">2</span></a></li>
+				<li><a href="calendars.html" title="Calendar"><span class="icon-calendar"></span></a></li>
+				<li><a href="login.html" title="Profile"><span class="icon-user"></span></a></li>
+				<li><a href="setting.html" title="Setting"><span class="icon-gear"></span></a></li>
+			</ul>
+			
+			<section class="navigable"></section>
+			
+		</div>
+		
+		<!-- This is optional -->
+		<footer id="menu-footer" style="position: absolute;bottom: 0px;width: 90%;">
+			<p class="button-height">
+				<input type="checkbox" name="auto-refresh" id="auto-refresh" checked="checked" class="switch float-right" title="自动刷新" />
+				<!-- <label for="auto-refresh">自动刷新</label> -->
+			</p>
+		</footer>
+		
+		<!-- End content wrapper -->
 	</section>
 	<!-- End sidebar/drop-down menu -->
 
 	<!-- import js file -->
 	<%@include file="import-js.jsp" %>
 	<!-- import js file -->
-	
-	<script>
-		// Call template init (optional, but faster if called manually)
-		$.template.init();
-		
-		
-		$(function(){
-			
-			// 切换菜单
-			$('#shortcuts').find('li').click(function(){
-				$('#shortcuts').find('li').removeClass('current');
-				$(this).addClass('current');
-				var url = "left-menu.jsp?url={0}";
-				var param = $(this).attr('data-href');
-				$('#iframe-left-menu').attr("src", url.format(param));
-			});
-		});
-	</script>
+	<script src="${basePath}/resources/customer/index.js"></script>
 </body>
 </html>

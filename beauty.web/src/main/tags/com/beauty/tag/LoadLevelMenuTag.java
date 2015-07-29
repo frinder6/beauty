@@ -10,9 +10,8 @@ import javax.servlet.jsp.JspWriter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.tags.RequestContextAwareTag;
 
-import com.alibaba.fastjson.JSON;
 import com.beauty.sys.service.MenuService;
-import com.beauty.tag.util.BeanUtil;
+import com.beauty.tag.util.TagUtil;
 
 @Component
 public class LoadLevelMenuTag extends RequestContextAwareTag {
@@ -20,6 +19,8 @@ public class LoadLevelMenuTag extends RequestContextAwareTag {
 	private MenuService menuService;
 
 	private Long parentId;
+
+	private String parentName;
 
 	/**
 	 * @Fields serialVersionUID
@@ -30,8 +31,8 @@ public class LoadLevelMenuTag extends RequestContextAwareTag {
 	protected int doStartTagInternal() throws Exception {
 		// TODO Auto-generated method stub
 		try {
-			this.menuService = (MenuService) BeanUtil.getBean(this.getRequestContext().getWebApplicationContext(), "menuService");
-			this.createMainMenu();
+			this.menuService = (MenuService) TagUtil.getBean(this.getRequestContext().getWebApplicationContext(), "menuService");
+			this.createLevelMenu();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,21 +50,15 @@ public class LoadLevelMenuTag extends RequestContextAwareTag {
 	 * @date 2015年7月25日 下午1:59:33
 	 * @throws
 	 */
-	private void createMainMenu() throws IOException {
+	private void createLevelMenu() throws IOException {
 		JspWriter out = this.pageContext.getOut();
 		// 查询二/三/...级菜单
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", parentId);
 		List<?> menus = this.menuService.query("query-level2-menu", params);
-		System.out.println(JSON.toJSONString(menus));
-	}
-
-	public static void main(String[] args) {
-		String[] ss = { "<ul id=\"shortcuts\" role=\"complementary\" class=\"children-tooltip tooltip-right\">", "<li><a href=\"./\" class=\"shortcut-dashboard\" title=\"主页\">主页</a></li>", "<li class=\"current\"><a href=\"inbox.html\" class=\"shortcut-messages\" title=\"Messages\">Messages</a></li>", "<li><a href=\"agenda.html\" class=\"shortcut-agenda\" title=\"Agenda\">Agenda</a></li>", "<li><a href=\"tables.html\" class=\"shortcut-contacts\" title=\"Contacts\">Contacts</a></li>", "<li><a href=\"explorer.html\" class=\"shortcut-medias\" title=\"Medias\">Medias</a></li>", "<li><a href=\"sliders.html\" class=\"shortcut-stats\" title=\"Stats\">Stats</a></li>", "<li><a href=\"form.html\" class=\"shortcut-settings\" title=\"Settings\">Settings</a></li>",
-				"<li><span class=\"shortcut-notes\" title=\"Notes\">Notes</span></li>", "</ul>" };
-		for (String s : ss) {
-			System.out.println(String.format("out.print(\"%s\")", s));
-		}
+		String result = TagUtil.createLevelMenu(parentName, menus);
+		// 写结果
+		out.print(result);
 	}
 
 	/**
@@ -79,6 +74,21 @@ public class LoadLevelMenuTag extends RequestContextAwareTag {
 	 */
 	public void setParentId(Long parentId) {
 		this.parentId = parentId;
+	}
+
+	/**
+	 * @return the parentName
+	 */
+	public String getParentName() {
+		return parentName;
+	}
+
+	/**
+	 * @param parentName
+	 *            the parentName to set
+	 */
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
 	}
 
 }

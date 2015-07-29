@@ -20,6 +20,14 @@
 			<required>true</required>
 			<type>java.lang.Long</type>
 			<description>父菜单id</description>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>parentName</name>
+			<required>true</required>
+			<type>java.lang.String</type>
+			<description>父菜单名称</description>
+			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 </taglib>

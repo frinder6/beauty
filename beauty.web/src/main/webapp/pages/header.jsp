@@ -12,7 +12,7 @@
 <!--[if (IE 8)&!(IEMobile)]><html class="no-js ie8 oldie" lang="en"><![endif]-->
 <!--[if (IE 9)&!(IEMobile)]><html class="no-js ie9" lang="en"><![endif]-->
 <!--[if (gt IE 9)|(gt IEMobile 7)]><!-->
-<html class="no-js" lang="en">
+<html class="no-js" lang="en" style="overflow: hidden;">
 <!--<![endif]-->
 
 <head>
