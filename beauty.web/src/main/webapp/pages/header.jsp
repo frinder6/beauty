@@ -12,7 +12,7 @@
 <!--[if (IE 8)&!(IEMobile)]><html class="no-js ie8 oldie" lang="en"><![endif]-->
 <!--[if (IE 9)&!(IEMobile)]><html class="no-js ie9" lang="en"><![endif]-->
 <!--[if (gt IE 9)|(gt IEMobile 7)]><!-->
-<html class="no-js" lang="en" style="overflow: hidden;">
+<html class="no-js" lang="en">
 <!--<![endif]-->
 
 <head>
@@ -55,6 +55,11 @@
 
 <!-- DataTables -->
 <link rel="stylesheet" href="${basePath}/resources/developr/js/libs/DataTables/jquery.dataTables.css?v=1">
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="${basePath}/resources/bootstrap/datatable/dataTables.bootstrap.css">
+<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+<link rel="stylesheet" href="${basePath}/resources/bootstrap/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="${basePath}/resources/bootstrap/css/bootstrap.min.css">
 
 
 <!-- JavaScript at bottom except for Modernizr -->

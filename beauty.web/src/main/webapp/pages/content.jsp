@@ -5,20 +5,6 @@
 
 	<div class="with-padding">
 		
-		<!-- <div class="table-header button-height">
-			<div class="float-right">
-				Search&nbsp;<input type="text" name="table_search" id="table_search" value="" class="input mid-margin-left">
-			</div>
-
-			Show&nbsp;<select name="range" class="select blue-gradient glossy">
-				<option value="1">10</option>
-				<option value="2" selected="selected">20</option>
-				<option value="3">40</option>
-				<option value="4">100</option>
-			</select> entries
-		</div> -->
-		
-
 		<table class="table responsive-table" id="sorting-advanced">
 
 			<thead>
@@ -194,13 +180,16 @@
 		$(function() {
 			$(window.parent.document).find("#iframe-main").load(function() {
 				var main = $(window.parent.document).find("#iframe-main");
-				var height = $(document).height();
+				var height = $(window.parent.document).height();
 				main.height(height);
 			});
 			
 			// Table sort - DataTables
 			var table = $('#sorting-advanced');
 			table.dataTable({
+				 "scrollY": 700,
+		         "scrollCollapse": true,
+		         "jQueryUI": true,
 				'aoColumnDefs': [
 					{ 'bSortable': false, 'aTargets': [ 0, 5 ] }
 				],

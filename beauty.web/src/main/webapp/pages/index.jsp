@@ -5,7 +5,7 @@
 <body class="clearfix with-menu with-shortcuts">
 
 	<!-- Title bar -->
-	<header role="banner" id="title-bar">
+	<header role="banner" id="title-bar" style="height: 35px;">
 		<h2>后台管理系统</h2>
 	</header>
 
@@ -16,14 +16,8 @@
 	<!-- Button to open/hide menu -->
 	
 	<!-- Main content -->
-	<section role="main" id="main" class="scrollable" style="height: 642px;">
-		<noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work as expected...</noscript>
-
-		<hgroup id="main-title" class="thin">
-			<h1>Tables</h1>
-		</hgroup>
-		
-		<iframe src="content.jsp" id="iframe-main" frameborder="0" width="100%" scrolling="no" style="margin-top: -20px;"></iframe>
+	<section role="main" id="main" style="min-height: 700px;">
+		<iframe src="${basePath }/pages/sys/menu-list.jsp" id="iframe-main" name="iframe-main" frameborder="0" width="100%" scrolling="no"></iframe>
 	</section>
 	<!-- End main content -->
 

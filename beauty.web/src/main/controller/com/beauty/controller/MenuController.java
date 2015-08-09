@@ -3,6 +3,11 @@ package com.beauty.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.beauty.base.entity.Page;
 import com.beauty.base.service.IService;
 import com.beauty.model.Value;
 import com.beauty.sys.entity.BeautyMenu;
 import com.beauty.tag.util.TagUtil;
+import com.beauty.util.StringUtil;
 
 @Controller
 @RequestMapping("/menu")
@@ -30,11 +37,36 @@ public class MenuController {
 		return new Value(TagUtil.createLevelMenu(menu.getName(), menus));
 	}
 
-	@RequestMapping("/load")
-	public void loadMenu() {
-		// List<?> menus = this.menuService.query(BeautyMenu.class);
-		BeautyMenu m = this.menuService.findById(BeautyMenu.class, 1L);
-		System.out.println(JSON.toJSONString(m));
+	@RequestMapping("/load/id")
+	@ResponseBody
+	public BeautyMenu loadMenu(@RequestParam("id") Long id) {
+		return this.menuService.findById(BeautyMenu.class, id);
+	}
+
+	@RequestMapping(value = "/load/page", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Page queryPage(HttpServletRequest request, BeautyMenu menu) {
+		System.out.println(JSON.toJSONString(request.getParameterMap()));
+
+		Page page = new Page();
+		page.init(request);
+		DetachedCriteria criteria = DetachedCriteria.forClass(BeautyMenu.class);
+		// criteria.add(Example.create(menu).enableLike(MatchMode.ANYWHERE).ignoreCase().excludeZeroes());
+		// 查询
+		String searchValue = page.getSearchValue();
+		if (StringUtil.valueOf(searchValue).length() > 0) {
+			searchValue = "%".concat(searchValue).concat("%");
+			criteria.add(Restrictions.or(Restrictions.like("name", searchValue), Restrictions.like("code", searchValue), Restrictions.like("url", searchValue), Restrictions.like("remark", searchValue)));
+		}
+		// 排序
+		String order = page.getOrderDir();
+		if ("desc".equalsIgnoreCase(order)) {
+			criteria.addOrder(Order.desc(page.getOrderColumn()));
+		} else {
+			criteria.addOrder(Order.asc(page.getOrderColumn()));
+		}
+		this.menuService.queryPage(criteria, page);
+		return page;
 	}
 
 }

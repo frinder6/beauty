@@ -69,6 +69,13 @@ public class BeautyMenu implements java.io.Serializable {
 		this.def3 = def3;
 	}
 
+	public void reset(String searchValue) {
+		this.code = searchValue;
+		this.name = searchValue;
+		this.url = searchValue;
+		this.remark = searchValue;
+	}
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)

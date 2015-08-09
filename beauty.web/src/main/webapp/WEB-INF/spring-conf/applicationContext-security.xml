@@ -15,6 +15,7 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 	<http pattern="/**/*.css" security="none" />
 	<http pattern="/**/*.js" security="none" />
 	<http pattern="/**/login.action*" security="none" />
+	<http pattern="/pages/sys/**" security="none" />
 	<http pattern="/*" security="none" />
 	<!-- <http pattern="/**/index.action*" security="none" /> -->
 	<!-- <http pattern="/**/*.action*" security="none" /> -->

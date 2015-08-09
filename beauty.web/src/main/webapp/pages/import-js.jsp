@@ -23,8 +23,11 @@
 <script src="${basePath}/resources/developr/js/jsapi.js"></script>
 
 <!-- Plugins -->
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="${basePath}/resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="${basePath}/resources/developr/js/libs/jquery.tablesorter.min.js"></script>
 <script src="${basePath}/resources/developr/js/libs/DataTables/jquery.dataTables.min.js"></script>
+<script src="${basePath}/resources/bootstrap/datatable/dataTables.bootstrap.js"></script>
 
 <!-- my js -->
 <script src="${basePath}/resources/customer/beauty-sys.js"></script>

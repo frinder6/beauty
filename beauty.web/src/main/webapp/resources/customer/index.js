@@ -2,6 +2,13 @@
 $.template.init();
 
 $(function() {
+	// 滚动条
+	$(document).scroll(function(){
+		var sht = $('#iframe-main').contents().find('.with-padding').height() + 100;
+		$('#iframe-main').height(sht);
+		$('#main').height(sht);
+	});
+	
 	// 切换左侧菜单
 	var changeMenu = function(id) {
 		var url = _PATH('/menu/load/level.action');
@@ -33,6 +40,8 @@ $(function() {
 		$(this).addClass('current');
 		var id = $(this).attr('data-id');
 		changeMenu(id);
+		var url = $(this).attr('data-href');
+		$('#iframe-main').attr('src', _PATH(url));
 	});
 	
 	// 选中菜单
@@ -41,7 +50,7 @@ $(function() {
 			$('.big-menu').find('a').removeClass('current').removeClass('navigable-current');
 			$(this).addClass('current').addClass('navigable-current');
 			// 主标题
-			$('#main-title').find('h1').text($(this).text());
+			// $('#main-title').find('h1').text($(this).text());
 		});
 	};
 	

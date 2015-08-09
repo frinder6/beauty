@@ -16,7 +16,8 @@ package com.beauty.util;
  * 
  */
 public class StringUtil {
-
+	
+	
 	/**
 	 * 
 	 * @Title: valueOf

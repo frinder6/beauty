@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.hibernate.criterion.DetachedCriteria;
 
+import com.beauty.base.entity.Page;
+
 public interface IService<T> {
 	/**
 	 * 
@@ -71,6 +73,32 @@ public interface IService<T> {
 
 	/**
 	 * 
+	 * @Title: queryPageCount
+	 * @Description: TODO(分页记录数)
+	 * @author frinder_liu
+	 * @param criteria
+	 * @return
+	 * @return int
+	 * @date 2015年8月2日 下午2:15:58
+	 * @throws
+	 */
+	public int queryPageCount(DetachedCriteria criteria);
+
+	/**
+	 * 
+	 * @Title: query
+	 * @Description: TODO(hibernate分页查询)
+	 * @author frinder_liu
+	 * @param dc
+	 * @param page
+	 * @return
+	 * @date 2015年8月2日 下午12:52:11
+	 * @throws
+	 */
+	public void queryPage(DetachedCriteria criteria, Page page);
+
+	/**
+	 * 
 	 * @Title: query
 	 * @Description: TODO(无参数查询方法)
 	 * @author frinder_liu
@@ -112,6 +140,20 @@ public interface IService<T> {
 
 	/**
 	 * 
+	 * @Title: queryPageCount
+	 * @Description: TODO(分页查询记录数)
+	 * @author frinder_liu
+	 * @param sql
+	 * @param entity
+	 * @return
+	 * @return int
+	 * @date 2015年8月9日 下午12:04:58
+	 * @throws
+	 */
+	public int queryPageCount(String sql, T entity);
+
+	/**
+	 * 
 	 * @Title: queryPage
 	 * @Description: TODO(根据entity分页查询)
 	 * @author frinder_liu
@@ -122,7 +164,21 @@ public interface IService<T> {
 	 * @date 2015年7月25日 下午2:53:39
 	 * @throws
 	 */
-	public List<T> queryPage(String sql, T entity);
+	public List<T> queryPage(String sql, T entity, Page page);
+
+	/**
+	 * 
+	 * @Title: queryPageCount
+	 * @Description: TODO(分页查询记录数)
+	 * @author frinder_liu
+	 * @param sql
+	 * @param params
+	 * @return
+	 * @return int
+	 * @date 2015年8月9日 下午12:04:27
+	 * @throws
+	 */
+	public int queryPageCount(String sql, Map<String, Object> params);
 
 	/**
 	 * 
@@ -136,6 +192,6 @@ public interface IService<T> {
 	 * @date 2015年7月25日 下午2:53:03
 	 * @throws
 	 */
-	public List<T> queryPage(String sql, Map<String, Object> params);
+	public List<T> queryPage(String sql, Map<String, Object> params, Page page);
 
 }
