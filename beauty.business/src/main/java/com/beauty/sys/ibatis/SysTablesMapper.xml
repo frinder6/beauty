@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SysTablesMapper">
+  <resultMap id="BaseResultMap" type="com.beauty.sys.entity.SysTables">
+    <result column="TABLE_SCHEMA" jdbcType="VARCHAR" property="tableSchema" />
+    <result column="TABLE_NAME" jdbcType="VARCHAR" property="tableName" />
+    <result column="TABLE_COMMENT" jdbcType="VARCHAR" property="tableComment" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    TABLE_SCHEMA, TABLE_NAME, TABLE_COMMENT
+  </sql>
+  <select id="selectBySchema" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+		<include refid="Base_Column_List" />
+	FROM
+		information_schema.`TABLES`
+	WHERE
+		TABLE_SCHEMA = ${tableSchema}
+    ORDER BY
+		TABLE_NAME
+  </select>
+</mapper>

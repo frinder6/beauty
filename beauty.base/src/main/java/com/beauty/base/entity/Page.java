@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.beauty.util.StringUtil;
+
 public class Page implements Serializable {
 	/**
 	 * @Fields serialVersionUID
@@ -43,14 +45,14 @@ public class Page implements Serializable {
 	 * @throws
 	 */
 	public void init(HttpServletRequest request) {
-		this.draw = request.getParameter("draw");
-		this.start = request.getParameter("start");
-		this.length = request.getParameter("length");
-		this.orderDir = request.getParameter("order[0][dir]");
-		this.orderIndex = request.getParameter("order[0][column]");
-		this.searchValue = request.getParameter("search[value]");
+		this.draw = StringUtil.isNull(request.getParameter("draw"), this.draw);
+		this.start = StringUtil.isNull(request.getParameter("start"), this.start);
+		this.length = StringUtil.isNull(request.getParameter("length"), this.length);
+		this.orderDir = StringUtil.isNull(request.getParameter("order[0][dir]"), this.orderDir);
+		this.orderIndex = StringUtil.isNull(request.getParameter("order[0][column]"), this.orderIndex);
+		this.searchValue = StringUtil.isNull(request.getParameter("search[value]"), this.searchValue);
 		String template = "columns[%s][data]";
-		this.orderColumn = request.getParameter(String.format(template, orderIndex));
+		this.orderColumn = StringUtil.isNull(request.getParameter(String.format(template, orderIndex)), this.orderColumn);
 	}
 
 	/**

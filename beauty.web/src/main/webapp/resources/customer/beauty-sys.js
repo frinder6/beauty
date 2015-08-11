@@ -16,3 +16,12 @@ String.prototype.format = function() {
 var _PATH = function(url){
 	return _BASE + url;
 };
+
+// 设置高
+var init = function(){
+	$(window.parent.document).find("#iframe-main").load(function() {
+		var main = $(window.parent.document).find("#iframe-main");
+		var height = $(window.parent.document).height();
+		main.height(height);
+	});
+};

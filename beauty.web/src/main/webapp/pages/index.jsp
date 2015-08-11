@@ -17,7 +17,7 @@
 	
 	<!-- Main content -->
 	<section role="main" id="main" style="min-height: 700px;">
-		<iframe src="${basePath }/pages/sys/menu-list.jsp" id="iframe-main" name="iframe-main" frameborder="0" width="100%" scrolling="no"></iframe>
+		<iframe src="${basePath }/pages/content.jsp" id="iframe-main" name="iframe-main" frameborder="0" width="100%" scrolling="no"></iframe>
 	</section>
 	<!-- End main content -->
 

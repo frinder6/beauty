@@ -16,8 +16,14 @@ package com.beauty.util;
  * 
  */
 public class StringUtil {
-	
-	
+
+	public static String isNull(Object obj, String def) {
+		if (null == obj || obj.toString().length() == 0) {
+			return def;
+		}
+		return obj.toString();
+	}
+
 	/**
 	 * 
 	 * @Title: valueOf

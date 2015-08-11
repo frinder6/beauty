@@ -16,7 +16,7 @@ public class TagUtil {
 	private static final String _TEMPLATE = "<li class=\"with-right-arrow\"><span><span class=\"list-count\">%s</span>%s</span><ul class=\"big-menu\">%s</ul></li>";
 
 	// 二级菜单li
-	private static final String _SIMPLE_LI = "<li><a href=\"%s\">%s</a></li>";
+	private static final String _SIMPLE_LI = "<li><a href=\"javascript:void(0)\" data-href=\"%s\">%s</a></li>";
 
 	/**
 	 * 

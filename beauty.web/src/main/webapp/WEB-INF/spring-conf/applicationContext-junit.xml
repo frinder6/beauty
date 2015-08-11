@@ -15,7 +15,9 @@
 		<property name="locations">
 			<list>
 				<value>/WEB-INF/props/jdbc.properties</value>
+				<value>/WEB-INF/props/c3p0.properties</value>
 				<value>/WEB-INF/props/redis.properties</value>
+				<value>/WEB-INF/props/freemarker.properties</value>
 			</list>
 		</property>
 	</bean>

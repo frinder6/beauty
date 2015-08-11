@@ -40,8 +40,8 @@ $(function() {
 		$(this).addClass('current');
 		var id = $(this).attr('data-id');
 		changeMenu(id);
-		var url = $(this).attr('data-href');
-		$('#iframe-main').attr('src', _PATH(url));
+		// var url = $(this).attr('data-href');
+		// $('#iframe-main').attr('src', _PATH(url));
 	});
 	
 	// 选中菜单
@@ -51,6 +51,9 @@ $(function() {
 			$(this).addClass('current').addClass('navigable-current');
 			// 主标题
 			// $('#main-title').find('h1').text($(this).text());
+			// 切换内容
+			var url = $(this).attr('data-href');
+			$('#iframe-main').attr('src', _PATH(url));
 		});
 	};
 	
