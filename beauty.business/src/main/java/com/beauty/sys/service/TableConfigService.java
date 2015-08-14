@@ -12,5 +12,6 @@ public class TableConfigService extends BaseService<BeautyTableConfig> {
 
 	@Autowired
 	private IDao<BeautyTableConfig> tableConfigDao;
+	
 
 }

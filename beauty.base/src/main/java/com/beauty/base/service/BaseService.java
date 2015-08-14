@@ -110,7 +110,7 @@ public class BaseService<T> implements IService<T> {
 	@Override
 	public int queryPageCount(String sql, Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.queryPageCount(sql, params);
+		return this.baseDao.queryPageCount(sql, params);
 	}
 
 }

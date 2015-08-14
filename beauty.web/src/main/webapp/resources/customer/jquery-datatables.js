@@ -9,7 +9,9 @@
 	var defaults = {
 		tableName : '',
 		url : '',
-		tools : ''
+		tools : '',
+		data : {},
+		columnDefs : []
 	};
 
 	$.fn.datatable = function(options) {
@@ -30,13 +32,19 @@
 				settings.columns = data;
 			}
 		});
-
+		
+		//alert(JSON.stringify(settings.columns));
+		
 		$(this).DataTable({
 			processing : true,
 			serverSide : true,
-			ajax : _PATH(settings.url),
+			ajax : {
+				url : _PATH(settings.url),
+				data : settings.data
+			},
 			pagingType : 'full',
 			columns : settings.columns,
+			columnDefs : settings.columnDefs,
 			order : [ [ 1, 'desc' ] ],
 			dom : "<'row'<'#my-tool.col-xs-6'><'col-xs-6'f>r>t<'row'<'col-xs-3'l><'col-xs-3'i><'col-xs-6'p>>",
 			language : {

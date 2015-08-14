@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../header.jsp" flush="true" />
 
-<body>
+<body style="min-height: 600px;">
 
 	<div class="with-padding">
 		

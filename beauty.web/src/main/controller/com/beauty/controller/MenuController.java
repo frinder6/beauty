@@ -51,7 +51,6 @@ public class MenuController {
 		Page page = new Page();
 		page.init(request);
 		DetachedCriteria criteria = DetachedCriteria.forClass(BeautyMenu.class);
-		// criteria.add(Example.create(menu).enableLike(MatchMode.ANYWHERE).ignoreCase().excludeZeroes());
 		// 查询
 		String searchValue = page.getSearchValue();
 		if (StringUtil.valueOf(searchValue).length() > 0) {
