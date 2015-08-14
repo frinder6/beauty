@@ -1,9 +1,11 @@
 package com.beauty.base.entity;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.beauty.util.ColumnUtil;
 import com.beauty.util.StringUtil;
 
 public class Page implements Serializable {
@@ -53,6 +55,24 @@ public class Page implements Serializable {
 		this.searchValue = StringUtil.isNull(request.getParameter("search[value]"), this.searchValue);
 		String template = "columns[%s][data]";
 		this.orderColumn = StringUtil.isNull(request.getParameter(String.format(template, orderIndex)), this.orderColumn);
+	}
+
+	/**
+	 * 
+	 * @Title: pageToMap
+	 * @Description: TODO(将page值设置到map中)
+	 * @author frinder_liu
+	 * @param params
+	 * @return void
+	 * @date 2015年8月14日 下午10:39:08
+	 * @throws
+	 */
+	public void pageToMap(Class<?> clazz, Map<String, Object> params) {
+		params.put("orderColumn", ColumnUtil.getColumn(clazz, this.getOrderColumn()));
+		params.put("orderDir", this.getOrderDir());
+		params.put("searchValue", this.getSearchValue());
+		params.put("from", Integer.parseInt(this.getStart()));
+		params.put("size", Integer.parseInt(this.getLength()));
 	}
 
 	/**

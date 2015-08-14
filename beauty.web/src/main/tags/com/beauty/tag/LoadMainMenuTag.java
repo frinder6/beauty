@@ -54,7 +54,7 @@ public class LoadMainMenuTag extends RequestContextAwareTag {
 		criteria.add(Restrictions.eq("parentId", 0L));
 		List<?> menus = this.menuService.query(criteria);
 		BeautyMenu menu = null;
-		out.print("<ul id=\"shortcuts\" role=\"complementary\" class=\"children-tooltip tooltip-right\">");
+		out.print("<ul id=\"shortcuts\" role=\"complementary\" class=\"children-tooltip tooltip-right\" style=\"margin-top: -30px;\">");
 		String li = "<li class=\"%s\" data-id=\"%s\" data-href=\"%s\"><a href=\"javascript:void(0)\" class=\"%s\" title=\"%s\">%s</a></li>";
 		for (Object obj : menus) {
 			menu = (BeautyMenu) obj;

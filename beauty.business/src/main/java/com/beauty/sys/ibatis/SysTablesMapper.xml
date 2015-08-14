@@ -22,7 +22,13 @@
 		<include refid="Base_Column_List" />
 		FROM information_schema.`TABLES`
 		<include refid="Base_Where_Clause" />
-		ORDER BY TABLE_NAME
+		ORDER BY 
+		<if test="orderColumn">
+			${orderColumn}
+		</if>
+		<if test="orderDir">
+			${orderDir}
+		</if>
 		LIMIT #{from}, #{size}
 	</select>
 	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">

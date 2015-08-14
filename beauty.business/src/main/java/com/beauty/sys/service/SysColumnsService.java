@@ -6,31 +6,26 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.beauty.base.service.BaseService;
 import com.beauty.base.service.IMapperService;
-import com.beauty.sys.entity.BeautyTableConfig;
-import com.beauty.sys.interfaces.TableConfigDao;
+import com.beauty.sys.entity.SysColumns;
+import com.beauty.sys.interfaces.SysColumnsDao;
 
 @Service
-public class TableConfigService extends BaseService<BeautyTableConfig> implements IMapperService<BeautyTableConfig> {
+public class SysColumnsService implements IMapperService<SysColumns> {
 
 	@Autowired
-	private TableConfigDao tableConfigDao;
+	private SysColumnsDao sysColumnsDao;
 
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.sysColumnsDao.selectCount(params);
 	}
 
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<?> selectByTable(BeautyTableConfig config) {
-		return this.tableConfigDao.selectByTable(config);
+		return this.sysColumnsDao.selectPage(params);
 	}
 
 }

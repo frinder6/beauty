@@ -5,8 +5,8 @@
 <body class="clearfix with-menu with-shortcuts">
 
 	<!-- Title bar -->
-	<header role="banner" id="title-bar" style="height: 35px;">
-		<h2>后台管理系统</h2>
+	<header role="banner" id="title-bar" style="height: 5px">
+		<!-- <h2>后台管理系统</h2> -->
 	</header>
 
 	<!-- Button to open/hide menu -->
@@ -26,7 +26,7 @@
 	<!-- Side tabs shortcuts -->
 
 	<!-- Sidebar/drop-down menu -->
-	<section id="menu" role="complementary">
+	<section id="menu" role="complementary" style="margin-top: -30px;">
 		<!-- <header> 当前用户</header> -->
 		<!-- This wrapper is used by several responsive layouts -->
 		<div id="menu-content">
