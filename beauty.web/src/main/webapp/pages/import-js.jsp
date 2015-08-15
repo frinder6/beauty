@@ -26,10 +26,13 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="${basePath}/resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="${basePath}/resources/developr/js/libs/jquery.tablesorter.min.js"></script>
-<script src="${basePath}/resources/developr/js/libs/DataTables/jquery.dataTables.min.js"></script>
+<script src="${basePath}/resources/developr/js/libs/DataTables/jquery.dataTables.js"></script>
 <script src="${basePath}/resources/bootstrap/datatable/dataTables.bootstrap.js"></script>
+<script src="${basePath}/resources/developr/js/libs/DataTables/dataTables.select.js"></script>
 
 <%-- <script src="${basePath}/resources/select2/js/select2.js"></script> --%>
+
+<script src="${basePath}/resources/layer/layer.js"></script>
 
 <!-- my js -->
 <script src="${basePath}/resources/customer/beauty-sys.js"></script>

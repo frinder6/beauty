@@ -26,7 +26,7 @@
 			
 						
 			$('#menu-list').datatable({
-				tableName : 'TB_MENU',
+				tableName : 'BEAUTY_MENU',
 				url : '/menu/load/page.action',
 				tools : tools
 			});

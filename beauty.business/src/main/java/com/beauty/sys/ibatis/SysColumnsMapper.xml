@@ -22,7 +22,7 @@
 		<include refid="Base_Column_List" />
 		FROM information_schema.`COLUMNS`
 		<include refid="Base_Where_Clause" />
-		ORDER BY 
+		ORDER BY
 		<if test="orderColumn">
 			${orderColumn}
 		</if>
@@ -36,5 +36,16 @@
 		COUNT(1)
 		FROM information_schema.`COLUMNS`
 		<include refid="Base_Where_Clause" />
+	</select>
+
+	<select id="selectColumnsByTable" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT
+			COLUMN_NAME
+		FROM
+			information_schema.`COLUMNS` c
+		WHERE
+			c.TABLE_NAME = #{tableName}
+		AND c.TABLE_SCHEMA = #{tableSchema}
+		AND NOT EXISTS (SELECT id FROM beauty_table_config t WHERE TABLE_NAME = #{tableName} AND t.column_name = c.COLUMN_NAME)
 	</select>
 </mapper>

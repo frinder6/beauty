@@ -6,6 +6,7 @@
 		<result column="table_name" property="tableName" jdbcType="VARCHAR" />
 		<result column="title" property="title" jdbcType="VARCHAR" />
 		<result column="data" property="data" jdbcType="VARCHAR" />
+		<result column="column_name" property="columnName" jdbcType="VARCHAR" />
 		<result column="orderable" property="orderable" jdbcType="TINYINT" />
 		<result column="width" property="width" jdbcType="INTEGER" />
 		<result column="class_name" property="className" jdbcType="VARCHAR" />
@@ -22,8 +23,16 @@
 		<result column="def3" property="def3" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, title, data, orderable, width, class_name
+		id, table_name, title, data, column_name, orderable, width, class_name, sequence
 		<!-- table_name, sequence, render, remark, create_time, creater, last_update_time, modifier, is_deleted, def1, def2, def3 -->
+	</sql>
+	<sql id="Base_Where_Clause">
+		<where>
+			1 = 1
+			<if test="searchValue">
+				AND ( title LIKE "%" #{searchValue} "%" OR data LIKE "%" #{searchValue} "%" OR column_name LIKE "%" #{searchValue} "%" )
+			</if>
+		</where>
 	</sql>
 	<select id="selectByTable" resultMap="BaseResultMap" parameterType="com.beauty.sys.entity.BeautyTableConfig">
 		SELECT
@@ -34,6 +43,7 @@
 		SELECT
 		<include refid="Base_Column_List" />
 		FROM beauty_table_config
+		<include refid="Base_Where_Clause" />
 		ORDER BY table_name, id
 		LIMIT #{from}, #{size}
 	</select>
@@ -41,5 +51,6 @@
 		SELECT
 		COUNT(1)
 		FROM beauty_table_config
+		<include refid="Base_Where_Clause" />
 	</select>
 </mapper>

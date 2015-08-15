@@ -20,13 +20,13 @@ public class TableConfigService extends BaseService<BeautyTableConfig> implement
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.tableConfigDao.selectCount(params);
 	}
 
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.tableConfigDao.selectPage(params);
 	}
 
 	public List<?> selectByTable(BeautyTableConfig config) {

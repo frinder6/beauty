@@ -34,6 +34,7 @@ public class BeautyTableConfig implements java.io.Serializable {
 	private String tableName;
 	private String title;
 	private String data;
+	private String columnName;
 	private Byte orderable;
 	private Integer width;
 	private String className;
@@ -52,10 +53,23 @@ public class BeautyTableConfig implements java.io.Serializable {
 	public BeautyTableConfig() {
 	}
 
-	public BeautyTableConfig(String tableName, String title, String data, Byte orderable, Integer width, String className, Integer sequence, String render, String remark, Date createTime, String creater, Date lastUpdateTime, String modifier, Byte isDeleted, String def1, String def2, Date def3) {
+	public BeautyTableConfig(String tableName, String columnName, Byte orderable, Integer width, Integer sequence, String remark, Date createTime, Date lastUpdateTime) {
+		super();
+		this.tableName = tableName;
+		this.columnName = columnName;
+		this.orderable = orderable;
+		this.width = width;
+		this.sequence = sequence;
+		this.remark = remark;
+		this.createTime = createTime;
+		this.lastUpdateTime = lastUpdateTime;
+	}
+
+	public BeautyTableConfig(String tableName, String title, String data, String columnName, Byte orderable, Integer width, String className, Integer sequence, String render, String remark, Date createTime, String creater, Date lastUpdateTime, String modifier, Byte isDeleted, String def1, String def2, Date def3) {
 		this.tableName = tableName;
 		this.title = title;
 		this.data = data;
+		this.columnName = columnName;
 		this.orderable = orderable;
 		this.width = width;
 		this.className = className;
@@ -92,7 +106,7 @@ public class BeautyTableConfig implements java.io.Serializable {
 		this.tableName = tableName;
 	}
 
-	@Column(name = "title", nullable = false, length = 50)
+	@Column(name = "title", nullable = false, length = 50, insertable = false)
 	public String getTitle() {
 		return this.title;
 	}
@@ -101,13 +115,22 @@ public class BeautyTableConfig implements java.io.Serializable {
 		this.title = title;
 	}
 
-	@Column(name = "data", nullable = false, length = 50)
+	@Column(name = "data", nullable = false, length = 50, insertable = false)
 	public String getData() {
 		return this.data;
 	}
 
 	public void setData(String data) {
 		this.data = data;
+	}
+
+	@Column(name = "column_name", nullable = false, length = 50)
+	public String getColumnName() {
+		return columnName;
+	}
+
+	public void setColumnName(String columnName) {
+		this.columnName = columnName;
 	}
 
 	@Column(name = "orderable", nullable = false)
@@ -128,7 +151,7 @@ public class BeautyTableConfig implements java.io.Serializable {
 		this.width = width;
 	}
 
-	@Column(name = "class_name", nullable = false, length = 50)
+	@Column(name = "class_name", nullable = false, length = 50, insertable = false)
 	public String getClassName() {
 		return this.className;
 	}
@@ -146,7 +169,7 @@ public class BeautyTableConfig implements java.io.Serializable {
 		this.sequence = sequence;
 	}
 
-	@Column(name = "render", nullable = false, length = 100)
+	@Column(name = "render", nullable = false, length = 100, insertable = false)
 	public String getRender() {
 		return this.render;
 	}
@@ -174,7 +197,7 @@ public class BeautyTableConfig implements java.io.Serializable {
 		this.createTime = createTime;
 	}
 
-	@Column(name = "creater", nullable = false, length = 50)
+	@Column(name = "creater", nullable = false, length = 50, insertable = false)
 	public String getCreater() {
 		return this.creater;
 	}
@@ -193,7 +216,7 @@ public class BeautyTableConfig implements java.io.Serializable {
 		this.lastUpdateTime = lastUpdateTime;
 	}
 
-	@Column(name = "modifier", nullable = false, length = 50)
+	@Column(name = "modifier", nullable = false, length = 50, insertable = false)
 	public String getModifier() {
 		return this.modifier;
 	}
@@ -202,7 +225,7 @@ public class BeautyTableConfig implements java.io.Serializable {
 		this.modifier = modifier;
 	}
 
-	@Column(name = "is_deleted", nullable = false)
+	@Column(name = "is_deleted", nullable = false, insertable = false)
 	public Byte getIsDeleted() {
 		return this.isDeleted;
 	}
@@ -211,7 +234,7 @@ public class BeautyTableConfig implements java.io.Serializable {
 		this.isDeleted = isDeleted;
 	}
 
-	@Column(name = "def1", nullable = false, length = 50)
+	@Column(name = "def1", nullable = false, length = 50, insertable = false)
 	public String getDef1() {
 		return this.def1;
 	}
@@ -220,7 +243,7 @@ public class BeautyTableConfig implements java.io.Serializable {
 		this.def1 = def1;
 	}
 
-	@Column(name = "def2", nullable = false, length = 50)
+	@Column(name = "def2", nullable = false, length = 50, insertable = false)
 	public String getDef2() {
 		return this.def2;
 	}
@@ -230,7 +253,7 @@ public class BeautyTableConfig implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "def3", nullable = false, length = 19)
+	@Column(name = "def3", nullable = false, length = 19, insertable = false)
 	public Date getDef3() {
 		return this.def3;
 	}

@@ -16,7 +16,7 @@
 	<!-- Button to open/hide menu -->
 	
 	<!-- Main content -->
-	<section role="main" id="main" style="min-height: 700px;">
+	<section role="main" id="main" style="min-height: 700px;margin-top: 0px;">
 		<iframe src="${basePath }/pages/content.jsp" id="iframe-main" name="iframe-main" frameborder="0" width="100%" scrolling="no"></iframe>
 	</section>
 	<!-- End main content -->

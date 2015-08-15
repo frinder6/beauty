@@ -8,17 +8,21 @@
 
 	var defaults = {
 		tableName : '',
+		selected : false,
 		url : '',
 		tools : '',
 		data : {},
-		columnDefs : []
+		columnDefs : [],
+		columns : [],
+		select : {
+			style : 'single'
+		}
 	};
 
 	$.fn.datatable = function(options) {
 		var settings = $.extend({}, defaults, options);
-
 		var columnUrl = _PATH('/table/load/table/config.action');
-
+		var stop = false;
 		// 获取表列
 		$.ajax({
 			type : "POST",
@@ -28,16 +32,39 @@
 				tableName : settings.tableName
 			},
 			dataType : "json",
-			success : function(data) {
-				settings.columns = data;
+			success : function(datas) {
+				var len = datas.length;
+				if (len == 0){
+					stop = true;
+					return;
+				}
+				settings.columns = datas;
 			}
 		});
 		
-		//alert(JSON.stringify(settings.columns));
+		if (stop) return;
 		
-		$(this).DataTable({
+		var selected = settings.selected;
+		if (selected){
+			settings.columns.unshift({
+				orderable : false,
+				data : null,
+				defaultContent : '',
+				width : 20
+			});
+			settings.columnDefs.unshift({
+				orderable : false,
+	            className: 'select-checkbox',
+	            targets:   0
+			});
+		};
+		
+		//alert(JSON.stringify(settings));
+		
+		var table = $(this).DataTable({
 			processing : true,
 			serverSide : true,
+			select : settings.select,
 			ajax : {
 				url : _PATH(settings.url),
 				data : settings.data
@@ -54,6 +81,8 @@
 				$('#my-tool').append(settings.tools);
 			}
 		});
+		
+		return table;
 		
 	};
 

@@ -53,19 +53,19 @@
 <link rel="stylesheet" href="${basePath}/resources/developr/css/styles/switches.css?v=1">
 <link rel="stylesheet" href="${basePath}/resources/developr/css/styles/table.css?v=1">
 
+<!-- DataTables -->
+<%-- <link rel="stylesheet" href="${basePath}/resources/developr/js/libs/DataTables/jquery.dataTables.css"> --%>
+
 <link rel="stylesheet" href="${basePath}/resources/customer/style.default.css">
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <link rel="stylesheet" href="${basePath}/resources/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="${basePath}/resources/bootstrap/datatable/dataTables.bootstrap.css">
 <!-- 可选的Bootstrap主题文件（一般不用引入） -->
-<%-- <link rel="stylesheet" href="${basePath}/resources/bootstrap/css/bootstrap-theme.min.css"> --%>
-
-<!-- DataTables -->
-<%-- <link rel="stylesheet" href="${basePath}/resources/developr/js/libs/DataTables/jquery.dataTables.css"> --%>
-
+<link rel="stylesheet" href="${basePath}/resources/bootstrap/css/bootstrap-theme.min.css">
+<!--  -->
+<link rel="stylesheet" href="${basePath}/resources/developr/js/libs/DataTables/select.dataTables.min.css">
 
 <%-- <link rel="stylesheet" href="${basePath}/resources/select2/css/select2.min.css"> --%>
-
 
 <!-- JavaScript at bottom except for Modernizr -->
 <script src="${basePath}/resources/developr/js/libs/modernizr.custom.js"></script>

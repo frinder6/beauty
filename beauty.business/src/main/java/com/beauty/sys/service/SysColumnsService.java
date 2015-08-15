@@ -27,5 +27,9 @@ public class SysColumnsService implements IMapperService<SysColumns> {
 		// TODO Auto-generated method stub
 		return this.sysColumnsDao.selectPage(params);
 	}
+	
+	public List<?> selectColumnsByTable(Map<String, Object> params){
+		return this.sysColumnsDao.selectColumnsByTable(params);
+	}
 
 }

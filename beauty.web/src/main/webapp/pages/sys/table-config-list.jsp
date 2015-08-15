@@ -21,27 +21,20 @@
 			init();
 
 			var tools = '<span id="my-tool" class="button-group">\
-				<a href="javascript:void(0)" class="button icon-star">Create</a>\
-				<a href="javascript:void(0)" class="button icon-download">Save</a>\
-				<a href="javascript:void(0)" class="button icon-new-tab">Duplicate</a>\
-				<a href="javascript:void(0)" class="button icon-trash">Delete</a>\
+				<a href="javascript:void(0)" class="button icon-download">配置</a>\
 			</span>';
 
-			var columnDefs = [{
+			var columnDefs = [ {
 				'targets' : 0,
 				'render' : _render
-			}];
+			} ];
 
-			$('#table-config-list').datatable({
-				tableName : 'TB_TABLE_CONFIG',
-				url : '/table/load/schema/tables.action',
-				data : {
-					tableSchema : 'beauty'
-				},
+			var table = $('#table-config-list').datatable({
+				tableName : 'BEAUTY_TABLE_CONFIG',
+				url : '/table/load/config.action',
 				tools : tools,
 				columnDefs : columnDefs
-			}); 
-
+			});
 
 		});
 	</script>
