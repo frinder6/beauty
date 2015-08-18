@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path;
 	request.setAttribute("basePath", basePath);
 	session.setAttribute("basePath", basePath);
 %>
@@ -21,6 +23,14 @@
 <script src="${basePath }/resources/bracket/js/morris.min.js"></script>
 <script src="${basePath }/resources/bracket/js/raphael-2.1.0.min.js"></script>
 <script src="${basePath }/resources/bracket/js/chosen.jquery.min.js"></script>
+<script src="${basePath }/resources/bracket/js/jquery.datatables.min.js"></script>
+
 
 <script src="${basePath }/resources/bracket/js/custom.js"></script>
-<script src="${basePath }/resources/bracket/js/dashboard.js"></script>
+<%-- <script src="${basePath }/resources/bracket/js/dashboard.js"></script> --%>
+<script src="${basePath }/resources/customer/jquery-datatables.js"></script>
+<script src="${basePath }/resources/customer/beauty-sys.js"></script>
+
+<script type="text/javascript">
+	var _BASE = '${basePath}';
+</script>

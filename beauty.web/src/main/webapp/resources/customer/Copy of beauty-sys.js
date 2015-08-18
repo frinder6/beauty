@@ -28,8 +28,12 @@ var _REDIRECT = function(e){
 // 设置高
 var init = function(){
 	$(window.parent.document).find("#iframe-main").load(function() {
-		var frame = $(window.parent.document).find("#iframe-main");
-		var height = $(window.parent.document).find('.contentpanel').height();
-		frame.height(height);
+		var main = $(window.parent.document).find("#iframe-main");
+		var height = $(window.parent.document).height();
+		main.height(height);
+	});
+	
+	$(window.document).click(function(){
+		$(window.parent.document).find('#default-click').trigger('click');
 	});
 };
