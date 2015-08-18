@@ -9,53 +9,52 @@ $(function() {
 		$('#main').height(sht);
 	});
 	
-	// 切换左侧菜单
-	var changeMenu = function(id) {
-		var url = _PATH('/menu/load/level.action');
-		$.ajax({
-			"type" : "post",
-			"url" : url,
-			"data" : {
-				id : id
-			},
-			"dataType" : 'json',
-			// "async" : false,
-			"success" : function(data) {
-				$('.navigable').html(data.value);
-				currentMenu();
-			},
-			"error" : function(msg) {
-				alert(msg);
-			}
-		});
-	};
-
-	// 初始化左侧菜单
-	var currentId = $('li.current').attr('data-id');
-	changeMenu(currentId);
+	// 添加二级菜单
+	var lis = $('#shortcuts').find('li');
+	$.each(lis, function(i, li) {
+		var id = '#' + $(this).attr('id') + '-DIV';
+		var div = $(id)[0];
+		if(div){
+			$(li).menuTooltip($(id), {
+				classes : [ 'anthracite-gradient', 'with-small-padding' ],
+				onShow : function(target){
+					resetMain(id);
+				}
+			});
+		}
+	});
+	
 
 	// 切换主菜单
 	$('#shortcuts').find('li').click(function() {
 		$('#shortcuts').find('li').removeClass('current');
 		$(this).addClass('current');
-		var id = $(this).attr('data-id');
-		changeMenu(id);
-		// var url = $(this).attr('data-href');
-		// $('#iframe-main').attr('src', _PATH(url));
 	});
-	
-	// 选中菜单
-	var currentMenu = function(){
-		$('.big-menu').find('a').click(function(){
-			$('.big-menu').find('a').removeClass('current').removeClass('navigable-current');
-			$(this).addClass('current').addClass('navigable-current');
-			// 主标题
-			// $('#main-title').find('h1').text($(this).text());
-			// 切换内容
-			var url = $(this).attr('data-href');
-			$('#iframe-main').attr('src', _PATH(url));
-		});
-	};
-	
 
 });
+
+var resetMain = function(id){
+	var options = $('#tooltips').find('select').children('option');
+	var len = options.length;
+	if (len == 0){
+		return;
+	}
+	// 默认选中第1个
+	// var url = options.eq(0).attr('data-href');
+	// $('#iframe-main').attr('src', _PATH(url));
+	$(id).find('select').change(function(){
+		var spans = $('#tooltips').find('span.drop-down').children('span');
+		var index = 0;
+		$.each(spans, function(i, span){
+			var clazz = $(span).attr('class');
+			if (clazz == 'selected'){
+				index = i;
+				return false;
+			}
+		});
+		var url = options.eq(index).attr('data-href');
+		if (url){
+			$('#iframe-main').attr('src', _PATH(url));
+		}
+	});
+};

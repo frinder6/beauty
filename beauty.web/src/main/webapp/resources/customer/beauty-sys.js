@@ -32,4 +32,8 @@ var init = function(){
 		var height = $(window.parent.document).height();
 		main.height(height);
 	});
+	
+	$(window.document).click(function(){
+		$(window.parent.document).find('#default-click').trigger('click');
+	});
 };

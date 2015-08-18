@@ -54,13 +54,45 @@ public class LoadMainMenuTag extends RequestContextAwareTag {
 		criteria.add(Restrictions.eq("parentId", 0L));
 		List<?> menus = this.menuService.query(criteria);
 		BeautyMenu menu = null;
-		out.print("<ul id=\"shortcuts\" role=\"complementary\" class=\"children-tooltip tooltip-right\" style=\"margin-top: -30px;\">");
-		String li = "<li class=\"%s\" data-id=\"%s\" data-href=\"%s\"><a href=\"javascript:void(0)\" class=\"%s\" title=\"%s\">%s</a></li>";
+		out.print("<ul id=\"shortcuts\" role=\"complementary\" class=\"tooltip-right\" style=\"margin-top: -1px;\">");
+		String li = "<li id=\"%s\" class=\"%s\" data-id=\"%s\" data-href=\"%s\"><a href=\"javascript:void(0)\" class=\"%s\" title=\"%s\">%s</a></li>";
 		for (Object obj : menus) {
 			menu = (BeautyMenu) obj;
-			out.print(String.format(li, menu.getDef1(), menu.getId(), menu.getUrl(), menu.getDef2(), menu.getName(), menu.getName()));
+			out.print(String.format(li, menu.getCode(), menu.getDef1(), menu.getId(), menu.getUrl(), menu.getDef2(), menu.getName(), menu.getName()));
+			// 生成div
+			out.print(createLevelMenu(menu));
 		}
 		out.print("</ul>");
+	}
+
+	/**
+	 * 
+	 * @Title: createLevelMenu
+	 * @Description: TODO(二级菜单)
+	 * @author frinder_liu
+	 * @param pMenu
+	 * @return
+	 * @return String
+	 * @date 2015年8月17日 下午10:06:01
+	 * @throws
+	 */
+	private String createLevelMenu(BeautyMenu pMenu) {
+		// 查询一级菜单
+		DetachedCriteria criteria = DetachedCriteria.forClass(BeautyMenu.class);
+		criteria.add(Restrictions.eq("parentId", pMenu.getId()));
+		List<?> menus = this.menuService.query(criteria);
+		if (menus.isEmpty()) {
+			return "";
+		}
+		String div = "<div id=\"%s\" style=\"display: none;\"><select class=\"select multiple allow-empty white-gradient easy-multiple-selection check-list\"><option value=\"-1\" selected=\"selected\">--</option>%s</select></div>";
+		String option = "<option data-id=\"%s\" data-href=\"%s\" value=\"%s\">%s</option>";
+		BeautyMenu menu = null;
+		StringBuffer options = new StringBuffer();
+		for (Object object : menus) {
+			menu = (BeautyMenu) object;
+			options.append(String.format(option, menu.getId(), menu.getUrl(), menu.getId(), menu.getName()));
+		}
+		return String.format(div, pMenu.getCode().concat("-DIV"), options);
 	}
 
 	public static void main(String[] args) {

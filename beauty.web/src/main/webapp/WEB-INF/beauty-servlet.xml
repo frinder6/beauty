@@ -20,7 +20,7 @@
 
 	<!-- 跳转目录设置prefix+point+suffix -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/pages/" />
+		<property name="prefix" value="/pages/bracket/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 
