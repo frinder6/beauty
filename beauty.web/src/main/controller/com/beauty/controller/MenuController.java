@@ -19,7 +19,7 @@ import com.beauty.base.entity.Page;
 import com.beauty.base.service.IService;
 import com.beauty.model.Value;
 import com.beauty.sys.entity.BeautyMenu;
-import com.beauty.tag.util.TagUtil;
+import com.beauty.tag.util.CopyOfTagUtil;
 import com.beauty.util.StringUtil;
 
 @Controller
@@ -34,7 +34,7 @@ public class MenuController {
 	public Value loadLevelMenu(@RequestParam("id") Long id) throws IOException {
 		BeautyMenu menu = this.menuService.findById(BeautyMenu.class, id);
 		List<?> menus = this.menuService.query("query-level2-menu", menu);
-		return new Value(TagUtil.createLevelMenu(menu.getName(), menus));
+		return new Value(CopyOfTagUtil.createLevelMenu(menu.getName(), menus));
 	}
 
 	@RequestMapping("/load/id")

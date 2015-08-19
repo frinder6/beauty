@@ -13,9 +13,22 @@ import org.springframework.web.servlet.tags.RequestContextAwareTag;
 import com.beauty.sys.entity.BeautyMenu;
 import com.beauty.sys.service.MenuService;
 import com.beauty.tag.util.TagUtil;
+import com.beauty.util.StringUtil;
 
 @Component
 public class LoadMainMenuTag extends RequestContextAwareTag {
+
+	// 主菜外围UL
+	private static final String _UL_1 = "<ul id=\"main-nav\" class=\"nav nav-pills nav-stacked nav-bracket\">%s</ul>";
+
+	// 主菜单LI
+	private static final String _LI_1 = "<li class=\"%s\"><a href=\"javascript:void(0)\"><i class=\"fa %s\"></i> <span>%s</span></a>%s</li>";
+
+	// 二级菜单外围UL
+	private static final String _UL_2 = "<ul class=\"children\">%s</ul>";
+
+	// 二级菜单LI
+	private static final String _LI_2 = "<li><a href=\"javascript:void(0)\" data-href=\"%s\"><i class=\"fa fa-caret-right\"></i> %s</a></li>";
 
 	private MenuService menuService;
 
@@ -54,15 +67,31 @@ public class LoadMainMenuTag extends RequestContextAwareTag {
 		criteria.add(Restrictions.eq("parentId", 0L));
 		List<?> menus = this.menuService.query(criteria);
 		BeautyMenu menu = null;
-		out.print("<ul id=\"shortcuts\" role=\"complementary\" class=\"tooltip-right\" style=\"margin-top: -1px;\">");
-		String li = "<li id=\"%s\" class=\"%s\" data-id=\"%s\" data-href=\"%s\"><a href=\"javascript:void(0)\" class=\"%s\" title=\"%s\">%s</a></li>";
-		for (Object obj : menus) {
-			menu = (BeautyMenu) obj;
-			out.print(String.format(li, menu.getCode(), menu.getDef1(), menu.getId(), menu.getUrl(), menu.getDef2(), menu.getName(), menu.getName()));
-			// 生成div
-			out.print(createLevelMenu(menu));
+		// 主菜单lis
+		StringBuffer lisStr = new StringBuffer("");
+		// 默认选中
+		String defaultClass = "active";
+		String parentClass = "nav-parent";
+		for (int i = 0; i < menus.size(); i++) {
+			// li样式
+			String liClass = "";
+			menu = (BeautyMenu) menus.get(i);
+			if (i == 0) {
+				liClass = defaultClass;
+			}
+			String li_2s = createLevelMenu(menu);
+			if (StringUtil.valueOf(li_2s).isEmpty()) {
+				// 没有子菜单
+				lisStr.append(String.format(_LI_1, liClass, menu.getDef2(), menu.getName(), li_2s));
+			} else {
+				// 添加父类样式
+				liClass = liClass.concat(" ").concat(parentClass);
+				lisStr.append(String.format(_LI_1, liClass, menu.getDef2(), menu.getName(), li_2s));
+			}
 		}
-		out.print("</ul>");
+		String menuStr = String.format(_UL_1, lisStr);
+		System.out.println(menuStr);
+		out.print(menuStr);
 	}
 
 	/**
@@ -84,23 +113,15 @@ public class LoadMainMenuTag extends RequestContextAwareTag {
 		if (menus.isEmpty()) {
 			return "";
 		}
-		String div = "<div id=\"%s\" style=\"display: none;\"><select class=\"select multiple allow-empty white-gradient easy-multiple-selection check-list\"><option value=\"-1\" selected=\"selected\">--</option>%s</select></div>";
-		String option = "<option data-id=\"%s\" data-href=\"%s\" value=\"%s\">%s</option>";
 		BeautyMenu menu = null;
-		StringBuffer options = new StringBuffer();
+		// 二级菜单lis
+		StringBuffer lisStr = new StringBuffer();
 		for (Object object : menus) {
 			menu = (BeautyMenu) object;
-			options.append(String.format(option, menu.getId(), menu.getUrl(), menu.getId(), menu.getName()));
+			lisStr.append(String.format(_LI_2, menu.getUrl(), menu.getName()));
 		}
-		return String.format(div, pMenu.getCode().concat("-DIV"), options);
-	}
-
-	public static void main(String[] args) {
-		String[] ss = { "<ul id=\"shortcuts\" role=\"complementary\" class=\"children-tooltip tooltip-right\">", "<li><a href=\"./\" class=\"shortcut-dashboard\" title=\"主页\">主页</a></li>", "<li class=\"current\"><a href=\"inbox.html\" class=\"shortcut-messages\" title=\"Messages\">Messages</a></li>", "<li><a href=\"agenda.html\" class=\"shortcut-agenda\" title=\"Agenda\">Agenda</a></li>", "<li><a href=\"tables.html\" class=\"shortcut-contacts\" title=\"Contacts\">Contacts</a></li>", "<li><a href=\"explorer.html\" class=\"shortcut-medias\" title=\"Medias\">Medias</a></li>", "<li><a href=\"sliders.html\" class=\"shortcut-stats\" title=\"Stats\">Stats</a></li>", "<li><a href=\"form.html\" class=\"shortcut-settings\" title=\"Settings\">Settings</a></li>",
-				"<li><span class=\"shortcut-notes\" title=\"Notes\">Notes</span></li>", "</ul>" };
-		for (String s : ss) {
-			System.out.println(String.format("out.print(\"%s\")", s));
-		}
+		String ul2Str = String.format(_UL_2, lisStr);
+		return ul2Str;
 	}
 
 }

@@ -2,19 +2,22 @@
 <html>
 <head>
 <jsp:include page="../import-css.jsp" />
+<link href="${basePath }/resources/developr/js/libs/DataTables/select.dataTables.min.css" rel="stylesheet">
+
 <title>内容块</title>
 </head>
 <body style="background-color: #E4E7EA;">
 
 	<div class="table-responsive">
 
-		<table id="menu-list" class="table table-bordered table-hover mb30">
+		<table id="menu-list" class="table table-bordered">
 		</table>
 
 	</div>
 	<!-- table-responsive -->
 
 	<jsp:include page="../import-js.jsp" />
+	<script src="${basePath }/resources/developr/js/libs/DataTables/dataTables.select.js"></script>
 	
 	<script type="text/javascript">
 		$(function(){
@@ -22,16 +25,33 @@
 			
 			var tools = '<div class="btn-group">\
                 <button type="button" class="btn btn-default">新增</button>\
-                <button type="button" class="btn btn-default">删除</button>\
                 <button type="button" class="btn btn-default">更新</button>\
+                <button type="button" class="btn btn-default">删除</button>\
             </div>';
 			
 						
-			$('#menu-list').datatable({
+			var table = $('#menu-list').datatable({
 				tableName : 'BEAUTY_MENU',
 				url : '/menu/load/page.action',
-				tools : tools
+				tools : tools,
+				selected : true,
+				title : '<input type="checkbox" onclick="checkbox(this)" />',
+				select : {
+					style: 'multi'
+				}
 			});
+			
+			//
+			checkbox = function(e){
+				var checked = $(e).attr('checked');
+				if (checked){
+					// 全选
+					table.rows().select();
+				} else {
+					// 取消全选
+					table.rows().deselect();
+				}
+			};
 		});
 	</script>
 </body>

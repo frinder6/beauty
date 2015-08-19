@@ -14,6 +14,7 @@
 		data : {},
 		columnDefs : [],
 		columns : [],
+		title : '',
 		select : {
 			style : 'single'
 		}
@@ -50,16 +51,18 @@
 				orderable : false,
 				data : null,
 				defaultContent : '',
-				width : 20
+				title : settings.title,
+				width : 40
 			});
 			settings.columnDefs.unshift({
 				orderable : false,
 	            className: 'select-checkbox',
-	            targets:   0
+	            targets : 0,
+	            width : 40
 			});
 		};
 		
-		//alert(JSON.stringify(settings));
+		// alert(JSON.stringify(settings.columns));
 		
 		var table = $(this).DataTable({
 			processing : true,

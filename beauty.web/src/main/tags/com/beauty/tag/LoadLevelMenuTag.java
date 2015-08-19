@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.tags.RequestContextAwareTag;
 
 import com.beauty.sys.service.MenuService;
+import com.beauty.tag.util.CopyOfTagUtil;
 import com.beauty.tag.util.TagUtil;
 
 @Component
@@ -56,7 +57,7 @@ public class LoadLevelMenuTag extends RequestContextAwareTag {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", parentId);
 		List<?> menus = this.menuService.query("query-level2-menu", params);
-		String result = TagUtil.createLevelMenu(parentName, menus);
+		String result = CopyOfTagUtil.createLevelMenu(parentName, menus);
 		// 写结果
 		out.print(result);
 	}
