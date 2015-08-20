@@ -20,7 +20,14 @@ var _PATH = function(url){
 /**
  * 跳转
  */
-var _REDIRECT = function(e){
+var _REDIRECT = function(url){
+	$(window.document).find("#iframe-main").attr('src', _PATH(url));
+};
+
+/**
+ * 子页面跳转
+ */
+var _S_REDIRECT = function(e){
 	var url = $(e).attr('data-href');
 	$(window.parent.document).find("#iframe-main").attr('src', _PATH(url));
 };

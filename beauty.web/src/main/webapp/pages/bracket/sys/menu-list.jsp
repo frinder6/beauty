@@ -2,7 +2,7 @@
 <html>
 <head>
 <jsp:include page="../import-css.jsp" />
-<link href="${basePath }/resources/developr/js/libs/DataTables/select.dataTables.min.css" rel="stylesheet">
+
 
 <title>内容块</title>
 </head>
@@ -17,7 +17,6 @@
 	<!-- table-responsive -->
 
 	<jsp:include page="../import-js.jsp" />
-	<script src="${basePath }/resources/developr/js/libs/DataTables/dataTables.select.js"></script>
 	
 	<script type="text/javascript">
 		$(function(){
@@ -41,7 +40,7 @@
 				}
 			});
 			
-			//
+			// 表格全选方法
 			checkbox = function(e){
 				var checked = $(e).attr('checked');
 				if (checked){
@@ -52,6 +51,7 @@
 					table.rows().deselect();
 				}
 			};
+			
 		});
 	</script>
 </body>

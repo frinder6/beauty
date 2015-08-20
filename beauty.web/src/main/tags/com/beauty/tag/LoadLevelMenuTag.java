@@ -10,7 +10,7 @@ import javax.servlet.jsp.JspWriter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.tags.RequestContextAwareTag;
 
-import com.beauty.sys.service.MenuService;
+import com.beauty.service.MenuService;
 import com.beauty.tag.util.CopyOfTagUtil;
 import com.beauty.tag.util.TagUtil;
 

@@ -6,14 +6,13 @@
 </head>
 <body style="background-color: #E4E7EA;">
 
-	<div style="padding: 10px 0 0 20px;">
-		<a href="${basePath }/pages/sys/table-config-list.jsp" class="button icon-revert huge">返回</a>
+	<div class="btn-group">
+		<a href="${basePath }/pages/bracket/sys/sys-table-list.jsp" class="btn btn-default fa fa-backward">&nbsp;返回</a>
 	</div>
-
 
 	<div class="table-responsive">
 
-		<table id="column-config-list" class="table table-bordered table-hover mb30">
+		<table id="column-config-list" class="table table-bordered">
 		</table>
 
 	</div>
@@ -25,8 +24,6 @@
 			init();
 
 			var tools = '<div class="btn-group">\
-                <button type="button" class="btn btn-default" onclick="selectAll()">全选</button>\
-                <button type="button" class="btn btn-default" onclick="deSelectAll()">取消</button>\
                 <button type="button" class="btn btn-default">导入</button>\
             </div>';
 
@@ -39,18 +36,23 @@
 				},
 				tools : tools,
 				selected : true,
+				title : '<input type="checkbox" onclick="checkbox(this)" />',
 				select : {
 					style : 'multi'
 				}
 			});
-
-			// 全选
-			selectAll = function() {
-				table.rows().select();
-			};
-			// 取消全选
-			deSelectAll = function() {
-				table.rows().deselect();
+			
+			
+			// 表格全选方法
+			checkbox = function(e){
+				var checked = $(e).attr('checked');
+				if (checked){
+					// 全选
+					table.rows().select();
+				} else {
+					// 取消全选
+					table.rows().deselect();
+				}
 			};
 
 		});

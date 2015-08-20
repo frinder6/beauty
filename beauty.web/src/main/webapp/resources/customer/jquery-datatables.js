@@ -14,9 +14,12 @@
 		data : {},
 		columnDefs : [],
 		columns : [],
-		title : '',
+		// title : '',
 		select : {
 			style : 'single'
+		},
+		fnRowCallback : function(nRow, aData, iDisplayIndex){
+			return nRow;
 		}
 	};
 
@@ -45,22 +48,22 @@
 		
 		if (stop) return;
 		
-		var selected = settings.selected;
-		if (selected){
-			settings.columns.unshift({
-				orderable : false,
-				data : null,
-				defaultContent : '',
-				title : settings.title,
-				width : 40
-			});
-			settings.columnDefs.unshift({
-				orderable : false,
-	            className: 'select-checkbox',
-	            targets : 0,
-	            width : 40
-			});
-		};
+		//var selected = settings.selected;
+		//if (selected){
+		settings.columns.unshift({
+			orderable : false,
+			data : null,
+			defaultContent : '',
+			// title : settings.title,
+			title : '<input type="checkbox" onclick="checkbox(this)" />',
+			width : 30
+		});
+		settings.columnDefs.unshift({
+			orderable : false,
+            className: 'select-checkbox',
+            targets : 0
+		});
+		//};
 		
 		// alert(JSON.stringify(settings.columns));
 		
@@ -82,7 +85,8 @@
 			},
 			initComplete : function() {
 				$('#my-tool').append(settings.tools);
-			}
+			},
+			fnRowCallback : settings.fnRowCallback
 		});
 		
 		return table;

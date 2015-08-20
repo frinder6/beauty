@@ -1,6 +1,6 @@
 package com.beauty;
 
-import com.beauty.sys.entity.SysTables;
+import com.beauty.entity.SysTables;
 import com.beauty.util.ColumnUtil;
 
 

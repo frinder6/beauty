@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.web.context.WebApplicationContext;
 
-import com.beauty.sys.entity.BeautyMenu;
+import com.beauty.entity.BeautyMenu;
 
 public class CopyOfTagUtil {
 

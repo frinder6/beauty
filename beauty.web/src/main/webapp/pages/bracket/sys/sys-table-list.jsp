@@ -9,7 +9,7 @@
 
 	<div class="table-responsive">
 
-		<table id="table-config-list" class="table table-bordered table-hover mb30">
+		<table id="table-config-list" class="table table-bordered mb30">
 		</table>
 
 	</div>
@@ -19,7 +19,7 @@
 
 	<script type="text/javascript">
 		var _render = function(data, type, row, meta) {
-			var result = '<a href="#" data-href="/pages/bracket/sys/sys-column-list.jsp?schema=beauty&table={0}" onclick="_REDIRECT(this)">{1}</a>';
+			var result = '<a href="#" data-href="/pages/bracket/sys/sys-column-list.jsp?schema=beauty&table={0}" onclick="_S_REDIRECT(this)">{1}</a>';
 			return result.format(data, data);
 		};
 		$(function() {
@@ -30,7 +30,7 @@
             </div>';
 
 			var columnDefs = [ {
-				'targets' : 0,
+				'targets' : 1,
 				'render' : _render
 			} ];
 

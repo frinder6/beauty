@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.beauty.base.entity.Page;
+import com.beauty.entity.BeautyTableConfig;
+import com.beauty.entity.SysColumns;
+import com.beauty.entity.SysTables;
 import com.beauty.model.Value;
-import com.beauty.sys.entity.BeautyTableConfig;
-import com.beauty.sys.entity.SysColumns;
-import com.beauty.sys.entity.SysTables;
-import com.beauty.sys.service.SysColumnsService;
-import com.beauty.sys.service.SysTableService;
-import com.beauty.sys.service.TableConfigService;
+import com.beauty.service.SysColumnsService;
+import com.beauty.service.SysTableService;
+import com.beauty.service.TableConfigService;
 import com.beauty.util.CodeUtil;
 
 @Component

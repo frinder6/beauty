@@ -9,7 +9,7 @@
 
 	<div class="table-responsive">
 
-		<table id="table-config-list" class="table table-bordered table-hover mb30">
+		<table id="table-config-list" class="table table-bordered mb30">
 		</table>
 
 	</div>
@@ -26,11 +26,11 @@
 			init();
 
 			var tools = '<div class="btn-group">\
-                <button type="button" class="btn btn-default">配置</button>\
+                <button type="button" class="btn btn-default">保存</button>\
             </div>';
 
 			var columnDefs = [ {
-				'targets' : 0,
+				'targets' : 1,
 				'render' : _render
 			} ];
 
@@ -38,7 +38,13 @@
 				tableName : 'BEAUTY_TABLE_CONFIG',
 				url : '/table/load/config.action',
 				tools : tools,
-				columnDefs : columnDefs
+				columnDefs : columnDefs,
+				fnRowCallback : function(nRow, aData, iDisplayIndex) {
+					$('td:eq(2)', nRow).editable({
+			           // mode: 'inline'
+			        });
+				    return nRow;
+				}
 			});
 
 		});

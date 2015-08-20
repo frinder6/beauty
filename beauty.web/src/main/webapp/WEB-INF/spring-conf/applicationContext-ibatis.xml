@@ -10,7 +10,7 @@
 	<!-- ibatis的sqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="/WEB-INF/db-conf/mybatis-config.xml" />
+		<!-- <property name="configLocation" value="/WEB-INF/db-conf/mybatis-config.xml" /> -->
 		<property name="mapperLocations" value="classpath*:com/beauty/**/*Mapper.xml" />
 	</bean>
 
@@ -21,7 +21,7 @@
 
 	<!-- 自动为接口创建代理类 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.beauty.*.interfaces" />
+		<property name="basePackage" value="com.beauty.interfaces" />
 	</bean>
 
 

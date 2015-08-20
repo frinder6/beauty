@@ -23,8 +23,9 @@
 <script src="${basePath }/resources/bracket/js/morris.min.js"></script>
 <script src="${basePath }/resources/bracket/js/raphael-2.1.0.min.js"></script>
 <script src="${basePath }/resources/bracket/js/chosen.jquery.min.js"></script>
+<script src="${basePath }/resources/bracket/js/bootstrap-editable.min.js"></script>
 <script src="${basePath }/resources/developr/js/libs/DataTables/jquery.dataTables.js"></script>
-<%-- <script src="${basePath }/resources/bracket/js/jquery.datatables.min.js"></script> --%>
+<script src="${basePath }/resources/developr/js/libs/DataTables/dataTables.select.js"></script>
 
 
 <script src="${basePath }/resources/bracket/js/custom.js"></script>

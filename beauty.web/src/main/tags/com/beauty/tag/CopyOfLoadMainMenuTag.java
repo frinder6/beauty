@@ -10,8 +10,8 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.tags.RequestContextAwareTag;
 
-import com.beauty.sys.entity.BeautyMenu;
-import com.beauty.sys.service.MenuService;
+import com.beauty.entity.BeautyMenu;
+import com.beauty.service.MenuService;
 import com.beauty.tag.util.TagUtil;
 
 @Component

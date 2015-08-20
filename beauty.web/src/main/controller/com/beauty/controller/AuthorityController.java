@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.beauty.base.service.IService;
-import com.beauty.sys.entity.BeautyAuthority;
+import com.beauty.entity.BeautyAuthority;
 
 @Component
 public class AuthorityController {

@@ -143,7 +143,7 @@
 					<div class="col-sm-12">
 					
 						<!-- table-responsive -->
-						<iframe id="iframe-main" src="${basePath }/pages/bracket/sys/menu-list.jsp" name="iframe-main" frameborder="0" width="100%" scrolling="no"></iframe>
+						<iframe id="iframe-main" src="${basePath }/pages/bracket/content.jsp" name="iframe-main" frameborder="0" width="100%" scrolling="no"></iframe>
 
 					</div>
 					<!-- col-sm-12 -->
@@ -167,6 +167,11 @@
 				// 二级菜单样式
 				$('#main-nav').children('li').removeClass('active');
 				$(this).addClass('active');
+			});
+			
+			$('#main-nav').find('ul').find('li').click(function(){
+				var url = $(this).children('a').attr('data-href');
+				_REDIRECT(url);
 			});
 			
 		});
