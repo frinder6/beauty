@@ -6,10 +6,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.beauty.base.service.BaseService;
-import com.beauty.base.service.IMapperService;
 import com.beauty.entity.BeautyTableConfig;
 import com.beauty.interfaces.TableConfigDao;
+import com.beauty.service.BaseService;
+import com.beauty.service.IMapperService;
 
 @Service
 public class TableConfigService extends BaseService<BeautyTableConfig> implements IMapperService<BeautyTableConfig> {

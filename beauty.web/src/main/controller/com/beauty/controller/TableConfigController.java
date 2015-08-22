@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.beauty.base.entity.Page;
 import com.beauty.entity.BeautyTableConfig;
+import com.beauty.entity.Page;
 import com.beauty.entity.SysColumns;
 import com.beauty.entity.SysTables;
 import com.beauty.model.Value;
@@ -35,6 +35,29 @@ public class TableConfigController {
 
 	@Autowired
 	private SysColumnsService sysColumnsService;
+
+	@RequestMapping(value = "/modify/config", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Value modify(BeautyTableConfig entity) {
+		BeautyTableConfig config = this.tableConfigService.findById(BeautyTableConfig.class, entity.getId());
+		if (null != entity.getData()) {
+			config.setData(entity.getData());
+		}
+		if (null != entity.getOrderable()) {
+			config.setOrderable(entity.getOrderable());
+		}
+		if (null != entity.getWidth()) {
+			config.setWidth(entity.getWidth());
+		}
+		if (null != entity.getClassName()) {
+			config.setClassName(entity.getClassName());
+		}
+		if (null != entity.getSequence()) {
+			config.setSequence(entity.getSequence());
+		}
+		this.tableConfigService.merge(config);
+		return new Value(CodeUtil.EDIT_SUCCESS);
+	}
 
 	@RequestMapping(value = "/load/table/config", produces = "application/json; charset=utf-8")
 	@ResponseBody

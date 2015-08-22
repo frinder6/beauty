@@ -1,4 +1,4 @@
-package com.beauty.base.dao;
+package com.beauty.dao;
 
 import java.util.List;
 import java.util.Map;

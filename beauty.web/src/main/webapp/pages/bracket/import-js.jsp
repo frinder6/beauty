@@ -26,6 +26,7 @@
 <script src="${basePath }/resources/bracket/js/bootstrap-editable.min.js"></script>
 <script src="${basePath }/resources/developr/js/libs/DataTables/jquery.dataTables.js"></script>
 <script src="${basePath }/resources/developr/js/libs/DataTables/dataTables.select.js"></script>
+<script src="${basePath }/resources/layer/layer.js"></script>
 
 
 <script src="${basePath }/resources/bracket/js/custom.js"></script>

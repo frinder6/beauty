@@ -1,4 +1,4 @@
-package com.beauty.base.service;
+package com.beauty.service;
 
 import java.util.List;
 import java.util.Map;
@@ -7,8 +7,8 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.beauty.base.dao.IDao;
-import com.beauty.base.entity.Page;
+import com.beauty.dao.IDao;
+import com.beauty.entity.Page;
 
 @Component("baseService")
 public class BaseService<T> implements IService<T> {

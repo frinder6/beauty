@@ -1,11 +1,11 @@
-package com.beauty.base.service;
+package com.beauty.service;
 
 import java.util.List;
 import java.util.Map;
 
 import org.hibernate.criterion.DetachedCriteria;
 
-import com.beauty.base.entity.Page;
+import com.beauty.entity.Page;
 
 public interface IService<T> {
 	/**

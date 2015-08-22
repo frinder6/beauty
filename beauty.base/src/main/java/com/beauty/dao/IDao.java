@@ -1,11 +1,11 @@
-package com.beauty.base.dao;
+package com.beauty.dao;
 
 import java.util.List;
 import java.util.Map;
 
 import org.hibernate.criterion.DetachedCriteria;
 
-import com.beauty.base.entity.Page;
+import com.beauty.entity.Page;
 
 public interface IDao<T> {
 

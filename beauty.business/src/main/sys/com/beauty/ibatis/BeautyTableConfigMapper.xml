@@ -44,7 +44,12 @@
 		<include refid="Base_Column_List" />
 		FROM beauty_table_config
 		<include refid="Base_Where_Clause" />
-		ORDER BY table_name, id
+		ORDER BY table_name 
+		<trim prefixOverrides=",">
+			<if test="orderColumn">
+				${orderColumn} ${orderDir}
+			</if>
+		</trim>
 		LIMIT #{from}, #{size}
 	</select>
 	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">

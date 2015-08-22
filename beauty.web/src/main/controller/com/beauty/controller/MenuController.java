@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.beauty.base.entity.Page;
-import com.beauty.base.service.IService;
 import com.beauty.entity.BeautyMenu;
+import com.beauty.entity.Page;
 import com.beauty.model.Value;
+import com.beauty.service.IService;
 import com.beauty.tag.util.CopyOfTagUtil;
 import com.beauty.util.StringUtil;
 

@@ -6,9 +6,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.beauty.base.service.IMapperService;
 import com.beauty.entity.SysColumns;
 import com.beauty.interfaces.SysColumnsDao;
+import com.beauty.service.IMapperService;
 
 @Service
 public class SysColumnsService implements IMapperService<SysColumns> {

@@ -1,4 +1,4 @@
-package com.beauty.base.entity;
+package com.beauty.entity;
 
 import java.io.Serializable;
 import java.util.Map;

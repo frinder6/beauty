@@ -1,4 +1,4 @@
-package com.beauty.base.dao;
+package com.beauty.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Component;
 
-import com.beauty.base.entity.Page;
+import com.beauty.entity.Page;
 
 @Component("baseDao")
 public class BaseDao<T> implements IDao<T> {

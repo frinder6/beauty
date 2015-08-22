@@ -3,9 +3,9 @@ package com.beauty.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.beauty.base.dao.IDao;
-import com.beauty.base.service.BaseService;
+import com.beauty.dao.IDao;
 import com.beauty.entity.BeautyAuthority;
+import com.beauty.service.BaseService;
 
 
 @Service

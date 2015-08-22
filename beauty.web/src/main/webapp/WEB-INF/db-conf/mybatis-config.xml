@@ -2,13 +2,8 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-	<typeAliases>
-		<typeAlias type="com.beauty.sys.entity.BeautyMenu" alias="Menu"/>
-	</typeAliases>
-
 	<mappers>
-		<mapper resource="com/beauty/sys/ibatis/common-mapping.xml" />
-		<mapper resource="com/beauty/sys/ibatis/menu-mapping.xml" />
+		<mapper resource="com/beauty/ibatis/common-mapping.xml" />
 	</mappers>
 
 </configuration>

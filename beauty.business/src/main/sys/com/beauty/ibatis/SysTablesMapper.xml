@@ -24,10 +24,10 @@
 		<include refid="Base_Where_Clause" />
 		ORDER BY 
 		<if test="orderColumn">
-			${orderColumn}
+			${orderColumn} ${orderDir}
 		</if>
-		<if test="orderDir">
-			${orderDir}
+		<if test="orderColumn == null">
+			id
 		</if>
 		LIMIT #{from}, #{size}
 	</select>

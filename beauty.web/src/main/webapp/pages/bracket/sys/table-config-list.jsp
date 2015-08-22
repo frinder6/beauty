@@ -34,16 +34,23 @@
 				'render' : _render
 			} ];
 
+			var arrs = {
+				'td:eq(4)' : 'data',
+				'td:eq(6)' : 'orderable',
+				'td:eq(7)' : 'width',
+				'td:eq(8)' : 'className',
+				'td:eq(9)' : 'sequence'
+			};
+
 			var table = $('#table-config-list').datatable({
 				tableName : 'BEAUTY_TABLE_CONFIG',
 				url : '/table/load/config.action',
 				tools : tools,
 				columnDefs : columnDefs,
 				fnRowCallback : function(nRow, aData, iDisplayIndex) {
-					$('td:eq(2)', nRow).editable({
-			           // mode: 'inline'
-			        });
-				    return nRow;
+					// 绑定update
+					binding(arrs, nRow, aData);
+					return nRow;
 				}
 			});
 
