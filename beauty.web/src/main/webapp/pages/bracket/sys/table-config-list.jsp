@@ -9,7 +9,7 @@
 
 	<div class="table-responsive">
 
-		<table id="table-config-list" class="table table-bordered mb30">
+		<table id="table-config-list" class="table table-bordered mb30" width="100%">
 		</table>
 
 	</div>
@@ -17,45 +17,8 @@
 
 	<%@include file="../import-js.jsp"%>
 
-	<script type="text/javascript">
-		var _render = function(data, type, row, meta) {
-			var result = '<a href="#" data-href="/pages/sys/column-config-list.jsp?schema=beauty&table={0}" onclick="_REDIRECT(this)">{1}</a>';
-			return result.format(data, data);
-		};
-		$(function() {
-			init();
-
-			var tools = '<div class="btn-group">\
-                <button type="button" class="btn btn-default">保存</button>\
-            </div>';
-
-			var columnDefs = [ {
-				'targets' : 1,
-				'render' : _render
-			} ];
-
-			var arrs = {
-				'td:eq(4)' : 'data',
-				'td:eq(6)' : 'orderable',
-				'td:eq(7)' : 'width',
-				'td:eq(8)' : 'className',
-				'td:eq(9)' : 'sequence'
-			};
-
-			var table = $('#table-config-list').datatable({
-				tableName : 'BEAUTY_TABLE_CONFIG',
-				url : '/table/load/config.action',
-				tools : tools,
-				columnDefs : columnDefs,
-				fnRowCallback : function(nRow, aData, iDisplayIndex) {
-					// 绑定update
-					binding(arrs, nRow, aData);
-					return nRow;
-				}
-			});
-
-		});
-	</script>
+	<script type="text/javascript" src="${basePath }/resources/customer/sys/table-config-list.js"></script>
+	
 
 </body>
 

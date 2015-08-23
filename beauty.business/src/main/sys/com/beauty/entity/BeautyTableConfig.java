@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.beauty.annotation.Orderable;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -31,13 +32,21 @@ public class BeautyTableConfig implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	@Orderable(columnName = "table_name")
 	private String tableName;
+	@Orderable(columnName = "title")
 	private String title;
+	@Orderable(columnName = "data")
 	private String data;
+	@Orderable(columnName = "column_name")
 	private String columnName;
+	@Orderable(columnName = "orderable")
 	private Byte orderable;
+	@Orderable(columnName = "width")
 	private Integer width;
+	@Orderable(columnName = "class_name")
 	private String className;
+	@Orderable(columnName = "sequence")
 	private Integer sequence;
 	private String render;
 	private String remark;

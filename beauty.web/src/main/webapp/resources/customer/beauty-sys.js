@@ -34,6 +34,14 @@ var _S_REDIRECT = function(e) {
 
 // 设置高
 var init = function() {
+	
+	// 滚动条
+	$(window.parent.document).scroll(function(){
+		var height = $(window.document).height();
+		$(window.parent.document).find('.contentpanel').height(height);
+		$(window.parent.document).find('#iframe-main').height(height);
+	});
+	
 	$(window.parent.document).find("#iframe-main").load(function() {
 		var frame = $(window.parent.document).find("#iframe-main");
 		var height = $(window.parent.document).find('.contentpanel').height();
@@ -42,7 +50,7 @@ var init = function() {
 };
 
 // 
-var ajax = function(params) {
+var ajax = function(params,fn) {
 	$.ajax({
 		"type" : "post",
 		"url" : _PATH(params.url),
@@ -51,6 +59,9 @@ var ajax = function(params) {
 		"async" : false,
 		"success" : function(data) {
 			layer.msg(data.value);
+			if (fn){
+				fn();
+			}
 		},
 		"error" : function(msg) {
 			layer.msg(msg);
@@ -58,6 +69,7 @@ var ajax = function(params) {
 	});
 };
 
+// 列表修改绑定
 var binding = function(arrs, nRow, aData) {
 	$.each(arrs, function(key, value) {
 		$(key, nRow).editable({

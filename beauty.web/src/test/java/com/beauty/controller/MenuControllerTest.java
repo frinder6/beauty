@@ -27,7 +27,6 @@ import org.springframework.web.context.WebApplicationContext;
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring-conf/applicationContext-junit.xml" })
 public class MenuControllerTest {
-	
 
 	@Autowired
 	private WebApplicationContext webApplicationContext;
@@ -46,17 +45,17 @@ public class MenuControllerTest {
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 	}
 
-	//@Test
+	// @Test
 	public void testLoadLevelMenu() {
 		fail("Not yet implemented");
 	}
 
-	//@Test
+	// @Test
 	public void testLoadMenu() {
 		fail("Not yet implemented");
 	}
 
-	//@Test
+	// @Test
 	public void testQueryPage() {
 		try {
 			// String url = "/menu/load/page.action";
@@ -67,12 +66,24 @@ public class MenuControllerTest {
 			e.printStackTrace();
 		}
 	}
-	
-	@Test
-	public void testQuery(){
+
+	// @Test
+	public void testQuery() {
 		try {
 			String url = "/table/load/table/config.action";
 			mockMvc.perform(post(url).param("tableName", "TB_TABLE_CONFIG")).andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void testDel() {
+		try {
+			// String url = "/table/remove/config.action";
+			String url = "/table/copy/config.action";
+			mockMvc.perform(post(url).param("values", new String[] { "1", "2", "3" })).andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

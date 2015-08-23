@@ -18,6 +18,9 @@
 		select : {
 			style : 'single'
 		},
+		pagingType : 'full',
+		toolid : '#my-tool',
+		dom : "<'row'<'#my-tool.col-xs-6'><'col-xs-6'f>r>t<'row'<'col-xs-3'l><'col-xs-3'i><'col-xs-6'p>>",
 		fnRowCallback : function(nRow, aData, iDisplayIndex){
 			return nRow;
 		}
@@ -54,8 +57,8 @@
 			orderable : false,
 			data : null,
 			defaultContent : '',
-			// title : settings.title,
-			title : '<input type="checkbox" onclick="checkbox(this)" />',
+			title : settings.title,
+			// title : '<input type="checkbox" onclick="checkbox(this)" />',
 			width : 30
 		});
 		settings.columnDefs.unshift({
@@ -75,16 +78,17 @@
 				url : _PATH(settings.url),
 				data : settings.data
 			},
-			pagingType : 'full',
+			pagingType : settings.pagingType,
 			columns : settings.columns,
 			columnDefs : settings.columnDefs,
 			order : [ [ 1, 'desc' ] ],
-			dom : "<'row'<'#my-tool.col-xs-6'><'col-xs-6'f>r>t<'row'<'col-xs-3'l><'col-xs-3'i><'col-xs-6'p>>",
+			// dom : "<'row'<'#my-tool.col-xs-6'><'col-xs-6'f>r>t<'row'<'col-xs-3'l><'col-xs-3'i><'col-xs-6'p>>",
+			dom : settings.dom,
 			language : {
 				url : _PATH('/pages/Chinese.json')
 			},
 			initComplete : function() {
-				$('#my-tool').append(settings.tools);
+				$(settings.toolid).append(settings.tools);
 			},
 			fnRowCallback : settings.fnRowCallback
 		});

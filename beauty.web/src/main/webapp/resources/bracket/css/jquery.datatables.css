@@ -221,7 +221,7 @@
 /*
  * Sorting
  */
-.sorting {
+/* .sorting {
 	background-image: url('../images/sort_both.png');
 }
 
@@ -239,7 +239,7 @@
 
 .sorting_desc_disabled {
 	background-image: url('../images/sort_desc_disabled.png');
-}
+} */
  
 table.dataTable thead th:active,
 table.dataTable thead td:active {

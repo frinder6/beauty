@@ -12,6 +12,7 @@
 	<sql id="Base_Where_Clause">
 		<where>
 			TABLE_NAME = #{tableName} AND TABLE_SCHEMA = #{tableSchema}
+			AND NOT EXISTS (SELECT 1 FROM beauty_table_config t2 WHERE t1.COLUMN_NAME = t2.column_name AND t1.TABLE_NAME = t2.table_name)
 			<if test="searchValue">
 				AND ( COLUMN_NAME LIKE "%" #{searchValue} "%" OR COLUMN_COMMENT LIKE "%" #{searchValue} "%" OR COLUMN_TYPE LIKE "%" #{searchValue} "%" )
 			</if>
@@ -20,7 +21,7 @@
 	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
 		SELECT
 		<include refid="Base_Column_List" />
-		FROM information_schema.`COLUMNS`
+		FROM information_schema.`COLUMNS` t1 
 		<include refid="Base_Where_Clause" />
 		ORDER BY
 		<if test="orderColumn">
@@ -34,17 +35,17 @@
 	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
 		SELECT
 		COUNT(1)
-		FROM information_schema.`COLUMNS`
+		FROM information_schema.`COLUMNS` t1
 		<include refid="Base_Where_Clause" />
 	</select>
 
 	<select id="selectColumnsByTable" parameterType="java.util.HashMap" resultMap="BaseResultMap">
 		SELECT
-			COLUMN_NAME
+		COLUMN_NAME
 		FROM
-			information_schema.`COLUMNS` c
+		information_schema.`COLUMNS` c
 		WHERE
-			c.TABLE_NAME = #{tableName}
+		c.TABLE_NAME = #{tableName}
 		AND c.TABLE_SCHEMA = #{tableSchema}
 		AND NOT EXISTS (SELECT id FROM beauty_table_config t WHERE TABLE_NAME = #{tableName} AND t.column_name = c.COLUMN_NAME)
 	</select>

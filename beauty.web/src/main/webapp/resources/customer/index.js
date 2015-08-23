@@ -2,12 +2,6 @@
 $.template.init();
 
 $(function() {
-	// 滚动条
-	$(document).scroll(function(){
-		var sht = $('#iframe-main').contents().find('.with-padding').height() + 100;
-		$('#iframe-main').height(sht);
-		$('#main').height(sht);
-	});
 	
 	// 添加二级菜单
 	var lis = $('#shortcuts').find('li');

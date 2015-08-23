@@ -7,10 +7,10 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/filters"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/tags"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/controller"/>
-        <dependent-module archiveName="beauty.business-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/beauty.business/beauty.business">
+        <dependent-module archiveName="beauty.base-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/beauty.base/beauty.base">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="beauty.base-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/beauty.base/beauty.base">
+        <dependent-module archiveName="beauty.business-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/beauty.business/beauty.business">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="beauty.common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/beauty.common/beauty.common">

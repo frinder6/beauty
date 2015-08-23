@@ -125,7 +125,7 @@
 			</div>
 			<!-- headerbar -->
 
-			<div class="pageheader">
+			<!-- <div class="pageheader">
 				<h2>
 					<i class="fa fa-home"></i> Dashboard <span>Subtitle goes here...</span>
 				</h2>
@@ -136,9 +136,9 @@
 						<li class="active">Dashboard</li>
 					</ol>
 				</div>
-			</div>
+			</div> -->
 
-			<div class="contentpanel" style="height: 90%;padding: 10px;">
+			<div class="contentpanel" style="padding: 10px;background-color: #E4E7EA;">
 				<div class="row">
 					<div class="col-sm-12">
 					

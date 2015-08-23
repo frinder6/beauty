@@ -29,6 +29,9 @@
 	<sql id="Base_Where_Clause">
 		<where>
 			1 = 1
+			<if test="tableName">
+				AND table_name = #{tableName}
+			</if>
 			<if test="searchValue">
 				AND ( title LIKE "%" #{searchValue} "%" OR data LIKE "%" #{searchValue} "%" OR column_name LIKE "%" #{searchValue} "%" )
 			</if>
@@ -44,12 +47,13 @@
 		<include refid="Base_Column_List" />
 		FROM beauty_table_config
 		<include refid="Base_Where_Clause" />
-		ORDER BY table_name 
-		<trim prefixOverrides=",">
+		ORDER BY
+		<trim suffix="," prefixOverrides=",">
 			<if test="orderColumn">
 				${orderColumn} ${orderDir}
 			</if>
 		</trim>
+		table_name 
 		LIMIT #{from}, #{size}
 	</select>
 	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
