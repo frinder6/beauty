@@ -1,0 +1,6 @@
+/beauty.base/*.classpath
+/beauty.business/target
+/beauty.business/*.classpath
+/beauty.compile/.settings
+/beauty.web/.classpath
+/beauty.web/target

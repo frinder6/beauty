@@ -7,9 +7,8 @@ $(function() {
 	init();
 
 	var tools = '<div class="btn-group">\
-        <button type="button" class="btn btn-default">新增</button>\
-        <button type="button" class="btn btn-default">更新</button>\
-        <button type="button" class="btn btn-default">删除</button>\
+		<a data-href="/pages/bracket/sys/add-menu.jsp" class="btn btn-default fa fa-plus-square-o" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
+		<a data-href="/pages/bracket/sys/add-menu.jsp" class="btn btn-default fa fa-minus-square-o" onclick="_S_REDIRECT(this)">&nbsp;删除</a>\
     </div>';
 
 	var table = $('#menu-list').datatable({

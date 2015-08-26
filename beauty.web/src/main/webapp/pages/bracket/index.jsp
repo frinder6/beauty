@@ -139,16 +139,10 @@
 			</div> -->
 
 			<div class="contentpanel" style="padding: 10px;background-color: #E4E7EA;">
-				<div class="row">
-					<div class="col-sm-12">
 					
-						<!-- table-responsive -->
-						<iframe id="iframe-main" src="${basePath }/pages/bracket/content.jsp" name="iframe-main" frameborder="0" width="100%" scrolling="no"></iframe>
+				<!-- table-responsive -->
+				<iframe id="iframe-main" src="${basePath }/pages/bracket/content.jsp" name="iframe-main" frameborder="0" width="100%" scrolling="no"></iframe>
 
-					</div>
-					<!-- col-sm-12 -->
-				</div>
-				<!-- row -->
 			</div>
 			<!-- contentpanel -->
 

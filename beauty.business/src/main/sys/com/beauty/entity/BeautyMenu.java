@@ -130,7 +130,7 @@ public class BeautyMenu implements java.io.Serializable {
 		this.parentId = parentId;
 	}
 
-	@Column(name = "level", nullable = false)
+	@Column(name = "level", nullable = false, updatable = false, insertable = false)
 	public byte getLevel() {
 		return this.level;
 	}
@@ -139,7 +139,7 @@ public class BeautyMenu implements java.io.Serializable {
 		this.level = level;
 	}
 
-	@Column(name = "group_id", nullable = false)
+	@Column(name = "group_id", nullable = false, updatable = false, insertable = false)
 	public long getGroupId() {
 		return this.groupId;
 	}
@@ -160,7 +160,7 @@ public class BeautyMenu implements java.io.Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "create_time", nullable = false, length = 19)
+	@Column(name = "create_time", nullable = false, length = 19, updatable = false)
 	public Date getCreateTime() {
 		return this.createTime;
 	}
@@ -169,7 +169,7 @@ public class BeautyMenu implements java.io.Serializable {
 		this.createTime = createTime;
 	}
 
-	@Column(name = "creater", nullable = false, length = 50)
+	@Column(name = "creater", nullable = false, length = 50, updatable = false)
 	public String getCreater() {
 		return this.creater;
 	}
@@ -190,7 +190,7 @@ public class BeautyMenu implements java.io.Serializable {
 		this.lastUpdateTime = lastUpdateTime;
 	}
 
-	@Column(name = "modifier", nullable = false, length = 50)
+	@Column(name = "modifier", nullable = false, length = 50, updatable = false, insertable = false)
 	public String getModifier() {
 		return this.modifier;
 	}
@@ -199,7 +199,7 @@ public class BeautyMenu implements java.io.Serializable {
 		this.modifier = modifier;
 	}
 
-	@Column(name = "is_deleted", nullable = false)
+	@Column(name = "is_deleted", nullable = false, updatable = false, insertable = false)
 	public byte getIsDeleted() {
 		return this.isDeleted;
 	}
@@ -208,7 +208,7 @@ public class BeautyMenu implements java.io.Serializable {
 		this.isDeleted = isDeleted;
 	}
 
-	@Column(name = "def1", nullable = false, length = 50)
+	@Column(name = "def1", nullable = false, length = 50, updatable = false, insertable = false)
 	public String getDef1() {
 		return this.def1;
 	}
@@ -217,7 +217,7 @@ public class BeautyMenu implements java.io.Serializable {
 		this.def1 = def1;
 	}
 
-	@Column(name = "def2", nullable = false, length = 50)
+	@Column(name = "def2", nullable = false, length = 50, updatable = false, insertable = false)
 	public String getDef2() {
 		return this.def2;
 	}
@@ -227,7 +227,7 @@ public class BeautyMenu implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "def3", nullable = false, length = 19)
+	@Column(name = "def3", nullable = false, length = 19, updatable = false, insertable = false)
 	public Date getDef3() {
 		return this.def3;
 	}
