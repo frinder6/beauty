@@ -41,7 +41,7 @@
 							<option value="United States">United States</option>
 							<option value="United Kingdom">United Kingdom</option>
 						</select> -->
-						<input id="pselect" name="parentId" class="select2" />
+						<input id="pselect" name="parentId" />
 					</div>
 				</div>
 
@@ -73,19 +73,8 @@
 		$(function() {
 			init();
 
-			$('#pselect').select2({
-				width : '100%',
-				ajax : {
-					url : '${basePath}/menu/select.action',
-					dataType : 'json',
-					delay : 250,
-					data : function(params) {
-						return {
-							q : params.term
-						};
-					},
-					cache : 'true'
-				}
+			$('#pselect').select({
+				url : '/menu/select.action',
 			});
 		});
 	</script>

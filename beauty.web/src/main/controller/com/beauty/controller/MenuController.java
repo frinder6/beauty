@@ -27,9 +27,9 @@ public class MenuController {
 
 	@RequestMapping(value = "/select", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public List<?> select(@RequestParam("name") String name) {
+	public List<?> select(@RequestParam("search") String search) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("name", name);
+		params.put("searchValue", search);
 		return this.menuService.selectMenuSelect(params);
 	}
 
