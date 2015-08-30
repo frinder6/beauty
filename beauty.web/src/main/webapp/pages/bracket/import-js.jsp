@@ -27,8 +27,12 @@
 <script src="${basePath }/resources/bracket/DataTables/jquery.dataTables.js"></script>
 <script src="${basePath }/resources/bracket/DataTables/dataTables.select.js"></script>
 <script src="${basePath }/resources/layer/layer.js"></script>
-<script src="${basePath }/resources/bracket/js/select2.js"></script>
+<script src="${basePath }/resources/bracket/js/select2.full.js"></script>
 <script src="${basePath }/resources/customer/jquery-select2.js"></script>
+<script src="${basePath }/resources/bracket/js/jquery.form.js"></script>
+<script src="${basePath }/resources/bracket/js/jquery.formFill.js"></script>
+<script src="${basePath }/resources/bracket/js/jquery.validate.min.js"></script>
+<script src="${basePath }/resources/customer/jquery-validate-extends.js"></script>
 
 
 <script src="${basePath }/resources/bracket/js/custom.js"></script>

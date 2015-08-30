@@ -19,12 +19,16 @@
 				url : _PATH(settings.url),
 				dataType : 'json',
 				delay : 100,
-				data :  function(params) {
+				data : function(params) {
 					return {
-						search : params
+						search : params.term
 					};
 				},
 				processResults : function(data, params) {
+					data.unshift({
+						id : 0,
+						text : '/'
+					});
 					return {
 						results : data
 					};

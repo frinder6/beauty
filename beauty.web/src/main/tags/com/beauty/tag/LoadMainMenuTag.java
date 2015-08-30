@@ -90,7 +90,6 @@ public class LoadMainMenuTag extends RequestContextAwareTag {
 			}
 		}
 		String menuStr = String.format(_UL_1, lisStr);
-		System.out.println(menuStr);
 		out.print(menuStr);
 	}
 

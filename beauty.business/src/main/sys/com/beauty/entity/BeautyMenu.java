@@ -19,6 +19,7 @@ import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.beauty.annotation.Orderable;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -37,12 +38,16 @@ public class BeautyMenu implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	@Orderable(columnName = "code")
 	private String code;
+	@Orderable(columnName = "name")
 	private String name;
+	@Orderable(columnName = "url")
 	private String url;
 	private long parentId;
 	private byte level;
 	private long groupId;
+	@Orderable(columnName = "remark")
 	private String remark;
 	private Date createTime;
 	private String creater;
@@ -96,7 +101,7 @@ public class BeautyMenu implements java.io.Serializable {
 
 	@Column(name = "code", nullable = false, length = 50)
 	public String getCode() {
-		return this.code;
+		return this.code == null ? null : this.code.toUpperCase();
 	}
 
 	public void setCode(String code) {
@@ -162,6 +167,7 @@ public class BeautyMenu implements java.io.Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "create_time", nullable = false, length = 19, updatable = false)
 	public Date getCreateTime() {
+		this.createTime = new Date();
 		return this.createTime;
 	}
 
@@ -169,7 +175,7 @@ public class BeautyMenu implements java.io.Serializable {
 		this.createTime = createTime;
 	}
 
-	@Column(name = "creater", nullable = false, length = 50, updatable = false)
+	@Column(name = "creater", nullable = false, length = 50, updatable = false, insertable = false)
 	public String getCreater() {
 		return this.creater;
 	}
@@ -183,6 +189,7 @@ public class BeautyMenu implements java.io.Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "last_update_time", nullable = false, length = 19)
 	public Date getLastUpdateTime() {
+		this.lastUpdateTime = new Date();
 		return this.lastUpdateTime;
 	}
 
