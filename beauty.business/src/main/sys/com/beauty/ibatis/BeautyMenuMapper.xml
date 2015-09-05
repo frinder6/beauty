@@ -32,6 +32,9 @@
 			<if test="searchValue">
 				AND ( name LIKE "%" #{searchValue} "%" OR code LIKE "%" #{searchValue} "%" OR remark LIKE "%" #{searchValue} "%" OR url LIKE "%" #{searchValue} "%" )
 			</if>
+			<if test="pid">
+				AND id = #{pid}
+			</if>
 		</where>
 	</sql>
 	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">

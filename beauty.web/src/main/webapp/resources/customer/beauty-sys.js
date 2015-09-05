@@ -34,14 +34,14 @@ var _S_REDIRECT = function(e) {
 
 // 设置高
 var init = function() {
-	
+
 	// 滚动条
-	$(window.parent.document).scroll(function(){
+	$(window.parent.document).scroll(function() {
 		var height = $(window.document).height();
 		$(window.parent.document).find('.contentpanel').height(height);
 		$(window.parent.document).find('#iframe-main').height(height);
 	});
-	
+
 	$(window.parent.document).find("#iframe-main").load(function() {
 		var frame = $(window.parent.document).find("#iframe-main");
 		var height = $(window.parent.document).find('.contentpanel').height();
@@ -50,7 +50,7 @@ var init = function() {
 };
 
 // 
-var ajax = function(params,fn) {
+var ajax = function(params, fn) {
 	$.ajax({
 		"type" : "post",
 		"url" : _PATH(params.url),
@@ -59,7 +59,7 @@ var ajax = function(params,fn) {
 		"async" : false,
 		"success" : function(data) {
 			layer.msg(data.value);
-			if (fn){
+			if (fn) {
 				fn();
 			}
 		},
@@ -91,3 +91,100 @@ var binding = function(arrs, nRow, aData) {
 		});
 	});
 };
+
+/**
+ * 验证提交
+ */
+var mySub = function() {
+	// 验证表单
+	jQuery("#basicForm").validate({
+		highlight : function(element) {
+			jQuery(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+		},
+		success : function(element) {
+			jQuery(element).closest('.form-group').removeClass('has-error');
+		},
+		submitHandler : function(form) {
+			// 提交
+			$('#basicForm').ajaxSubmit({
+				success : function(data) {
+					layer.msg(data.value);
+				}
+			});
+			return false;
+		}
+	});
+};
+
+
+/**
+ * select2 初始化
+ * iUrl : 初始化 url
+ * pid : 父节点id
+ * sid : select控件 #id
+ * sUrl : select控件 url
+ */
+var selectInit = function(opts) {
+	$.ajax({
+		"type" : "post",
+		"url" : _PATH(opts.iUrl),
+		"data" : {
+			pid : opts.pid,
+			search : ''
+		},
+		"dataType" : 'json',
+		"async" : false,
+		"success" : function(data) {
+			$(opts.sid).select({
+				url : opts.sUrl,
+				init : function(e, callback) {
+					if (data && data.length > 0){
+						callback({
+							id : data[0].id,
+							text : data[0].text
+						});
+					} else {
+						callback({
+							id : 0,
+							text : '/'
+						});
+					}
+				}
+			});
+		},
+		"error" : function(msg) {
+			layer.msg(msg);
+		}
+	});
+};
+
+/**
+ * 更新加载方法
+ * url : findById方法url
+ * id : 目标对象id
+ * iUrl : 初始化 url
+ * sid : select控件 #id
+ * sUrl : select控件 url
+ */
+var updateInit = function(opts){
+	$.ajax({
+		type : "POST",
+		url : _PATH(opts.url),
+		data : {
+			id : opts.id
+		},
+		dataType : "json",
+		success : function(data) {
+			$("#basicForm").fill(data);
+			selectInit({
+				sid : opts.sid,
+				pid : data.parentId,
+				iUrl : opts.iUrl,
+				sUrl : opts.sUrl
+			});
+		},
+		error : function(msg) {
+			layer.msg(msg);
+		}
+	});
+}

@@ -89,5 +89,16 @@ public class MenuControllerTest {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void testLoad() {
+		try {
+			String url = "/menu/load/id.action";
+			mockMvc.perform(post(url).param("id", "6")).andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

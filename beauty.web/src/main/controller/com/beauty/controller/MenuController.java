@@ -17,6 +17,7 @@ import com.beauty.entity.Page;
 import com.beauty.model.Value;
 import com.beauty.service.MenuService;
 import com.beauty.util.CodeUtil;
+import com.beauty.util.StringUtil;
 
 @Controller
 @RequestMapping("/menu")
@@ -27,9 +28,14 @@ public class MenuController {
 
 	@RequestMapping(value = "/select", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public List<?> select(@RequestParam("search") String search) {
+	public List<?> select(@RequestParam("search") String search, @RequestParam("pid") String pid) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("searchValue", search);
+		if (StringUtil.valueOf(search).length() > 0) {
+			params.put("searchValue", search);
+		}
+		if (StringUtil.valueOf(pid).length() > 0) {
+			params.put("pid", pid);
+		}
 		return this.menuService.selectMenuSelect(params);
 	}
 
@@ -47,14 +53,19 @@ public class MenuController {
 		return new Value(CodeUtil.EDIT_SUCCESS);
 	}
 
-	@RequestMapping(value = "/delete", produces = "application/json; charset=utf-8")
+	@RequestMapping(value = "/remove", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public Value delete(BeautyMenu menu) {
-		this.menuService.remove(menu);
+	public Value delete(Value value) {
+		if (!value.getValues().isEmpty()) {
+			List<String> ids = value.getValues();
+			for (String id : ids) {
+				this.menuService.remove(this.menuService.findById(BeautyMenu.class, Long.parseLong(id)));
+			}
+		}
 		return new Value(CodeUtil.DELETE_SUCCESS);
 	}
 
-	@RequestMapping("/load/id")
+	@RequestMapping(value = "/load/id", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public BeautyMenu loadMenu(@RequestParam("id") Long id) {
 		return this.menuService.findById(BeautyMenu.class, id);

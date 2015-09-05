@@ -28,14 +28,14 @@
 				</div>
 
 				<div class="form-group">
-					<label class="col-sm-3 control-label">URL：<span class="asterisk">*</span></label>
+					<label class="col-sm-3 control-label">URL： <span class="asterisk">*</span></label>
 					<div class="col-sm-6">
 						<input type="text" name="url" class="form-control" placeholder="Type please..." required />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="col-sm-3 control-label">父节点：<span class="asterisk">*</span></label>
+					<label class="col-sm-3 control-label">父节点： <span class="asterisk">*</span></label>
 					<div class="col-sm-6">
 						<select id="pselect" name="parentId" required placeholder="Type please...">
 							<option value="0" selected="selected">/</option>
@@ -67,39 +67,8 @@
 
 
 	<%@include file="../import-js.jsp"%>
+	<script src="${basePath }/resources/customer/sys/menu-add.js"></script>
 
-	<script type="text/javascript">
-		$(function() {
-			init();
-
-			$('#pselect').select({
-				url : '/menu/select.action',
-			});
-
-			// 验证表单
-			jQuery("#basicForm").validate(
-					{
-						highlight : function(element) {
-							jQuery(element).closest('.form-group').removeClass(
-									'has-success').addClass('has-error');
-						},
-						success : function(element) {
-							jQuery(element).closest('.form-group').removeClass(
-									'has-error');
-						},
-						submitHandler : function(form) {
-							// 提交
-							$('#basicForm').ajaxSubmit({
-								success : function(data) {
-									layer.msg(data.value);
-								}
-							});
-							return false;
-						}
-					});
-
-		});
-	</script>
 </body>
 
 </html>

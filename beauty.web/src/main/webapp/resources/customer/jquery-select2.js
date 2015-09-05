@@ -7,13 +7,17 @@
 	'use strict';
 
 	var defaults = {
-		url : ''
+		url : '',
+		init : function(e, callback){
+			callback({id : e.val(), text : e.text()});
+		},
+		pid : ''
 	};
 
 	$.fn.select = function(options) {
 		var settings = $.extend({}, defaults, options);
 
-		$(this).select2({
+		var select = $(this).select2({
 			width : '100%',
 			ajax : {
 				url : _PATH(settings.url),
@@ -21,7 +25,8 @@
 				delay : 100,
 				data : function(params) {
 					return {
-						search : params.term
+						search : params.term,
+						pid : settings.pid
 					};
 				},
 				processResults : function(data, params) {
@@ -38,8 +43,11 @@
 			escapeMarkup : function(markup) {
 				return markup;
 			},
-			minimumInputLength : 1
+			minimumInputLength : 1,
+			initSelection : settings.init,
 		});
+		
+		return select;
 	};
 
 })(jQuery);

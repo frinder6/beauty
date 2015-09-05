@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.beauty.interfaces.UrlDao">
+	<resultMap id="BaseResultMap" type="com.beauty.entity.BeautyUrl">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Where_Clause">
+		<where>
+			1 = 1
+			<if test="searchValue">
+				AND ( url LIKE "%" #{searchValue} "%" OR remark LIKE "%" #{searchValue} "%" )
+			</if>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, url, remark
+	</sql>
+	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM beauty_url
+		<include refid="Base_Where_Clause" />
+		ORDER BY
+		<if test="orderColumn">
+			${orderColumn} ${orderDir}
+		</if>
+		<if test="orderColumn == null">
+			id DESC
+		</if>
+		LIMIT #{from}, #{size}
+	</select>
+	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(1)
+		FROM beauty_url
+		<include refid="Base_Where_Clause" />
+	</select>
+
+</mapper>

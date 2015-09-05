@@ -17,7 +17,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.context.ApplicationContext;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import com.beauty.entity.BeautyUrl;
+import com.beauty.service.UrlService;
 
 /**
  * Servlet Filter implementation class LoginFilter
@@ -25,6 +30,9 @@ import org.springframework.security.core.AuthenticationException;
 public class LoginFilter implements Filter {
 
 	private final Logger logger = Logger.getLogger(getClass());
+
+	//
+	private UrlService urlService;
 
 	// 保存不需要过滤的路径
 	private List<String> offParams = new ArrayList<String>();
@@ -59,6 +67,13 @@ public class LoginFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		String url = String.valueOf(req.getRequestURL());
 		logger.info("request url : [" + url + "]");
+		try {
+			if (!isInclude(url)) {
+				urlService.persist(new BeautyUrl(url, url));
+			}
+		} catch (Exception e) {
+			logger.error("LoginFilter doFilter : [write url error!] ".concat(e.getMessage()));
+		}
 		//
 		HttpSession session = req.getSession();
 		Object obj = session.getAttribute("SPRING_SECURITY_LAST_EXCEPTION");
@@ -84,6 +99,12 @@ public class LoginFilter implements Filter {
 		String[] params = param.split(",");
 		List<String> list = Arrays.asList(params);
 		offParams.addAll(list);
+		if (null == urlService) {
+			//
+			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(fConfig.getServletContext());
+			urlService = (UrlService) context.getBean("urlService");
+		}
+
 	}
 
 	/**
