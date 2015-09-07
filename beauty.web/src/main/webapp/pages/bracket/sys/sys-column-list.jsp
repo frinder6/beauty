@@ -18,7 +18,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="table-responsive">
-						<table id="column-unconfig-list" class="table table-bordered" width="100%">
+						<table id="l-list" class="table table-bordered" width="100%">
 						</table>
 					</div>
 				</div>
@@ -34,7 +34,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="table-responsive">
-						<table id="column-configed-list" class="table table-bordered" width="100%">
+						<table id="r-list" class="table table-bordered" width="100%">
 						</table>
 					</div>
 				</div>
@@ -47,7 +47,7 @@
 
 	<jsp:include page="../import-js.jsp" />
 	<script type="text/javascript" src="${basePath }/resources/customer/sys/sys-column-list.js"></script>
-	
+
 	<script type="text/javascript">
 		var tableName = '${param.table}';
 		var tableSchema = '${param.schema}';

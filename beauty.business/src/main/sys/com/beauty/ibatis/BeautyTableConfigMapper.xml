@@ -33,7 +33,7 @@
 				AND table_name = #{tableName}
 			</if>
 			<if test="searchValue">
-				AND ( title LIKE "%" #{searchValue} "%" OR data LIKE "%" #{searchValue} "%" OR column_name LIKE "%" #{searchValue} "%" )
+				AND ( table_name LIKE "%" #{searchValue} "%" OR title LIKE "%" #{searchValue} "%" OR data LIKE "%" #{searchValue} "%" OR column_name LIKE "%" #{searchValue} "%" )
 			</if>
 		</where>
 	</sql>

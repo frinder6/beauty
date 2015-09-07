@@ -7,25 +7,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.beauty.entity.BeautyMenu;
-import com.beauty.entity.BeautyUrl;
-import com.beauty.interfaces.UrlDao;
+import com.beauty.entity.BeautyResource;
+import com.beauty.interfaces.ResourceDao;
 
 @Service
-public class UrlService extends BaseService<BeautyUrl> implements IMapperService<BeautyMenu> {
+public class ResourceService extends BaseService<BeautyResource> implements IMapperService<BeautyMenu> {
 
 	@Autowired
-	private UrlDao urlDao;
+	private ResourceDao resourceDao;
 
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.urlDao.selectCount(params);
+		return this.resourceDao.selectCount(params);
 	}
 
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.urlDao.selectPage(params);
+		return this.resourceDao.selectPage(params);
 	}
 
 }

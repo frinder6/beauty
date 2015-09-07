@@ -28,7 +28,7 @@ $(function() {
 		'td:eq(9)' : 'sequence'
 	};
 
-	var table = $('#table-config-list').datatable({
+	var table = $('#list').datatable({
 		tableName : 'BEAUTY_TABLE_CONFIG',
 		url : '/table/load/config.action',
 		tools : tools,
@@ -46,7 +46,7 @@ $(function() {
 	del = function() {
 		var items = table.rows({
 			selected : true
-		}).data()
+		}).data();
 		if (items.length == 0) {
 			layer.msg('至少选择一条！');
 			return;
@@ -60,8 +60,12 @@ $(function() {
 			},
 			url : '/table/remove/config.action'
 		};
-		ajax(params, function() {
-			table.ajax.reload();
+		layer.confirm('删除无法恢复，确定删除？', {
+			offset : '100px'
+		}, function() {
+			ajax(params, function() {
+				table.ajax.reload();
+			});
 		});
 	};
 

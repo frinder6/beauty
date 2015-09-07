@@ -32,19 +32,32 @@ var _S_REDIRECT = function(e) {
 	$(window.parent.document).find("#iframe-main").attr('src', _PATH(url));
 };
 
+/**
+ * 子页面url跳转
+ */
+var _S_URL_REDIRECT = function(url) {
+	$(window.parent.document).find("#iframe-main").attr('src', _PATH(url));
+};
+
 // 设置高
 var init = function() {
 
 	// 滚动条
 	$(window.parent.document).scroll(function() {
-		var height = $(window.document).height();
-		$(window.parent.document).find('.contentpanel').height(height);
-		$(window.parent.document).find('#iframe-main').height(height);
+		var height = $('.table-responsive').height();
+		var mHeight = $(window.parent.document).find('.mainpanel').height();
+		if (height > mHeight){
+			$(window.parent.document).find('#iframe-main').height(height);
+			$(window.parent.document).find('.contentpanel').height(height);
+		} else {
+			$(window.parent.document).find('#iframe-main').height(mHeight);
+			$(window.parent.document).find('.contentpanel').height(mHeight);
+		}
 	});
 
 	$(window.parent.document).find("#iframe-main").load(function() {
 		var frame = $(window.parent.document).find("#iframe-main");
-		var height = $(window.parent.document).find('.contentpanel').height();
+		var height = $(window.parent.document).find('.mainpanel').height();
 		frame.height(height);
 	});
 };
@@ -73,7 +86,7 @@ var ajax = function(params, fn) {
 var binding = function(arrs, nRow, aData) {
 	$.each(arrs, function(key, value) {
 		$(key, nRow).editable({
-			// mode : 'inline',
+			mode : 'inline',
 			// defaultValue : '',
 			emptytext : '',
 			success : function(response, newValue) {
@@ -95,7 +108,7 @@ var binding = function(arrs, nRow, aData) {
 /**
  * 验证提交
  */
-var mySub = function() {
+var mySub = function(fn) {
 	// 验证表单
 	jQuery("#basicForm").validate({
 		highlight : function(element) {
@@ -109,6 +122,10 @@ var mySub = function() {
 			$('#basicForm').ajaxSubmit({
 				success : function(data) {
 					layer.msg(data.value);
+					//
+					fn();
+				}, error : function(msg){
+					layer.msg(msg);
 				}
 			});
 			return false;

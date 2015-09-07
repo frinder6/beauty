@@ -16,6 +16,11 @@ $(function() {
 	});
 	
 	//验证提交
-	mySub();
+	mySub(function(){
+		//
+		setTimeout(function(){
+			_S_URL_REDIRECT('/pages/bracket/sys/menu-list.jsp');
+		}, 1000);
+	});
 
 });

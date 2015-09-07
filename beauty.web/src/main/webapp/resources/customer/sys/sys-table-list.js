@@ -19,7 +19,7 @@ $(function() {
 		'render' : _render
 	} ];
 
-	var table = $('#table-config-list').datatable({
+	var table = $('#list').datatable({
 		tableName : 'TABLES',
 		url : '/table/load/schema/tables.action',
 		data : {

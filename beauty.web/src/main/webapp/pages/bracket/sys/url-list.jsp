@@ -17,7 +17,7 @@
 	<!-- table-responsive -->
 
 	<jsp:include page="../import-js.jsp" />
-	<script type="text/javascript" src="${basePath }/resources/customer/sys/menu-list.js"></script>
+	<script type="text/javascript" src="${basePath }/resources/customer/sys/url-list.js"></script>
 
 
 </body>

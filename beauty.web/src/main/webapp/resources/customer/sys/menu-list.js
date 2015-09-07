@@ -15,13 +15,13 @@ $(function() {
 		<a data-href="/pages/bracket/sys/menu-add.jsp" class="btn btn-default fa fa-plus-square-o" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
 		<a class="btn btn-default fa fa-minus-square-o" onclick="del()">&nbsp;删除</a>\
     </div>';
-	
+
 	var columnDefs = [ {
 		'targets' : 1,
 		'render' : _render
 	} ];
 
-	var table = $('#menu-list').datatable({
+	var table = $('#list').datatable({
 		tableName : 'BEAUTY_MENU',
 		url : '/menu/load/page.action',
 		tools : tools,
@@ -44,11 +44,11 @@ $(function() {
 			table.rows().deselect();
 		}
 	};
-	
+
 	del = function() {
 		var items = table.rows({
 			selected : true
-		}).data()
+		}).data();
 		if (items.length == 0) {
 			layer.msg('至少选择一条！');
 			return;
@@ -62,8 +62,12 @@ $(function() {
 			},
 			url : '/menu/remove.action'
 		};
-		ajax(params, function() {
-			table.ajax.reload();
+		layer.confirm('删除无法恢复，确定删除？', {
+			offset : '100px'
+		}, function() {
+			ajax(params, function() {
+				table.ajax.reload();
+			});
 		});
 	};
 

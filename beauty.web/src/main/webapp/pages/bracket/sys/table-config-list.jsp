@@ -9,7 +9,7 @@
 
 	<div class="table-responsive">
 
-		<table id="table-config-list" class="table table-bordered mb30" width="100%">
+		<table id="list" class="table table-bordered mb30" width="100%">
 		</table>
 
 	</div>

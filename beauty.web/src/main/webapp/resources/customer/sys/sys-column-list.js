@@ -10,25 +10,23 @@ $(function() {
                 <button type="button" class="btn btn-default" onclick="lexport()">导入</button>\
             </div>';
 
-	var unconfig = $('#column-unconfig-list')
-			.datatable(
-					{
-						tableName : 'COLUMNS',
-						url : '/table/load/table/columns.action',
-						data : {
-							tableName : tableName,
-							tableSchema : tableSchema
-						},
-						tools : ltools,
-						selected : true,
-						pagingType : 'simple',
-						dom : "<'row'<'#my-ltool.col-xs-12'>>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
-						toolid : '#my-ltool',
-						title : '<input type="checkbox" onclick="lcheckbox(this)" />',
-						select : {
-							style : 'multi'
-						}
-					});
+	var unconfig = $('#l-list').datatable({
+		tableName : 'COLUMNS',
+		url : '/table/load/table/columns.action',
+		data : {
+			tableName : tableName,
+			tableSchema : tableSchema
+		},
+		tools : ltools,
+		selected : true,
+		pagingType : 'simple',
+		dom : "<'row'<'#my-ltool.col-xs-12'>>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
+		toolid : '#my-ltool',
+		title : '<input type="checkbox" onclick="lcheckbox(this)" />',
+		select : {
+			style : 'multi'
+		}
+	});
 
 	// 表格全选方法
 	lcheckbox = function(e) {
@@ -80,30 +78,28 @@ $(function() {
 		'td:eq(3)' : 'data'
 	};
 
-	var configed = $('#column-configed-list')
-			.datatable(
-					{
-						tableName : 'BEAUTY_TABLE_CONFIGED',
-						url : '/table/load/config.action',
-						data : {
-							tableName : tableName,
-							tableSchema : tableSchema
-						},
-						tools : rtools,
-						selected : true,
-						pagingType : 'simple',
-						dom : "<'row'<'#my-rtool.col-xs-12'>>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
-						toolid : '#my-rtool',
-						title : '<input type="checkbox" onclick="rcheckbox(this)" />',
-						select : {
-							style : 'multi'
-						},
-						fnRowCallback : function(nRow, aData, iDisplayIndex) {
-							// 绑定update
-							binding(arrs, nRow, aData);
-							return nRow;
-						}
-					});
+	var configed = $('#r-list').datatable({
+		tableName : 'BEAUTY_TABLE_CONFIGED',
+		url : '/table/load/config.action',
+		data : {
+			tableName : tableName,
+			tableSchema : tableSchema
+		},
+		tools : rtools,
+		selected : true,
+		pagingType : 'simple',
+		dom : "<'row'<'#my-rtool.col-xs-12'>>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
+		toolid : '#my-rtool',
+		title : '<input type="checkbox" onclick="rcheckbox(this)" />',
+		select : {
+			style : 'multi'
+		},
+		fnRowCallback : function(nRow, aData, iDisplayIndex) {
+			// 绑定update
+			binding(arrs, nRow, aData);
+			return nRow;
+		}
+	});
 
 	// 表格全选方法
 	rcheckbox = function(e) {
