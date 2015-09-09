@@ -21,9 +21,16 @@ public class Value implements Serializable {
 		this.value = value;
 	}
 
+	public Value(Object data) {
+		super();
+		this.data = data;
+	}
+
 	private String value;
 
 	private List<String> values = new ArrayList<String>();
+
+	private Object data;
 
 	/**
 	 * @return the value
@@ -53,6 +60,21 @@ public class Value implements Serializable {
 	 */
 	public void setValues(List<String> values) {
 		this.values = values;
+	}
+
+	/**
+	 * @return the data
+	 */
+	public Object getData() {
+		return data;
+	}
+
+	/**
+	 * @param data
+	 *            the data to set
+	 */
+	public void setData(Object data) {
+		this.data = data;
 	}
 
 }

@@ -2,6 +2,8 @@
 <html>
 <head>
 <jsp:include page="../import-css.jsp" />
+<jsp:include page="../import-js.jsp" />
+<script type="text/javascript" src="${basePath }/resources/customer/sys/resource-list.js"></script>
 
 <title>内容块</title>
 </head>
@@ -14,7 +16,7 @@
 
 	</div>
 	<!-- table-responsive -->
-	
+
 	<div class="modal fade bs-url-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -25,9 +27,6 @@
 			</div>
 		</div>
 	</div>
-
-	<jsp:include page="../import-js.jsp" />
-	<script type="text/javascript" src="${basePath }/resources/customer/sys/resource-list.js"></script>
 
 
 </body>

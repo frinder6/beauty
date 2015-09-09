@@ -49,5 +49,22 @@
 		<include refid="Base_Where_Clause" />
 	</select>
 
+	<update id="updateByPrimaryKeySelective" parameterType="com.beauty.entity.BeautyResource">
+		update beauty_resource
+		<set>
+			<if test="code != null"> code = #{code,jdbcType=VARCHAR}, </if>
+			<if test="name != null"> name = #{name,jdbcType=VARCHAR}, </if>
+			<if test="url != null"> url = #{url,jdbcType=VARCHAR}, </if>
+			<if test="groupId != 0"> group_id = #{groupId,jdbcType=BIGINT}, </if>
+			<if test="remark != null"> remark = #{remark,jdbcType=VARCHAR}, </if>
+			<if test="creater != null"> creater = #{creater,jdbcType=VARCHAR}, </if>
+			<if test="lastUpdateTime != null"> last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}, </if>
+			<if test="modifier != null"> modifier = #{modifier,jdbcType=VARCHAR}, </if>
+			<if test="def1 != null"> def1 = #{def1,jdbcType=VARCHAR}, </if>
+			<if test="def2 != null"> def2 = #{def2,jdbcType=VARCHAR}, </if>
+			<if test="def3 != null"> def3 = #{def3,jdbcType=TIMESTAMP}, </if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
 
 </mapper>

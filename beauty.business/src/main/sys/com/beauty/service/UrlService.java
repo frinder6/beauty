@@ -6,12 +6,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.beauty.entity.BeautyMenu;
 import com.beauty.entity.BeautyUrl;
 import com.beauty.interfaces.UrlDao;
 
 @Service
-public class UrlService extends BaseService<BeautyUrl> implements IMapperService<BeautyMenu> {
+public class UrlService extends BaseService<BeautyUrl> implements IMapperService<BeautyUrl> {
 
 	@Autowired
 	private UrlDao urlDao;

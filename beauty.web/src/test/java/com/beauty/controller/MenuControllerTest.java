@@ -67,11 +67,14 @@ public class MenuControllerTest {
 		}
 	}
 
-	// @Test
+	@Test
 	public void testQuery() {
 		try {
-			String url = "/table/load/table/config.action";
-			mockMvc.perform(post(url).param("tableName", "TB_TABLE_CONFIG")).andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());
+			// String url = "/table/load/table/config.action";
+			String url = "/resource/load/page.action";
+			// mockMvc.perform(post(url).param("tableName",
+			// "TB_TABLE_CONFIG")).andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());
+			mockMvc.perform(post(url)).andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -89,7 +92,7 @@ public class MenuControllerTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void testLoad() {
 		try {

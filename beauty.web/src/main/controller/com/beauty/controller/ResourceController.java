@@ -19,6 +19,7 @@ import com.beauty.model.Value;
 import com.beauty.service.ResourceService;
 import com.beauty.service.UrlService;
 import com.beauty.util.CodeUtil;
+import com.beauty.util.DatatablesUtil;
 
 @Controller
 @RequestMapping("/resource")
@@ -56,6 +57,21 @@ public class ResourceController {
 	public Value modify(BeautyResource resource) {
 		this.resourceService.merge(resource);
 		return new Value(CodeUtil.EDIT_SUCCESS);
+	}
+
+	@RequestMapping(value = "/inline", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Value inline(HttpServletRequest request) {
+		BeautyResource entity = DatatablesUtil.convert(BeautyResource.class, request.getParameterMap());
+		String action = DatatablesUtil.getAction(request.getParameterMap());
+		if ("create".equalsIgnoreCase(action)) {
+
+		} else if ("edit".equalsIgnoreCase(action)) {
+			this.resourceService.updateByPrimaryKeySelective(entity);
+		} else if ("delete".equalsIgnoreCase(action)) {
+
+		}
+		return new Value(entity);
 	}
 
 	@RequestMapping(value = "/remove", produces = "application/json; charset=utf-8")

@@ -18,6 +18,8 @@
 <link href="${basePath }/resources/bracket/DataTables/jquery.dataTables.css" rel="stylesheet">
 <link href="${basePath }/resources/bracket/css/jquery.datatables.css" rel="stylesheet">
 <link href="${basePath }/resources/bracket/DataTables/select.dataTables.min.css" rel="stylesheet">
+<link href="${basePath }/resources/bracket/css/buttons.dataTables.min.css" rel="stylesheet">
+<link href="${basePath }/resources/bracket/css/editor.dataTables.min.css" rel="stylesheet">
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
   <script src="js/html5shiv.js"></script>

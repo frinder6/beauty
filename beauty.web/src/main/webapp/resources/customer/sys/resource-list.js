@@ -26,26 +26,84 @@ $(function() {
 		'render' : _render
 	} ];
 
-	var arrs = {
-		'td:eq(2)' : 'name',
-		'td:eq(3)' : 'code',
-		'td:eq(4)' : 'remark'
-	};
+	editor = new $.fn.dataTable.Editor({
+		ajax : _PATH('/resource/inline.action'),
+		table : '#list',
+		fields : [ {
+			label : '资源名称',
+			name : 'name'
+		}, {
+			label : '资源编码',
+			name : 'code'
+		}, {
+			label : '备注',
+			name : 'remark'
+		}, {
+			label : '资源路径',
+			name : 'url'
+		} ],
+		i18n : {
+			create : {
+				button : "create",
+				title : "新增资源",
+				submit : "提交"
+			},
+			edit : {
+				button : "edit",
+				title : "更新资源",
+				submit : "提交"
+			},
+			remove : {
+				button : "remove",
+				title : "删除资源",
+				submit : "确定",
+				confirm : {
+					_ : "确定删除这 %d 行数据，删除后无法恢复！",
+					1 : "确定删除这 1 行数据，删除后无法恢复！"
+				}
+			},
+			error : {
+				system : "系统错误！"
+			}
+		}
+	});
+
+	$('#list').on('click', 'tbody td:not(:first-child)', function(e) {
+		editor.inline(this, {
+			// onBlur : 'submit'
+			buttons : {
+				label : '&gt;',
+				fn : function() {
+					this.submit();
+				}
+			}
+		});
+	});
 
 	var table = $('#list').datatable({
 		tableName : 'BEAUTY_RESOURCE',
 		url : '/resource/load/page.action',
-		tools : tools,
+		dom : "Bfrtip",
+		// tools : tools,
 		title : '<input type="checkbox" onclick="checkbox(this)" />',
 		columnDefs : columnDefs,
 		select : {
-			style : 'multi'
+			style : 'os',
+			selector : 'td:first-child'
 		},
-		fnRowCallback : function(nRow, aData, iDisplayIndex) {
-			// 绑定update
-			binding(arrs, nRow, aData);
-			return nRow;
-		}
+		buttons : [ {
+			extend : "create",
+			text : '新增',
+			editor : editor
+		}, {
+			extend : "edit",
+			text : '更新',
+			editor : editor
+		}, {
+			extend : "remove",
+			text : '删除',
+			editor : editor
+		} ]
 	});
 
 	var mtable = $('#m-list').datatable({
@@ -134,5 +192,13 @@ $(function() {
 			mtable.rows().deselect();
 		}
 	};
+
+	// editor.on('preSubmit', function (e, data) {
+	// // alert(JSON.stringify(data));
+	// } );
+	//	
+	// editor.on('postSubmit', function (e, json, data) {
+	// //alert(JSON.stringify(data));
+	// } );
 
 });

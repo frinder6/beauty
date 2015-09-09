@@ -21,7 +21,8 @@
 		pagingType : 'full',
 		toolid : '#my-tool',
 		dom : "<'row'<'#my-tool.col-xs-6'><'col-xs-6'f>r>t<'row'<'col-xs-3'l><'col-xs-3'i><'col-xs-6'p>>",
-		fnRowCallback : function(nRow, aData, iDisplayIndex){
+		buttons : [],
+		fnRowCallback : function(nRow, aData, iDisplayIndex) {
 			return nRow;
 		}
 	};
@@ -41,35 +42,37 @@
 			dataType : "json",
 			success : function(datas) {
 				var len = datas.length;
-				if (len == 0){
+				if (len == 0) {
 					stop = true;
 					return;
 				}
 				settings.columns = datas;
 			}
 		});
-		
-		if (stop) return;
-		
-		//var selected = settings.selected;
-		//if (selected){
+
+		if (stop)
+			return;
+
+		// var selected = settings.selected;
+		// if (selected){
 		settings.columns.unshift({
 			orderable : false,
 			data : null,
 			defaultContent : '',
 			title : settings.title,
+			className : 'select-checkbox',
 			// title : '<input type="checkbox" onclick="checkbox(this)" />',
 			width : 30
 		});
 		settings.columnDefs.unshift({
 			orderable : false,
-            className: 'select-checkbox',
-            targets : 0
+			className : 'select-checkbox',
+			targets : 0
 		});
-		//};
-		
+		// };
+
 		// alert(JSON.stringify(settings.columns));
-		
+
 		var table = $(this).DataTable({
 			processing : true,
 			serverSide : true,
@@ -82,7 +85,8 @@
 			columns : settings.columns,
 			columnDefs : settings.columnDefs,
 			order : [ [ 1, 'desc' ] ],
-			// dom : "<'row'<'#my-tool.col-xs-6'><'col-xs-6'f>r>t<'row'<'col-xs-3'l><'col-xs-3'i><'col-xs-6'p>>",
+			// dom :
+			// "<'row'<'#my-tool.col-xs-6'><'col-xs-6'f>r>t<'row'<'col-xs-3'l><'col-xs-3'i><'col-xs-6'p>>",
 			dom : settings.dom,
 			language : {
 				url : _PATH('/pages/Chinese.json')
@@ -90,11 +94,12 @@
 			initComplete : function() {
 				$(settings.toolid).append(settings.tools);
 			},
+			buttons : settings.buttons,
 			fnRowCallback : settings.fnRowCallback
 		});
-		
+
 		return table;
-		
+
 	};
 
 })(jQuery);
