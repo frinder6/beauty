@@ -3,6 +3,7 @@
 <mapper namespace="com.beauty.interfaces.ResourceDao">
 	<resultMap id="BaseResultMap" type="com.beauty.entity.BeautyResource">
 		<id column="id" property="id" jdbcType="BIGINT" />
+		<id column="id" property="DT_RowId" jdbcType="BIGINT" />
 		<result column="code" property="code" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="url" property="url" jdbcType="VARCHAR" />
@@ -57,14 +58,20 @@
 			<if test="url != null"> url = #{url,jdbcType=VARCHAR}, </if>
 			<if test="groupId != 0"> group_id = #{groupId,jdbcType=BIGINT}, </if>
 			<if test="remark != null"> remark = #{remark,jdbcType=VARCHAR}, </if>
-			<if test="creater != null"> creater = #{creater,jdbcType=VARCHAR}, </if>
-			<if test="lastUpdateTime != null"> last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}, </if>
-			<if test="modifier != null"> modifier = #{modifier,jdbcType=VARCHAR}, </if>
-			<if test="def1 != null"> def1 = #{def1,jdbcType=VARCHAR}, </if>
-			<if test="def2 != null"> def2 = #{def2,jdbcType=VARCHAR}, </if>
-			<if test="def3 != null"> def3 = #{def3,jdbcType=TIMESTAMP}, </if>
+			last_update_time = NOW()
 		</set>
 		where id = #{id,jdbcType=BIGINT}
 	</update>
+
+	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
+		delete from beauty_resource
+		where 1 != 1
+		<if test="list.size() > 0">
+			or id in
+			<foreach collection="list" open="(" close=")" item="id" separator=",">
+				${id}
+			</foreach>
+		</if>
+	</delete>
 
 </mapper>

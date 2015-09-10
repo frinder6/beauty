@@ -16,7 +16,7 @@
 
 	</div>
 	<!-- table-responsive -->
-
+	<a id="export" class="btn btn-default fa fa-copy hide" data-toggle="modal" data-target=".bs-url-modal">&nbsp;导入</a>
 	<div class="modal fade bs-url-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">

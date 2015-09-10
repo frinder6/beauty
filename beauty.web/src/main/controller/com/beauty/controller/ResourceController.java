@@ -65,11 +65,13 @@ public class ResourceController {
 		BeautyResource entity = DatatablesUtil.convert(BeautyResource.class, request.getParameterMap());
 		String action = DatatablesUtil.getAction(request.getParameterMap());
 		if ("create".equalsIgnoreCase(action)) {
-
+			entity.setId(null); // 重置id生成策略
+			this.resourceService.persist(entity);
 		} else if ("edit".equalsIgnoreCase(action)) {
 			this.resourceService.updateByPrimaryKeySelective(entity);
-		} else if ("delete".equalsIgnoreCase(action)) {
-
+		} else if ("remove".equalsIgnoreCase(action)) {
+			List<Object> list = DatatablesUtil.getIds(request.getParameterMap());
+			this.resourceService.deleteByPrimaryKeys(list);
 		}
 		return new Value(entity);
 	}

@@ -22,6 +22,7 @@ import com.beauty.service.SysColumnsService;
 import com.beauty.service.SysTableService;
 import com.beauty.service.TableConfigService;
 import com.beauty.util.CodeUtil;
+import com.beauty.util.DatatablesUtil;
 
 @Component
 @RequestMapping("/table")
@@ -42,6 +43,23 @@ public class TableConfigController {
 		return this.tableConfigService.selectByTable(config);
 	}
 
+	@RequestMapping(value = "/inline", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Value inline(HttpServletRequest request) {
+		BeautyTableConfig entity = DatatablesUtil.convert(BeautyTableConfig.class, request.getParameterMap());
+		String action = DatatablesUtil.getAction(request.getParameterMap());
+		if ("create".equalsIgnoreCase(action)) {
+			entity.setId(null); // 重置id生成策略
+			this.tableConfigService.persist(entity);
+		} else if ("edit".equalsIgnoreCase(action)) {
+			this.tableConfigService.updateByPrimaryKeySelective(entity);
+		} else if ("remove".equalsIgnoreCase(action)) {
+			List<Object> list = DatatablesUtil.getIds(request.getParameterMap());
+			this.tableConfigService.deleteByPrimaryKeys(list);
+		}
+		return new Value(entity);
+	}
+	
 	/**
 	 * 
 	 * @Title: remove

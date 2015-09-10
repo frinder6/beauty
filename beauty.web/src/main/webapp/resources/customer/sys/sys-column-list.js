@@ -74,10 +74,6 @@ $(function() {
 	             	<button type="button" class="btn btn-default" onclick="del()">删除</button>\
 	            </div>';
 
-	var arrs = {
-		'td:eq(3)' : 'data'
-	};
-
 	var configed = $('#r-list').datatable({
 		tableName : 'BEAUTY_TABLE_CONFIGED',
 		url : '/table/load/config.action',
@@ -93,11 +89,6 @@ $(function() {
 		title : '<input type="checkbox" onclick="rcheckbox(this)" />',
 		select : {
 			style : 'multi'
-		},
-		fnRowCallback : function(nRow, aData, iDisplayIndex) {
-			// 绑定update
-			binding(arrs, nRow, aData);
-			return nRow;
 		}
 	});
 

@@ -2,18 +2,18 @@ package com.beauty.entity;
 
 // Generated 2015-7-25 16:15:27 by Hibernate Tools 4.3.1
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-
-import static javax.persistence.GenerationType.IDENTITY;
-
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -35,8 +35,10 @@ public class BeautyResource implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@JsonProperty("DT_RowId")
+	// @JsonProperty("DT_RowId")
 	private Long id;
+	@JsonProperty("DT_RowId")
+	private Long DT_RowId;
 	@Orderable(columnName = "code")
 	private String code;
 	@Orderable(columnName = "name")
@@ -76,6 +78,22 @@ public class BeautyResource implements java.io.Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the dT_RowId
+	 */
+	@Transient
+	public Long getDT_RowId() {
+		return DT_RowId;
+	}
+
+	/**
+	 * @param dT_RowId
+	 *            the dT_RowId to set
+	 */
+	public void setDT_RowId(Long dT_RowId) {
+		DT_RowId = dT_RowId;
 	}
 
 	@Column(name = "code", nullable = false, length = 50)

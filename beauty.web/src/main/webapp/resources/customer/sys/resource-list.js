@@ -70,13 +70,13 @@ $(function() {
 
 	$('#list').on('click', 'tbody td:not(:first-child)', function(e) {
 		editor.inline(this, {
-			// onBlur : 'submit'
-			buttons : {
-				label : '&gt;',
-				fn : function() {
-					this.submit();
-				}
-			}
+			onBlur : 'submit'
+		// buttons : {
+		// label : '&gt;',
+		// fn : function() {
+		// this.submit();
+		// }
+		// }
 		});
 	});
 
@@ -88,21 +88,31 @@ $(function() {
 		title : '<input type="checkbox" onclick="checkbox(this)" />',
 		columnDefs : columnDefs,
 		select : {
-			style : 'os',
+			// style : 'os',
+			style : 'multi',
 			selector : 'td:first-child'
 		},
 		buttons : [ {
 			extend : "create",
-			text : '新增',
+			className : 'btn btn-default fa fa-plus-square-o',
+			text : '&nbsp;新增',
 			editor : editor
 		}, {
 			extend : "edit",
-			text : '更新',
+			className : 'btn btn-default fa fa-edit',
+			text : '&nbsp;更新',
 			editor : editor
 		}, {
 			extend : "remove",
-			text : '删除',
+			className : 'btn btn-default fa fa-minus-square-o',
+			text : '&nbsp;删除',
 			editor : editor
+		}, {
+			text : '&nbsp;配置',
+			className : 'btn btn-default fa fa-copy',
+			action : function() {
+				$('#export').trigger('click');
+			}
 		} ]
 	});
 
@@ -192,13 +202,5 @@ $(function() {
 			mtable.rows().deselect();
 		}
 	};
-
-	// editor.on('preSubmit', function (e, data) {
-	// // alert(JSON.stringify(data));
-	// } );
-	//	
-	// editor.on('postSubmit', function (e, json, data) {
-	// //alert(JSON.stringify(data));
-	// } );
 
 });

@@ -1,7 +1,9 @@
 package com.beauty.util;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
@@ -70,7 +72,9 @@ public class DatatablesUtil {
 			String key = StringUtil.valueOf(k);
 			String[] values = (String[]) map.get(k);
 			if (!"action".equalsIgnoreCase(key)) {
-				aim.put("id", key.substring(5, key.indexOf("][")));
+				if (!aim.containsKey("id")) {
+					aim.put("id", key.substring(5, key.indexOf("][")));
+				}
 				aim.put(key.substring((key.indexOf("][") + 2), key.lastIndexOf("]")), values[0]);
 			}
 		}
@@ -83,6 +87,28 @@ public class DatatablesUtil {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	/**
+	 * 
+	 * @Title: getIds
+	 * @Description: TODO(获取所有需要操作的id)
+	 * @author frinder_liu
+	 * @param map
+	 * @return
+	 * @return List<Object>
+	 * @date 2015年9月10日 下午9:02:13
+	 * @throws
+	 */
+	public static List<Object> getIds(@SuppressWarnings("rawtypes") Map map) {
+		List<Object> ids = new ArrayList<Object>();
+		for (Object k : map.keySet()) {
+			String key = StringUtil.valueOf(k);
+			if (!"action".equalsIgnoreCase(key) && key.indexOf("[DT_RowId]") > -1) {
+				ids.add(key.substring(5, key.indexOf("][")));
+			}
+		}
+		return ids;
 	}
 
 	/**

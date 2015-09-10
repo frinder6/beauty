@@ -31,4 +31,8 @@ public class ResourceService extends BaseService<BeautyResource> implements IMap
 		this.resourceDao.updateByPrimaryKeySelective(entity);
 	}
 
+	public void deleteByPrimaryKeys(List<Object> list) {
+		this.resourceDao.deleteByPrimaryKeys(list);
+	}
+
 }

@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.beauty.entity.BeautyTableConfig;
 import com.beauty.interfaces.TableConfigDao;
-import com.beauty.service.BaseService;
-import com.beauty.service.IMapperService;
 
 @Service
 public class TableConfigService extends BaseService<BeautyTableConfig> implements IMapperService<BeautyTableConfig> {
@@ -33,4 +31,12 @@ public class TableConfigService extends BaseService<BeautyTableConfig> implement
 		return this.tableConfigDao.selectByTable(config);
 	}
 
+
+	public void updateByPrimaryKeySelective(BeautyTableConfig entity) {
+		this.tableConfigDao.updateByPrimaryKeySelective(entity);
+	}
+
+	public void deleteByPrimaryKeys(List<Object> list) {
+		this.tableConfigDao.deleteByPrimaryKeys(list);
+	}
 }

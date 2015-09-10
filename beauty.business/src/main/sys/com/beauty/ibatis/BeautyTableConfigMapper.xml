@@ -3,6 +3,7 @@
 <mapper namespace="com.beauty.interfaces.TableConfigDao">
 	<resultMap id="BaseResultMap" type="com.beauty.entity.BeautyTableConfig">
 		<id column="id" property="id" jdbcType="BIGINT" />
+		<id column="id" property="DT_RowId" jdbcType="BIGINT" />
 		<result column="table_name" property="tableName" jdbcType="VARCHAR" />
 		<result column="title" property="title" jdbcType="VARCHAR" />
 		<result column="data" property="data" jdbcType="VARCHAR" />
@@ -53,7 +54,7 @@
 				${orderColumn} ${orderDir}
 			</if>
 		</trim>
-		table_name 
+		table_name
 		LIMIT #{from}, #{size}
 	</select>
 	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
@@ -62,4 +63,31 @@
 		FROM beauty_table_config
 		<include refid="Base_Where_Clause" />
 	</select>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.beauty.entity.BeautyTableConfig">
+		update beauty_table_config
+		<set>
+			<if test="title != null"> title = #{title,jdbcType=VARCHAR}, </if>
+			<if test="data != null"> data = #{data,jdbcType=VARCHAR}, </if>
+			<if test="orderable != null"> orderable = #{orderable,jdbcType=TINYINT}, </if>
+			<if test="width != null"> width = #{width,jdbcType=INTEGER}, </if>
+			<if test="className != null"> class_name = #{className,jdbcType=VARCHAR}, </if>
+			<if test="sequence != null"> sequence = #{sequence,jdbcType=INTEGER}, </if>
+			<if test="render != null"> render = #{render,jdbcType=VARCHAR}, </if>
+			<if test="remark != null"> remark = #{remark,jdbcType=VARCHAR}, </if>
+			last_update_time = NOW()
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
+		delete from beauty_table_config
+		where 1 != 1
+		<if test="list.size() > 0">
+			or id in
+			<foreach collection="list" open="(" close=")" item="id" separator=",">
+				${id}
+			</foreach>
+		</if>
+	</delete>
 </mapper>
