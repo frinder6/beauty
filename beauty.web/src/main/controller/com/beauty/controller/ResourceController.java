@@ -62,18 +62,23 @@ public class ResourceController {
 	@RequestMapping(value = "/inline", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public Value inline(HttpServletRequest request) {
-		BeautyResource entity = DatatablesUtil.convert(BeautyResource.class, request.getParameterMap());
 		String action = DatatablesUtil.getAction(request.getParameterMap());
 		if ("create".equalsIgnoreCase(action)) {
+			BeautyResource entity = DatatablesUtil.convert(BeautyResource.class, request.getParameterMap());
 			entity.setId(null); // 重置id生成策略
 			this.resourceService.persist(entity);
+			return new Value(entity);
 		} else if ("edit".equalsIgnoreCase(action)) {
-			this.resourceService.updateByPrimaryKeySelective(entity);
+			List<BeautyResource> entitys = DatatablesUtil.convert2(BeautyResource.class, request.getParameterMap());
+			for (BeautyResource entity : entitys) {
+				this.resourceService.updateByPrimaryKeySelective(entity);
+			}
+			return new Value(entitys);
 		} else if ("remove".equalsIgnoreCase(action)) {
 			List<Object> list = DatatablesUtil.getIds(request.getParameterMap());
 			this.resourceService.deleteByPrimaryKeys(list);
 		}
-		return new Value(entity);
+		return new Value();
 	}
 
 	@RequestMapping(value = "/remove", produces = "application/json; charset=utf-8")

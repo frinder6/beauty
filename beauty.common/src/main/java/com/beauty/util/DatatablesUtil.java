@@ -3,6 +3,7 @@ package com.beauty.util;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -91,6 +92,51 @@ public class DatatablesUtil {
 
 	/**
 	 * 
+	 * @Title: convert2
+	 * @Description: TODO(获取集合)
+	 * @author frinder_liu
+	 * @param clazz
+	 * @param map
+	 * @return
+	 * @return List<T>
+	 * @date 2015年9月11日 下午9:52:50
+	 * @throws
+	 */
+	public static <T> List<T> convert2(Class<T> clazz, @SuppressWarnings("rawtypes") Map map) {
+		List<T> entitys = new ArrayList<T>();
+		HashSet<String> ids = new HashSet<String>();
+		for (Object k : map.keySet()) {
+			String key = StringUtil.valueOf(k);
+			if (!"action".equalsIgnoreCase(key)) {
+				ids.add(key.substring(5, key.indexOf("][")));
+			}
+		}
+		String tid;
+		T entity;
+		Map<String, String> temp;
+		for (String id : ids) {
+			temp = new HashMap<String, String>();
+			tid = "[".concat(id).concat("]");
+			String key;
+			String[] values;
+			for (Object k : map.keySet()) {
+				key = k.toString();
+				values = (String[]) map.get(k);
+				if (key.indexOf(tid) > -1 && !"action".equalsIgnoreCase(key)) {
+					if (!temp.containsKey("id")) {
+						temp.put("id", key.substring(5, key.indexOf("][")));
+					}
+					temp.put(key.substring((key.indexOf("][") + 2), key.lastIndexOf("]")), values[0]);
+				}
+			}
+			entity = JSON.toJavaObject(JSON.parseObject(JSON.toJSONString(temp)), clazz);
+			entitys.add(entity);
+		}
+		return entitys;
+	}
+
+	/**
+	 * 
 	 * @Title: getIds
 	 * @Description: TODO(获取所有需要操作的id)
 	 * @author frinder_liu
@@ -101,14 +147,14 @@ public class DatatablesUtil {
 	 * @throws
 	 */
 	public static List<Object> getIds(@SuppressWarnings("rawtypes") Map map) {
-		List<Object> ids = new ArrayList<Object>();
+		HashSet<Object> ids = new HashSet<Object>();
 		for (Object k : map.keySet()) {
 			String key = StringUtil.valueOf(k);
-			if (!"action".equalsIgnoreCase(key) && key.indexOf("[DT_RowId]") > -1) {
+			if (!"action".equalsIgnoreCase(key)) {
 				ids.add(key.substring(5, key.indexOf("][")));
 			}
 		}
-		return ids;
+		return new ArrayList<Object>(ids);
 	}
 
 	/**

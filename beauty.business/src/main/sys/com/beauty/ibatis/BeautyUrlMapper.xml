@@ -12,6 +12,9 @@
 			<if test="searchValue">
 				AND ( url LIKE "%" #{searchValue} "%" OR remark LIKE "%" #{searchValue} "%" )
 			</if>
+			<if test="url">
+				AND url = #{url}
+			</if>
 		</where>
 	</sql>
 	<sql id="Base_Column_List">

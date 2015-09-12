@@ -69,7 +69,12 @@ public class LoginFilter implements Filter {
 		logger.info("request url : [" + url + "]");
 		try {
 			if (!isInclude(url)) {
-				urlService.persist(new BeautyUrl(url, url));
+				Map<String, Object> params = new HashMap<String, Object>();
+				params.put("url", url);
+				int result = urlService.selectCount(params);
+				if (result <= 0) {
+					urlService.persist(new BeautyUrl(url, url));
+				}
 			}
 		} catch (Exception e) {
 			logger.error("LoginFilter doFilter : [write url error!] ".concat(e.getMessage()));
