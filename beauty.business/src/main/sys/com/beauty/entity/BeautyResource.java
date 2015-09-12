@@ -4,21 +4,14 @@ package com.beauty.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import com.beauty.annotation.Orderable;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -28,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 @Entity
 @Table(name = "beauty_resource", catalog = "beauty")
-public class BeautyResource implements java.io.Serializable {
+public class BeautyResource extends BaseEntity {
 
 	/**
 	 * @Fields serialVersionUID
@@ -45,18 +38,6 @@ public class BeautyResource implements java.io.Serializable {
 	private String name;
 	@Orderable(columnName = "url")
 	private String url;
-	private long groupId;
-	@Orderable(columnName = "remark")
-	private String remark;
-	@Orderable(columnName = "createTime")
-	private Date createTime;
-	private String creater;
-	private Date lastUpdateTime;
-	private String modifier;
-	private byte isDeleted;
-	private String def1;
-	private String def2;
-	private Date def3;
 
 	public BeautyResource() {
 	}
@@ -121,105 +102,6 @@ public class BeautyResource implements java.io.Serializable {
 
 	public void setUrl(String url) {
 		this.url = url;
-	}
-
-	@Column(name = "group_id", nullable = false, updatable = false, insertable = false)
-	public long getGroupId() {
-		return this.groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		this.groupId = groupId;
-	}
-
-	@Column(name = "remark", nullable = false, length = 200)
-	public String getRemark() {
-		return this.remark;
-	}
-
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
-
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "create_time", nullable = false, length = 19, updatable = false)
-	public Date getCreateTime() {
-		this.createTime = new Date();
-		return this.createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	@Column(name = "creater", nullable = false, length = 50, updatable = false, insertable = false)
-	public String getCreater() {
-		return this.creater;
-	}
-
-	public void setCreater(String creater) {
-		this.creater = creater;
-	}
-
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "last_update_time", nullable = false, length = 19)
-	public Date getLastUpdateTime() {
-		this.lastUpdateTime = new Date();
-		return this.lastUpdateTime;
-	}
-
-	public void setLastUpdateTime(Date lastUpdateTime) {
-		this.lastUpdateTime = lastUpdateTime;
-	}
-
-	@Column(name = "modifier", nullable = false, length = 50, updatable = false, insertable = false)
-	public String getModifier() {
-		return this.modifier;
-	}
-
-	public void setModifier(String modifier) {
-		this.modifier = modifier;
-	}
-
-	@Column(name = "is_deleted", nullable = false, updatable = false, insertable = false)
-	public byte getIsDeleted() {
-		return this.isDeleted;
-	}
-
-	public void setIsDeleted(byte isDeleted) {
-		this.isDeleted = isDeleted;
-	}
-
-	@Column(name = "def1", nullable = false, length = 50, updatable = false, insertable = false)
-	public String getDef1() {
-		return this.def1;
-	}
-
-	public void setDef1(String def1) {
-		this.def1 = def1;
-	}
-
-	@Column(name = "def2", nullable = false, length = 50, updatable = false, insertable = false)
-	public String getDef2() {
-		return this.def2;
-	}
-
-	public void setDef2(String def2) {
-		this.def2 = def2;
-	}
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "def3", nullable = false, length = 19, updatable = false, insertable = false)
-	public Date getDef3() {
-		return this.def3;
-	}
-
-	public void setDef3(Date def3) {
-		this.def3 = def3;
 	}
 
 }

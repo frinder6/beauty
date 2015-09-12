@@ -27,10 +27,12 @@ public class ResourceService extends BaseService<BeautyResource> implements IMap
 		return this.resourceDao.selectPage(params);
 	}
 
+	@Override
 	public void updateByPrimaryKeySelective(BeautyResource entity) {
 		this.resourceDao.updateByPrimaryKeySelective(entity);
 	}
 
+	@Override
 	public void deleteByPrimaryKeys(List<Object> list) {
 		this.resourceDao.deleteByPrimaryKeys(list);
 	}

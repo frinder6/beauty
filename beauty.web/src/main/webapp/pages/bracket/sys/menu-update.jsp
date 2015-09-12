@@ -39,7 +39,6 @@
 					<label class="col-sm-3 control-label">父节点： <span class="asterisk">*</span></label>
 					<div class="col-sm-6">
 						<select id="pselect" name="parentId" required placeholder="Type please...">
-							<option value="0" selected="selected">/</option>
 						</select> <label class="error" for="pselect"></label>
 					</div>
 				</div>

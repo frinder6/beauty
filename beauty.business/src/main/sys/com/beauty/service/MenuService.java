@@ -31,4 +31,16 @@ public class MenuService extends BaseService<BeautyMenu> implements IMapperServi
 		return this.menuDao.selectMenuSelect(params);
 	}
 
+	@Override
+	public void updateByPrimaryKeySelective(BeautyMenu entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteByPrimaryKeys(List<Object> list) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

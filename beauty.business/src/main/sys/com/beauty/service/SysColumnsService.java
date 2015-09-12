@@ -32,4 +32,16 @@ public class SysColumnsService implements IMapperService<SysColumns> {
 		return this.sysColumnsDao.selectColumnsByTable(params);
 	}
 
+	@Override
+	public void updateByPrimaryKeySelective(SysColumns entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteByPrimaryKeys(List<Object> list) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -1,6 +1,5 @@
 package com.beauty.controller;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,7 +58,7 @@ public class TableConfigController {
 		}
 		return new Value(entity);
 	}
-	
+
 	/**
 	 * 
 	 * @Title: remove
@@ -105,7 +104,7 @@ public class TableConfigController {
 			BeautyTableConfig entity = null;
 			for (int i = 0; i < columns.size(); i++) {
 				// 逐个添加
-				entity = new BeautyTableConfig(tableName.toUpperCase(), columns.get(i), (byte) 1, 50, i, columns.get(i), new Date(), new Date());
+				entity = new BeautyTableConfig(tableName.toUpperCase(), columns.get(i));
 				this.tableConfigService.persist(entity);
 			}
 		}
@@ -127,7 +126,7 @@ public class TableConfigController {
 	@ResponseBody
 	public Value modify(BeautyTableConfig entity) {
 		BeautyTableConfig config = this.tableConfigService.findById(BeautyTableConfig.class, entity.getId());
-		if (null != entity.getTitle()){
+		if (null != entity.getTitle()) {
 			config.setTitle(entity.getTitle());
 		}
 		if (null != entity.getData()) {
@@ -255,7 +254,7 @@ public class TableConfigController {
 		SysColumns column;
 		for (int i = 0; i < list.size(); i++) {
 			column = (SysColumns) list.get(i);
-			entity = new BeautyTableConfig(tableName.toUpperCase(), column.getColumnName(), (byte) 1, 50, i, column.getColumnName(), new Date(), new Date());
+			entity = new BeautyTableConfig(tableName.toUpperCase(), column.getColumnName());
 			this.tableConfigService.persist(entity);
 		}
 		return new Value(CodeUtil.SUCCESS);

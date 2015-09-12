@@ -3,28 +3,13 @@
  * 
  * @date 2015-08-23 22:07
  */
-var _render = function(data, type, row, meta) {
-	var result = '<a href="#" data-href="/pages/bracket/sys/resource-update.jsp?id={0}" onclick="_S_REDIRECT(this)">{1}</a>';
-	return result.format(row.id, data);
-};
 
 $(function() {
 	init();
 
-	var tools = '<div class="btn-group">\
-		<a data-href="/pages/bracket/sys/resource-add.jsp" class="btn btn-default fa fa-plus-square-o" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
-		<a class="btn btn-default fa fa-minus-square-o" onclick="del()">&nbsp;删除</a>\
-		<a class="btn btn-default fa fa-copy" data-toggle="modal" data-target=".bs-url-modal">&nbsp;导入</a>\
-    </div>';
-
 	var mtools = '<div class="btn-group">\
 		<a class="btn btn-default fa fa-copy" onclick="exp()">&nbsp;导入</a>\
     </div>';
-
-	var columnDefs = [ {
-		'targets' : 1,
-		'render' : _render
-	} ];
 
 	editor = new $.fn.dataTable.Editor({
 		ajax : _PATH('/resource/inline.action'),
@@ -86,7 +71,6 @@ $(function() {
 		dom : "Bfrtip",
 		// tools : tools,
 		title : '<input type="checkbox" onclick="checkbox(this)" />',
-		columnDefs : columnDefs,
 		select : {
 			// style : 'os',
 			style : 'multi',

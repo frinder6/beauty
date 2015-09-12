@@ -21,13 +21,13 @@ public class BeautyUserRole implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Long id;
-	private long userId;
-	private long roleId;
+	private Long userId;
+	private Long roleId;
 
 	public BeautyUserRole() {
 	}
 
-	public BeautyUserRole(long userId, long roleId) {
+	public BeautyUserRole(Long userId, Long roleId) {
 		this.userId = userId;
 		this.roleId = roleId;
 	}
@@ -44,20 +44,20 @@ public class BeautyUserRole implements java.io.Serializable {
 	}
 
 	@Column(name = "user_id", nullable = false)
-	public long getUserId() {
+	public Long getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
 	@Column(name = "role_id", nullable = false)
-	public long getRoleId() {
+	public Long getRoleId() {
 		return this.roleId;
 	}
 
-	public void setRoleId(long roleId) {
+	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
 	}
 

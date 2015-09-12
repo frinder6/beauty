@@ -22,8 +22,8 @@ public class BeautyAuthorityResource implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-	private long authorityId;
-	private long resourceId;
+	private Long authorityId;
+	private Long resourceId;
 
 	public BeautyAuthorityResource() {
 	}

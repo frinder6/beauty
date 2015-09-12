@@ -30,10 +30,10 @@
 					};
 				},
 				processResults : function(data, params) {
-					data.unshift({
-						id : 0,
-						text : '/'
-					});
+//					data.unshift({
+//						id : 0,
+//						text : '/'
+//					});
 					return {
 						results : data
 					};

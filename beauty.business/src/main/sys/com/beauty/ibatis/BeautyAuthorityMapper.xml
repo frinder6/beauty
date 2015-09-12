@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.beauty.interfaces.MenuDao">
-	<resultMap id="BaseResultMap" type="com.beauty.entity.BeautyMenu">
+<mapper namespace="com.beauty.interfaces.AuthorityDao">
+	<resultMap id="BaseResultMap" type="com.beauty.entity.BeautyAuthority">
 		<id column="id" property="id" jdbcType="BIGINT" />
 		<id column="id" property="DT_RowId" jdbcType="BIGINT" />
 		<result column="code" property="code" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
-		<result column="url" property="url" jdbcType="VARCHAR" />
-		<result column="parent_id" property="parentId" jdbcType="BIGINT" />
-		<result column="level" property="level" jdbcType="TINYINT" />
 		<result column="group_id" property="groupId" jdbcType="BIGINT" />
+		<result column="type" property="type" jdbcType="TINYINT" />
 		<result column="remark" property="remark" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
 		<result column="creater" property="creater" jdbcType="VARCHAR" />
@@ -20,28 +18,21 @@
 		<result column="def2" property="def2" jdbcType="VARCHAR" />
 		<result column="def3" property="def3" jdbcType="TIMESTAMP" />
 	</resultMap>
-	<resultMap id="SelectResultMap" type="com.beauty.model.Select">
-		<id column="id" property="id" jdbcType="BIGINT" />
-		<result column="name" property="text" jdbcType="VARCHAR" />
-	</resultMap>
 	<sql id="Base_Column_List">
-		id, code, name, url, parent_id, remark, create_time
+		id, code, name, group_id, type, remark
 	</sql>
 	<sql id="Base_Where_Clause">
 		<where>
 			1 = 1
 			<if test="searchValue">
-				AND ( name LIKE "%" #{searchValue} "%" OR code LIKE "%" #{searchValue} "%" OR remark LIKE "%" #{searchValue} "%" OR url LIKE "%" #{searchValue} "%" )
-			</if>
-			<if test="pid">
-				AND id = #{pid}
+				AND ( name LIKE "%" #{searchValue} "%" OR code LIKE "%" #{searchValue} "%" OR remark LIKE "%" #{searchValue} "%" )
 			</if>
 		</where>
 	</sql>
 	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
 		SELECT
 		<include refid="Base_Column_List" />
-		FROM beauty_menu
+		FROM beauty_authority
 		<include refid="Base_Where_Clause" />
 		ORDER BY
 		<if test="orderColumn">
@@ -55,13 +46,28 @@
 	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
 		SELECT
 		COUNT(1)
-		FROM beauty_menu
+		FROM beauty_authority
 		<include refid="Base_Where_Clause" />
 	</select>
-
-	<select id="selectMenuSelect" parameterType="java.util.HashMap" resultMap="SelectResultMap">
-		SELECT id, name FROM beauty_menu
-		<include refid="Base_Where_Clause" />
-	</select>
-
+	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
+		delete from beauty_authority
+		where 1 != 1
+		<if test="list.size() > 0">
+			or id in
+			<foreach collection="list" open="(" close=")" item="id" separator=",">
+				${id}
+			</foreach>
+		</if>
+	</delete>
+	<update id="updateByPrimaryKeySelective" parameterType="com.beauty.entity.BeautyAuthority">
+		update beauty_authority
+		<set>
+			<if test="code != null"> code = #{code,jdbcType=VARCHAR}, </if>
+			<if test="name != null"> name = #{name,jdbcType=VARCHAR}, </if>
+			<if test="type != null"> type = #{type,jdbcType=TINYINT}, </if>
+			<if test="remark != null"> remark = #{remark,jdbcType=VARCHAR}, </if>
+			last_update_time = now()
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
 </mapper>

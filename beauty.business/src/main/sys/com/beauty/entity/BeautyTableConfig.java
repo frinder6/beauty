@@ -4,15 +4,11 @@ package com.beauty.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import com.beauty.annotation.Orderable;
@@ -26,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(Include.NON_NULL)
 @Entity
 @Table(name = "beauty_table_config", catalog = "beauty")
-public class BeautyTableConfig implements java.io.Serializable {
+public class BeautyTableConfig extends BaseEntity {
 
 	/**
 	 * @Fields serialVersionUID
@@ -54,50 +50,14 @@ public class BeautyTableConfig implements java.io.Serializable {
 	@Orderable(columnName = "sequence")
 	private Integer sequence;
 	private String render;
-	private String remark;
-	private Date createTime;
-	private String creater;
-	private Date lastUpdateTime;
-	private String modifier;
-	private Byte isDeleted;
-	private String def1;
-	private String def2;
-	private Date def3;
 
 	public BeautyTableConfig() {
 	}
 
-	public BeautyTableConfig(String tableName, String columnName, Byte orderable, Integer width, Integer sequence, String remark, Date createTime, Date lastUpdateTime) {
+	public BeautyTableConfig(String tableName, String columnName) {
 		super();
 		this.tableName = tableName;
 		this.columnName = columnName;
-		this.orderable = orderable;
-		this.width = width;
-		this.sequence = sequence;
-		this.remark = remark;
-		this.createTime = createTime;
-		this.lastUpdateTime = lastUpdateTime;
-	}
-
-	public BeautyTableConfig(String tableName, String title, String data, String columnName, Byte orderable, Integer width, String className, Integer sequence, String render, String remark, Date createTime, String creater, Date lastUpdateTime, String modifier, Byte isDeleted, String def1, String def2, Date def3) {
-		this.tableName = tableName;
-		this.title = title;
-		this.data = data;
-		this.columnName = columnName;
-		this.orderable = orderable;
-		this.width = width;
-		this.className = className;
-		this.sequence = sequence;
-		this.render = render;
-		this.remark = remark;
-		this.createTime = createTime;
-		this.creater = creater;
-		this.lastUpdateTime = lastUpdateTime;
-		this.modifier = modifier;
-		this.isDeleted = isDeleted;
-		this.def1 = def1;
-		this.def2 = def2;
-		this.def3 = def3;
 	}
 
 	@Id
@@ -206,90 +166,6 @@ public class BeautyTableConfig implements java.io.Serializable {
 
 	public void setRender(String render) {
 		this.render = render;
-	}
-
-	@Column(name = "remark", nullable = false, length = 200)
-	public String getRemark() {
-		return this.remark;
-	}
-
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "create_time", nullable = false, length = 19)
-	public Date getCreateTime() {
-		return this.createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	@Column(name = "creater", nullable = false, length = 50, insertable = false)
-	public String getCreater() {
-		return this.creater;
-	}
-
-	public void setCreater(String creater) {
-		this.creater = creater;
-	}
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "last_update_time", nullable = false, length = 19)
-	public Date getLastUpdateTime() {
-		return this.lastUpdateTime;
-	}
-
-	public void setLastUpdateTime(Date lastUpdateTime) {
-		this.lastUpdateTime = lastUpdateTime;
-	}
-
-	@Column(name = "modifier", nullable = false, length = 50, insertable = false)
-	public String getModifier() {
-		return this.modifier;
-	}
-
-	public void setModifier(String modifier) {
-		this.modifier = modifier;
-	}
-
-	@Column(name = "is_deleted", nullable = false, insertable = false)
-	public Byte getIsDeleted() {
-		return this.isDeleted;
-	}
-
-	public void setIsDeleted(Byte isDeleted) {
-		this.isDeleted = isDeleted;
-	}
-
-	@Column(name = "def1", nullable = false, length = 50, insertable = false)
-	public String getDef1() {
-		return this.def1;
-	}
-
-	public void setDef1(String def1) {
-		this.def1 = def1;
-	}
-
-	@Column(name = "def2", nullable = false, length = 50, insertable = false)
-	public String getDef2() {
-		return this.def2;
-	}
-
-	public void setDef2(String def2) {
-		this.def2 = def2;
-	}
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "def3", nullable = false, length = 19, insertable = false)
-	public Date getDef3() {
-		return this.def3;
-	}
-
-	public void setDef3(Date def3) {
-		this.def3 = def3;
 	}
 
 }

@@ -24,6 +24,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.beauty.entity.BeautyUrl;
 import com.beauty.service.UrlService;
 
+
 /**
  * Servlet Filter implementation class LoginFilter
  */

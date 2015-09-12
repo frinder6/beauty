@@ -162,10 +162,10 @@ var selectInit = function(opts) {
 							text : data[0].text
 						});
 					} else {
-						callback({
-							id : 0,
-							text : '/'
-						});
+//						callback({
+//							id : 0,
+//							text : '/'
+//						});
 					}
 				}
 			});
@@ -205,4 +205,4 @@ var updateInit = function(opts){
 			layer.msg(msg);
 		}
 	});
-}
+};

@@ -28,4 +28,16 @@ public class SysTableService implements IMapperService<SysTables> {
 		return this.sysTableDao.selectPage(params);
 	}
 
+	@Override
+	public void updateByPrimaryKeySelective(SysTables entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteByPrimaryKeys(List<Object> list) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
