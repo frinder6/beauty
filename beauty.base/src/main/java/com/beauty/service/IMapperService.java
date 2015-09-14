@@ -13,4 +13,6 @@ public interface IMapperService<T> {
 
 	public void deleteByPrimaryKeys(List<Object> list);
 
+	public T selectByPrimaryKey(Long id);
+
 }

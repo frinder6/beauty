@@ -37,35 +37,17 @@
 	</bean>
 
 	<!-- 配置Hibernate事务管理器 -->
-	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	<!-- <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager"> <property name="sessionFactory" ref="sessionFactory" /> </bean> -->
 
 	<!-- 配置事务异常封装 -->
-	<bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	<!-- <bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" /> -->
 
 	<!-- 声明式容器事务管理 ,transaction-manager指定事务管理器为transactionManager -->
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="persist*" propagation="REQUIRED" />
-			<tx:method name="remove*" propagation="REQUIRED" />
-			<tx:method name="merge*" propagation="REQUIRED" />
-			<tx:method name="add*" propagation="REQUIRED" />
-			<tx:method name="delete*" propagation="REQUIRED" />
-			<tx:method name="update*" propagation="REQUIRED" />
-			<tx:method name="load*" read-only="true" propagation="REQUIRED" />
-			<tx:method name="find*" read-only="true" propagation="REQUIRED" />
-			<tx:method name="get*" read-only="true" propagation="REQUIRED" />
-			<tx:method name="query*" read-only="true" propagation="REQUIRED" />
-			<tx:method name="*" read-only="true" propagation="REQUIRED" />
-		</tx:attributes>
-	</tx:advice>
+	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager"> <tx:attributes> <tx:method name="persist*" propagation="REQUIRED" /> <tx:method name="insert*" propagation="REQUIRED" /> <tx:method name="remove*" propagation="REQUIRED" /> <tx:method name="merge*" propagation="REQUIRED" /> <tx:method name="add*" propagation="REQUIRED" /> <tx:method name="delete*" propagation="REQUIRED" /> <tx:method name="update*" propagation="REQUIRED" /> <tx:method name="load*" read-only="true" propagation="REQUIRED" /> <tx:method name="find*" read-only="true" propagation="REQUIRED" /> <tx:method name="get*" read-only="true" propagation="REQUIRED" /> <tx:method name="query*" read-only="true" propagation="REQUIRED" /> <tx:method 
+		name="*" read-only="true" propagation="REQUIRED" /> </tx:attributes> </tx:advice> -->
 
-	<aop:config>
-		<!-- 只对业务逻辑层实施事务 -->
-		<aop:pointcut id="txPointcut" expression="execution(* com.beauty.service..*.*(..))" />
-		<!-- Advisor定义，切入点和通知分别为txPointcut、txAdvice -->
-		<aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice" />
-	</aop:config>
+	<!-- 只对业务逻辑层实施事务 -->
+	<!-- Advisor定义，切入点和通知分别为txPointcut、txAdvice -->
+	<!-- <aop:config> <aop:pointcut id="txPointcut" expression="execution(* com.beauty.service..*.*(..))" /> <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice" /> </aop:config> -->
 
 </beans>

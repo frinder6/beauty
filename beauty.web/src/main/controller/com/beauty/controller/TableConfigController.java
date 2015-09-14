@@ -49,7 +49,7 @@ public class TableConfigController {
 		String action = DatatablesUtil.getAction(request.getParameterMap());
 		if ("create".equalsIgnoreCase(action)) {
 			entity.setId(null); // 重置id生成策略
-			this.tableConfigService.persist(entity);
+			this.tableConfigService.insertSelective(entity);
 		} else if ("edit".equalsIgnoreCase(action)) {
 			this.tableConfigService.updateByPrimaryKeySelective(entity);
 		} else if ("remove".equalsIgnoreCase(action)) {
@@ -74,11 +74,7 @@ public class TableConfigController {
 	@ResponseBody
 	public Value remove(Value value) {
 		if (!value.getValues().isEmpty()) {
-			List<String> ids = value.getValues();
-			for (String id : ids) {
-				// 逐个删除
-				this.tableConfigService.remove(this.tableConfigService.findById(BeautyTableConfig.class, Long.parseLong(id)));
-			}
+			this.tableConfigService.deleteByPrimaryKeys(value.getValues());
 		}
 		return new Value(CodeUtil.DELETE_SUCCESS);
 	}
@@ -99,13 +95,13 @@ public class TableConfigController {
 	@ResponseBody
 	public Value copyToConf(HttpServletRequest request, Value value) {
 		if (!value.getValues().isEmpty()) {
-			List<String> columns = value.getValues();
+			List<Object> columns = value.getValues();
 			String tableName = request.getParameter("tableName");
 			BeautyTableConfig entity = null;
 			for (int i = 0; i < columns.size(); i++) {
 				// 逐个添加
-				entity = new BeautyTableConfig(tableName.toUpperCase(), columns.get(i));
-				this.tableConfigService.persist(entity);
+				entity = new BeautyTableConfig(tableName.toUpperCase(), columns.get(i).toString());
+				this.tableConfigService.insertSelective(entity);
 			}
 		}
 		return new Value(CodeUtil.SUCCESS);
@@ -114,7 +110,7 @@ public class TableConfigController {
 	/**
 	 * 
 	 * @Title: modify
-	 * @Description: TODO(修改已配置记录：单元格内修改)
+	 * @Description: TODO(修改已配置记录)
 	 * @author frinder_liu
 	 * @param entity
 	 * @return
@@ -125,26 +121,7 @@ public class TableConfigController {
 	@RequestMapping(value = "/modify/config", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public Value modify(BeautyTableConfig entity) {
-		BeautyTableConfig config = this.tableConfigService.findById(BeautyTableConfig.class, entity.getId());
-		if (null != entity.getTitle()) {
-			config.setTitle(entity.getTitle());
-		}
-		if (null != entity.getData()) {
-			config.setData(entity.getData());
-		}
-		if (null != entity.getOrderable()) {
-			config.setOrderable(entity.getOrderable());
-		}
-		if (null != entity.getWidth()) {
-			config.setWidth(entity.getWidth());
-		}
-		if (null != entity.getClassName()) {
-			config.setClassName(entity.getClassName());
-		}
-		if (null != entity.getSequence()) {
-			config.setSequence(entity.getSequence());
-		}
-		this.tableConfigService.merge(config);
+		this.tableConfigService.updateByPrimaryKeySelective(entity);
 		return new Value(CodeUtil.EDIT_SUCCESS);
 	}
 
@@ -255,7 +232,7 @@ public class TableConfigController {
 		for (int i = 0; i < list.size(); i++) {
 			column = (SysColumns) list.get(i);
 			entity = new BeautyTableConfig(tableName.toUpperCase(), column.getColumnName());
-			this.tableConfigService.persist(entity);
+			this.tableConfigService.insertSelective(entity);
 		}
 		return new Value(CodeUtil.SUCCESS);
 	}

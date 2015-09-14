@@ -46,7 +46,7 @@ var init = function() {
 	$(window.parent.document).scroll(function() {
 		var height = $('.table-responsive').height();
 		var mHeight = $(window.parent.document).find('.mainpanel').height();
-		if (height > mHeight){
+		if (height > mHeight) {
 			$(window.parent.document).find('#iframe-main').height(height);
 			$(window.parent.document).find('.contentpanel').height(height);
 		} else {
@@ -86,7 +86,7 @@ var ajax = function(params, fn) {
 var binding = function(arrs, nRow, aData) {
 	$.each(arrs, function(key, value) {
 		$(key, nRow).editable({
-			//mode : 'inline',
+			// mode : 'inline',
 			// defaultValue : '',
 			emptytext : '',
 			placement : 'right',
@@ -125,7 +125,8 @@ var mySub = function(fn) {
 					layer.msg(data.value);
 					//
 					fn();
-				}, error : function(msg){
+				},
+				error : function(msg) {
 					layer.msg(msg);
 				}
 			});
@@ -134,57 +135,10 @@ var mySub = function(fn) {
 	});
 };
 
-
 /**
- * select2 初始化
- * iUrl : 初始化 url
- * pid : 父节点id
- * sid : select控件 #id
- * sUrl : select控件 url
+ * 更新加载方法 url : findById方法url id : 目标对象id sid : select控件 #id sUrl : select控件 url
  */
-var selectInit = function(opts) {
-	$.ajax({
-		"type" : "post",
-		"url" : _PATH(opts.iUrl),
-		"data" : {
-			pid : opts.pid,
-			search : ''
-		},
-		"dataType" : 'json',
-		"async" : false,
-		"success" : function(data) {
-			$(opts.sid).select({
-				url : opts.sUrl,
-				init : function(e, callback) {
-					if (data && data.length > 0){
-						callback({
-							id : data[0].id,
-							text : data[0].text
-						});
-					} else {
-//						callback({
-//							id : 0,
-//							text : '/'
-//						});
-					}
-				}
-			});
-		},
-		"error" : function(msg) {
-			layer.msg(msg);
-		}
-	});
-};
-
-/**
- * 更新加载方法
- * url : findById方法url
- * id : 目标对象id
- * iUrl : 初始化 url
- * sid : select控件 #id
- * sUrl : select控件 url
- */
-var updateInit = function(opts){
+var updateInit = function(opts) {
 	$.ajax({
 		type : "POST",
 		url : _PATH(opts.url),
@@ -194,12 +148,9 @@ var updateInit = function(opts){
 		dataType : "json",
 		success : function(data) {
 			$("#basicForm").fill(data);
-			selectInit({
-				sid : opts.sid,
-				pid : data.parentId,
-				iUrl : opts.iUrl,
-				sUrl : opts.sUrl
-			});
+			if (opts.select) {
+				opts.select(data);
+			}
 		},
 		error : function(msg) {
 			layer.msg(msg);

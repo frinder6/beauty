@@ -37,4 +37,16 @@ public class ResourceService extends BaseService<BeautyResource> implements IMap
 		this.resourceDao.deleteByPrimaryKeys(list);
 	}
 
+	@Override
+	public BeautyResource selectByPrimaryKey(Long id) {
+		// TODO Auto-generated method stub
+		return this.resourceDao.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public void insertSelective(BeautyResource entity) {
+		// TODO Auto-generated method stub
+		this.resourceDao.insertSelective(entity);
+	}
+
 }

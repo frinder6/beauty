@@ -41,15 +41,15 @@ public class MenuController {
 
 	@RequestMapping(value = "/add", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public Value persist(BeautyMenu menu) {
-		this.menuService.persist(menu);
+	public Value persist(BeautyMenu entity) {
+		this.menuService.insertSelective(entity);
 		return new Value(CodeUtil.ADD_SUCCESS);
 	}
 
 	@RequestMapping(value = "/update", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public Value modify(BeautyMenu menu) {
-		this.menuService.merge(menu);
+	public Value modify(BeautyMenu entity) {
+		this.menuService.updateByPrimaryKeySelective(entity);
 		return new Value(CodeUtil.EDIT_SUCCESS);
 	}
 
@@ -57,10 +57,7 @@ public class MenuController {
 	@ResponseBody
 	public Value delete(Value value) {
 		if (!value.getValues().isEmpty()) {
-			List<String> ids = value.getValues();
-			for (String id : ids) {
-				this.menuService.remove(this.menuService.findById(BeautyMenu.class, Long.parseLong(id)));
-			}
+			this.menuService.deleteByPrimaryKeys(value.getValues());
 		}
 		return new Value(CodeUtil.DELETE_SUCCESS);
 	}
@@ -68,7 +65,7 @@ public class MenuController {
 	@RequestMapping(value = "/load/id", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public BeautyMenu loadMenu(@RequestParam("id") Long id) {
-		return this.menuService.findById(BeautyMenu.class, id);
+		return this.menuService.selectByPrimaryKey(id);
 	}
 
 	@RequestMapping(value = "/load/page", produces = "application/json; charset=utf-8")

@@ -74,7 +74,7 @@ public class LoginFilter implements Filter {
 				params.put("url", url);
 				int result = urlService.selectCount(params);
 				if (result <= 0) {
-					urlService.persist(new BeautyUrl(url, url));
+					urlService.insertSelective(new BeautyUrl(url, url));
 				}
 			}
 		} catch (Exception e) {

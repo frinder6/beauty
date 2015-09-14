@@ -11,7 +11,7 @@ import com.beauty.interfaces.SysColumnsDao;
 import com.beauty.service.IMapperService;
 
 @Service
-public class SysColumnsService implements IMapperService<SysColumns> {
+public class SysColumnsService extends BaseService<SysColumns> implements IMapperService<SysColumns> {
 
 	@Autowired
 	private SysColumnsDao sysColumnsDao;
@@ -27,21 +27,9 @@ public class SysColumnsService implements IMapperService<SysColumns> {
 		// TODO Auto-generated method stub
 		return this.sysColumnsDao.selectPage(params);
 	}
-	
-	public List<?> selectColumnsByTable(Map<String, Object> params){
+
+	public List<?> selectColumnsByTable(Map<String, Object> params) {
 		return this.sysColumnsDao.selectColumnsByTable(params);
-	}
-
-	@Override
-	public void updateByPrimaryKeySelective(SysColumns entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteByPrimaryKeys(List<Object> list) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

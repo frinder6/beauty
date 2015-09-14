@@ -39,4 +39,16 @@ public class AuthorityService extends BaseService<BeautyAuthority> implements IM
 		this.authorityDao.deleteByPrimaryKeys(list);
 	}
 
+	@Override
+	public BeautyAuthority selectByPrimaryKey(Long id) {
+		// TODO Auto-generated method stub
+		return this.authorityDao.selectByPrimaryKey(id);
+	}
+
+	
+	@Override
+	public void insertSelective(BeautyAuthority entity) {
+		// TODO Auto-generated method stub
+		this.authorityDao.insertSelective(entity);
+	}
 }

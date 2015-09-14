@@ -11,38 +11,32 @@
 		<a href="javascript:history.back();" class="btn btn-default fa fa-backward">&nbsp;返回</a>
 	</div>
 
-	<form id="basicForm" action="${basePath }/menu/add.action" class="form-horizontal" method="post" onsubmit="return false;">
+	<form id="basicForm" action="${basePath }/auth/add.action" class="form-horizontal" method="post" onsubmit="return false;">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h4 class="panel-title">新增菜单</h4>
+				<h4 class="panel-title">新增权限</h4>
 			</div>
 			<div class="panel-body">
 				<div class="form-group">
-					<label class="col-sm-3 control-label">菜单名称： <span class="asterisk">*</span></label>
+					<label class="col-sm-3 control-label">权限名称： <span class="asterisk">*</span></label>
 					<div class="col-sm-6">
 						<input type="text" name="name" class="form-control" placeholder="Type please..." required />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="col-sm-3 control-label">菜单编码： <span class="asterisk">*</span></label>
+					<label class="col-sm-3 control-label">权限编码： <span class="asterisk">*</span></label>
 					<div class="col-sm-6">
 						<input type="text" name="code" class="form-control" placeholder="Type please..." required />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="col-sm-3 control-label">URL： <span class="asterisk">*</span></label>
+					<label class="col-sm-3 control-label">权限类型： <span class="asterisk">*</span></label>
 					<div class="col-sm-6">
-						<input type="text" name="url" class="form-control" placeholder="Type please..." required />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-sm-3 control-label">父节点： <span class="asterisk">*</span></label>
-					<div class="col-sm-6">
-						<select id="pselect" name="parentId" required placeholder="Type please...">
-							<option value="0" selected="selected">/</option>
+						<select id="pselect" name="type" required placeholder="Type please...">
+							<option value="1">菜单类型</option>
+							<option value="2" selected="selected">资源类型</option>
 						</select> <label class="error" for="pselect"></label>
 					</div>
 				</div>
@@ -70,7 +64,7 @@
 
 
 	<%@include file="../import-js.jsp"%>
-	<script src="${basePath }/resources/customer/sys/menu-add.js"></script>
+	<script src="${basePath }/resources/customer/sys/auth-add.js"></script>
 
 </body>
 

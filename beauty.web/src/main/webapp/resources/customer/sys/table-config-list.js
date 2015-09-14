@@ -74,6 +74,7 @@ $(function() {
 	var table = $('#list').datatable({
 		tableName : 'BEAUTY_TABLE_CONFIG',
 		url : '/table/load/config.action',
+		data : data,
 		dom : "Bfrtip",
 		// tools : tools,
 		columnDefs : columnDefs,
@@ -115,6 +116,7 @@ $(function() {
 			offset : '100px'
 		}, function() {
 			ajax(params, function() {
+				table.row('.selected').remove().draw(false);
 				table.ajax.reload();
 			});
 		});

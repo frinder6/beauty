@@ -11,7 +11,7 @@ import com.beauty.interfaces.SysTableDao;
 import com.beauty.service.IMapperService;
 
 @Service
-public class SysTableService implements IMapperService<SysTables> {
+public class SysTableService extends BaseService<SysTables> implements IMapperService<SysTables> {
 
 	@Autowired
 	private SysTableDao sysTableDao;
@@ -26,18 +26,6 @@ public class SysTableService implements IMapperService<SysTables> {
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		return this.sysTableDao.selectPage(params);
-	}
-
-	@Override
-	public void updateByPrimaryKeySelective(SysTables entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteByPrimaryKeys(List<Object> list) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

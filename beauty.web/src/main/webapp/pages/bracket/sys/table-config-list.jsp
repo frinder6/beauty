@@ -6,7 +6,6 @@
 </head>
 <body style="background-color: #E4E7EA;">
 
-
 	<div class="table-responsive">
 
 		<table id="list" class="table table-bordered mb30" width="100%">
@@ -16,9 +15,15 @@
 	<!-- table-responsive -->
 
 	<%@include file="../import-js.jsp"%>
-
+	<script type="text/javascript">
+		var data = {};
+		var table = '${param.table}';
+		if (table){
+			data.tableName = table;
+		}
+	</script>
 	<script type="text/javascript" src="${basePath }/resources/customer/sys/table-config-list.js"></script>
-	
+
 
 </body>
 

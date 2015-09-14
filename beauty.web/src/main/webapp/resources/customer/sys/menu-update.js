@@ -10,10 +10,17 @@ $(function() {
 	updateInit({
 		url : '/menu/load/id.action',
 		id : id,
-		sid : '#pselect',
-		iUrl : '/menu/select.action',
-		sUrl : '/menu/select.action'
+		select : function(data){
+			$('#pselect').select({
+				sid : '#pselect',
+				url : '/menu/select.action',
+				pid : data.parentId,
+				init : true
+			});
+		}
 	});
+	
+	
 	
 	//验证提交
 	mySub(function(){

@@ -7,6 +7,10 @@
 </head>
 <body style="background-color: #E4E7EA;">
 
+	<div class="btn-group">
+		<a href="javascript:history.back();" class="btn btn-default fa fa-backward">&nbsp;返回</a>
+	</div>
+
 	<form id="basicForm" action="${basePath }/menu/update.action" class="form-horizontal" method="post" onsubmit="return false;">
 		<input type="hidden" name="id" value="${param.id }" />
 		<div class="panel panel-default">
@@ -70,7 +74,7 @@
 		var id = '${param.id}';
 	</script>
 	<script src="${basePath }/resources/customer/sys/menu-update.js"></script>
-	
+
 </body>
 
 </html>

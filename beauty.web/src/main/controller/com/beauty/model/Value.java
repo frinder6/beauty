@@ -28,7 +28,7 @@ public class Value implements Serializable {
 
 	private String value;
 
-	private List<String> values = new ArrayList<String>();
+	private List<Object> values = new ArrayList<Object>();
 
 	private Object data;
 
@@ -50,7 +50,7 @@ public class Value implements Serializable {
 	/**
 	 * @return the values
 	 */
-	public List<String> getValues() {
+	public List<Object> getValues() {
 		return values;
 	}
 
@@ -58,7 +58,7 @@ public class Value implements Serializable {
 	 * @param values
 	 *            the values to set
 	 */
-	public void setValues(List<String> values) {
+	public void setValues(List<Object> values) {
 		this.values = values;
 	}
 

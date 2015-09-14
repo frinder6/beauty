@@ -3,7 +3,6 @@ package com.beauty.service;
 import java.util.List;
 import java.util.Map;
 
-import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,61 +14,6 @@ public class BaseService<T> implements IService<T> {
 
 	@Autowired
 	private IDao<T> baseDao;
-
-	@Override
-	public void persist(T entity) {
-		// TODO Auto-generated method stub
-		this.baseDao.persist(entity);
-	}
-
-	@Override
-	public void remove(T entity) {
-		// TODO Auto-generated method stub
-		this.baseDao.remove(entity);
-	}
-
-	@Override
-	public void merge(T entity) {
-		// TODO Auto-generated method stub
-		this.baseDao.merge(entity);
-	}
-
-	@Override
-	public T findById(Class<T> clazz, Long id) {
-		// TODO Auto-generated method stub
-		return this.baseDao.findById(clazz, id);
-	}
-
-	@Override
-	public List<?> query(DetachedCriteria criteria) {
-		// TODO Auto-generated method stub
-		return this.baseDao.query(criteria);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.beauty.base.service.IService#queryPageCount(org.hibernate.criterion
-	 * .DetachedCriteria)
-	 */
-	@Override
-	public int queryPageCount(DetachedCriteria criteria) {
-		// TODO Auto-generated method stub
-		return this.baseDao.queryPageCount(criteria);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.beauty.base.service.IService#queryPage(org.hibernate.criterion.
-	 * DetachedCriteria, com.beauty.base.entity.Page)
-	 */
-	@Override
-	public void queryPage(DetachedCriteria criteria, Page page) {
-		// TODO Auto-generated method stub
-		this.baseDao.queryPage(criteria, page);
-	}
 
 	@Override
 	public List<T> query(String sql) {
@@ -111,6 +55,42 @@ public class BaseService<T> implements IService<T> {
 	public int queryPageCount(String sql, Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		return this.baseDao.queryPageCount(sql, params);
+	}
+
+	@Override
+	public T selectByPrimaryKey(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int selectCount(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<?> selectPage(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateByPrimaryKeySelective(T entity) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void deleteByPrimaryKeys(List<Object> list) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void insertSelective(T entity) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

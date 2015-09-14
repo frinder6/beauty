@@ -3,99 +3,35 @@ package com.beauty.service;
 import java.util.List;
 import java.util.Map;
 
-import org.hibernate.criterion.DetachedCriteria;
-
 import com.beauty.entity.Page;
 
 public interface IService<T> {
-	/**
-	 * 
-	 * @Title: persist
-	 * @Description: TODO(新增)
-	 * @author frinder_liu
-	 * @param entity
-	 * @return void
-	 * @date 2015年7月25日 下午2:21:50
-	 * @throws
-	 */
-	public void persist(T entity);
 
-	/**
-	 * 
-	 * @Title: remove
-	 * @Description: TODO(删除)
-	 * @author frinder_liu
-	 * @param entity
-	 * @return void
-	 * @date 2015年7月25日 下午2:22:02
-	 * @throws
-	 */
-	public void remove(T entity);
-
-	/**
-	 * 
-	 * @Title: merge
-	 * @Description: TODO(修改)
-	 * @author frinder_liu
-	 * @param entity
-	 * @return void
-	 * @date 2015年7月25日 下午2:22:11
-	 * @throws
-	 */
-	public void merge(T entity);
-
+	/******************************************* mybatis *********************************************/
 	/**
 	 * 
 	 * @Title: findById
-	 * @Description: TODO(加载单个实体)
+	 * @Description: TODO(根据id加载对象：mybatis)
 	 * @author frinder_liu
-	 * @param clazz
 	 * @param id
 	 * @return
 	 * @return T
-	 * @date 2015年7月25日 下午2:22:25
+	 * @date 2015年9月13日 下午10:52:37
 	 * @throws
 	 */
-	public T findById(Class<T> clazz, Long id);
+	public T selectByPrimaryKey(Long id);
 
-	/**
-	 * 
-	 * @Title: query
-	 * @Description: TODO(hibernate查询)
-	 * @author frinder_liu
-	 * @param clazz
-	 * @return
-	 * @return List<?>
-	 * @date 2015年7月25日 下午10:20:33
-	 * @throws
-	 */
-	public List<?> query(DetachedCriteria criteria);
+	public int selectCount(Map<String, Object> params);
 
-	/**
-	 * 
-	 * @Title: queryPageCount
-	 * @Description: TODO(分页记录数)
-	 * @author frinder_liu
-	 * @param criteria
-	 * @return
-	 * @return int
-	 * @date 2015年8月2日 下午2:15:58
-	 * @throws
-	 */
-	public int queryPageCount(DetachedCriteria criteria);
+	public List<?> selectPage(Map<String, Object> params);
 
-	/**
-	 * 
-	 * @Title: query
-	 * @Description: TODO(hibernate分页查询)
-	 * @author frinder_liu
-	 * @param dc
-	 * @param page
-	 * @return
-	 * @date 2015年8月2日 下午12:52:11
-	 * @throws
-	 */
-	public void queryPage(DetachedCriteria criteria, Page page);
+	public void insertSelective(T entity);
+
+	public void updateByPrimaryKeySelective(T entity);
+
+	public void deleteByPrimaryKeys(List<Object> list);
+
+	/******************************************* mybatis *********************************************/
 
 	/**
 	 * 

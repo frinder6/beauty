@@ -8,10 +8,9 @@
 
 	var defaults = {
 		url : '',
-		init : function(e, callback){
-			callback({id : e.val(), text : e.text()});
-		},
-		pid : ''
+		pid : '',
+		init : false,
+		sid : ''
 	};
 
 	$.fn.select = function(options) {
@@ -19,6 +18,8 @@
 
 		var select = $(this).select2({
 			width : '100%',
+			placeholder : '请选择...',
+			allowClear : true,
 			ajax : {
 				url : _PATH(settings.url),
 				dataType : 'json',
@@ -26,14 +27,10 @@
 				data : function(params) {
 					return {
 						search : params.term,
-						pid : settings.pid
+						pid : ''
 					};
 				},
 				processResults : function(data, params) {
-//					data.unshift({
-//						id : 0,
-//						text : '/'
-//					});
 					return {
 						results : data
 					};
@@ -44,9 +41,40 @@
 				return markup;
 			},
 			minimumInputLength : 1,
-			initSelection : settings.init,
+			initSelection : function(e, callback) {
+				if (settings.init) {
+					$.ajax({
+						'type' : 'post',
+						'url' : _PATH(settings.url),
+						'data' : {
+							pid : settings.pid,
+							search : ''
+						},
+						'dataType' : 'json',
+						'async' : false,
+						'success' : function(data) {
+							if (data && data.length > 0) {
+								//
+								var opt = '<option value="{0}" selected="selected">{1}</option>';
+								$(settings.sid).html(opt.format(data[0].id, data[0].text));
+								//
+								callback({
+									id : data[0].id,
+									text : data[0].text
+								});
+							}
+						},
+						'error' : function(msg) {
+							layer.msg(msg);
+						}
+					});
+				} else {
+					//
+					callback({id : e.val(), text : e.text()});
+				}
+			},
 		});
-		
+
 		return select;
 	};
 

@@ -21,10 +21,10 @@ public class BaseDao<T> implements IDao<T> {
 	@Autowired(required = true)
 	protected SqlSession sqlSessionTemplate;
 
-	@Autowired(required = true)
+	// @Autowired(required = true)
 	protected HibernateTemplate hibernateTemplate;
 
-	@Autowired(required = true)
+	// @Autowired(required = true)
 	protected SessionFactory sessionFactory;
 
 	public Session getSession() {

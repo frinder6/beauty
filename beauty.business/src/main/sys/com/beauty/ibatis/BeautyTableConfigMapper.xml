@@ -38,6 +38,12 @@
 			</if>
 		</where>
 	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from beauty_table_config
+		where id = #{id,jdbcType=BIGINT}
+	</select>
 	<select id="selectByTable" resultMap="BaseResultMap" parameterType="com.beauty.entity.BeautyTableConfig">
 		SELECT
 		<include refid="Base_Column_List" />
@@ -63,6 +69,52 @@
 		FROM beauty_table_config
 		<include refid="Base_Where_Clause" />
 	</select>
+
+	<insert id="insertSelective" parameterType="com.beauty.entity.BeautyTableConfig">
+		insert into beauty_table_config
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null"> id, </if>
+			<if test="tableName != null"> table_name, </if>
+			<if test="title != null"> title, </if>
+			<if test="data != null"> data, </if>
+			<if test="columnName != null"> column_name, </if>
+			<if test="orderable != null"> orderable, </if>
+			<if test="width != null"> width, </if>
+			<if test="className != null"> class_name, </if>
+			<if test="sequence != null"> sequence, </if>
+			<if test="render != null"> render, </if>
+			<if test="remark != null"> remark, </if>
+			<if test="createTime != null"> create_time, </if>
+			<if test="creater != null"> creater, </if>
+			<if test="lastUpdateTime != null"> last_update_time, </if>
+			<if test="modifier != null"> modifier, </if>
+			<if test="isDeleted != null"> is_deleted, </if>
+			<if test="def1 != null"> def1, </if>
+			<if test="def2 != null"> def2, </if>
+			<if test="def3 != null"> def3, </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null"> #{id,jdbcType=BIGINT}, </if>
+			<if test="tableName != null"> #{tableName,jdbcType=VARCHAR}, </if>
+			<if test="title != null"> #{title,jdbcType=VARCHAR}, </if>
+			<if test="data != null"> #{data,jdbcType=VARCHAR}, </if>
+			<if test="columnName != null"> #{columnName,jdbcType=VARCHAR}, </if>
+			<if test="orderable != null"> #{orderable,jdbcType=TINYINT}, </if>
+			<if test="width != null"> #{width,jdbcType=INTEGER}, </if>
+			<if test="className != null"> #{className,jdbcType=VARCHAR}, </if>
+			<if test="sequence != null"> #{sequence,jdbcType=INTEGER}, </if>
+			<if test="render != null"> #{render,jdbcType=VARCHAR}, </if>
+			<if test="remark != null"> #{remark,jdbcType=VARCHAR}, </if>
+			<if test="createTime != null"> #{createTime,jdbcType=TIMESTAMP}, </if>
+			<if test="creater != null"> #{creater,jdbcType=VARCHAR}, </if>
+			<if test="lastUpdateTime != null"> #{lastUpdateTime,jdbcType=TIMESTAMP}, </if>
+			<if test="modifier != null"> #{modifier,jdbcType=VARCHAR}, </if>
+			<if test="isDeleted != null"> #{isDeleted,jdbcType=TINYINT}, </if>
+			<if test="def1 != null"> #{def1,jdbcType=VARCHAR}, </if>
+			<if test="def2 != null"> #{def2,jdbcType=VARCHAR}, </if>
+			<if test="def3 != null"> #{def3,jdbcType=TIMESTAMP}, </if>
+		</trim>
+	</insert>
 
 	<update id="updateByPrimaryKeySelective" parameterType="com.beauty.entity.BeautyTableConfig">
 		update beauty_table_config

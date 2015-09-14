@@ -1,12 +1,12 @@
 package com.beauty.tag;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.jsp.JspWriter;
 
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.tags.RequestContextAwareTag;
 
@@ -63,9 +63,9 @@ public class LoadMainMenuTag extends RequestContextAwareTag {
 	private void createMainMenu() throws IOException {
 		JspWriter out = this.pageContext.getOut();
 		// 查询一级菜单
-		DetachedCriteria criteria = DetachedCriteria.forClass(BeautyMenu.class);
-		criteria.add(Restrictions.eq("parentId", 0L));
-		List<?> menus = this.menuService.query(criteria);
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("parentId", 0);
+		List<?> menus = this.menuService.selectMainMenu(params);
 		BeautyMenu menu = null;
 		// 主菜单lis
 		StringBuffer lisStr = new StringBuffer("");
@@ -106,9 +106,9 @@ public class LoadMainMenuTag extends RequestContextAwareTag {
 	 */
 	private String createLevelMenu(BeautyMenu pMenu) {
 		// 查询一级菜单
-		DetachedCriteria criteria = DetachedCriteria.forClass(BeautyMenu.class);
-		criteria.add(Restrictions.eq("parentId", pMenu.getId()));
-		List<?> menus = this.menuService.query(criteria);
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("parentId", pMenu.getId());
+		List<?> menus = this.menuService.selectMainMenu(params);
 		if (menus.isEmpty()) {
 			return "";
 		}

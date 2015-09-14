@@ -26,17 +26,18 @@ public class UrlService extends BaseService<BeautyUrl> implements IMapperService
 		// TODO Auto-generated method stub
 		return this.urlDao.selectPage(params);
 	}
-
+	
+	
 	@Override
-	public void updateByPrimaryKeySelective(BeautyUrl entity) {
+	public void insertSelective(BeautyUrl entity) {
 		// TODO Auto-generated method stub
-
+		this.urlDao.insertSelective(entity);
 	}
 
+	
 	@Override
-	public void deleteByPrimaryKeys(List<Object> list) {
+	public BeautyUrl selectByPrimaryKey(Long id) {
 		// TODO Auto-generated method stub
-
+		return this.urlDao.selectByPrimaryKey(id);
 	}
-
 }

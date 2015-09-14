@@ -81,7 +81,7 @@
 
 .select2-results {
 	display: block;
-	padding: 0px 4px 4px 4px;
+	/* padding: 0px 4px 4px 4px; */
 }
 
 .select2-results__options {
@@ -91,7 +91,7 @@
 }
 
 .select2-results__option {
-	padding: 6px;
+	padding: 8px 10px;
 	user-select: none;
 	-webkit-user-select: none;
 }

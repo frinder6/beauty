@@ -3,90 +3,39 @@
  * 
  */
 
-var _render = function(data, type, row, meta) {
+var _render_upd = function(data, type, row, meta) {
+	var result = '<a href="#" data-href="/pages/bracket/sys/auth-update.jsp?id={0}" onclick="_S_REDIRECT(this)">{1}</a>';
+	return result.format(row.id, data);
+};
+
+var _render_type = function(data, type, row, meta) {
 	var text = data == '2' ? '资源' : '菜单';
 	return text;
 };
 
+
 $(function() {
 	init();
 
-	editor = new $.fn.dataTable.Editor({
-		ajax : _PATH('/auth/inline.action'),
-		table : '#list',
-		fields : [ {
-			label : '权限名称',
-			name : 'name'
-		}, {
-			label : '权限编码',
-			name : 'code'
-		}, {
-			label : '类型',
-			name : 'type'
-		}, {
-			label : '备注',
-			name : 'remark'
-		} ],
-		i18n : {
-			create : {
-				button : "create",
-				title : "新增资源",
-				submit : "提交"
-			},
-			edit : {
-				button : "edit",
-				title : "更新资源",
-				submit : "提交"
-			},
-			remove : {
-				button : "remove",
-				title : "删除资源",
-				submit : "确定",
-				confirm : {
-					_ : "确定删除这 %d 行数据，删除后无法恢复！",
-					1 : "确定删除这 1 行数据，删除后无法恢复！"
-				}
-			},
-			error : {
-				system : "系统错误！"
-			}
-		}
-	});
-
-	$('#list').on('click', 'tbody td:not(:first-child)', function(e) {
-		editor.inline(this, {
-			onBlur : 'submit'
-		});
-	});
+	var tools = '<div class="btn-group">\
+		<a data-href="/pages/bracket/sys/auth-add.jsp" class="btn btn-default fa fa-plus-square-o" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
+		<a class="btn btn-default fa fa-minus-square-o" onclick="del()">&nbsp;删除</a>\
+    </div>';
 
 	var table = $('#list').datatable({
 		tableName : 'BEAUTY_AUTHORITY',
 		url : '/auth/load/page.action',
-		dom : "Bfrtip",
 		title : '<input type="checkbox" onclick="checkbox(this)" />',
+		tools : tools,
 		select : {
-			style : 'multi',
-			selector : 'td:first-child'
+			style : 'multi'
 		},
 		columnDefs : [ {
+			'targets' : 2,
+			'render' : _render_upd
+		}, {
 			'targets' : 4,
-			'render' : _render
-		} ],
-		buttons : [ {
-			extend : "create",
-			className : 'btn btn-default fa fa-plus-square-o',
-			text : '&nbsp;新增',
-			editor : editor
-		}, {
-			extend : "edit",
-			className : 'btn btn-default fa fa-edit',
-			text : '&nbsp;更新',
-			editor : editor
-		}, {
-			extend : "remove",
-			className : 'btn btn-default fa fa-minus-square-o',
-			text : '&nbsp;删除',
-			editor : editor
+			'render' : _render_type
 		} ]
 	});
 
@@ -100,6 +49,33 @@ $(function() {
 			// 取消全选
 			table.rows().deselect();
 		}
+	};
+	
+	del = function() {
+		var items = table.rows({
+			selected : true
+		}).data();
+		if (items.length == 0) {
+			layer.msg('至少选择一条！');
+			return;
+		}
+		var ids = $.map(items, function(item, i) {
+			return item.id;
+		});
+		var params = {
+			data : {
+				values : ids.join(',')
+			},
+			url : '/auth/remove.action'
+		};
+		layer.confirm('删除无法恢复，确定删除？', {
+			offset : '100px'
+		}, function() {
+			ajax(params, function() {
+				table.row('.selected').remove().draw(false);
+				table.ajax.reload();
+			});
+		});
 	};
 
 });

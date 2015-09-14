@@ -7,7 +7,7 @@
 <body style="background-color: #E4E7EA;">
 
 	<div class="btn-group">
-		<a href="${basePath }/pages/bracket/sys/sys-table-list.jsp" class="btn btn-default fa fa-backward">&nbsp;返回</a>
+		<a href="javascript:history.back();" class="btn btn-default fa fa-backward">&nbsp;返回</a>
 	</div>
 
 	<div class="row">
@@ -51,6 +51,11 @@
 	<script type="text/javascript">
 		var tableName = '${param.table}';
 		var tableSchema = '${param.schema}';
+		//
+		var conf = function() {
+			var url = '/pages/bracket/sys/table-config-list.jsp?table={0}';
+			_S_URL_REDIRECT(url.format(tableName))
+		};
 	</script>
 
 </body>

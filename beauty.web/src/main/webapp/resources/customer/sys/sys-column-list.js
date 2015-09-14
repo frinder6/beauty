@@ -7,7 +7,7 @@ $(function() {
 	init();
 
 	var ltools = '<div class="btn-group">\
-                <button type="button" class="btn btn-default" onclick="lexport()">导入</button>\
+                <button type="button" class="btn btn-default fa fa-copy" onclick="lexport()">&nbsp;导入</button>\
             </div>';
 
 	var unconfig = $('#l-list').datatable({
@@ -61,6 +61,8 @@ $(function() {
 		};
 		//
 		ajax(params, function() {
+			unconfig.row('.selected').remove().draw(false);
+			configed.row('.selected').remove().draw(false);
 			unconfig.ajax.reload();
 			configed.ajax.reload();
 		});
@@ -71,7 +73,8 @@ $(function() {
 	 */
 
 	var rtools = '<div class="btn-group">\
-	             	<button type="button" class="btn btn-default" onclick="del()">删除</button>\
+	             	<button type="button" class="btn btn-default fa fa-minus-square-o" onclick="del()">&nbsp;删除</button>\
+					<button type="button" class="btn btn-default fa fa-minus-square-o" onclick="conf()">&nbsp;去配置</button>\
 	            </div>';
 
 	var configed = $('#r-list').datatable({
@@ -123,6 +126,8 @@ $(function() {
 		};
 		//
 		ajax(params, function() {
+			unconfig.row('.selected').remove().draw(false);
+			configed.row('.selected').remove().draw(false);
 			unconfig.ajax.reload();
 			configed.ajax.reload();
 		});

@@ -47,16 +47,47 @@ public class ResourceController {
 
 	@RequestMapping(value = "/add", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public Value persist(BeautyResource resource) {
-		this.resourceService.persist(resource);
+	public Value persist(BeautyResource entity) {
+		this.resourceService.insertSelective(entity);
 		return new Value(CodeUtil.ADD_SUCCESS);
 	}
 
 	@RequestMapping(value = "/update", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public Value modify(BeautyResource resource) {
-		this.resourceService.merge(resource);
+	public Value modify(BeautyResource entity) {
+		this.resourceService.updateByPrimaryKeySelective(entity);
 		return new Value(CodeUtil.EDIT_SUCCESS);
+	}
+
+	@RequestMapping(value = "/remove", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Value delete(Value value) {
+		if (!value.getValues().isEmpty()) {
+			this.resourceService.deleteByPrimaryKeys(value.getValues());
+		}
+		return new Value(CodeUtil.DELETE_SUCCESS);
+	}
+
+	@RequestMapping(value = "/load/id", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public BeautyResource load(@RequestParam("id") Long id) {
+		return this.resourceService.selectByPrimaryKey(id);
+	}
+
+	@RequestMapping(value = "/config", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Value config(Value value) {
+		if (!value.getValues().isEmpty()) {
+			List<Object> ids = value.getValues();
+			BeautyUrl url;
+			BeautyResource entity;
+			for (Object id : ids) {
+				url = this.urlService.selectByPrimaryKey(Long.parseLong(id.toString()));
+				entity = new BeautyResource(url.getUrl());
+				this.resourceService.insertSelective(entity);
+			}
+		}
+		return new Value(CodeUtil.ADD_SUCCESS);
 	}
 
 	@RequestMapping(value = "/inline", produces = "application/json; charset=utf-8")
@@ -66,7 +97,7 @@ public class ResourceController {
 		if ("create".equalsIgnoreCase(action)) {
 			BeautyResource entity = DatatablesUtil.convert(BeautyResource.class, request.getParameterMap());
 			entity.setId(null); // 重置id生成策略
-			this.resourceService.persist(entity);
+			this.resourceService.insertSelective(entity);
 			return new Value(entity);
 		} else if ("edit".equalsIgnoreCase(action)) {
 			List<BeautyResource> entitys = DatatablesUtil.convert2(BeautyResource.class, request.getParameterMap());
@@ -80,39 +111,4 @@ public class ResourceController {
 		}
 		return new Value();
 	}
-
-	@RequestMapping(value = "/remove", produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public Value delete(Value value) {
-		if (!value.getValues().isEmpty()) {
-			List<String> ids = value.getValues();
-			for (String id : ids) {
-				this.resourceService.remove(this.resourceService.findById(BeautyResource.class, Long.parseLong(id)));
-			}
-		}
-		return new Value(CodeUtil.DELETE_SUCCESS);
-	}
-
-	@RequestMapping(value = "/load/id", produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public BeautyResource load(@RequestParam("id") Long id) {
-		return this.resourceService.findById(BeautyResource.class, id);
-	}
-
-	@RequestMapping(value = "/config", produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public Value config(Value value) {
-		if (!value.getValues().isEmpty()) {
-			List<String> ids = value.getValues();
-			BeautyUrl url;
-			BeautyResource resource;
-			for (String id : ids) {
-				url = this.urlService.findById(BeautyUrl.class, Long.parseLong(id));
-				resource = new BeautyResource("", "", url.getUrl(), "");
-				this.resourceService.persist(resource);
-			}
-		}
-		return new Value(CodeUtil.ADD_SUCCESS);
-	}
-
 }

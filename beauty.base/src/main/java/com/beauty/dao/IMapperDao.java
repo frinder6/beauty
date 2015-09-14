@@ -13,4 +13,8 @@ public interface IMapperDao<T> {
 
 	public void deleteByPrimaryKeys(List<Object> list);
 
+	public T selectByPrimaryKey(Long id);
+
+	public void insertSelective(T entity);
+
 }

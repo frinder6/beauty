@@ -31,12 +31,19 @@ public class TableConfigService extends BaseService<BeautyTableConfig> implement
 		return this.tableConfigDao.selectByTable(config);
 	}
 
-
+	@Override
 	public void updateByPrimaryKeySelective(BeautyTableConfig entity) {
 		this.tableConfigDao.updateByPrimaryKeySelective(entity);
 	}
 
+	@Override
 	public void deleteByPrimaryKeys(List<Object> list) {
 		this.tableConfigDao.deleteByPrimaryKeys(list);
+	}
+	
+	@Override
+	public void insertSelective(BeautyTableConfig entity) {
+		// TODO Auto-generated method stub
+		this.tableConfigDao.insertSelective(entity);
 	}
 }

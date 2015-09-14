@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.beauty.entity.BeautyAuthority;
 import com.beauty.entity.Page;
 import com.beauty.model.Value;
 import com.beauty.service.AuthorityService;
+import com.beauty.util.CodeUtil;
 import com.beauty.util.DatatablesUtil;
 
 @Component
@@ -38,6 +40,35 @@ public class AuthorityController {
 		return page;
 	}
 
+	@RequestMapping(value = "/add", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Value persist(BeautyAuthority entity) {
+		this.authorityService.insertSelective(entity);
+		return new Value(CodeUtil.ADD_SUCCESS);
+	}
+
+	@RequestMapping(value = "/update", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Value modify(BeautyAuthority entity) {
+		this.authorityService.updateByPrimaryKeySelective(entity);
+		return new Value(CodeUtil.EDIT_SUCCESS);
+	}
+
+	@RequestMapping(value = "/remove", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Value delete(Value value) {
+		if (!value.getValues().isEmpty()) {
+			this.authorityService.deleteByPrimaryKeys(value.getValues());
+		}
+		return new Value(CodeUtil.DELETE_SUCCESS);
+	}
+
+	@RequestMapping(value = "/load/id", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public BeautyAuthority load(@RequestParam("id") Long id) {
+		return this.authorityService.selectByPrimaryKey(id);
+	}
+
 	@RequestMapping(value = "/inline", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public Value inline(HttpServletRequest request) {
@@ -45,7 +76,7 @@ public class AuthorityController {
 		if ("create".equalsIgnoreCase(action)) {
 			BeautyAuthority entity = DatatablesUtil.convert(BeautyAuthority.class, request.getParameterMap());
 			entity.setId(null); // 重置id生成策略
-			this.authorityService.persist(entity);
+			this.authorityService.insertSelective(entity);
 			return new Value(entity);
 		} else if ("edit".equalsIgnoreCase(action)) {
 			List<BeautyAuthority> entitys = DatatablesUtil.convert2(BeautyAuthority.class, request.getParameterMap());

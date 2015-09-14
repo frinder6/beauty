@@ -66,6 +66,7 @@ $(function() {
 			offset : '100px'
 		}, function() {
 			ajax(params, function() {
+				table.row('.selected').remove().draw(false);
 				table.ajax.reload();
 			});
 		});

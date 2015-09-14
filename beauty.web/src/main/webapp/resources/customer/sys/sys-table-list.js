@@ -11,7 +11,7 @@ $(function() {
 	init();
 
 	var tools = '<div class="btn-group">\
-                <button type="button" class="btn btn-default" onclick="config()">配置</button>\
+                <button type="button" class="btn btn-default fa fa-copy" onclick="config()">&nbsp;配置</button>\
             </div>';
 
 	var columnDefs = [ {
