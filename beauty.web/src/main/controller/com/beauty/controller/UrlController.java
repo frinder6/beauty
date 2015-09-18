@@ -29,6 +29,7 @@ public class UrlController {
 		Page page = new Page();
 		page.init(request);
 		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("dialog", request.getParameter("dialog"));
 		// 将page值设置到map中
 		page.pageToMap(BeautyUrl.class, params);
 		int count = this.urlService.selectCount(params);

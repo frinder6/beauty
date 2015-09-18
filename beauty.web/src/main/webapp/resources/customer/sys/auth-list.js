@@ -9,7 +9,7 @@ var _render_upd = function(data, type, row, meta) {
 };
 
 var _render_type = function(data, type, row, meta) {
-	var text = data == '2' ? '资源' : '菜单';
+	var text = data == '2' ? '资源权限' : '菜单权限';
 	return text;
 };
 
@@ -19,6 +19,7 @@ $(function() {
 
 	var tools = '<div class="btn-group">\
 		<a data-href="/pages/bracket/sys/auth-add.jsp" class="btn btn-default fa fa-plus-square-o" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
+		<a data-href="/pages/bracket/sys/auth-conf.jsp?id={0}&name={1}" class="btn btn-default fa fa-copy" onclick="conf(this)">&nbsp;配置</a>\
 		<a class="btn btn-default fa fa-minus-square-o" onclick="del()">&nbsp;删除</a>\
     </div>';
 
@@ -27,6 +28,7 @@ $(function() {
 		url : '/auth/load/page.action',
 		title : '<input type="checkbox" onclick="checkbox(this)" />',
 		tools : tools,
+		selected : true,
 		select : {
 			style : 'multi'
 		},
@@ -49,6 +51,18 @@ $(function() {
 			// 取消全选
 			table.rows().deselect();
 		}
+	};
+	
+	conf = function(e){
+		var items = table.rows({
+			selected : true
+		}).data();
+		if (items.length == 0) {
+			layer.msg('至少选择一条！');
+			return;
+		}
+		var url = $(e).attr('data-href');
+		_S_URL_REDIRECT(url.format(items[0].id, items[0].name));
 	};
 	
 	del = function() {

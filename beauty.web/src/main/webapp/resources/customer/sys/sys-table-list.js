@@ -22,6 +22,7 @@ $(function() {
 	var table = $('#list').datatable({
 		tableName : 'TABLES',
 		url : '/table/load/schema/tables.action',
+		selected : true,
 		data : {
 			tableSchema : 'beauty'
 		},

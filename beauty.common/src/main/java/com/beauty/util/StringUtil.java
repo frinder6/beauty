@@ -8,6 +8,8 @@
  */
 package com.beauty.util;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @ClassName: StringUtil
  * @Description: TODO(这里用一句话描述这个类的作用)
@@ -16,6 +18,23 @@ package com.beauty.util;
  * 
  */
 public class StringUtil {
+
+	/**
+	 * 
+	 * @Title: getRequestPrefix
+	 * @Description: TODO(获取请求根路径)
+	 * @author frinder_liu
+	 * @param request
+	 * @return
+	 * @return String
+	 * @date 2015年9月18日 下午8:26:12
+	 * @throws
+	 */
+	public static String getRequestPrefix(HttpServletRequest request) {
+		String path = request.getContextPath();
+		String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
+		return basePath;
+	}
 
 	public static String isNull(Object obj, String def) {
 		if (null == obj || obj.toString().length() == 0) {

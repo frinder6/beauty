@@ -70,8 +70,14 @@
 		<set>
 			<if test="code != null"> code = #{code,jdbcType=VARCHAR}, </if>
 			<if test="name != null"> name = #{name,jdbcType=VARCHAR}, </if>
+			<if test="groupId != null"> group_id = #{groupId,jdbcType=BIGINT}, </if>
 			<if test="type != null"> type = #{type,jdbcType=TINYINT}, </if>
 			<if test="remark != null"> remark = #{remark,jdbcType=VARCHAR}, </if>
+			<if test="modifier != null"> modifier = #{modifier,jdbcType=VARCHAR}, </if>
+			<if test="isDeleted != null"> is_deleted = #{isDeleted,jdbcType=TINYINT}, </if>
+			<if test="def1 != null"> def1 = #{def1,jdbcType=VARCHAR}, </if>
+			<if test="def2 != null"> def2 = #{def2,jdbcType=VARCHAR}, </if>
+			<if test="def3 != null"> def3 = #{def3,jdbcType=TIMESTAMP}, </if>
 			last_update_time = now()
 		</set>
 		where id = #{id,jdbcType=BIGINT}

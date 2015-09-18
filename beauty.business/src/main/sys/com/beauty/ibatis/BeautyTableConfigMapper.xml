@@ -119,18 +119,39 @@
 	<update id="updateByPrimaryKeySelective" parameterType="com.beauty.entity.BeautyTableConfig">
 		update beauty_table_config
 		<set>
+			<if test="tableName != null"> table_name = #{tableName,jdbcType=VARCHAR}, </if>
 			<if test="title != null"> title = #{title,jdbcType=VARCHAR}, </if>
 			<if test="data != null"> data = #{data,jdbcType=VARCHAR}, </if>
+			<if test="columnName != null"> column_name = #{columnName,jdbcType=VARCHAR}, </if>
 			<if test="orderable != null"> orderable = #{orderable,jdbcType=TINYINT}, </if>
 			<if test="width != null"> width = #{width,jdbcType=INTEGER}, </if>
 			<if test="className != null"> class_name = #{className,jdbcType=VARCHAR}, </if>
 			<if test="sequence != null"> sequence = #{sequence,jdbcType=INTEGER}, </if>
 			<if test="render != null"> render = #{render,jdbcType=VARCHAR}, </if>
 			<if test="remark != null"> remark = #{remark,jdbcType=VARCHAR}, </if>
+			<if test="creater != null"> creater = #{creater,jdbcType=VARCHAR}, </if>
+			<if test="modifier != null"> modifier = #{modifier,jdbcType=VARCHAR}, </if>
+			<if test="isDeleted != null"> is_deleted = #{isDeleted,jdbcType=TINYINT}, </if>
+			<if test="def1 != null"> def1 = #{def1,jdbcType=VARCHAR}, </if>
+			<if test="def2 != null"> def2 = #{def2,jdbcType=VARCHAR}, </if>
+			<if test="def3 != null"> def3 = #{def3,jdbcType=TIMESTAMP}, </if>
 			last_update_time = NOW()
 		</set>
 		where id = #{id,jdbcType=BIGINT}
 	</update>
+
+	<insert id="batchCopy" parameterType="java.util.List">
+		INSERT INTO beauty_table_config (table_name, title, DATA, column_name, orderable, width, class_name, sequence, render, remark, create_time, last_update_time)
+		SELECT CONCAT(table_name, '_COPY') table_name, title, DATA, column_name, orderable, width, class_name, sequence, render, remark, create_time, last_update_time
+		FROM beauty_table_config
+		WHERE 1 != 1
+		<if test="list.size() > 0">
+			or id in
+			<foreach collection="list" open="(" close=")" item="id" separator=",">
+				${id}
+			</foreach>
+		</if>
+	</insert>
 
 	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
 		delete from beauty_table_config

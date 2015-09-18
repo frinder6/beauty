@@ -1,5 +1,7 @@
 package com.beauty.entity;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import com.beauty.annotation.Orderable;
 
 public class BeautyResource extends BaseEntity {
@@ -29,6 +31,7 @@ public class BeautyResource extends BaseEntity {
 	public BeautyResource(String url) {
 		super();
 		this.url = url;
+		this.code = DigestUtils.md5Hex(url.trim()).toUpperCase();
 	}
 
 	public Long getId() {

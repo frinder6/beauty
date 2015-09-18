@@ -137,14 +137,12 @@
 			<if test="level != null"> level = #{level,jdbcType=TINYINT}, </if>
 			<if test="groupId != null"> group_id = #{groupId,jdbcType=BIGINT}, </if>
 			<if test="remark != null"> remark = #{remark,jdbcType=VARCHAR}, </if>
-			<if test="createTime != null"> create_time = #{createTime,jdbcType=TIMESTAMP}, </if>
-			<if test="creater != null"> creater = #{creater,jdbcType=VARCHAR}, </if>
-			<if test="lastUpdateTime != null"> last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}, </if>
 			<if test="modifier != null"> modifier = #{modifier,jdbcType=VARCHAR}, </if>
 			<if test="isDeleted != null"> is_deleted = #{isDeleted,jdbcType=TINYINT}, </if>
 			<if test="def1 != null"> def1 = #{def1,jdbcType=VARCHAR}, </if>
 			<if test="def2 != null"> def2 = #{def2,jdbcType=VARCHAR}, </if>
 			<if test="def3 != null"> def3 = #{def3,jdbcType=TIMESTAMP}, </if>
+			last_update_time = NOW()
 		</set>
 		where id = #{id,jdbcType=BIGINT}
 	</update>

@@ -38,8 +38,24 @@ public class TableConfigController {
 
 	@RequestMapping(value = "/load/table/config", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public List<?> query(BeautyTableConfig config) {
-		return this.tableConfigService.selectByTable(config);
+	public List<?> query(BeautyTableConfig entity) {
+		return this.tableConfigService.selectByTable(entity);
+	}
+
+	@RequestMapping(value = "/add", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Value persist(BeautyTableConfig entity) {
+		this.tableConfigService.insertSelective(entity);
+		return new Value(CodeUtil.ADD_SUCCESS);
+	}
+
+	@RequestMapping(value = "/copy", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Value copy(Value value) {
+		if (!value.getValues().isEmpty()) {
+			this.tableConfigService.batchCopy(value.getValues());
+		}
+		return new Value(CodeUtil.ADD_SUCCESS);
 	}
 
 	@RequestMapping(value = "/inline", produces = "application/json; charset=utf-8")
@@ -139,13 +155,13 @@ public class TableConfigController {
 	 */
 	@RequestMapping(value = "/load/config", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public Page query(HttpServletRequest request, BeautyTableConfig config) {
+	public Page query(HttpServletRequest request, BeautyTableConfig entity) {
 		Page page = new Page();
 		page.init(request);
 		Map<String, Object> params = new HashMap<String, Object>();
 		// 将page值设置到map中
 		page.pageToMap(BeautyTableConfig.class, params);
-		params.put("tableName", config.getTableName());
+		params.put("tableName", entity.getTableName());
 		int count = this.tableConfigService.selectCount(params);
 		List<?> list = this.tableConfigService.selectPage(params);
 		page.setResult(list, count + "", count + "");

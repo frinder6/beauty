@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.beauty.interfaces.AuthorityResourceDao">
+	<resultMap id="BaseResultMap" type="com.beauty.entity.BeautyAuthorityResource">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="authority_id" property="authorityId" jdbcType="BIGINT" />
+		<result column="resource_id" property="resourceId" jdbcType="BIGINT" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, authority_id, resource_id
+	</sql>
+	<sql id="Base_Where_Clause">
+		<where>
+			1 = 1
+			<if test="configed">
+				AND a.id = #{authorityId}
+				AND EXISTS (SELECT 1 FROM beauty_authority_resource WHERE authority_id = a.id)
+			</if>
+			<if test="unconfig">
+				AND NOT EXISTS (SELECT 1 FROM beauty_authority_resource WHERE authority_id = a.id)
+			</if>
+			<if test="searchValue">
+				AND ( r.name LIKE "%" #{searchValue} "%" OR r.code LIKE "%" #{searchValue} "%" OR r.remark LIKE "%" #{searchValue} "%" OR r.url LIKE "%" #{searchValue} "%" )
+			</if>
+		</where>
+	</sql>
+	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT r.id resourceId, a.id authorityId, ar.id, r.`code`, r.`name`, r.url
+		FROM beauty_resource r
+		LEFT JOIN beauty_authority_resource ar ON r.id = ar.resource_id
+		LEFT JOIN beauty_authority a ON ar.authority_id = a.id
+		<include refid="Base_Where_Clause" />
+		ORDER BY
+		<if test="orderColumn">
+			${orderColumn} ${orderDir}
+		</if>
+		<if test="orderColumn == null">
+			id
+		</if>
+		LIMIT #{from}, #{size}
+	</select>
+	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT
+		COUNT(1)
+		FROM beauty_resource r
+		LEFT JOIN beauty_authority_resource ar ON r.id = ar.resource_id
+		LEFT JOIN beauty_authority a ON ar.authority_id = a.id
+		<include refid="Base_Where_Clause" />
+	</select>
+	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
+		delete from beauty_authority_resource
+		where 1 != 1
+		<if test="list.size() > 0">
+			or id in
+			<foreach collection="list" open="(" close=")" item="id" separator=",">
+				${id}
+			</foreach>
+		</if>
+	</delete>
+	<insert id="insertSelective" parameterType="com.beauty.entity.BeautyAuthorityResource">
+		insert into beauty_authority_resource
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null"> id, </if>
+			<if test="authorityId != null"> authority_id, </if>
+			<if test="resourceId != null"> resource_id, </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null"> #{id,jdbcType=BIGINT}, </if>
+			<if test="authorityId != null"> #{authorityId,jdbcType=BIGINT}, </if>
+			<if test="resourceId != null"> #{resourceId,jdbcType=BIGINT}, </if>
+		</trim>
+	</insert>
+	<insert id="insert" parameterType="com.beauty.model.Value">
+		insert into beauty_authority_resource (authority_id, resource_id)
+		VALUES
+		<if test="values.size() > 0">
+			<foreach collection="values" item="id" separator=",">
+				<trim prefix="(" suffix=")" suffixOverrides=",">
+					${value}, ${id}
+				</trim>
+			</foreach>
+		</if>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.beauty.entity.BeautyAuthorityResource">
+		update beauty_authority_resource
+		<set>
+			<if test="authorityId != null">
+				authority_id = #{authorityId,jdbcType=BIGINT},
+			</if>
+			<if test="resourceId != null">
+				resource_id = #{resourceId,jdbcType=BIGINT},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

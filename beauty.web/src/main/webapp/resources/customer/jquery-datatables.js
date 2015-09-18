@@ -53,29 +53,32 @@
 		if (stop)
 			return;
 
-		// var selected = settings.selected;
-		// if (selected){
-		settings.columns.unshift({
-			orderable : false,
-			data : null,
-			defaultContent : '',
-			title : settings.title,
-			className : 'select-checkbox',
-			// title : '<input type="checkbox" onclick="checkbox(this)" />',
-			width : 30
-		});
-		settings.columnDefs.unshift({
-			orderable : false,
-			className : 'select-checkbox',
-			targets : 0
-		});
-		// };
+		var selected = settings.selected;
+		if (selected) {
+			settings.columns.unshift({
+				orderable : false,
+				data : null,
+				defaultContent : '',
+				title : settings.title,
+				className : 'select-checkbox',
+				title : '<input type="checkbox" onclick="checkbox(this)" />',
+				width : 1
+			});
+			settings.columnDefs.unshift({
+				orderable : false,
+				className : 'select-checkbox',
+				width : 1,
+				targets : 0
+			});
+		}
+		;
 
 		// alert(JSON.stringify(settings.columns));
 
 		var table = $(this).DataTable({
 			processing : true,
 			serverSide : true,
+			// scrollX : true,
 			select : settings.select,
 			ajax : {
 				url : _PATH(settings.url),

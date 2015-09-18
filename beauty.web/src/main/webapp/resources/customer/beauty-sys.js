@@ -45,7 +45,7 @@ var init = function() {
 	// 滚动条
 	$(window.parent.document).scroll(function() {
 		var height = $('.table-responsive').height();
-		var mHeight = $(window.parent.document).find('.mainpanel').height();
+		var mHeight = $(window.parent.document).find('.mainpanel').height() + 100;
 		if (height > mHeight) {
 			$(window.parent.document).find('#iframe-main').height(height);
 			$(window.parent.document).find('.contentpanel').height(height);

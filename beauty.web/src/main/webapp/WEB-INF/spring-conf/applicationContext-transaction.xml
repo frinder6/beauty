@@ -20,6 +20,7 @@
 
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
+			<tx:method name="batch*" propagation="REQUIRED" />
 			<tx:method name="persist*" propagation="REQUIRED" />
 			<tx:method name="insert*" propagation="REQUIRED" />
 			<tx:method name="remove*" propagation="REQUIRED" />

@@ -55,7 +55,7 @@ public class BeautyTableConfig extends BaseEntity {
 	}
 
 	public void setTableName(String tableName) {
-		this.tableName = tableName == null ? null : tableName.trim();
+		this.tableName = tableName == null ? null : tableName.trim().toUpperCase();
 	}
 
 	public String getTitle() {

@@ -125,21 +125,8 @@
 			</div>
 			<!-- headerbar -->
 
-			<!-- <div class="pageheader">
-				<h2>
-					<i class="fa fa-home"></i> Dashboard <span>Subtitle goes here...</span>
-				</h2>
-				<div class="breadcrumb-wrapper">
-					<span class="label">You are here:</span>
-					<ol class="breadcrumb">
-						<li><a href="index.html">Bracket</a></li>
-						<li class="active">Dashboard</li>
-					</ol>
-				</div>
-			</div> -->
+			<div class="contentpanel" style="padding: 10px; background-color: #E4E7EA;">
 
-			<div class="contentpanel" style="padding: 10px;background-color: #E4E7EA;">
-					
 				<!-- table-responsive -->
 				<iframe id="iframe-main" src="${basePath }/pages/bracket/content.jsp" name="iframe-main" frameborder="0" width="100%" scrolling="no"></iframe>
 
@@ -154,20 +141,20 @@
 
 
 	<jsp:include page="import-js.jsp" />
-	
+
 	<script type="text/javascript">
-		$(function(){
+		$(function() {
 			$('#main-nav').children('li').click(function() {
 				// 二级菜单样式
 				$('#main-nav').children('li').removeClass('active');
 				$(this).addClass('active');
 			});
-			
-			$('#main-nav').find('ul').find('li').click(function(){
+
+			$('#main-nav').find('ul').find('li').click(function() {
 				var url = $(this).children('a').attr('data-href');
 				_REDIRECT(url);
 			});
-			
+
 		});
 	</script>
 </body>

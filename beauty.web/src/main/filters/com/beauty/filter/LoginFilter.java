@@ -23,7 +23,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.beauty.entity.BeautyUrl;
 import com.beauty.service.UrlService;
-
+import com.beauty.util.StringUtil;
 
 /**
  * Servlet Filter implementation class LoginFilter
@@ -66,10 +66,16 @@ public class LoginFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
+		// 项目根路径
+		String base = StringUtil.getRequestPrefix(req);
+		int len = base.length();
 		String url = String.valueOf(req.getRequestURL());
 		logger.info("request url : [" + url + "]");
 		try {
 			if (!isInclude(url)) {
+				if (url.length() > len) {
+					url = url.substring(len);
+				}
 				Map<String, Object> params = new HashMap<String, Object>();
 				params.put("url", url);
 				int result = urlService.selectCount(params);

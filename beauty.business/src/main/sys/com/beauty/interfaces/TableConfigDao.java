@@ -9,4 +9,6 @@ public interface TableConfigDao extends IMapperDao<BeautyTableConfig> {
 
 	public List<?> selectByTable(BeautyTableConfig config);
 
+	public void batchCopy(List<Object> list);
+
 }

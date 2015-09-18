@@ -27,23 +27,20 @@ $(function() {
 		'render' : _render
 	} ];
 
-	editor = new $.fn.dataTable.Editor({
-		ajax : _PATH('/resource/inline.action'),
-		table : '#list',
-		fields : [ {
-			label : '资源名称',
-			name : 'name'
-		}, {
-			label : '资源编码',
-			name : 'code'
-		} ]
-	});
-
-	$('#list').on('click', 'tbody td:not(:first-child)', function(e) {
-		editor.inline(this, {
-			onBlur : 'submit'
-		});
-	});
+//	editor = new $.fn.dataTable.Editor({
+//		ajax : _PATH('/resource/inline.action'),
+//		table : '#list',
+//		fields : [ {
+//			label : '资源名称',
+//			name : 'name'
+//		} ]
+//	});
+//
+//	$('#list').on('click', 'tbody td:not(:first-child)', function(e) {
+//		editor.inline(this, {
+//			onBlur : 'submit'
+//		});
+//	});
 
 	var table = $('#list').datatable({
 		tableName : 'BEAUTY_RESOURCE',
@@ -51,10 +48,9 @@ $(function() {
 		tools : tools,
 		title : '<input type="checkbox" onclick="checkbox(this)" />',
 		columnDefs : columnDefs,
-		title : '<input type="checkbox" onclick="checkbox(this)" />',
+		selected : true,
 		select : {
-			style : 'multi',
-			selector : 'td:first-child'
+			style : 'multi'
 		}
 	});
 
@@ -62,6 +58,9 @@ $(function() {
 		tableName : 'BEAUTY_URL',
 		url : '/url/load/page.action',
 		tools : mtools,
+		data : {
+			dialog : true
+		},
 		selected : true,
 		title : '<input type="checkbox" onclick="mcheckbox(this)" />',
 		pagingType : 'simple',
@@ -116,7 +115,7 @@ $(function() {
 			selected : true
 		}).data();
 		if (items.length == 0) {
-			$('.bs-url-modal').modal('hide');
+			layer.msg('至少选择一条！');
 			return;
 		}
 		var ids = $.map(items, function(item, i) {
@@ -129,9 +128,11 @@ $(function() {
 			url : '/resource/config.action'
 		};
 		ajax(params, function() {
+			mtable.row('.selected').remove().draw(false);
+			mtable.ajax.reload();
 			table.ajax.reload();
 		});
-		$('.bs-url-modal').modal('hide');
+		// $('.bs-url-modal').modal('hide');
 	};
 
 	// 表格全选方法

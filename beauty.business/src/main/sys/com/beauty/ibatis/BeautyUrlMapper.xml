@@ -15,6 +15,9 @@
 			<if test="url">
 				AND url = #{url}
 			</if>
+			<if test="dialog">
+				AND NOT EXISTS (SELECT 1 FROM beauty_resource r WHERE r.url = u.url)
+			</if>
 		</where>
 	</sql>
 	<sql id="Base_Column_List">
@@ -23,13 +26,13 @@
 	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from beauty_url
+		from beauty_url 
 		where id = #{id,jdbcType=BIGINT}
 	</select>
 	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
 		SELECT
 		<include refid="Base_Column_List" />
-		FROM beauty_url
+		FROM beauty_url u
 		<include refid="Base_Where_Clause" />
 		ORDER BY
 		<if test="orderColumn">
@@ -42,7 +45,7 @@
 	</select>
 	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
 		SELECT COUNT(1)
-		FROM beauty_url
+		FROM beauty_url u
 		<include refid="Base_Where_Clause" />
 	</select>
 	<insert id="insertSelective" parameterType="com.beauty.entity.BeautyUrl">
