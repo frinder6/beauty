@@ -10,7 +10,7 @@
 
 	<div class="table-responsive">
 
-		<table id="list" class="table table-bordered" width="100%">
+		<table id="list" class="table table-bordered nowrap" cellspacing="0" width="100%">
 		</table>
 
 	</div>

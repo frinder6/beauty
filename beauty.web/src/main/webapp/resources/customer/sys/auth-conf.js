@@ -20,7 +20,7 @@ $(function() {
 		tools : ltools,
 		selected : true,
 		pagingType : 'simple',
-		dom : "<'row'<'#my-ltool.col-xs-12'>>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
+		dom : "<'row'<'#my-ltool.col-xs-12'f>>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
 		toolid : '#my-ltool',
 		title : '<input type="checkbox" onclick="lcheckbox(this)" />',
 		select : {

@@ -2,6 +2,13 @@
 <html>
 <head>
 <jsp:include page="../import-css.jsp" />
+<style type="text/css">
+.modal .dataTables_wrapper {
+	min-width: 800px;
+	max-width: 800px;
+	margin: 0 auto;
+}
+</style>
 <jsp:include page="../import-js.jsp" />
 <script type="text/javascript" src="${basePath }/resources/customer/sys/resource-list.js"></script>
 
@@ -21,7 +28,7 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-body">
-					<table id="m-list" class="table table-bordered" width="100%">
+					<table id="m-list" class="table table-bordered nowrap" width="100%">
 					</table>
 				</div>
 			</div>

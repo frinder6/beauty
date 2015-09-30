@@ -27,20 +27,6 @@ $(function() {
 		'render' : _render
 	} ];
 
-//	editor = new $.fn.dataTable.Editor({
-//		ajax : _PATH('/resource/inline.action'),
-//		table : '#list',
-//		fields : [ {
-//			label : '资源名称',
-//			name : 'name'
-//		} ]
-//	});
-//
-//	$('#list').on('click', 'tbody td:not(:first-child)', function(e) {
-//		editor.inline(this, {
-//			onBlur : 'submit'
-//		});
-//	});
 
 	var table = $('#list').datatable({
 		tableName : 'BEAUTY_RESOURCE',
@@ -58,6 +44,7 @@ $(function() {
 		tableName : 'BEAUTY_URL',
 		url : '/url/load/page.action',
 		tools : mtools,
+		x : false,
 		data : {
 			dialog : true
 		},

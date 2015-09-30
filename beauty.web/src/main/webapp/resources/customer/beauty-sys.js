@@ -86,10 +86,10 @@ var ajax = function(params, fn) {
 var binding = function(arrs, nRow, aData) {
 	$.each(arrs, function(key, value) {
 		$(key, nRow).editable({
-			// mode : 'inline',
+			mode : 'inline',
 			// defaultValue : '',
 			emptytext : '',
-			placement : 'right',
+			placement : 'left',
 			success : function(response, newValue) {
 				var data = {
 					id : aData.id

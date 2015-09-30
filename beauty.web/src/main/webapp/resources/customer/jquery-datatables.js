@@ -14,6 +14,7 @@
 		data : {},
 		columnDefs : [],
 		columns : [],
+		x : true,
 		// title : '',
 		select : {
 			style : 'single'
@@ -61,13 +62,13 @@
 				defaultContent : '',
 				title : settings.title,
 				className : 'select-checkbox',
-				title : '<input type="checkbox" onclick="checkbox(this)" />',
-				width : 1
+				// title : '<input type="checkbox" onclick="checkbox(this)" />',
+				width : 10
 			});
 			settings.columnDefs.unshift({
 				orderable : false,
 				className : 'select-checkbox',
-				width : 1,
+				width : 10,
 				targets : 0
 			});
 		}
@@ -78,7 +79,7 @@
 		var table = $(this).DataTable({
 			processing : true,
 			serverSide : true,
-			// scrollX : true,
+			scrollX : settings.x,
 			select : settings.select,
 			ajax : {
 				url : _PATH(settings.url),

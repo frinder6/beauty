@@ -4,8 +4,6 @@
  * @date 2015-08-23 22:07
  */
 
-var editor;
-
 $(function() {
 	init();
 
@@ -14,42 +12,15 @@ $(function() {
 		<a class="btn btn-default fa fa-minus-square-o" onclick="del()">&nbsp;删除</a>\
     </div>';
 
-
-	editor = new $.fn.dataTable.Editor({
-		ajax : _PATH('/table/inline.action'),
-		table : '#list',
-		fields : [ {
-			label : '表名称',
-			name : 'tableName'
-		}, {
-			label : '列名称',
-			name : 'title'
-		}, {
-			label : '类字段',
-			name : 'data'
-		}, {
-			label : '数据库字段',
-			name : 'columnName'
-		}, {
-			label : '排序',
-			name : 'orderable'
-		}, {
-			label : '宽',
-			name : 'width'
-		}, {
-			label : '样式',
-			name : 'className'
-		}, {
-			label : '序号',
-			name : 'sequence'
-		} ]
-	});
-
-	$('#list').on('click', 'tbody td:not(:first-child)', function(e) {
-		editor.inline(this, {
-			onBlur : 'submit'
-		});
-	});
+	var arrs = {
+		'td:eq(2)' : 'title',
+		'td:eq(3)' : 'title',
+		'td:eq(4)' : 'data',
+		'td:eq(6)' : 'orderable',
+		'td:eq(7)' : 'width',
+		'td:eq(8)' : 'className',
+		'td:eq(9)' : 'sequence'
+	};
 
 	var table = $('#list').datatable({
 		tableName : 'BEAUTY_TABLE_CONFIG',
@@ -60,10 +31,15 @@ $(function() {
 		select : {
 			style : 'multi',
 			selector : 'td:first-child'
+		},
+		fnRowCallback : function(nRow, aData, iDisplayIndex) {
+			// 绑定update
+			binding(arrs, nRow, aData);
+			return nRow;
 		}
 	});
-	
-	copy = function(){
+
+	copy = function() {
 		var items = table.rows({
 			selected : true
 		}).data();

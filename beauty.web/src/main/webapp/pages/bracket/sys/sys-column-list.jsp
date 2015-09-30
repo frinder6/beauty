@@ -2,6 +2,13 @@
 <html>
 <head>
 <jsp:include page="../import-css.jsp" />
+<style type="text/css">
+div.dataTables_wrapper {
+	min-width: 500px;
+	max-width: 600px;
+	margin: 0 auto;
+}
+</style>
 <title>内容块</title>
 </head>
 <body style="background-color: #E4E7EA;">

@@ -11,7 +11,6 @@
 <meta name="author" content="">
 <link rel="shortcut icon" href="${basePath }/resources/bracket/images/favicon.png" type="image/png">
 
-<link href="${basePath }/resources/bracket/css/bootstrap-editable.css" rel="stylesheet">
 <link href="${basePath }/resources/bracket/css/style.default.css" rel="stylesheet">
 <!-- database -->
 <link href="${basePath }/resources/bracket/DataTables/dataTables.bootstrap.css" rel="stylesheet">
@@ -19,7 +18,9 @@
 <link href="${basePath }/resources/bracket/css/jquery.datatables.css" rel="stylesheet">
 <link href="${basePath }/resources/bracket/DataTables/select.dataTables.min.css" rel="stylesheet">
 <link href="${basePath }/resources/bracket/css/buttons.dataTables.min.css" rel="stylesheet">
-<link href="${basePath }/resources/bracket/css/editor.dataTables.min.css" rel="stylesheet">
+<link href="${basePath }/resources/bracket/css/bootstrap-editable.css" rel="stylesheet">
+<%-- <link href="${basePath }/resources/bracket/css/editor.dataTables.min.css" rel="stylesheet"> --%>
+<link href="${basePath }/resources/customer/my.default.css" rel="stylesheet">
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
   <script src="js/html5shiv.js"></script>

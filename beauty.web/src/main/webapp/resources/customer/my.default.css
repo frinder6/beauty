@@ -1,4 +1,8 @@
 /**
  *
  */
-.hide {display: none;}
+div.dataTables_wrapper {
+	min-width: 1080px;
+	max-width: 1280px;
+	margin: 0 auto;
+}
