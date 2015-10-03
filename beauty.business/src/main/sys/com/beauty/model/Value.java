@@ -28,6 +28,8 @@ public class Value implements Serializable {
 
 	private String value;
 
+	private Byte type;
+
 	private List<Object> values = new ArrayList<Object>();
 
 	private Object data;
@@ -75,6 +77,21 @@ public class Value implements Serializable {
 	 */
 	public void setData(Object data) {
 		this.data = data;
+	}
+
+	/**
+	 * @return the type
+	 */
+	public Byte getType() {
+		return type;
+	}
+
+	/**
+	 * @param type
+	 *            the type to set
+	 */
+	public void setType(Byte type) {
+		this.type = type;
 	}
 
 }

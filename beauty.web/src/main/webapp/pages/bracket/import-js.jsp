@@ -26,8 +26,10 @@
 <script src="${basePath }/resources/bracket/DataTables/jquery.dataTables.js"></script>
 <script src="${basePath }/resources/bracket/js/bootstrap-editable.min.js"></script>
 <script src="${basePath }/resources/bracket/DataTables/dataTables.select.js"></script>
+<script src="${basePath }/resources/bracket/DataTables/dataTables.fixedColumns.js"></script>
 <script src="${basePath }/resources/bracket/js/dataTables.buttons.min.js"></script>
 <%-- <script src="${basePath }/resources/bracket/js/dataTables.editor.js"></script> --%>
+<script src="${basePath }/resources/angular/angular.js"></script>
 <script src="${basePath }/resources/layer/layer.js"></script>
 <script src="${basePath }/resources/bracket/js/select2.full.js"></script>
 <script src="${basePath }/resources/customer/jquery-select2.js"></script>

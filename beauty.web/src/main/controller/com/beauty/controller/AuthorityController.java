@@ -18,6 +18,7 @@ import com.beauty.model.Value;
 import com.beauty.service.AuthorityService;
 import com.beauty.util.CodeUtil;
 import com.beauty.util.DatatablesUtil;
+import com.beauty.util.StringUtil;
 
 @Component
 @RequestMapping("/auth")
@@ -43,6 +44,7 @@ public class AuthorityController {
 	@RequestMapping(value = "/add", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public Value persist(BeautyAuthority entity) {
+		entity.setCode(StringUtil.code(entity.getName()));
 		this.authorityService.insertSelective(entity);
 		return new Value(CodeUtil.ADD_SUCCESS);
 	}
@@ -50,6 +52,7 @@ public class AuthorityController {
 	@RequestMapping(value = "/update", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public Value modify(BeautyAuthority entity) {
+		entity.setCode(StringUtil.code(entity.getName()));
 		this.authorityService.updateByPrimaryKeySelective(entity);
 		return new Value(CodeUtil.EDIT_SUCCESS);
 	}

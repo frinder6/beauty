@@ -42,6 +42,7 @@ public class MenuController {
 	@RequestMapping(value = "/add", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public Value persist(BeautyMenu entity) {
+		entity.setCode(StringUtil.code(entity.getName()));
 		this.menuService.insertSelective(entity);
 		return new Value(CodeUtil.ADD_SUCCESS);
 	}
@@ -49,6 +50,7 @@ public class MenuController {
 	@RequestMapping(value = "/update", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public Value modify(BeautyMenu entity) {
+		entity.setCode(StringUtil.code(entity.getName()));
 		this.menuService.updateByPrimaryKeySelective(entity);
 		return new Value(CodeUtil.EDIT_SUCCESS);
 	}

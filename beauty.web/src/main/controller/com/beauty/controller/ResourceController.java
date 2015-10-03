@@ -20,6 +20,7 @@ import com.beauty.service.ResourceService;
 import com.beauty.service.UrlService;
 import com.beauty.util.CodeUtil;
 import com.beauty.util.DatatablesUtil;
+import com.beauty.util.StringUtil;
 
 @Controller
 @RequestMapping("/resource")
@@ -48,6 +49,7 @@ public class ResourceController {
 	@RequestMapping(value = "/add", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public Value persist(BeautyResource entity) {
+		entity.setCode(StringUtil.code(entity.getName()));
 		this.resourceService.insertSelective(entity);
 		return new Value(CodeUtil.ADD_SUCCESS);
 	}
@@ -55,6 +57,7 @@ public class ResourceController {
 	@RequestMapping(value = "/update", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public Value modify(BeautyResource entity) {
+		entity.setCode(StringUtil.code(entity.getName()));
 		this.resourceService.updateByPrimaryKeySelective(entity);
 		return new Value(CodeUtil.EDIT_SUCCESS);
 	}

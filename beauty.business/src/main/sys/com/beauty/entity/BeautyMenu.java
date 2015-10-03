@@ -12,6 +12,11 @@ public class BeautyMenu extends BaseEntity {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	public BeautyMenu() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	private Long id;
 
 	@Orderable(columnName = "code")
@@ -40,7 +45,7 @@ public class BeautyMenu extends BaseEntity {
 	}
 
 	public String getCode() {
-		return code;
+		return this.code;
 	}
 
 	public void setCode(String code) {

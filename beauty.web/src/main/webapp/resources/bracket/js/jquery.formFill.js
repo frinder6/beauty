@@ -82,6 +82,9 @@
 								case "range":
 								case "password":
 								case "textarea":
+								case "url":
+								case "email":
+								case "tel":
 									$(item).val(value);
 								break;
 

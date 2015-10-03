@@ -4,8 +4,8 @@
  */
 
 var _render_upd = function(data, type, row, meta) {
-	var result = '<a href="#" data-href="/pages/bracket/sys/auth-update.jsp?id={0}" onclick="_S_REDIRECT(this)">{1}</a>';
-	return result.format(row.id, data);
+	var result = '<a data-href="/pages/bracket/sys/auth-conf.jsp?id={0}&name={1}&type={2}" onclick="_S_REDIRECT(this)">{3}</a>';
+	return result.format(row.id, row.name, row.type, data);
 };
 
 var _render_type = function(data, type, row, meta) {
@@ -13,16 +13,15 @@ var _render_type = function(data, type, row, meta) {
 	return text;
 };
 
-
 $(function() {
 	init();
 
 	var tools = '<div class="btn-group">\
 		<a data-href="/pages/bracket/sys/auth-add.jsp" class="btn btn-default fa fa-plus-square-o" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
-		<a data-href="/pages/bracket/sys/auth-conf.jsp?id={0}&name={1}" class="btn btn-default fa fa-copy" onclick="conf(this)">&nbsp;配置</a>\
+		<a class="btn btn-default fa fa-edit" data-href="/pages/bracket/sys/auth-update.jsp?id={0}" onclick="modify(this)">&nbsp;更新</a>\
 		<a class="btn btn-default fa fa-minus-square-o" onclick="del()">&nbsp;删除</a>\
     </div>';
-
+	
 	var table = $('#list').datatable({
 		tableName : 'BEAUTY_AUTHORITY',
 		url : '/auth/load/page.action',
@@ -52,8 +51,8 @@ $(function() {
 			table.rows().deselect();
 		}
 	};
-	
-	conf = function(e){
+
+	modify = function(e) {
 		var items = table.rows({
 			selected : true
 		}).data();
@@ -62,9 +61,9 @@ $(function() {
 			return;
 		}
 		var url = $(e).attr('data-href');
-		_S_URL_REDIRECT(url.format(items[0].id, items[0].name));
+		_S_URL_REDIRECT(url.format(items[0].id));
 	};
-	
+
 	del = function() {
 		var items = table.rows({
 			selected : true

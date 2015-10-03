@@ -79,8 +79,11 @@
 		var table = $(this).DataTable({
 			processing : true,
 			serverSide : true,
+			stateSave : true,
 			scrollX : settings.x,
+			// scrollY : 500,
 			select : settings.select,
+			// fixedColumns : true,
 			ajax : {
 				url : _PATH(settings.url),
 				data : settings.data

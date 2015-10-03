@@ -1,10 +1,16 @@
 package com.beauty.entity;
 
+
 public class BeautyRole extends BaseEntity {
 	/**
 	 * @Fields serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
+
+	public BeautyRole() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	private Long id;
 

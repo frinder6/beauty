@@ -5,6 +5,9 @@
  */
 var _render = function(data, type, row, meta) {
 	var result = '<a href="#" data-href="/pages/bracket/sys/menu-update.jsp?id={0}" onclick="_S_REDIRECT(this)">{1}</a>';
+	if (row.id == 0) {
+		return data;
+	}
 	return result.format(row.id, data);
 };
 
@@ -54,7 +57,8 @@ $(function() {
 			return;
 		}
 		var ids = $.map(items, function(item, i) {
-			return item.id;
+			if (item.id != 0)
+				return item.id;
 		});
 		var params = {
 			data : {

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html ng-app>
 <head>
 <jsp:include page="../import-css.jsp" />
 
@@ -28,7 +29,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">菜单编码： <span class="asterisk">*</span></label>
 					<div class="col-sm-6">
-						<input type="text" name="code" class="form-control" placeholder="Type please..." required />
+						<input type="text" name="code" class="form-control" disabled="disabled" placeholder="Type please..." required />
 					</div>
 				</div>
 

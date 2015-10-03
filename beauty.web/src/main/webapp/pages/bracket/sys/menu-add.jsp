@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html ng-app>
 <head>
 <jsp:include page="../import-css.jsp" />
 
@@ -20,16 +21,16 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">菜单名称： <span class="asterisk">*</span></label>
 					<div class="col-sm-6">
-						<input type="text" name="name" class="form-control" placeholder="Type please..." required />
+						<input type="text" name="name" class="form-control" placeholder="Type please..." required  ng-model="remark" />
 					</div>
 				</div>
 
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label class="col-sm-3 control-label">菜单编码： <span class="asterisk">*</span></label>
 					<div class="col-sm-6">
 						<input type="text" name="code" class="form-control" placeholder="Type please..." required />
 					</div>
-				</div>
+				</div> -->
 
 				<div class="form-group">
 					<label class="col-sm-3 control-label">URL： <span class="asterisk">*</span></label>
@@ -50,7 +51,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">备注： <span class="asterisk">*</span></label>
 					<div class="col-sm-6">
-						<textarea name="remark" rows="5" class="form-control" placeholder="Type please..." required></textarea>
+						<textarea name="remark" rows="5" class="form-control" placeholder="Type please..." required>{{remark}}</textarea>
 					</div>
 				</div>
 			</div>

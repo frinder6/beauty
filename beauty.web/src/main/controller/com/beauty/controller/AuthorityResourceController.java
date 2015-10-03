@@ -30,8 +30,8 @@ public class AuthorityResourceController {
 		Page page = new Page();
 		page.init(request);
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("configed", request.getParameter("configed"));
-		params.put("unconfig", request.getParameter("unconfig"));
+		params.put("conf", request.getParameter("conf"));
+		params.put("type", request.getParameter("type"));
 		params.put("authorityId", request.getParameter("authorityId"));
 		// 将page值设置到map中
 		page.pageToMap(BeautyAuthorityResource.class, params);

@@ -10,6 +10,8 @@ package com.beauty.util;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 /**
  * @ClassName: StringUtil
  * @Description: TODO(这里用一句话描述这个类的作用)
@@ -18,6 +20,27 @@ import javax.servlet.http.HttpServletRequest;
  * 
  */
 public class StringUtil {
+
+	/**
+	 * 
+	 * @Title: md5
+	 * @Description: TODO(返回编码的方法)
+	 * @author frinder_liu
+	 * @param obj
+	 * @return
+	 * @return String
+	 * @date 2015年10月3日 下午10:59:21
+	 * @throws
+	 */
+	public static String code(Object obj) {
+		String str;
+		if (null == obj) {
+			str = "";
+		} else {
+			str = obj.toString();
+		}
+		return DigestUtils.md5Hex(str.trim()).toUpperCase();
+	}
 
 	/**
 	 * 

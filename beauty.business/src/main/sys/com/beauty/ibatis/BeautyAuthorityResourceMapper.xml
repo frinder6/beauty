@@ -5,6 +5,7 @@
 		<id column="id" property="id" jdbcType="BIGINT" />
 		<result column="authority_id" property="authorityId" jdbcType="BIGINT" />
 		<result column="resource_id" property="resourceId" jdbcType="BIGINT" />
+		<result column="type" property="type" jdbcType="TINYINT" />
 		<result column="code" property="code" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="url" property="url" jdbcType="VARCHAR" />
@@ -13,25 +14,37 @@
 		id, authority_id, resource_id
 	</sql>
 	<sql id="Base_Where_Clause">
-		<where>
-			1 = 1
-			<if test="configed">
-				AND a.id = #{authorityId}
-				AND EXISTS (SELECT 1 FROM beauty_authority_resource WHERE authority_id = a.id)
-			</if>
-			<if test="unconfig">
-				AND NOT EXISTS (SELECT 1 FROM beauty_authority_resource WHERE authority_id = a.id)
-			</if>
-			<if test="searchValue">
-				AND ( r.name LIKE "%" #{searchValue} "%" OR r.code LIKE "%" #{searchValue} "%" OR r.remark LIKE "%" #{searchValue} "%" OR r.url LIKE "%" #{searchValue} "%" )
-			</if>
-		</where>
+		<if test="searchValue">
+			AND ( name LIKE "%" #{searchValue} "%" OR code LIKE "%" #{searchValue} "%" OR remark LIKE "%" #{searchValue} "%" OR url LIKE "%" #{searchValue} "%" )
+		</if>
 	</sql>
 	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
-		SELECT r.id resourceId, a.id authorityId, ar.id, r.`code`, r.`name`, r.url
-		FROM beauty_resource r
-		LEFT JOIN beauty_authority_resource ar ON r.id = ar.resource_id
-		LEFT JOIN beauty_authority a ON ar.authority_id = a.id
+		<if test="conf == null">
+			<if test="type == 1">
+				SELECT id resource_id, `code`, `name`, url
+				FROM beauty_menu m
+				WHERE id NOT IN (SELECT resource_id FROM beauty_authority_resource WHERE authority_id = #{authorityId} AND type = #{type})
+			</if>
+			<if test="type == 2">
+				SELECT id resource_id, `code`, `name`, url
+				FROM beauty_resource r
+				WHERE id NOT IN (SELECT resource_id FROM beauty_authority_resource WHERE authority_id = #{authorityId} AND type = #{type})
+			</if>
+		</if>
+		<if test="conf">
+			<if test="type == 1">
+				SELECT m.id resource_id, ar.authority_id, ar.id, m.`code`, m.`name`, m.url
+				FROM beauty_menu m
+				LEFT JOIN beauty_authority_resource ar ON m.id = ar.resource_id
+				WHERE ar.authority_id = #{authorityId} AND ar.type = #{type}
+			</if>
+			<if test="type == 2">
+				SELECT r.id resource_id, ar.authority_id, ar.id, r.`code`, r.`name`, r.url
+				FROM beauty_resource r
+				LEFT JOIN beauty_authority_resource ar ON r.id = ar.resource_id
+				WHERE ar.authority_id = #{authorityId} AND ar.type = #{type}
+			</if>
+		</if>
 		<include refid="Base_Where_Clause" />
 		ORDER BY
 		<if test="orderColumn">
@@ -43,11 +56,32 @@
 		LIMIT #{from}, #{size}
 	</select>
 	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
-		SELECT
-		COUNT(1)
-		FROM beauty_resource r
-		LEFT JOIN beauty_authority_resource ar ON r.id = ar.resource_id
-		LEFT JOIN beauty_authority a ON ar.authority_id = a.id
+		<if test="conf == null">
+			<if test="type == 1">
+				SELECT COUNT(1)
+				FROM beauty_menu m
+				WHERE id NOT IN (SELECT resource_id FROM beauty_authority_resource WHERE authority_id = #{authorityId} AND type = #{type})
+			</if>
+			<if test="type == 2">
+				SELECT COUNT(1)
+				FROM beauty_resource r
+				WHERE id NOT IN (SELECT resource_id FROM beauty_authority_resource WHERE authority_id = #{authorityId} AND type = #{type})
+			</if>
+		</if>
+		<if test="conf">
+			<if test="type == 1">
+				SELECT COUNT(1)
+				FROM beauty_menu m
+				LEFT JOIN beauty_authority_resource ar ON m.id = ar.resource_id
+				WHERE ar.authority_id = #{authorityId} AND ar.type = #{type}
+			</if>
+			<if test="type == 2">
+				SELECT COUNT(1)
+				FROM beauty_resource r
+				LEFT JOIN beauty_authority_resource ar ON r.id = ar.resource_id
+				WHERE ar.authority_id = #{authorityId} AND ar.type = #{type}
+			</if>
+		</if>
 		<include refid="Base_Where_Clause" />
 	</select>
 	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
@@ -74,12 +108,12 @@
 		</trim>
 	</insert>
 	<insert id="insert" parameterType="com.beauty.model.Value">
-		insert into beauty_authority_resource (authority_id, resource_id)
+		insert into beauty_authority_resource (authority_id, resource_id, type)
 		VALUES
 		<if test="values.size() > 0">
 			<foreach collection="values" item="id" separator=",">
 				<trim prefix="(" suffix=")" suffixOverrides=",">
-					${value}, ${id}
+					${value}, ${id}, ${type}
 				</trim>
 			</foreach>
 		</if>

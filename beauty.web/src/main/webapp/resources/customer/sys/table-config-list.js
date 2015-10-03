@@ -13,9 +13,10 @@ $(function() {
     </div>';
 
 	var arrs = {
-		'td:eq(2)' : 'title',
+		'td:eq(2)' : 'tableName',
 		'td:eq(3)' : 'title',
 		'td:eq(4)' : 'data',
+		'td:eq(5)' : 'columnName',
 		'td:eq(6)' : 'orderable',
 		'td:eq(7)' : 'width',
 		'td:eq(8)' : 'className',
@@ -28,6 +29,7 @@ $(function() {
 		selected : true,
 		data : data,
 		tools : tools,
+		title : '<input type="checkbox" onclick="checkbox(this)" />',
 		select : {
 			style : 'multi',
 			selector : 'td:first-child'
@@ -38,6 +40,18 @@ $(function() {
 			return nRow;
 		}
 	});
+	
+	// 表格全选方法
+	checkbox = function(e) {
+		var checked = $(e).attr('checked');
+		if (checked) {
+			// 全选
+			table.rows().select();
+		} else {
+			// 取消全选
+			table.rows().deselect();
+		}
+	};
 
 	copy = function() {
 		var items = table.rows({
@@ -60,6 +74,7 @@ $(function() {
 			offset : '100px'
 		}, function() {
 			ajax(params, function() {
+				table.draw(false);
 				table.ajax.reload();
 			});
 		});

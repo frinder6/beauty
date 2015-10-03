@@ -8,6 +8,11 @@ public class BeautyAuthority extends BaseEntity {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	public BeautyAuthority() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	private Long id;
 
 	@Orderable(columnName = "code")
@@ -18,6 +23,7 @@ public class BeautyAuthority extends BaseEntity {
 
 	private Long groupId;
 
+	@Orderable(columnName = "type")
 	private Byte type;
 
 	public Long getId() {

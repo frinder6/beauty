@@ -10,12 +10,12 @@ $(function() {
                 <button type="button" class="btn btn-default fa fa-copy" onclick="lexport()">&nbsp;导入</button>\
             </div>';
 
-	var unconfig = $('#l-list').datatable({
-		tableName : 'BEAUTY_A_R',
+	var ltable = $('#l-list').datatable({
+		tableName : (type == 1 ? 'BEAUTY_A_R_M' : 'BEAUTY_A_R'),
 		url : '/ar/load/page.action',
 		data : {
 			authorityId : authorityId,
-			unconfig : true
+			type : type
 		},
 		tools : ltools,
 		selected : true,
@@ -33,16 +33,16 @@ $(function() {
 		var checked = $(e).attr('checked');
 		if (checked) {
 			// 全选
-			unconfig.rows().select();
+			ltable.rows().select();
 		} else {
 			// 取消全选
-			unconfig.rows().deselect();
+			ltable.rows().deselect();
 		}
 	};
 
 	// 导入方法
 	lexport = function() {
-		var items = unconfig.rows({
+		var items = ltable.rows({
 			selected : true
 		}).data();
 		if (items.length == 0) {
@@ -55,16 +55,17 @@ $(function() {
 		var params = {
 			data : {
 				values : resourceIds.join(','),
-				value : authorityId
+				value : authorityId,
+				type : type
 			},
 			url : '/ar/add.action'
 		};
 		//
 		ajax(params, function() {
-			unconfig.row('.selected').remove().draw(false);
-			configed.row('.selected').remove().draw(false);
-			unconfig.ajax.reload();
-			configed.ajax.reload();
+			ltable.row('.selected').remove().draw(false);
+			rtable.row('.selected').remove().draw(false);
+			ltable.ajax.reload();
+			rtable.ajax.reload();
 		});
 	};
 
@@ -76,12 +77,13 @@ $(function() {
 	             	<button type="button" class="btn btn-default fa fa-minus-square-o" onclick="del()">&nbsp;删除</button>\
 	            </div>';
 
-	var configed = $('#r-list').datatable({
-		tableName : 'BEAUTY_A_R_CONFIGED',
+	var rtable = $('#r-list').datatable({
+		tableName : (type == 1 ? 'BEAUTY_A_R_M_CONFIGED' : 'BEAUTY_A_R_CONFIGED'),
 		url : '/ar/load/page.action',
 		data : {
 			authorityId : authorityId,
-			configed : true
+			conf : true,
+			type : type
 		},
 		tools : rtools,
 		selected : true,
@@ -99,15 +101,15 @@ $(function() {
 		var checked = $(e).attr('checked');
 		if (checked) {
 			// 全选
-			configed.rows().select();
+			rtable.rows().select();
 		} else {
 			// 取消全选
-			configed.rows().deselect();
+			rtable.rows().deselect();
 		}
 	};
 
 	del = function() {
-		var items = configed.rows({
+		var items = rtable.rows({
 			selected : true
 		}).data();
 		if (items.length == 0) {
@@ -125,10 +127,10 @@ $(function() {
 		};
 		//
 		ajax(params, function() {
-			unconfig.row('.selected').remove().draw(false);
-			configed.row('.selected').remove().draw(false);
-			unconfig.ajax.reload();
-			configed.ajax.reload();
+			ltable.row('.selected').remove().draw(false);
+			rtable.row('.selected').remove().draw(false);
+			ltable.ajax.reload();
+			rtable.ajax.reload();
 		});
 	};
 });

@@ -1,8 +1,11 @@
 package com.beauty.entity;
 
-import com.beauty.annotation.Orderable;
+public class BeautyAuthorityResource extends BaseReEntity {
 
-public class BeautyAuthorityResource {
+	/**
+	 * @Fields serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private Long id;
 
@@ -10,14 +13,7 @@ public class BeautyAuthorityResource {
 
 	private Long resourceId;
 
-	@Orderable(columnName = "code")
-	private String code;
-
-	@Orderable(columnName = "name")
-	private String name;
-
-	@Orderable(columnName = "url")
-	private String url;
+	private Byte type;
 
 	public BeautyAuthorityResource() {
 		super();
@@ -55,48 +51,18 @@ public class BeautyAuthorityResource {
 	}
 
 	/**
-	 * @return the code
+	 * @return the type
 	 */
-	public String getCode() {
-		return code;
+	public Byte getType() {
+		return type;
 	}
 
 	/**
-	 * @param code
-	 *            the code to set
+	 * @param type
+	 *            the type to set
 	 */
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @param name
-	 *            the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
-	 * @return the url
-	 */
-	public String getUrl() {
-		return url;
-	}
-
-	/**
-	 * @param url
-	 *            the url to set
-	 */
-	public void setUrl(String url) {
-		this.url = url;
+	public void setType(Byte type) {
+		this.type = type;
 	}
 
 }

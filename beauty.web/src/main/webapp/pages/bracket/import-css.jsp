@@ -19,6 +19,7 @@
 <link href="${basePath }/resources/bracket/DataTables/select.dataTables.min.css" rel="stylesheet">
 <link href="${basePath }/resources/bracket/css/buttons.dataTables.min.css" rel="stylesheet">
 <link href="${basePath }/resources/bracket/css/bootstrap-editable.css" rel="stylesheet">
+<%-- <link href="${basePath }/resources/bracket/DataTables/fixedColumns.dataTables.css" rel="stylesheet"> --%>
 <%-- <link href="${basePath }/resources/bracket/css/editor.dataTables.min.css" rel="stylesheet"> --%>
 <link href="${basePath }/resources/customer/my.default.css" rel="stylesheet">
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

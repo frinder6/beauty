@@ -55,6 +55,7 @@ div.dataTables_wrapper {
 
 	<script type="text/javascript">
 		var authorityId = '${param.id}';
+		var type = '${param.type}';
 	</script>
 
 </body>
