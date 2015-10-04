@@ -3,9 +3,13 @@
  * 
  */
 
-var _render_upd = function(data, type, row, meta) {
-	var result = '<a href="#" data-href="/pages/bracket/sys/user-update.jsp?id={0}" onclick="_S_REDIRECT(this)">{1}</a>';
-	return result.format(row.id, data);
+var _render_oper = function(data, type, row, meta) {
+	var result = '\
+		<span class="fa fa-edit pointer" data-href="/pages/bracket/sys/user-update.jsp?id={0}" onclick="_S_REDIRECT(this)"></span>\
+		&nbsp;\
+		<span class="fa fa-copy pointer" data-href="/pages/bracket/sys/user-conf.jsp?id={1}&name={2}" onclick="_S_REDIRECT(this)"></span>\
+	';
+	return result.format(row.id, row.id, row.name);
 };
 
 $(function() {
@@ -13,7 +17,6 @@ $(function() {
 
 	var tools = '<div class="btn-group">\
 		<a data-href="/pages/bracket/sys/user-add.jsp" class="btn btn-default fa fa-plus-square-o" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
-		<a data-href="/pages/bracket/sys/user-conf.jsp?id={0}&name={1}" class="btn btn-default fa fa-copy" onclick="conf(this)">&nbsp;配置</a>\
 		<a class="btn btn-default fa fa-minus-square-o" onclick="del()">&nbsp;删除</a>\
     </div>';
 
@@ -28,12 +31,7 @@ $(function() {
 		},
 		columnDefs : [ {
 			'targets' : 1,
-			'render' : function() {
-				return 'xxx';
-			}
-		}, {
-			'targets' : 2,
-			'render' : _render_upd
+			'render' : _render_oper
 		} ]
 	});
 

@@ -48,9 +48,12 @@
 					return;
 				}
 				settings.columns = datas;
+				// settings.columns = $.extend(true, [], datas);
 			}
 		});
 
+		// alert(JSON.stringify(settings.columns));
+		
 		if (stop)
 			return;
 

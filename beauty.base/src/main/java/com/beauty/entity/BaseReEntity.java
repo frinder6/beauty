@@ -12,7 +12,7 @@ public class BaseReEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Orderable(columnName = "code")
-	protected String code;
+	public String code;
 
 	@Orderable(columnName = "name")
 	protected String name;

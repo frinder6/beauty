@@ -124,7 +124,9 @@ $(function() {
 		};
 		//
 		ajax(params, function() {
+			ltable.row('.selected').remove().draw(false);
 			rtable.row('.selected').remove().draw(false);
+			ltable.ajax.reload();
 			rtable.ajax.reload();
 		});
 	};

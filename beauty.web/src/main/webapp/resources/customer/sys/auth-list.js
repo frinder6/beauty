@@ -3,9 +3,13 @@
  * 
  */
 
-var _render_upd = function(data, type, row, meta) {
-	var result = '<a data-href="/pages/bracket/sys/auth-conf.jsp?id={0}&name={1}&type={2}" onclick="_S_REDIRECT(this)">{3}</a>';
-	return result.format(row.id, row.name, row.type, data);
+var _render_oper = function(data, type, row, meta) {
+	var result = '\
+		<span class="fa fa-edit pointer" data-href="/pages/bracket/sys/auth-update.jsp?id={0}" onclick="_S_REDIRECT(this)"></span>\
+		&nbsp;\
+		<span class="fa fa-copy pointer" data-href="/pages/bracket/sys/auth-conf.jsp?id={1}&name={2}&type={3}" onclick="_S_REDIRECT(this)"></span>\
+	';
+	return result.format(row.id, row.id, row.name, row.type);
 };
 
 var _render_type = function(data, type, row, meta) {
@@ -18,10 +22,9 @@ $(function() {
 
 	var tools = '<div class="btn-group">\
 		<a data-href="/pages/bracket/sys/auth-add.jsp" class="btn btn-default fa fa-plus-square-o" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
-		<a class="btn btn-default fa fa-edit" data-href="/pages/bracket/sys/auth-update.jsp?id={0}" onclick="modify(this)">&nbsp;更新</a>\
 		<a class="btn btn-default fa fa-minus-square-o" onclick="del()">&nbsp;删除</a>\
     </div>';
-	
+
 	var table = $('#list').datatable({
 		tableName : 'BEAUTY_AUTHORITY',
 		url : '/auth/load/page.action',
@@ -32,8 +35,8 @@ $(function() {
 			style : 'multi'
 		},
 		columnDefs : [ {
-			'targets' : 2,
-			'render' : _render_upd
+			'targets' : 1,
+			'render' : _render_oper
 		}, {
 			'targets' : 4,
 			'render' : _render_type

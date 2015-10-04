@@ -69,8 +69,7 @@
 		</if>
 	</delete>
 	<insert id="insert" parameterType="com.beauty.model.Value">
-		insert into beauty_role_authority (role_id, authority_id
-		)
+		insert into beauty_role_authority (role_id, authority_id)
 		values
 		<if test="values.size() > 0">
 			<foreach collection="values" item="id" separator=",">

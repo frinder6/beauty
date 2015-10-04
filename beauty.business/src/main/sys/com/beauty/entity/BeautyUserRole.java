@@ -1,33 +1,38 @@
 package com.beauty.entity;
 
-public class BeautyUserRole {
-    private Long id;
+public class BeautyUserRole extends BaseReEntity {
+	/**
+	 * @Fields serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
 
-    private Long userId;
+	private Long id;
 
-    private Long roleId;
+	private Long userId;
 
-    public Long getId() {
-        return id;
-    }
+	private Long roleId;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public Long getUserId() {
-        return userId;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+	public Long getUserId() {
+		return userId;
+	}
 
-    public Long getRoleId() {
-        return roleId;
-    }
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
-    }
+	public Long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
 }

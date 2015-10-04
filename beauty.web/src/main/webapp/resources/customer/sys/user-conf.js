@@ -11,10 +11,10 @@ $(function() {
             </div>';
 
 	var ltable = $('#l-list').datatable({
-		tableName : 'BEAUTY_R_A',
+		tableName : 'BEAUTY_U_R',
 		url : '/ur/load/page.action',
 		data : {
-			roleId : roleId
+			userId : userId
 		},
 		tools : ltools,
 		selected : true,
@@ -44,19 +44,19 @@ $(function() {
 		var items = ltable.rows({
 			selected : true
 		}).data();
-		var authorityIds = $.map(items, function(item, i) {
-			return item.authorityId;
-		});
-		if (items.length == 0 || authorityIds.length == 0) {
+		if (items.length == 0) {
 			layer.msg('至少选择一条！');
 			return;
 		}
+		var roleIds = $.map(items, function(item, i) {
+			return item.roleId;
+		});
 		var params = {
 			data : {
-				values : authorityIds.join(','),
-				value : roleId
+				values : roleIds.join(','),
+				value : userId
 			},
-			url : '/ra/add.action'
+			url : '/ur/add.action'
 		};
 		//
 		ajax(params, function() {
@@ -76,10 +76,10 @@ $(function() {
 	            </div>';
 
 	var rtable = $('#r-list').datatable({
-		tableName : 'BEAUTY_R_A_CONFIGED',
+		tableName : 'BEAUTY_U_R_CONFIGED',
 		url : '/ur/load/page.action',
 		data : {
-			roleId : roleId,
+			userId : userId,
 			conf : true
 		},
 		tools : rtools,
@@ -124,7 +124,9 @@ $(function() {
 		};
 		//
 		ajax(params, function() {
+			ltable.row('.selected').remove().draw(false);
 			rtable.row('.selected').remove().draw(false);
+			ltable.ajax.reload();
 			rtable.ajax.reload();
 		});
 	};

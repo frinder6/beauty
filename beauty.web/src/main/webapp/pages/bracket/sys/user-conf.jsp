@@ -54,7 +54,7 @@ div.dataTables_wrapper {
 	<script type="text/javascript" src="${basePath }/resources/customer/sys/user-conf.js"></script>
 
 	<script type="text/javascript">
-		var roleId = '${param.id}';
+		var userId = '${param.id}';
 	</script>
 
 </body>

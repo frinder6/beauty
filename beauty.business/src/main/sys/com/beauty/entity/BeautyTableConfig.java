@@ -21,7 +21,7 @@ public class BeautyTableConfig extends BaseEntity {
 
 	private String columnName;
 
-	private Byte orderable;
+	private Boolean orderable;
 
 	private Integer width;
 
@@ -82,11 +82,11 @@ public class BeautyTableConfig extends BaseEntity {
 		this.columnName = columnName == null ? null : columnName.trim();
 	}
 
-	public Byte getOrderable() {
+	public Boolean getOrderable() {
 		return orderable;
 	}
 
-	public void setOrderable(Byte orderable) {
+	public void setOrderable(Boolean orderable) {
 		this.orderable = orderable;
 	}
 

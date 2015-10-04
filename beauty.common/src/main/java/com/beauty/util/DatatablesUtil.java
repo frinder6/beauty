@@ -2,6 +2,7 @@ package com.beauty.util;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -34,7 +35,8 @@ public class DatatablesUtil {
 	 */
 	public static String getColumn(Class<?> clazz, String property) {
 		String column = null;
-		Field[] fields = clazz.getDeclaredFields();
+		// 寻找子类与父类的属性
+		Field[] fields = concat(clazz.getDeclaredFields(), clazz.getSuperclass().getDeclaredFields());
 		//
 		boolean exists = false;
 		Orderable orderable = null;
@@ -50,6 +52,13 @@ public class DatatablesUtil {
 			}
 		}
 		return column;
+	}
+
+	// 连接2个集合
+	public static <T> T[] concat(T[] first, T[] second) {
+		T[] result = Arrays.copyOf(first, first.length + second.length);
+		System.arraycopy(second, 0, result, first.length, second.length);
+		return result;
 	}
 
 	/**
