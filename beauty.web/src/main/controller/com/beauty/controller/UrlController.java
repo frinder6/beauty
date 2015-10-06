@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.beauty.entity.BeautyUrl;
 import com.beauty.entity.Page;
+import com.beauty.model.Value;
 import com.beauty.service.UrlService;
+import com.beauty.util.CodeUtil;
 
 @Controller
 @RequestMapping("/url")
@@ -21,7 +23,6 @@ public class UrlController {
 
 	@Autowired
 	private UrlService urlService;
-
 
 	@RequestMapping(value = "/load/page", produces = "application/json; charset=utf-8")
 	@ResponseBody
@@ -36,6 +37,24 @@ public class UrlController {
 		List<?> list = this.urlService.selectPage(params);
 		page.setResult(list, count + "", count + "");
 		return page;
+	}
+
+	@RequestMapping(value = "/mark", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Value batchMark(Value value) {
+		if (!value.getValues().isEmpty()) {
+			this.urlService.batchMark(value.getValues());
+		}
+		return new Value(CodeUtil.SUCCESS);
+	}
+
+	@RequestMapping(value = "/remove", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Value delete(Value value) {
+		if (!value.getValues().isEmpty()) {
+			this.urlService.deleteByPrimaryKeys(value.getValues());
+		}
+		return new Value(CodeUtil.DELETE_SUCCESS);
 	}
 
 }

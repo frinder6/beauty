@@ -9,7 +9,7 @@ var _render_oper = function(data, type, row, meta) {
 		return '--';
 	}
 	var result = '\
-		<span class="fa fa-edit pointer" data-href="/pages/bracket/sys/menu-update.jsp?id={0}" onclick="_S_REDIRECT(this)"></span>\
+		<span class="fa fa-edit pointer" title="更新" data-href="/pages/bracket/sys/menu-update.jsp?id={0}" onclick="_S_REDIRECT(this)"></span>\
 	';
 	return result.format(row.id);
 };
@@ -33,7 +33,7 @@ $(function() {
 		url : '/menu/load/page.action',
 		tools : tools,
 		selected : true,
-		// title : '<input type="checkbox" onclick="checkbox(this)" />',
+		title : '<input type="checkbox" onclick="checkbox(this)" />',
 		columnDefs : columnDefs,
 		select : {
 			style : 'multi'
@@ -41,7 +41,7 @@ $(function() {
 	});
 
 	// 表格全选方法
-	checkbox1 = function(e) {
+	checkbox = function(e) {
 		var checked = $(e).attr('checked');
 		if (checked) {
 			// 全选

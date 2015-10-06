@@ -71,8 +71,8 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 		<!-- 认证管理 -->
 		<property name="authenticationManager" ref="authenticationManager" />
 		<!-- remember-me认证 -->
-		<property name="rememberMeServices" ref="tokenRememberMeServices" />
-		<!-- <property name="rememberMeServices" ref="persistentRememberMeServices" /> -->
+		<!-- <property name="rememberMeServices" ref="tokenRememberMeServices" /> -->
+		<property name="rememberMeServices" ref="persistentRememberMeServices" />
 	</bean>
 	<!-- 登陆成功 -->
 	<bean id="loginLogAuthenticationSuccessHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
@@ -89,26 +89,29 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
 	<!-- remember-me认证 -->
 	<bean id="rememberMeFilter" class="org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter">
-		<property name="rememberMeServices" ref="tokenRememberMeServices" />
+		<!-- <property name="rememberMeServices" ref="tokenRememberMeServices" /> -->
+		<property name="rememberMeServices" ref="persistentRememberMeServices" />
 		<property name="authenticationManager" ref="authenticationManager" />
 	</bean>
 	<!-- TokenBasedRememberMeServices 认证 -->
 	<bean id="tokenRememberMeServices" class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
+		<property name="key" value="beauty" />
 		<property name="userDetailsService" ref="myUserDetailsService" />
-		<property name="key" value="admin" />
 	</bean>
 	<bean id="rememberMeAuthenticationProvider" class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
-		<property name="key" value="admin" />
+		<property name="key" value="beauty" />
 	</bean>
 	<!-- PersistentTokenBasedRememberMeServices 认证 -->
-	<bean id="persistentRememberMeServices" class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
-		<property name="key" value="admin" />
-		<property name="userDetailsService" ref="myUserDetailsService" />
-		<property name="tokenRepository" ref="tokenRepository" />
-	</bean>
 	<bean id="tokenRepository" class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
 		<property name="createTableOnStartup" value="false" />
 		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="persistentRememberMeServices" class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
+		<property name="key" value="beauty" />
+		<property name="parameter" value="_spring_security_remember_me" />
+		<property name="cookieName" value="remember_user" />
+		<property name="userDetailsService" ref="myUserDetailsService" />
+		<property name="tokenRepository" ref="tokenRepository" />
 	</bean>
 	<!-- remember-me认证 -->
 
@@ -120,10 +123,5 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 	</bean>
 	<bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl" />
 	<!-- session管理策略 -->
-
-
-	<!-- 开启Spring Security3认证和授权日志 -->
-	<!-- <bean class="org.springframework.security.authentication.event.LoggerListener"/> -->
-	<!-- <bean class="org.springframework.security.access.event.LoggerListener"/> -->
 
 </beans>

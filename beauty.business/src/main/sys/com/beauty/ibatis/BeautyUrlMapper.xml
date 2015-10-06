@@ -3,8 +3,17 @@
 <mapper namespace="com.beauty.interfaces.UrlDao">
 	<resultMap id="BaseResultMap" type="com.beauty.entity.BeautyUrl">
 		<id column="id" property="id" jdbcType="BIGINT" />
+		<id column="id" property="DT_RowId" jdbcType="BIGINT" />
 		<result column="url" property="url" jdbcType="VARCHAR" />
 		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="creater" property="creater" jdbcType="VARCHAR" />
+		<result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+		<result column="modifier" property="modifier" jdbcType="VARCHAR" />
+		<result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
+		<result column="def1" property="def1" jdbcType="VARCHAR" />
+		<result column="def2" property="def2" jdbcType="VARCHAR" />
+		<result column="def3" property="def3" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Base_Where_Clause">
 		<where>
@@ -17,6 +26,7 @@
 			</if>
 			<if test="dialog">
 				AND NOT EXISTS (SELECT 1 FROM beauty_resource r WHERE r.url = u.url)
+				AND is_deleted = 1
 			</if>
 		</where>
 	</sql>
@@ -26,7 +36,7 @@
 	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from beauty_url 
+		from beauty_url
 		where id = #{id,jdbcType=BIGINT}
 	</select>
 	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
@@ -77,4 +87,24 @@
 			<if test="def3 != null"> #{def3,jdbcType=TIMESTAMP}, </if>
 		</trim>
 	</insert>
+	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
+		delete from beauty_url
+		where 1 != 1
+		<if test="list.size() > 0">
+			or id in
+			<foreach collection="list" open="(" close=")" item="id" separator=",">
+				${id}
+			</foreach>
+		</if>
+	</delete>
+	<update id="batchMark" parameterType="java.util.List">
+		update beauty_url set is_deleted = IF(is_deleted = 0, 1, 0)
+		where 1 != 1
+		<if test="list.size() > 0">
+			or id in
+			<foreach collection="list" open="(" close=")" item="id" separator=",">
+				${id}
+			</foreach>
+		</if>
+	</update>
 </mapper>

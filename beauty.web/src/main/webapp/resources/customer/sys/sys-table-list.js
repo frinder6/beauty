@@ -3,10 +3,13 @@
  * 
  * @date 2015-08-23 22:07
  */
-var _render = function(data, type, row, meta) {
-	var result = '<a href="#" data-href="/pages/bracket/sys/sys-column-list.jsp?schema=beauty&table={0}" onclick="_S_REDIRECT(this)">{1}</a>';
-	return result.format(data, data);
+var _render_oper = function(data, type, row, meta) {
+	var result = '\
+		<span class="fa fa-copy pointer" title="配置" data-href="/pages/bracket/sys/sys-column-list.jsp?schema=beauty&table={0}" onclick="_S_REDIRECT(this)"></span>\
+	';
+	return result.format(row.tableName);
 };
+
 $(function() {
 	init();
 
@@ -16,7 +19,7 @@ $(function() {
 
 	var columnDefs = [ {
 		'targets' : 1,
-		'render' : _render
+		'render' : _render_oper
 	} ];
 
 	var table = $('#list').datatable({

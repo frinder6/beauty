@@ -9,14 +9,48 @@ public class Columns implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private String cellType;
+	private String className;
 	private String data;
+	private String defaultContent;
 	private String name;
 	private String type;
+	private String title;
 	private String width;
 	private String render;
-	private boolean orderable;
-	private boolean searchable;
-	private boolean visible;
+	private boolean orderable = true;
+	private boolean searchable = true;
+	private boolean visible = false;
+
+	/**
+	 * @return the cellType
+	 */
+	public String getCellType() {
+		return cellType;
+	}
+
+	/**
+	 * @param cellType
+	 *            the cellType to set
+	 */
+	public void setCellType(String cellType) {
+		this.cellType = cellType;
+	}
+
+	/**
+	 * @return the className
+	 */
+	public String getClassName() {
+		return className;
+	}
+
+	/**
+	 * @param className
+	 *            the className to set
+	 */
+	public void setClassName(String className) {
+		this.className = className;
+	}
 
 	/**
 	 * @return the data
@@ -31,6 +65,21 @@ public class Columns implements Serializable {
 	 */
 	public void setData(String data) {
 		this.data = data;
+	}
+
+	/**
+	 * @return the defaultContent
+	 */
+	public String getDefaultContent() {
+		return defaultContent;
+	}
+
+	/**
+	 * @param defaultContent
+	 *            the defaultContent to set
+	 */
+	public void setDefaultContent(String defaultContent) {
+		this.defaultContent = defaultContent;
 	}
 
 	/**
@@ -61,6 +110,21 @@ public class Columns implements Serializable {
 	 */
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	/**
+	 * @return the title
+	 */
+	public String getTitle() {
+		return title;
+	}
+
+	/**
+	 * @param title
+	 *            the title to set
+	 */
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	/**

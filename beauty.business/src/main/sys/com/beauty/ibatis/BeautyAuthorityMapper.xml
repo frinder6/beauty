@@ -40,12 +40,12 @@
 		<include refid="Base_Column_List" />
 		FROM beauty_authority
 		<include refid="Base_Where_Clause" />
-		ORDER BY
+		ORDER BY group_id, 
 		<if test="orderColumn">
 			${orderColumn} ${orderDir}
 		</if>
 		<if test="orderColumn == null">
-			id
+			id DESC
 		</if>
 		LIMIT #{from}, #{size}
 	</select>
@@ -116,6 +116,9 @@
 			<if test="def2 != null"> #{def2,jdbcType=VARCHAR}, </if>
 			<if test="def3 != null"> #{def3,jdbcType=TIMESTAMP}, </if>
 		</trim>
+		<selectKey resultType="java.lang.Integer" keyProperty="id">
+			CALL IDENTITY()
+		</selectKey>
 	</insert>
 	<update id="batchGroup" parameterType="com.beauty.model.Value">
 		update beauty_authority set group_id = #{data}

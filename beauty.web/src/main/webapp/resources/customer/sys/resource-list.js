@@ -6,7 +6,7 @@
 
 var _render_oper = function(data, type, row, meta) {
 	var result = '\
-		<span class="fa fa-edit pointer" data-href="/pages/bracket/sys/resource-update.jsp?id={0}" onclick="_S_REDIRECT(this)"></span>\
+		<span class="fa fa-edit pointer" title="更新" data-href="/pages/bracket/sys/resource-update.jsp?id={0}" onclick="_S_REDIRECT(this)"></span>\
 	';
 	return result.format(row.id);
 };
@@ -94,6 +94,7 @@ $(function() {
 		}, function() {
 			ajax(params, function() {
 				table.row('.selected').remove().draw(false);
+				table.rows().deselect();
 				table.ajax.reload();
 			});
 		});

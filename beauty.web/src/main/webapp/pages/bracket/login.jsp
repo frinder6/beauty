@@ -48,9 +48,15 @@
 					<form method="post" action="${basePath}/j_spring_security_check">
 						<h4 class="nomargin">登陆</h4>
 						<p class="mt5 mb20">请输入您的帐号和密码进入：</p>
-
-						<input type="text" class="form-control uname" name="j_username" placeholder="account" /> 
-						<input type="password" class="form-control pword" name="j_password" placeholder="password" /> 
+						<div class="form-group">
+							<input type="text" class="form-control uname" name="j_username" placeholder="account" />
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control pword" name="j_password" placeholder="password" />
+						</div>
+						<div class="ckbox ckbox-primary">
+							<input id="_spring_security_remember_me" name="_spring_security_remember_me" type="checkbox" value="true" /> <label for="_spring_security_remember_me">记住此用户</label>
+						</div>
 						<a href=""><small>忘记密码？</small></a>
 						<button class="btn btn-success btn-block">登陆</button>
 

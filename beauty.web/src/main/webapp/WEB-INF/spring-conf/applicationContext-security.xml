@@ -6,17 +6,22 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
 	<global-method-security jsr250-annotations="enabled" secured-annotations="enabled" />
 
+	<!-- 开启Spring Security3认证和授权日志 -->
+	<beans:bean class="org.springframework.security.authentication.event.LoggerListener" />
+	<beans:bean class="org.springframework.security.access.event.LoggerListener" />
+
+
 	<!-- 过滤掉不需要认证的资源 -->
 	<http pattern="/resources/**" security="none" />
-	<http pattern="/pages/**" security="none" />
 	<http pattern="/**/*.jpg" security="none" />
 	<http pattern="/**/*.png" security="none" />
 	<http pattern="/**/*.gif" security="none" />
 	<http pattern="/**/*.css" security="none" />
 	<http pattern="/**/*.js" security="none" />
+	<http pattern="/index.jsp" security="none" />
+	<http pattern="/pages/index.jsp" security="none" />
+	<http pattern="/pages/bracket/login.jsp" security="none" />
 	<http pattern="/**/login.action*" security="none" />
-	<!-- <http pattern="/*" security="none" /> -->
-	<!-- <http pattern="/**/*.action*" security="none" /> -->
 	<http auto-config="false" use-expressions="true" entry-point-ref="loginUrlEntryPoint">
 		<intercept-url pattern="/**" access="permitAll" />
 		<remember-me data-source-ref="dataSource" />
@@ -31,7 +36,7 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 		<!-- 自定义权限不足处理（添加ajax支持） -->
 		<access-denied-handler ref="accessDeniedHandler" />
 		<!-- session失效，防重复登陆 -->
-		<session-management invalid-session-url="/pages/errors/sessionTimeout.html" session-authentication-error-url="/pages/errors/secondLogin.html">
+		<session-management invalid-session-url="/errors/sessionTimeout.html" session-authentication-error-url="/errors/secondLogin.html">
 			<concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
 		</session-management>
 		<logout invalidate-session="true" logout-url="/j_spring_security_logout" logout-success-url="/pages/bracket/login.jsp" />
@@ -43,8 +48,8 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 		<authentication-provider ref="myAuthenticationProvider" />
 		<authentication-provider ref="rememberMeAuthenticationProvider" />
 	</authentication-manager>
-	
-	
+
+
 	<!-- 引入权限管理bean -->
 	<beans:import resource="applicationContext-security-beans.xml" />
 

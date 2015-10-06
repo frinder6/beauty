@@ -15,8 +15,8 @@
 		columnDefs : [],
 		columns : [],
 		x : true,
-		// title : '',
-		checked : true,
+		title : '',
+		// checked : true,
 		select : {
 			style : 'single'
 		},
@@ -64,9 +64,9 @@
 				orderable : false,
 				data : null,
 				defaultContent : '',
-				// title : settings.title,
+				title : settings.title,
 				className : 'select-checkbox',
-				title : (settings.checked ? '<input type="checkbox" onclick="checkbox(this)" />' : ''),
+				// title : (settings.checked ? '<input type="checkbox" onclick="checkbox(this)" />' : ''),
 				width : 10
 			});
 			settings.columnDefs.unshift({
@@ -80,7 +80,7 @@
 
 		// alert(JSON.stringify(settings.columns));
 
-		table = $(this).DataTable({
+		var table = $(this).DataTable({
 			processing : true,
 			serverSide : true,
 			// stateSave : true,
@@ -121,18 +121,3 @@
 	};
 
 })(jQuery);
-
-//
-var table;
-
-//表格全选方法
-var checkbox = function(e) {
-	var checked = $(e).attr('checked');
-	if (checked) {
-		// 全选
-		table.rows().select();
-	} else {
-		// 取消全选
-		table.rows().deselect();
-	}
-};

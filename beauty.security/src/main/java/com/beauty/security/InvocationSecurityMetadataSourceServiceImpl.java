@@ -60,10 +60,8 @@ public class InvocationSecurityMetadataSourceServiceImpl implements FilterInvoca
 	@Override
 	public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
 		logger.info("InvocationSecurityMetadataSourceServiceImpl.getAttributes() --> args : [ " + object + " ]");
-		if (authorityMap.isEmpty()) {
-			// 初始化权限
-			this.loadResources();
-		}
+		// 初始化权限
+		this.loadResources();
 		// object 是一个URL，用户请求的url。
 		String url = ((FilterInvocation) object).getRequestUrl();
 		int len = url.indexOf("\\?");

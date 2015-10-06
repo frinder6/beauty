@@ -21,6 +21,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.beauty.entity.BeautyUrl;
@@ -149,8 +150,11 @@ public class LoginFilter implements Filter {
 		if (user == null) {
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			if (null != authentication) {
-				user = (UserInfo) authentication.getPrincipal();
-				req.getSession().setAttribute("CURRENT_USER", user);
+				Object obj = authentication.getPrincipal();
+				if (obj instanceof UserDetails) {
+					user = (UserInfo) obj;
+					req.getSession().setAttribute("CURRENT_USER", user);
+				}
 			}
 		}
 	}
