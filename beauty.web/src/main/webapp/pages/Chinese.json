@@ -2,7 +2,7 @@
     "sProcessing": "处理中...",
     "sLengthMenu": "_MENU_ 条记录每页",
     "sZeroRecords": "没有匹配结果",
-    "sInfo": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+    "sInfo": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 / _TOTAL_ 条 )",
     "sInfoEmpty": "无记录",
     "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
     "sInfoPostFix": "",

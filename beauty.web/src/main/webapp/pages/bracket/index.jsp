@@ -5,7 +5,7 @@
 <jsp:include page="import-css.jsp" />
 <title>首页</title>
 </head>
-<body class="leftpanel-collapsed stickyheader">
+<body class="leftpanel-collapsed stickyheader" style="overflow: visible;">
 
 	<!-- Preloader -->
 	<div id="preloader">
@@ -20,14 +20,14 @@
 
 			<div class="logopanel">
 				<h1>
-					<span>[</span> 我的后台 <span>]</span>
+					<span>[</span> 我的后台<span>]</span>
 				</h1>
 			</div>
 			<!-- logopanel -->
 
 			<div class="leftpanelinner">
 				<h5 class="sidebartitle">导航栏</h5>
-				<my:load-main-menu />
+				<my:load-main-menu userId="${CURRENT_USER.id }" />
 			</div>
 			<!-- leftpanelinner -->
 		</div>
@@ -108,13 +108,13 @@
 						<li>
 							<div class="btn-group">
 								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-									<img src="${basePath }/resources/bracket/images/photos/loggeduser.png" alt="" /> John Doe <span class="caret"></span>
+									<img src="${basePath }/resources/bracket/images/photos/loggeduser.png" alt="" /> ${SPRING_SECURITY_CONTEXT.authentication.name} <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
 									<li><a href="profile.html"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
 									<li><a href="#"><i class="glyphicon glyphicon-cog"></i> Account Settings</a></li>
 									<li><a href="#"><i class="glyphicon glyphicon-question-sign"></i> Help</a></li>
-									<li><a href="signin.html"><i class="glyphicon glyphicon-log-out"></i> Log Out</a></li>
+									<li><a href="${basePath}/j_spring_security_logout"><i class="glyphicon glyphicon-log-out"></i> Log Out</a></li>
 								</ul>
 							</div>
 						</li>
@@ -124,6 +124,13 @@
 
 			</div>
 			<!-- headerbar -->
+
+			<div class="pageheader">
+				<h2>
+					<i class="fa fa-home"></i> 主页
+				</h2>
+			</div>
+
 
 			<div class="contentpanel" style="padding: 10px; background-color: #E4E7EA;">
 
@@ -143,6 +150,7 @@
 	<jsp:include page="import-js.jsp" />
 
 	<script type="text/javascript">
+		_NAVS = {};
 		$(function() {
 			$('#main-nav').children('li').click(function() {
 				// 二级菜单样式
@@ -150,7 +158,9 @@
 				$(this).addClass('active');
 			});
 
+			// 保存选中菜单及父菜单的信息
 			$('#main-nav').find('ul').find('li').click(function() {
+				fillNav(this);
 				var url = $(this).children('a').attr('data-href');
 				_REDIRECT(url);
 			});

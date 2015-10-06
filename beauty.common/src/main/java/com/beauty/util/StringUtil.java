@@ -21,6 +21,10 @@ import org.apache.commons.codec.digest.DigestUtils;
  */
 public class StringUtil {
 
+	public static int hashCode(String value) {
+		return Math.abs(value.hashCode());
+	}
+
 	/**
 	 * 
 	 * @Title: md5

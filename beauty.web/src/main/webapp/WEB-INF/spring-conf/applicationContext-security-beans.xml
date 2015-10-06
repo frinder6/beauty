@@ -6,7 +6,7 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
 	<!-- Spring Security 认证切入点 -->
 	<bean id="loginUrlEntryPoint" class="com.beauty.security.AjaxLoginUrlAuthenticationEntryPoint">
-		<property name="loginFormUrl" value="/common/forward/login.action"></property>
+		<property name="loginFormUrl" value="/pages/bracket/login.jsp"></property>
 	</bean>
 
 	<!-- 用户的密码加密或解密 -->
@@ -48,11 +48,11 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 		<property name="accessDeniedHandler" ref="accessDeniedHandler" />
 	</bean>
 	<bean id="authenticationEntryPoint" class="com.beauty.security.AjaxLoginUrlAuthenticationEntryPoint">
-		<property name="loginFormUrl" value="/pages/errors/accessDenied.html" />
+		<property name="loginFormUrl" value="/errors/accessDenied.html" />
 	</bean>
-	<!-- <bean id="accessDeniedHandler" class="org.springframework.security.web.access.AccessDeniedHandlerImpl"> <property name="errorPage" value="/pages/errors/accessDenied.html" /> </bean> -->
+	<!-- <bean id="accessDeniedHandler" class="org.springframework.security.web.access.AccessDeniedHandlerImpl"> <property name="errorPage" value="/errors/accessDenied.html" /> </bean> -->
 	<bean id="accessDeniedHandler" class="com.beauty.security.AjaxAccessDeniedHandlerImpl">
-		<property name="errorPage" value="/pages/errors/accessDenied.html" />
+		<property name="errorPage" value="/errors/accessDenied.html" />
 	</bean>
 	<!-- 认证异常处理 -->
 
@@ -77,12 +77,12 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 	<!-- 登陆成功 -->
 	<bean id="loginLogAuthenticationSuccessHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
 		<property name="alwaysUseDefaultTargetUrl" value="true" />
-		<property name="defaultTargetUrl" value="/common/forward/index.action" />
+		<property name="defaultTargetUrl" value="/redirect/redirect/pages.bracket.index/jsp.action" />
 		<property name="targetUrlParameter" value="redirectTo" />
 	</bean>
 	<!-- 登陆失败 -->
 	<bean id="simpleUrlAuthenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
-		<property name="defaultFailureUrl" value="/common/forward/login.action" />
+		<property name="defaultFailureUrl" value="/pages/bracket/login.jsp" />
 	</bean>
 	<!-- form-login实现，登陆成功、失败的具体处理逻辑 -->
 

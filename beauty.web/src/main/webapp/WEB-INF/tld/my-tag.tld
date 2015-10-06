@@ -9,6 +9,13 @@
 		<description>加载主菜单</description>
 		<tag-class>com.beauty.tag.LoadMainMenuTag</tag-class>
 		<body-content>empty</body-content>
+		<attribute>
+			<name>userId</name>
+			<required>true</required>
+			<type>java.lang.Long</type>
+			<description>登陆用户id</description>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 	<tag>
 		<name>load-level-menu</name>

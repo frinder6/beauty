@@ -45,5 +45,8 @@
 <script src="${basePath }/resources/customer/beauty-sys.js"></script>
 
 <script type="text/javascript">
-	var _BASE = '${basePath}';
+	_BASE = '${basePath}';
+	layer.config({
+		extend : _BASE + '/resources/layer/extend/layer.ext.js'
+	})
 </script>

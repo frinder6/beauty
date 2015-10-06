@@ -16,6 +16,7 @@
 		columns : [],
 		x : true,
 		// title : '',
+		checked : true,
 		select : {
 			style : 'single'
 		},
@@ -53,7 +54,7 @@
 		});
 
 		// alert(JSON.stringify(settings.columns));
-		
+
 		if (stop)
 			return;
 
@@ -63,9 +64,9 @@
 				orderable : false,
 				data : null,
 				defaultContent : '',
-				title : settings.title,
+				// title : settings.title,
 				className : 'select-checkbox',
-				// title : '<input type="checkbox" onclick="checkbox(this)" />',
+				title : (settings.checked ? '<input type="checkbox" onclick="checkbox(this)" />' : ''),
 				width : 10
 			});
 			settings.columnDefs.unshift({
@@ -79,12 +80,12 @@
 
 		// alert(JSON.stringify(settings.columns));
 
-		var table = $(this).DataTable({
+		table = $(this).DataTable({
 			processing : true,
 			serverSide : true,
-			stateSave : true,
+			// stateSave : true,
 			scrollX : settings.x,
-			// scrollY : 500,
+			// scrollY : '50vh',
 			select : settings.select,
 			// fixedColumns : true,
 			ajax : {
@@ -94,7 +95,7 @@
 			pagingType : settings.pagingType,
 			columns : settings.columns,
 			columnDefs : settings.columnDefs,
-			order : [ [ 1, 'desc' ] ],
+			order : [ [ 2, 'desc' ] ],
 			// dom :
 			// "<'row'<'#my-tool.col-xs-6'><'col-xs-6'f>r>t<'row'<'col-xs-3'l><'col-xs-3'i><'col-xs-6'p>>",
 			dom : settings.dom,
@@ -108,8 +109,30 @@
 			fnRowCallback : settings.fnRowCallback
 		});
 
+		table.on('length.dt', function() {
+		});
+
+		table.on('draw', function() {
+			resetHeight();
+		});
+
 		return table;
 
 	};
 
 })(jQuery);
+
+//
+var table;
+
+//表格全选方法
+var checkbox = function(e) {
+	var checked = $(e).attr('checked');
+	if (checked) {
+		// 全选
+		table.rows().select();
+	} else {
+		// 取消全选
+		table.rows().deselect();
+	}
+};

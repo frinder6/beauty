@@ -32,6 +32,8 @@ public class LoadMainMenuTag extends RequestContextAwareTag {
 
 	private MenuService menuService;
 
+	private Long userId;
+
 	/**
 	 * @Fields serialVersionUID
 	 */
@@ -65,6 +67,7 @@ public class LoadMainMenuTag extends RequestContextAwareTag {
 		// 查询一级菜单
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("parentId", 0);
+		params.put("userId", userId);
 		List<?> menus = this.menuService.selectMainMenu(params);
 		BeautyMenu menu = null;
 		// 主菜单lis
@@ -108,6 +111,7 @@ public class LoadMainMenuTag extends RequestContextAwareTag {
 		// 查询一级菜单
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("parentId", pMenu.getId());
+		params.put("userId", userId);
 		List<?> menus = this.menuService.selectMainMenu(params);
 		if (menus.isEmpty()) {
 			return "";
@@ -121,6 +125,21 @@ public class LoadMainMenuTag extends RequestContextAwareTag {
 		}
 		String ul2Str = String.format(_UL_2, lisStr);
 		return ul2Str;
+	}
+
+	/**
+	 * @return the userId
+	 */
+	public Long getUserId() {
+		return userId;
+	}
+
+	/**
+	 * @param userId
+	 *            the userId to set
+	 */
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 }

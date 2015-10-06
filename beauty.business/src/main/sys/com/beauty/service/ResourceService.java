@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.beauty.entity.BeautyResource;
 import com.beauty.interfaces.ResourceDao;
+import com.beauty.model.Value;
 
 @Service
 public class ResourceService extends BaseService<BeautyResource> implements IMapperService<BeautyResource> {
@@ -49,4 +50,7 @@ public class ResourceService extends BaseService<BeautyResource> implements IMap
 		this.resourceDao.insertSelective(entity);
 	}
 
+	public void batchGroup(Value value) {
+		this.resourceDao.batchGroup(value);
+	}
 }

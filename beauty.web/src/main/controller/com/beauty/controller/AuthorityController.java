@@ -41,6 +41,14 @@ public class AuthorityController {
 		return page;
 	}
 
+	@RequestMapping(value = "/group", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Value group(Value value) {
+		value.setData(StringUtil.hashCode(value.getValue()));
+		this.authorityService.batchGroup(value);
+		return new Value(CodeUtil.SUCCESS);
+	}
+
 	@RequestMapping(value = "/add", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public Value persist(BeautyAuthority entity) {

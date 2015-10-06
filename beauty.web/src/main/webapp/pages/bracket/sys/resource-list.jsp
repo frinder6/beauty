@@ -4,8 +4,8 @@
 <jsp:include page="../import-css.jsp" />
 <style type="text/css">
 .modal .dataTables_wrapper {
-	min-width: 800px;
-	max-width: 800px;
+	min-width: 760px;
+	max-width: 760px;
 	margin: 0 auto;
 }
 </style>
@@ -23,17 +23,24 @@
 
 	</div>
 	<!-- table-responsive -->
-	<a id="export" class="btn btn-default fa fa-copy hide" data-toggle="modal" data-target=".bs-url-modal">&nbsp;导入</a>
 	<div class="modal fade bs-url-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
+			<div class="modal-content" style="width: 800px;">
 				<div class="modal-body">
 					<table id="m-list" class="table table-bordered nowrap" width="100%">
 					</table>
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> 
+	<!-- 
+	<div class="modal fade bs-url-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 800px;padding: 5px 0;">
+			<div class="modal-content"></div>
+		</div>
+	</div> 
+	-->
+
 
 
 </body>

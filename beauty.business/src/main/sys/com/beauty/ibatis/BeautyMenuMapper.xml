@@ -64,7 +64,6 @@
 		FROM beauty_menu
 		<include refid="Base_Where_Clause" />
 	</select>
-
 	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
 		delete from beauty_menu
 		where 1 != 1
@@ -75,19 +74,6 @@
 			</foreach>
 		</if>
 	</delete>
-
-	<select id="selectMenuSelect" parameterType="java.util.HashMap" resultMap="SelectResultMap">
-		SELECT id, name FROM beauty_menu
-		<include refid="Base_Where_Clause" />
-	</select>
-
-	<select id="selectMainMenu" parameterType="java.util.HashMap" resultMap="BaseResultMap">
-		SELECT
-		<include refid="Base_Column_List" />
-		FROM beauty_menu
-		WHERE parent_id = #{parentId}
-	</select>
-
 	<insert id="insertSelective" parameterType="com.beauty.entity.BeautyMenu">
 		insert into beauty_menu
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -146,5 +132,32 @@
 		</set>
 		where id = #{id,jdbcType=BIGINT}
 	</update>
+
+
+	<select id="selectMenuSelect" parameterType="java.util.HashMap" resultMap="SelectResultMap">
+		SELECT id, name FROM beauty_menu
+		<include refid="Base_Where_Clause" />
+	</select>
+
+	<!-- <select id="selectMainMenu" parameterType="java.util.HashMap" resultMap="BaseResultMap"> SELECT <include refid="Base_Column_List" /> FROM beauty_menu WHERE parent_id = #{parentId} </select> -->
+
+	<select id="selectMainMenu" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT DISTINCT
+		m.id, m.code, m.name, m.url, m.parent_id, m.remark, m.create_time, m.def1, m.def2
+		FROM
+		beauty_menu m
+		LEFT JOIN beauty_authority_resource ar ON m.id = ar.resource_id AND type = 1
+		LEFT JOIN beauty_authority a ON a.id = ar.authority_id
+		LEFT JOIN beauty_role_authority ra ON ra.authority_id = a.id
+		LEFT JOIN beauty_role r ON r.id = ra.role_id
+		LEFT JOIN beauty_user_role ur ON ur.role_id = r.id
+		LEFT JOIN beauty_user u ON u.id = ur.user_id
+		WHERE
+		m.parent_id = #{parentId}
+		AND u.id = #{userId}
+		ORDER BY
+		m.id
+	</select>
+
 
 </mapper>

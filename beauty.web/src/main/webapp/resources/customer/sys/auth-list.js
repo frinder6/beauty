@@ -23,12 +23,13 @@ $(function() {
 	var tools = '<div class="btn-group">\
 		<a data-href="/pages/bracket/sys/auth-add.jsp" class="btn btn-default fa fa-plus-square-o" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
 		<a class="btn btn-default fa fa-minus-square-o" onclick="del()">&nbsp;删除</a>\
+		<a class="btn btn-default fa fa-group" onclick="group()">&nbsp;分组</a>\
     </div>';
 
 	var table = $('#list').datatable({
 		tableName : 'BEAUTY_AUTHORITY',
 		url : '/auth/load/page.action',
-		title : '<input type="checkbox" onclick="checkbox(this)" />',
+		// title : '<input type="checkbox" onclick="checkbox(this)" />',
 		tools : tools,
 		selected : true,
 		select : {
@@ -91,6 +92,36 @@ $(function() {
 				table.row('.selected').remove().draw(false);
 				table.ajax.reload();
 			});
+		});
+	};
+
+	// 
+	group = function() {
+		var items = table.rows({
+			selected : true
+		}).data();
+		if (items.length == 0) {
+			layer.msg('至少选择一条！');
+			return;
+		}
+		var ids = $.map(items, function(item, i) {
+			return item.id;
+		});
+		var params = {
+			data : {
+				values : ids.join(',')
+			},
+			url : '/auth/group.action'
+		};
+		layer.prompt({
+			title : '请输入分组组名：',
+			formType : 3,
+			offset : '100px'
+		}, function(text) {
+			params.data.value = text;
+			ajax(params);
+			table.rows().deselect();
+			table.ajax.reload();
 		});
 	};
 

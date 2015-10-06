@@ -4,9 +4,11 @@
  * @date 2015-08-23 22:07
  */
 
-var _render = function(data, type, row, meta) {
-	var result = '<a href="#" data-href="/pages/bracket/sys/resource-update.jsp?id={0}" onclick="_S_REDIRECT(this)">{1}</a>';
-	return result.format(row.id, data);
+var _render_oper = function(data, type, row, meta) {
+	var result = '\
+		<span class="fa fa-edit pointer" data-href="/pages/bracket/sys/resource-update.jsp?id={0}" onclick="_S_REDIRECT(this)"></span>\
+	';
+	return result.format(row.id);
 };
 
 $(function() {
@@ -16,6 +18,7 @@ $(function() {
 		<a data-href="/pages/bracket/sys/resource-add.jsp" class="btn btn-default fa fa-plus-square-o" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
 		<a class="btn btn-default fa fa-minus-square-o" onclick="del()">&nbsp;删除</a>\
 		<a class="btn btn-default fa fa-copy" data-toggle="modal" data-target=".bs-url-modal">&nbsp;导入</a>\
+		<a class="btn btn-default fa fa-group" onclick="group()">&nbsp;分组</a>\
     </div>';
 
 	var mtools = '<div class="btn-group">\
@@ -23,10 +26,9 @@ $(function() {
     </div>';
 
 	var columnDefs = [ {
-		'targets' : 2,
-		'render' : _render
+		'targets' : 1,
+		'render' : _render_oper
 	} ];
-
 
 	var table = $('#list').datatable({
 		tableName : 'BEAUTY_RESOURCE',
@@ -115,7 +117,7 @@ $(function() {
 			url : '/resource/config.action'
 		};
 		ajax(params, function() {
-			mtable.row('.selected').remove().draw(false);
+			mtable.row('.selected').remove().draw(true);
 			mtable.ajax.reload();
 			table.ajax.reload();
 		});
@@ -132,6 +134,36 @@ $(function() {
 			// 取消全选
 			mtable.rows().deselect();
 		}
+	};
+
+	// 
+	group = function() {
+		var items = table.rows({
+			selected : true
+		}).data();
+		if (items.length == 0) {
+			layer.msg('至少选择一条！');
+			return;
+		}
+		var ids = $.map(items, function(item, i) {
+			return item.id;
+		});
+		var params = {
+			data : {
+				values : ids.join(',')
+			},
+			url : '/resource/group.action'
+		};
+		layer.prompt({
+			title : '请输入分组组名：',
+			formType : 3,
+			offset : '100px'
+		}, function(text) {
+			params.data.value = text;
+			ajax(params);
+			table.rows().deselect();
+			table.ajax.reload();
+		});
 	};
 
 });

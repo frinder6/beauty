@@ -3,13 +3,17 @@
  * 
  * @date 2015-08-23 22:07
  */
-var _render = function(data, type, row, meta) {
-	var result = '<a href="#" data-href="/pages/bracket/sys/menu-update.jsp?id={0}" onclick="_S_REDIRECT(this)">{1}</a>';
+
+var _render_oper = function(data, type, row, meta) {
 	if (row.id == 0) {
-		return data;
+		return '--';
 	}
-	return result.format(row.id, data);
+	var result = '\
+		<span class="fa fa-edit pointer" data-href="/pages/bracket/sys/menu-update.jsp?id={0}" onclick="_S_REDIRECT(this)"></span>\
+	';
+	return result.format(row.id);
 };
+
 
 $(function() {
 	init();
@@ -21,7 +25,7 @@ $(function() {
 
 	var columnDefs = [ {
 		'targets' : 1,
-		'render' : _render
+		'render' : _render_oper
 	} ];
 
 	var table = $('#list').datatable({
@@ -29,7 +33,7 @@ $(function() {
 		url : '/menu/load/page.action',
 		tools : tools,
 		selected : true,
-		title : '<input type="checkbox" onclick="checkbox(this)" />',
+		// title : '<input type="checkbox" onclick="checkbox(this)" />',
 		columnDefs : columnDefs,
 		select : {
 			style : 'multi'
@@ -37,7 +41,7 @@ $(function() {
 	});
 
 	// 表格全选方法
-	checkbox = function(e) {
+	checkbox1 = function(e) {
 		var checked = $(e).attr('checked');
 		if (checked) {
 			// 全选

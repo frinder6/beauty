@@ -19,7 +19,7 @@
 		<result column="def3" property="def3" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, code, name, url, remark
+		id, code, name, url, remark, group_id
 	</sql>
 	<sql id="Base_Where_Clause">
 		<where>
@@ -40,7 +40,7 @@
 		<include refid="Base_Column_List" />
 		FROM beauty_resource
 		<include refid="Base_Where_Clause" />
-		ORDER BY
+		ORDER BY group_id DESC,
 		<if test="orderColumn">
 			${orderColumn} ${orderDir}
 		</if>
@@ -120,5 +120,16 @@
 			</foreach>
 		</if>
 	</delete>
+
+	<update id="batchGroup" parameterType="com.beauty.model.Value">
+		update beauty_resource set group_id = #{data}
+		where 1 != 1
+		<if test="values.size() > 0">
+			or id in
+			<foreach collection="values" open="(" close=")" item="id" separator=",">
+				${id}
+			</foreach>
+		</if>
+	</update>
 
 </mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.beauty.interfaces.SecurityDao">
+
+	<!-- 登陆 -->
+	<select id="queryByUsername" parameterType="java.lang.String" resultMap="com.beauty.interfaces.UserDao.BaseResultMap">
+		select
+		<include refid="com.beauty.interfaces.UserDao.Base_Column_List" />
+		from beauty_user
+		where account = #{account}
+	</select>
+
+	<!-- 查询用户的权限 -->
+	<select id="selectUserAuths" parameterType="java.lang.Long" resultType="java.util.HashMap">
+		SELECT
+		a.`code`
+		FROM
+		beauty_authority a
+		LEFT JOIN beauty_role_authority ra ON ra.authority_id = a.id
+		LEFT JOIN beauty_role r ON r.id = ra.role_id
+		LEFT JOIN beauty_user_role ur ON ur.role_id = r.id
+		LEFT JOIN beauty_user u ON u.id = ur.user_id
+		WHERE
+		u.id = #{userId}
+		ORDER BY
+		a.id
+	</select>
+
+	<!-- 查询所有资源（已配置权限） -->
+	<select id="selectResourcess" resultType="java.util.HashMap">
+		SELECT
+		r.url, a.`code`
+		FROM
+		beauty_resource r
+		LEFT JOIN beauty_authority_resource ar ON r.id = ar.resource_id AND type = 2
+		LEFT JOIN beauty_authority a ON a.id = ar.authority_id
+		WHERE a.`code` != ''
+		ORDER BY
+		r.id
+	</select>
+
+
+</mapper>

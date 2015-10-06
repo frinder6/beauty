@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.beauty.entity.BeautyAuthority;
 import com.beauty.interfaces.AuthorityDao;
+import com.beauty.model.Value;
 
 @Service
 public class AuthorityService extends BaseService<BeautyAuthority> implements IMapperService<BeautyAuthority> {
@@ -50,5 +51,9 @@ public class AuthorityService extends BaseService<BeautyAuthority> implements IM
 	public void insertSelective(BeautyAuthority entity) {
 		// TODO Auto-generated method stub
 		this.authorityDao.insertSelective(entity);
+	}
+	
+	public void batchGroup(Value value){
+		this.authorityDao.batchGroup(value);
 	}
 }

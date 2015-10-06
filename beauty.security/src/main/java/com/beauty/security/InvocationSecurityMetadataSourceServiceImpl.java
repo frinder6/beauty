@@ -8,14 +8,13 @@
  */
 package com.beauty.security;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
+import javax.annotation.Resource;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.security.access.ConfigAttribute;
@@ -23,8 +22,8 @@ import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.stereotype.Component;
-
 import com.alibaba.fastjson.JSON;
+import com.beauty.service.SecurityService;
 
 /**
  * @ClassName: InvocationSecurityMetadataSourceServiceImpl
@@ -38,8 +37,8 @@ public class InvocationSecurityMetadataSourceServiceImpl implements FilterInvoca
 
 	private final Logger logger = LogManager.getLogger(getClass());
 
-	// @Resource(name = "securityService")
-	// private ISecurityService securityService;
+	@Resource
+	private SecurityService securityService;
 
 	// 保存权限
 	private static Map<String, Collection<ConfigAttribute>> authorityMap = new ConcurrentHashMap<String, Collection<ConfigAttribute>>();
@@ -114,15 +113,14 @@ public class InvocationSecurityMetadataSourceServiceImpl implements FilterInvoca
 	 */
 	@SuppressWarnings("unchecked")
 	private void loadResources() {
-		// List<?> resources = this.securityService.queryAllResources("load_resources");
+		List<?> resources = this.securityService.selectResourcess();
 		// 临时变量
-		List<?> resources = new ArrayList<String>();
 		Map<String, String> map;
 		String resourceValue, authorityCode;
 		for (Object obj : resources) {
 			map = (Map<String, String>) obj;
-			resourceValue = map.get("resource_value");
-			authorityCode = map.get("authority_code");
+			resourceValue = map.get("url");
+			authorityCode = map.get("code");
 			if (authorityMap.containsKey(resourceValue)) {
 				authorityMap.get(resourceValue).add(new SecurityConfig(authorityCode));
 			} else {

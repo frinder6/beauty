@@ -18,10 +18,13 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.beauty.entity.BeautyUrl;
+import com.beauty.security.UserInfo;
 import com.beauty.service.UrlService;
 import com.beauty.util.StringUtil;
 
@@ -66,6 +69,7 @@ public class LoginFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
+		setLoginUser(req);
 		// 项目根路径
 		String base = StringUtil.getRequestPrefix(req);
 		int len = base.length();
@@ -137,6 +141,18 @@ public class LoginFilter implements Filter {
 			}
 		}
 		return false;
+	}
+
+	//
+	protected void setLoginUser(HttpServletRequest req) {
+		UserInfo user = (UserInfo) req.getSession().getAttribute("CURRENT_USER");
+		if (user == null) {
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			if (null != authentication) {
+				user = (UserInfo) authentication.getPrincipal();
+				req.getSession().setAttribute("CURRENT_USER", user);
+			}
+		}
 	}
 
 }

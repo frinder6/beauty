@@ -117,4 +117,14 @@
 			<if test="def3 != null"> #{def3,jdbcType=TIMESTAMP}, </if>
 		</trim>
 	</insert>
+	<update id="batchGroup" parameterType="com.beauty.model.Value">
+		update beauty_authority set group_id = #{data}
+		where 1 != 1
+		<if test="values.size() > 0">
+			or id in
+			<foreach collection="values" open="(" close=")" item="id" separator=",">
+				${id}
+			</foreach>
+		</if>
+	</update>
 </mapper>

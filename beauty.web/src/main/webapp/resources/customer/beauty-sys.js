@@ -1,5 +1,5 @@
 /**
- * format方法
+ * util & format方法
  */
 String.prototype.format = function() {
 	var s = this, i = arguments.length;
@@ -9,6 +9,73 @@ String.prototype.format = function() {
 	}
 	return s;
 };
+
+/**
+ * ********************* init ***********************
+ */
+
+var init = function() {
+	resetHeight();
+	// 
+	exchangeNav();
+};
+
+//
+var resetHeight = function() {
+	var defHeight = 1050;
+	var otherHeight = 122;
+	var height = defHeight - otherHeight;
+	var sheight = $('.table-responsive').height();
+	var frame = $(window.parent.document).find("#iframe-main");
+	var panel = $(window.parent.document).find('.contentpanel');
+	var result = height;
+	if (height < sheight) {
+		result = sheight;
+	}
+	frame.height(result);
+	panel.height(result);
+};
+
+// fill nav
+var fillNav = function(e) {
+	_NAVS.stitle = $(e).children('a').text();
+	var panode = $(e).parent('ul').parent('li').children('a');
+	_NAVS.title = panode.find('span').text();
+	_NAVS.icon = panode.find('i').attr('class');
+}
+
+// reset nav
+var exchangeNav = function() {
+	var nav = '\
+		<h2>\
+			<i class="{0}"></i> {1} <span>{2}</span>\
+		</h2>\
+	';
+	var data = parent._NAVS;
+	$(window.parent.document).find('.pageheader').html(nav.format(data.icon, data.title, data.stitle));
+};
+
+/**
+ * ********************* init ***********************
+ */
+
+/**
+ * 
+ * 
+ * 
+ * 
+ * 华丽的分割
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+
+/**
+ * ********************* path & redirect ***********************
+ */
 
 /**
  * 添加根路径
@@ -39,30 +106,31 @@ var _S_URL_REDIRECT = function(url) {
 	$(window.parent.document).find("#iframe-main").attr('src', _PATH(url));
 };
 
-// 设置高
-var init = function() {
+/**
+ * ********************* path & redirect ***********************
+ */
 
-	// 滚动条
-	$(window.parent.document).scroll(function() {
-		var height = $('.table-responsive').height();
-		var mHeight = $(window.parent.document).find('.mainpanel').height() + 100;
-		if (height > mHeight) {
-			$(window.parent.document).find('#iframe-main').height(height);
-			$(window.parent.document).find('.contentpanel').height(height);
-		} else {
-			$(window.parent.document).find('#iframe-main').height(mHeight);
-			$(window.parent.document).find('.contentpanel').height(mHeight);
-		}
-	});
+/**
+ * 
+ * 
+ * 
+ * 
+ * 华丽的分割
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 
-	$(window.parent.document).find("#iframe-main").load(function() {
-		var frame = $(window.parent.document).find("#iframe-main");
-		var height = $(window.parent.document).find('.mainpanel').height();
-		frame.height(height);
-	});
-};
+/**
+ * ********************* ajax & form * x-eidtor ***********************
+ */
 
-// 
+/**
+ * ajax
+ */
 var ajax = function(params, fn) {
 	$.ajax({
 		"type" : "post",
@@ -82,7 +150,9 @@ var ajax = function(params, fn) {
 	});
 };
 
-// 列表修改绑定
+/**
+ * x-editor 列表修改绑定
+ */
 var binding = function(arrs, nRow, aData) {
 	$.each(arrs, function(key, value) {
 		$(key, nRow).editable({
@@ -107,7 +177,7 @@ var binding = function(arrs, nRow, aData) {
 };
 
 /**
- * 验证提交
+ * form 验证提交
  */
 var mySub = function(fn) {
 	// 验证表单
@@ -136,7 +206,8 @@ var mySub = function(fn) {
 };
 
 /**
- * 更新加载方法 url : findById方法url id : 目标对象id sid : select控件 #id sUrl : select控件 url
+ * form 更新加载方法 url : findById方法url id : 目标对象id sid : select控件 #id sUrl :
+ * select控件 url
  */
 var updateInit = function(opts) {
 	$.ajax({
@@ -157,3 +228,8 @@ var updateInit = function(opts) {
 		}
 	});
 };
+
+/**
+ * ********************* ajax & form * x-eidtor ***********************
+ */
+
