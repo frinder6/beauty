@@ -19,6 +19,5 @@
 	<jsp:include page="../import-js.jsp" />
 	<script type="text/javascript" src="${basePath }/resources/customer/sys/menu-list.js"></script>
 
-
 </body>
 </html>

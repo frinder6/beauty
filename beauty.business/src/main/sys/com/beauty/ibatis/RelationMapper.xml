@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.beauty.interfaces.RelationDao" >
+  <resultMap id="BaseResultMap" type="com.beauty.entity.Relation" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="grid_name" property="gridName" jdbcType="VARCHAR" />
+    <result column="column_id" property="columnId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, grid_name, column_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from beauty_table_columns_relation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from beauty_table_columns_relation
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.beauty.entity.Relation" >
+    insert into beauty_table_columns_relation (id, grid_name, column_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{gridName,jdbcType=VARCHAR}, #{columnId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.beauty.entity.Relation" >
+    insert into beauty_table_columns_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gridName != null" >
+        grid_name,
+      </if>
+      <if test="columnId != null" >
+        column_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gridName != null" >
+        #{gridName,jdbcType=VARCHAR},
+      </if>
+      <if test="columnId != null" >
+        #{columnId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.beauty.entity.Relation" >
+    update beauty_table_columns_relation
+    <set >
+      <if test="gridName != null" >
+        grid_name = #{gridName,jdbcType=VARCHAR},
+      </if>
+      <if test="columnId != null" >
+        column_id = #{columnId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.beauty.entity.Relation" >
+    update beauty_table_columns_relation
+    set grid_name = #{gridName,jdbcType=VARCHAR},
+      column_id = #{columnId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -30,6 +30,7 @@
 	};
 
 	$.fn.datatable = function(options) {
+		var $this = this;
 		var settings = $.extend({}, defaults, options);
 		var columnUrl = _PATH('/table/load/table/config.action');
 		var stop = false;
@@ -80,7 +81,7 @@
 
 		// alert(JSON.stringify(settings.columns));
 
-		var table = $(this).DataTable({
+		var table = $this.DataTable({
 			processing : true,
 			serverSide : true,
 			// stateSave : true,
@@ -104,6 +105,8 @@
 			},
 			initComplete : function() {
 				$(settings.toolid).append(settings.tools);
+				//
+			//	_REMOVE_NO_RIGHT_OPERS();
 			},
 			buttons : settings.buttons,
 			fnRowCallback : settings.fnRowCallback

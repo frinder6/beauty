@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.beauty.interfaces.ColumnsDao">
+	<resultMap id="BaseResultMap" type="com.beauty.entity.Columns">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="cell_type" property="cellType" jdbcType="VARCHAR" />
+		<result column="class_name" property="className" jdbcType="VARCHAR" />
+		<result column="data" property="data" jdbcType="VARCHAR" />
+		<result column="column_name" property="columnName" jdbcType="VARCHAR" />
+		<result column="default_content" property="defaultContent" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="width" property="width" jdbcType="INTEGER" />
+		<result column="render" property="render" jdbcType="VARCHAR" />
+		<result column="orderable" property="orderable" jdbcType="TINYINT" />
+		<result column="searchable" property="searchable" jdbcType="TINYINT" />
+		<result column="visible" property="visible" jdbcType="TINYINT" />
+		<result column="targets" property="targets" jdbcType="VARCHAR" />
+		<result column="sequence" property="sequence" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="creater" property="creater" jdbcType="VARCHAR" />
+		<result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+		<result column="modifier" property="modifier" jdbcType="VARCHAR" />
+		<result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
+		<result column="def1" property="def1" jdbcType="VARCHAR" />
+		<result column="def2" property="def2" jdbcType="VARCHAR" />
+		<result column="def3" property="def3" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, cell_type, class_name, data, column_name, default_content, name, type, title,
+		width, render, orderable, searchable, visible, targets, sequence, create_time, creater,
+		last_update_time, modifier, is_deleted, def1, def2, def3
+	</sql>
+	<sql id="Base_Where_Clause">
+		<where>
+			1 = 1
+			<if test="searchValue">
+				AND ( class_name LIKE "%" #{searchValue} "%" OR data LIKE "%" #{searchValue} "%"
+				OR column_name LIKE "%" #{searchValue} "%" OR title LIKE "%" #{searchValue} "%")
+			</if>
+		</where>
+	</sql>
+	<sql id="Base_MAIN_Column_List">
+		class_name, data, column_name, default_content, type, title,
+		width, render, orderable, searchable, visible, targets, sequence
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from beauty_conf_columns
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<select id="selectByGridName" resultMap="BaseResultMap" parameterType="java.lang.String">
+		SELECT c.id, 
+		<include refid="Base_MAIN_Column_List" />
+		FROM
+		beauty_conf_columns c
+		LEFT JOIN beauty_table_columns_relation r ON c.id = r.column_id
+		WHERE
+		r.grid_name = #{gridName}
+	</select>
+	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM beauty_conf_columns
+		<include refid="Base_Where_Clause" />
+		ORDER BY
+		<if test="orderColumn">
+			${orderColumn} ${orderDir}
+		</if>
+		<if test="orderColumn == null">
+			id DESC
+		</if>
+		LIMIT #{from}, #{size}
+	</select>
+	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT
+		COUNT(1)
+		FROM beauty_conf_columns
+		<include refid="Base_Where_Clause" />
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from beauty_conf_columns
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insertSelective" parameterType="com.beauty.entity.Columns">
+		insert into beauty_conf_columns
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="cellType != null">
+				cell_type,
+			</if>
+			<if test="className != null">
+				class_name,
+			</if>
+			<if test="data != null">
+				data,
+			</if>
+			<if test="columnName != null">
+				column_name,
+			</if>
+			<if test="defaultContent != null">
+				default_content,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="width != null">
+				width,
+			</if>
+			<if test="render != null">
+				render,
+			</if>
+			<if test="orderable != null">
+				orderable,
+			</if>
+			<if test="searchable != null">
+				searchable,
+			</if>
+			<if test="visible != null">
+				visible,
+			</if>
+			<if test="targets != null">
+				targets,
+			</if>
+			<if test="sequence != null">
+				sequence,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="creater != null">
+				creater,
+			</if>
+			<if test="lastUpdateTime != null">
+				last_update_time,
+			</if>
+			<if test="modifier != null">
+				modifier,
+			</if>
+			<if test="isDeleted != null">
+				is_deleted,
+			</if>
+			<if test="def1 != null">
+				def1,
+			</if>
+			<if test="def2 != null">
+				def2,
+			</if>
+			<if test="def3 != null">
+				def3,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="cellType != null">
+				#{cellType,jdbcType=VARCHAR},
+			</if>
+			<if test="className != null">
+				#{className,jdbcType=VARCHAR},
+			</if>
+			<if test="data != null">
+				#{data,jdbcType=VARCHAR},
+			</if>
+			<if test="columnName != null">
+				#{columnName,jdbcType=VARCHAR},
+			</if>
+			<if test="defaultContent != null">
+				#{defaultContent,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="width != null">
+				#{width,jdbcType=INTEGER},
+			</if>
+			<if test="render != null">
+				#{render,jdbcType=VARCHAR},
+			</if>
+			<if test="orderable != null">
+				#{orderable,jdbcType=TINYINT},
+			</if>
+			<if test="searchable != null">
+				#{searchable,jdbcType=TINYINT},
+			</if>
+			<if test="visible != null">
+				#{visible,jdbcType=TINYINT},
+			</if>
+			<if test="targets != null">
+				#{targets,jdbcType=VARCHAR},
+			</if>
+			<if test="sequence != null">
+				#{sequence,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creater != null">
+				#{creater,jdbcType=VARCHAR},
+			</if>
+			<if test="lastUpdateTime != null">
+				#{lastUpdateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				#{modifier,jdbcType=VARCHAR},
+			</if>
+			<if test="isDeleted != null">
+				#{isDeleted,jdbcType=TINYINT},
+			</if>
+			<if test="def1 != null">
+				#{def1,jdbcType=VARCHAR},
+			</if>
+			<if test="def2 != null">
+				#{def2,jdbcType=VARCHAR},
+			</if>
+			<if test="def3 != null">
+				#{def3,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.beauty.entity.Columns">
+		update beauty_conf_columns
+		<set>
+			<if test="cellType != null">
+				cell_type = #{cellType,jdbcType=VARCHAR},
+			</if>
+			<if test="className != null">
+				class_name = #{className,jdbcType=VARCHAR},
+			</if>
+			<if test="data != null">
+				data = #{data,jdbcType=VARCHAR},
+			</if>
+			<if test="columnName != null">
+				column_name = #{columnName,jdbcType=VARCHAR},
+			</if>
+			<if test="defaultContent != null">
+				default_content = #{defaultContent,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="width != null">
+				width = #{width,jdbcType=INTEGER},
+			</if>
+			<if test="render != null">
+				render = #{render,jdbcType=VARCHAR},
+			</if>
+			<if test="orderable != null">
+				orderable = #{orderable,jdbcType=TINYINT},
+			</if>
+			<if test="searchable != null">
+				searchable = #{searchable,jdbcType=TINYINT},
+			</if>
+			<if test="visible != null">
+				visible = #{visible,jdbcType=TINYINT},
+			</if>
+			<if test="targets != null">
+				targets = #{targets,jdbcType=VARCHAR},
+			</if>
+			<if test="sequence != null">
+				sequence = #{sequence,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creater != null">
+				creater = #{creater,jdbcType=VARCHAR},
+			</if>
+			<if test="lastUpdateTime != null">
+				last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				modifier = #{modifier,jdbcType=VARCHAR},
+			</if>
+			<if test="isDeleted != null">
+				is_deleted = #{isDeleted,jdbcType=TINYINT},
+			</if>
+			<if test="def1 != null">
+				def1 = #{def1,jdbcType=VARCHAR},
+			</if>
+			<if test="def2 != null">
+				def2 = #{def2,jdbcType=VARCHAR},
+			</if>
+			<if test="def3 != null">
+				def3 = #{def3,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

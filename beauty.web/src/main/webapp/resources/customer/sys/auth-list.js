@@ -5,9 +5,9 @@
 
 var _render_oper = function(data, type, row, meta) {
 	var result = '\
-		<span class="fa fa-edit pointer" title="更新" data-href="/pages/bracket/sys/auth-update.jsp?id={0}" onclick="_S_REDIRECT(this)"></span>\
+		<span class="fa fa-edit pointer auth" data-auth="RES-AUTH-UPD" title="更新" data-href="/pages/bracket/sys/auth-update.jsp?id={0}" onclick="_S_REDIRECT(this)"></span>\
 		&nbsp;\
-		<span class="fa fa-copy pointer" title="配置" data-href="/pages/bracket/sys/auth-conf.jsp?id={1}&name={2}&type={3}" onclick="_S_REDIRECT(this)"></span>\
+		<span class="fa fa-copy pointer auth" data-auth="RES-AUTH-CONF" title="配置" data-href="/pages/bracket/sys/auth-conf.jsp?id={1}&name={2}&type={3}" onclick="_S_REDIRECT(this)"></span>\
 	';
 	return result.format(row.id, row.id, row.name, row.type);
 };
@@ -21,9 +21,9 @@ $(function() {
 	init();
 
 	var tools = '<div class="btn-group">\
-		<a data-href="/pages/bracket/sys/auth-add.jsp" class="btn btn-default fa fa-plus-square-o" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
-		<a class="btn btn-default fa fa-minus-square-o" onclick="del()">&nbsp;删除</a>\
-		<a class="btn btn-default fa fa-group" onclick="group()">&nbsp;分组</a>\
+		<a data-href="/pages/bracket/sys/auth-add.jsp" class="btn btn-default fa fa-plus-square-o auth" data-auth="RES-AUTH-ADD" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
+		<a class="btn btn-default fa fa-minus-square-o auth" data-auth="RES-AUTH-DEL" onclick="del()">&nbsp;删除</a>\
+		<a class="btn btn-default fa fa-group auth" data-auth="RES-AUTH-GROUP" onclick="group()">&nbsp;分组</a>\
     </div>';
 
 	var table = $('#list').datatable({

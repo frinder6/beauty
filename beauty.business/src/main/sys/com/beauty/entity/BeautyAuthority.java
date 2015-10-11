@@ -15,6 +15,16 @@ public class BeautyAuthority extends BaseEntity {
 
 	private Long id;
 
+	/**
+	 * code取值规则：
+	 * 1、系统级的以SYS-开头
+	 * 2、菜单级的以MENU-开头
+	 * 3、资源级的以RES-开头
+	 * 优先级依次递减，如
+	 * ‘系统访问’（资源），命名为：SYS-ACCESS；
+	 * ‘系统管理访问’（菜单），命名为：MENU-SYS-MNG-ACCESS；
+	 * ‘新增菜单’（资源），命名为：RES-MENU-ADD；
+	 */
 	@Orderable(columnName = "code")
 	private String code;
 

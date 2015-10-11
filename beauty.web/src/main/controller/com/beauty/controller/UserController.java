@@ -1,5 +1,7 @@
 package com.beauty.controller;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +9,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.beauty.entity.BeautyUser;
 import com.beauty.entity.Page;
 import com.beauty.model.Value;
+import com.beauty.security.UserInfo;
 import com.beauty.service.UserService;
 import com.beauty.util.CodeUtil;
 import com.beauty.util.DatatablesUtil;
@@ -25,6 +30,22 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+
+	@RequestMapping(value = "/auths", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public List<?> getUserAuths() {
+		List<String> auths = new ArrayList<String>();
+		try {
+			UserInfo user = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			Collection<GrantedAuthority> authorities = user.getAuthorities();
+			for (GrantedAuthority ga : authorities) {
+				auths.add(ga.getAuthority());
+			}
+			return auths;
+		} catch (Exception e) {
+			return auths;
+		}
+	}
 
 	@RequestMapping(value = "/load/page", produces = "application/json; charset=utf-8")
 	@ResponseBody

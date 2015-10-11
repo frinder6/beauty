@@ -18,6 +18,7 @@ var init = function() {
 	resetHeight();
 	// 
 	exchangeNav();
+
 };
 
 //

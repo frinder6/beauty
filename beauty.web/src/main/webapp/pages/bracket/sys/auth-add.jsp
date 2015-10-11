@@ -26,6 +26,13 @@
 				</div>
 
 				<div class="form-group">
+					<label class="col-sm-3 control-label">权限编码： <span class="asterisk">*</span></label>
+					<div class="col-sm-6">
+						<input type="text" name="code" ng-model="code" class="form-control" placeholder="Type please..." value="{{code | uppercase}}" required  />
+					</div>
+				</div>
+
+				<div class="form-group">
 					<label class="col-sm-3 control-label">权限类型： <span class="asterisk">*</span></label>
 					<div class="col-sm-6">
 						<select id="pselect" name="type" required placeholder="Type please...">

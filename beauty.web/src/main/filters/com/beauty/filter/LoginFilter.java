@@ -42,14 +42,18 @@ public class LoginFilter implements Filter {
 	// 保存不需要过滤的路径
 	private List<String> offParams = new ArrayList<String>();
 
-	public static final Map<String, String> errors = new HashMap<String, String>() {
+	public static final Map<String, Object> errors = new HashMap<String, Object>() {
 		/**
 		 * @Fields serialVersionUID
 		 */
 		private static final long serialVersionUID = 1L;
 
 		{
-			put("Bad credentials", "密码错误！");
+			put("BadCredentialsException", "密码错误！");
+			put("UsernameNotFoundException", "用户名不存在！");
+			put("LockedException", "帐户被锁！");
+			put("DisabledException", "帐户未启动！");
+			put("CredentialExpiredException", "密码过期！");
 		}
 	};
 
@@ -70,6 +74,7 @@ public class LoginFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
+		error(req);
 		setLoginUser(req);
 		// 项目根路径
 		String base = StringUtil.getRequestPrefix(req);
@@ -156,6 +161,24 @@ public class LoginFilter implements Filter {
 					req.getSession().setAttribute("CURRENT_USER", user);
 				}
 			}
+		}
+	}
+
+	// 登陆失败提示信息
+	protected void error(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		Object obj = session.getAttribute("SPRING_SECURITY_LAST_EXCEPTION");
+		if (null != obj) {
+			String excp = StringUtil.getValue4Map(errors, obj.toString());
+			if (null != excp) {
+				session.setAttribute("error", excp);
+			} else {
+				AuthenticationException exception = (AuthenticationException) obj;
+				String error = exception.getMessage();
+				session.setAttribute("error", error);
+			}
+		} else {
+			session.setAttribute("error", "");
 		}
 	}
 

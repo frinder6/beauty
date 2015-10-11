@@ -5,9 +5,9 @@
 
 var _render_oper = function(data, type, row, meta) {
 	var result = '\
-		<span class="fa fa-edit pointer" title="更新" data-href="/pages/bracket/sys/user-update.jsp?id={0}" onclick="_S_REDIRECT(this)"></span>\
+		<span class="fa fa-edit pointer auth" data-auth="RES-USER-UPD" title="更新" data-href="/pages/bracket/sys/user-update.jsp?id={0}" onclick="_S_REDIRECT(this)"></span>\
 		&nbsp;\
-		<span class="fa fa-copy pointer" title="配置" data-href="/pages/bracket/sys/user-conf.jsp?id={1}&name={2}" onclick="_S_REDIRECT(this)"></span>\
+		<span class="fa fa-copy pointer auth" data-auth="RES-USER-CONF" title="配置" data-href="/pages/bracket/sys/user-conf.jsp?id={1}&name={2}" onclick="_S_REDIRECT(this)"></span>\
 	';
 	return result.format(row.id, row.id, row.name);
 };
@@ -16,8 +16,8 @@ $(function() {
 	init();
 
 	var tools = '<div class="btn-group">\
-		<a data-href="/pages/bracket/sys/user-add.jsp" class="btn btn-default fa fa-plus-square-o" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
-		<a class="btn btn-default fa fa-minus-square-o" onclick="del()">&nbsp;删除</a>\
+		<a data-href="/pages/bracket/sys/user-add.jsp" class="btn btn-default fa fa-plus-square-o auth" data-auth="RES-USER-ADD" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
+		<a class="btn btn-default fa fa-minus-square-o auth" data-auth="RES-USER-DEL" onclick="del()">&nbsp;删除</a>\
     </div>';
 
 	var table = $('#list').datatable({

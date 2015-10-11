@@ -52,7 +52,7 @@ public class AuthorityController {
 	@RequestMapping(value = "/add", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public Value persist(BeautyAuthority entity) {
-		entity.setCode(StringUtil.code(entity.getName()));
+		// entity.setCode(StringUtil.code(entity.getName()));
 		this.authorityService.insertSelective(entity);
 		return new Value(CodeUtil.ADD_SUCCESS);
 	}

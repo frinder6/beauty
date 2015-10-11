@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<html>
+<head>
+<jsp:include page="../import-css.jsp" />
+
+
+<title>内容块</title>
+</head>
+<body style="background-color: #E4E7EA;">
+
+	<div class="table-responsive">
+
+		<table id="list" class="table table-bordered" width="100%">
+		</table>
+
+	</div>
+	<!-- table-responsive -->
+
+	<jsp:include page="../import-js.jsp" />
+	<script type="text/javascript" src="${basePath }/resources/customer/jquery.datatables.extends.js"></script>
+	<script type="text/javascript" src="${basePath }/resources/customer/sys/columns-list.js"></script>
+	<script type="text/javascript">
+		var table = $('#list').DGrid({
+			url : _PATH('/grid/load/grid.action'),
+			data : {
+				gridName : 'beauty_conf_columns'
+			},
+			grid : {
+				ajax : {
+					url : _PATH('/columns/load/page.action')
+				},
+				select : {
+					style : 'multi'
+				}
+			}
+		});
+	</script>
+
+</body>
+</html>

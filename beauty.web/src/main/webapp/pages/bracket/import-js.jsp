@@ -42,11 +42,13 @@
 <script src="${basePath }/resources/bracket/js/custom.js"></script>
 <%-- <script src="${basePath }/resources/bracket/js/dashboard.js"></script> --%>
 <script src="${basePath }/resources/customer/jquery-datatables.js"></script>
+<script src="${basePath }/resources/customer/auth.js"></script>
 <script src="${basePath }/resources/customer/beauty-sys.js"></script>
 
 <script type="text/javascript">
-	_BASE = '${basePath}';
 	layer.config({
-		extend : _BASE + '/resources/layer/extend/layer.ext.js'
+		extend : '${basePath}/resources/layer/extend/layer.ext.js'
 	})
+	_BASE = '${basePath}';
+	_LOAD_AUTHS();
 </script>

@@ -54,12 +54,12 @@
 						<div class="form-group">
 							<input type="password" class="form-control pword" name="j_password" placeholder="password" />
 						</div>
+						<label class="error">${error }</label>
 						<div class="ckbox ckbox-primary">
-							<input id="_spring_security_remember_me" name="_spring_security_remember_me" type="checkbox" value="true" /> <label for="_spring_security_remember_me">记住此用户</label>
+							<input id="_spring_security_remember_me" name="_spring_security_remember_me" type="checkbox" value="true" checked="checked" /> <label for="_spring_security_remember_me">记住此用户</label>
 						</div>
-						<a href=""><small>忘记密码？</small></a>
+						<a href="javascript:void(0)"><small>忘记密码？</small></a>
 						<button class="btn btn-success btn-block">登陆</button>
-
 					</form>
 				</div>
 				<!-- col-sm-5 -->
@@ -74,19 +74,12 @@
 
 
 	<%@include file="import-js.jsp"%>
-	<script>
-		jQuery(document).ready(function() {
-
-			// Please do not use the code below
-			// This is for demo purposes only
-			var c = jQuery.cookie('change-skin');
-			if (c && c == 'greyjoy') {
-				jQuery('.btn-success').addClass('btn-orange').removeClass('btn-success');
-			} else if (c && c == 'dodgerblue') {
-				jQuery('.btn-success').addClass('btn-primary').removeClass('btn-success');
-			} else if (c && c == 'katniss') {
-				jQuery('.btn-success').addClass('btn-primary').removeClass('btn-success');
-			}
+	
+	<script type="text/javascript">
+		$(function(){
+			$('input').focus(function(){
+				$('.error').hide();
+			});
 		});
 	</script>
 

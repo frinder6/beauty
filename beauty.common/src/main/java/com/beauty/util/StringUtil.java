@@ -8,6 +8,8 @@
  */
 package com.beauty.util;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -21,6 +23,38 @@ import org.apache.commons.codec.digest.DigestUtils;
  */
 public class StringUtil {
 
+	/**
+	 * 
+	 * @Title: getValue4Map
+	 * @Description: TODO(从map中获取符合条件的value)
+	 * @author frinder_liu
+	 * @param map
+	 * @param resource
+	 * @return
+	 * @return String
+	 * @date 2015年10月7日 下午4:26:55
+	 * @throws
+	 */
+	public static String getValue4Map(Map<String, Object> map, String resource) {
+		for (String key : map.keySet()) {
+			if (resource.indexOf(key) != -1) {
+				return map.get(key).toString();
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @Title: hashCode
+	 * @Description: TODO(获取字符串的hashcode，返回正数)
+	 * @author frinder_liu
+	 * @param value
+	 * @return
+	 * @return int
+	 * @date 2015年10月7日 下午4:21:26
+	 * @throws
+	 */
 	public static int hashCode(String value) {
 		return Math.abs(value.hashCode());
 	}
