@@ -55,12 +55,13 @@ public class MenuControllerTest {
 		fail("Not yet implemented");
 	}
 
-	// @Test
+	@Test
 	public void testQueryPage() {
 		try {
 			// String url = "/menu/load/page.action";
-			String url = "/table/load/table/config.action";
-			mockMvc.perform(post(url)).andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());
+			// String url = "/table/load/table/config.action";
+			String url = "/grid/load/grid.action";
+			mockMvc.perform(post(url).param("gridName", "beauty_conf_columns")).andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

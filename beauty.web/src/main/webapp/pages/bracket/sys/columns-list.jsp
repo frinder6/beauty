@@ -19,22 +19,6 @@
 	<jsp:include page="../import-js.jsp" />
 	<script type="text/javascript" src="${basePath }/resources/customer/jquery.datatables.extends.js"></script>
 	<script type="text/javascript" src="${basePath }/resources/customer/sys/columns-list.js"></script>
-	<script type="text/javascript">
-		var table = $('#list').DGrid({
-			url : _PATH('/grid/load/grid.action'),
-			data : {
-				gridName : 'beauty_conf_columns'
-			},
-			grid : {
-				ajax : {
-					url : _PATH('/columns/load/page.action')
-				},
-				select : {
-					style : 'multi'
-				}
-			}
-		});
-	</script>
 
 </body>
 </html>

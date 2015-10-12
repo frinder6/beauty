@@ -9,15 +9,16 @@
 	DGrid.prototype = {
 		constructor : DGrid,
 		init : function(options) {
-			var grid = this.$opts.grid;
 			$.ajax({
 				type : 'POST',
-				url : this.$opts.url,
-				data : this.$opts.data,
+				url : (_BASE + '/columns/load/columns.action'),
+				data : {
+					gridName : this.$opts.gridName
+				},
 				dataType : 'JSON',
 				async : false,
 				success : function(data) {
-					$.extend(true, options, grid, data);
+					$.extend(true, options.columns, data);
 				},
 				error : function(msg) {
 					console.error(JSON.stringify(msg));
@@ -33,15 +34,20 @@
 				});
 			}
 		},
+		pdiv : function() {
+			var div = $('#' + this.$this.attr('id') + '_wrapper');
+			return div;
+		},
 		initLoadGrid : function() {
 			var $opts = this.$opts;
 			var $this = this.$this;
-			var options = {
-				pagingType : 'full',
-				language : language,
+			var e = this;
+			var toolId = ('#' + $opts.gridName + '_tool');
+			var _options = {
+				columns : [],
+				dom : ('<"row"<"' + toolId + '.col-xs-6"><"col-xs-6"f>r>t<"row"<"col-xs-3"l><"col-xs-3"i><"col-xs-6"p>>'),
 				initComplete : function() {
-					var div = $('#' + $this.attr('id') + '_wrapper');
-					div.find('.my-tool').append($opts.tools);
+					e.pdiv().find(toolId).append($opts.tools);
 					if ($opts.initCallback) {
 						$opts.initCallback();
 					}
@@ -53,6 +59,9 @@
 				}
 			};
 
+			// combine defaults conf
+			var options = $.extend(true, {}, defaults, _options, $opts.grid);
+
 			// combine the settings
 			this.init(options);
 
@@ -61,6 +70,8 @@
 
 			// checkbox
 			this.checkbox(options);
+
+//			alert(JSON.stringify(options));
 
 			// return table
 			var table = this.$this.DataTable(options);
@@ -87,12 +98,8 @@
 				width : 10
 			});
 		},
-		gcheckbox : function() {
-			var div = $('#' + this.$this.attr('id') + '_wrapper');
-			return div.find('.table-select');
-		},
 		select : function(table) {
-			this.gcheckbox().click(function() {
+			this.pdiv().find('.table-select').click(function() {
 				var checked = $(this).attr('checked');
 				if (checked) {
 					// 全选
@@ -106,13 +113,12 @@
 		changePageLength : function(table) {
 			var e = this;
 			table.on('length.dt', function() {
-				e.index(table);
 			});
 		},
 		orderSearch : function(table) {
 			var e = this;
 			table.on('search.dt order.dt', function() {
-				e.gcheckbox().attr('checked') == 'checked' ? e.gcheckbox().removeAttr('checked') : '';
+				e.pdiv().find('.table-select').attr('checked') == 'checked' ? e.gcheckbox().removeAttr('checked') : '';
 				table.rows().deselect();
 			});
 		}
@@ -151,4 +157,43 @@ var language = {
 		sSortAscending : ': 以升序排列此列',
 		sSortDescending : ': 以降序排列此列'
 	}
+};
+
+// grid defaults
+var defaults = {
+	pagingType : 'full',
+	language : language,
+	autoWidth : true,
+	lengthChange : true,
+	ordering : true,
+	paging : true,
+	processing : true,
+	scrollX : true,
+	searching : true,
+	serverSide : true,
+	stateSave : true,
+	destory : false,
+	displayStart : 0,
+	dom : '',
+	order : [ [ 2, 'asc' ] ],
+	pageLength : 10,
+	columns : []
+// orderMulti : false,
+// orderFixed : [ 2, 'asc' ],
+// lengthMenu : [],
+// orderCellsTop : false,
+// orderClasses : true,
+// deferLoading : false,
+// scrollY : 500,
+// deferRender : true,
+// info : true,
+// jQueryUi : false,
+// scrollCollapse : false,
+// searchCols : [],
+// searchDelay : 0,
+// renderer : '',
+// retrieve : '',
+// stateDuration : 0,
+// stripeClasses : '',
+// tabIndex : 0
 };

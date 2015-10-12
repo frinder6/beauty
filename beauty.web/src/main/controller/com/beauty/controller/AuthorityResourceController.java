@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,7 +17,7 @@ import com.beauty.model.Value;
 import com.beauty.service.AuthorityResourceService;
 import com.beauty.util.CodeUtil;
 
-@Component
+@Controller
 @RequestMapping("/ar")
 public class AuthorityResourceController {
 

@@ -37,7 +37,7 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 		<access-denied-handler ref="accessDeniedHandler" />
 		<!-- session失效，防重复登陆 -->
 		<session-management invalid-session-url="/errors/sessionTimeout.html" session-authentication-error-url="/errors/secondLogin.html">
-			<concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
+			<concurrency-control max-sessions="10" error-if-maximum-exceeded="true" />
 		</session-management>
 		<logout invalidate-session="true" logout-url="/j_spring_security_logout" logout-success-url="/pages/bracket/login.jsp" />
 	</http>

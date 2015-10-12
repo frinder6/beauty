@@ -5,7 +5,7 @@
  */
 var _render_oper = function(data, type, row, meta) {
 	var result = '\
-		<span class="fa fa-copy pointer" title="配置" data-href="/pages/bracket/sys/sys-column-list.jsp?schema=beauty&table={0}" onclick="_S_REDIRECT(this)"></span>\
+		<span class="fa fa-copy pointer" title="配置" data-href="/pages/bracket/sys/columns-conf.jsp?table={0}" onclick="_S_REDIRECT(this)"></span>\
 	';
 	return result.format(row.tableName);
 };

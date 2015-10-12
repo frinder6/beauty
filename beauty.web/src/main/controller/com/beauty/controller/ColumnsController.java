@@ -7,22 +7,29 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.beauty.entity.Columns;
 import com.beauty.entity.Page;
 import com.beauty.model.Value;
 import com.beauty.service.ColumnsService;
 import com.beauty.util.CodeUtil;
 
-@Component
+@Controller
 @RequestMapping("/columns")
 public class ColumnsController {
 
 	@Autowired
 	private ColumnsService columnsService;
+
+	@RequestMapping(value = "/load/columns", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public List<?> loadColumns(@RequestParam("gridName") String gridName) {
+		return this.columnsService.selectByGridName(gridName);
+	}
 
 	@RequestMapping(value = "/load/page", produces = "application/json; charset=utf-8")
 	@ResponseBody

@@ -12,6 +12,17 @@ $(function() {
 		<a class="btn btn-default fa fa-minus-square-o" onclick="del()">&nbsp;删除</a>\
     </div>';
 
-	
+	var table = $('#list').DGrid({
+		gridName : 'beauty_conf_columns',
+		tools : tools,
+		grid : {
+			ajax : {
+				url : _PATH('/columns/load/page.action')
+			},
+			select : {
+				style : 'multi'
+			}
+		}
+	});
 
 });

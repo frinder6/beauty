@@ -17,35 +17,35 @@ public class Grid implements Serializable {
 
 	private String gridName;
 
-	private Byte autoWidth;
+	private Boolean autoWidth;
 
-	private Byte deferRender;
+	private Boolean deferRender;
 
-	private Byte info;
+	private Boolean info;
 
-	private Byte jQueryUi;
+	private Boolean jQueryUi;
 
-	private Byte lengthChange;
+	private Boolean lengthChange;
 
-	private Byte ordering;
+	private Boolean ordering;
 
-	private Byte paging;
+	private Boolean paging;
 
-	private Byte processing;
+	private Boolean processing;
 
-	private Byte scrollX;
+	private Boolean scrollX;
 
 	private String scrollY;
 
-	private Byte searching;
+	private Boolean searching;
 
-	private Byte serverSide;
+	private Boolean serverSide;
 
-	private Byte stateSave;
+	private Boolean stateSave;
 
-	private Byte deferLoading;
+	private Boolean deferLoading;
 
-	private Byte destory;
+	private Boolean destory;
 
 	private Integer displayStart;
 
@@ -53,19 +53,19 @@ public class Grid implements Serializable {
 
 	private String lengthMenu;
 
-	private Byte orderCellsTop;
+	private Boolean orderCellsTop;
 
-	private Byte orderClasses;
+	private Boolean orderClasses;
 
 	private String order;
 
-	private Byte orderMulti;
+	private Boolean orderMulti;
 
 	private String orderFixed;
 
 	private Integer pageLength;
 
-	private Byte scrollCollapse;
+	private Boolean scrollCollapse;
 
 	private String searchCols;
 
@@ -89,7 +89,7 @@ public class Grid implements Serializable {
 
 	private String modifier;
 
-	private Byte isDeleted;
+	private Boolean isDeleted;
 
 	private String def1;
 
@@ -115,75 +115,75 @@ public class Grid implements Serializable {
 		this.gridName = gridName == null ? null : gridName.trim();
 	}
 
-	public Byte getAutoWidth() {
+	public Boolean getAutoWidth() {
 		return autoWidth;
 	}
 
-	public void setAutoWidth(Byte autoWidth) {
+	public void setAutoWidth(Boolean autoWidth) {
 		this.autoWidth = autoWidth;
 	}
 
-	public Byte getDeferRender() {
+	public Boolean getDeferRender() {
 		return deferRender;
 	}
 
-	public void setDeferRender(Byte deferRender) {
+	public void setDeferRender(Boolean deferRender) {
 		this.deferRender = deferRender;
 	}
 
-	public Byte getInfo() {
+	public Boolean getInfo() {
 		return info;
 	}
 
-	public void setInfo(Byte info) {
+	public void setInfo(Boolean info) {
 		this.info = info;
 	}
 
-	public Byte getjQueryUi() {
+	public Boolean getjQueryUi() {
 		return jQueryUi;
 	}
 
-	public void setjQueryUi(Byte jQueryUi) {
+	public void setjQueryUi(Boolean jQueryUi) {
 		this.jQueryUi = jQueryUi;
 	}
 
-	public Byte getLengthChange() {
+	public Boolean getLengthChange() {
 		return lengthChange;
 	}
 
-	public void setLengthChange(Byte lengthChange) {
+	public void setLengthChange(Boolean lengthChange) {
 		this.lengthChange = lengthChange;
 	}
 
-	public Byte getOrdering() {
+	public Boolean getOrdering() {
 		return ordering;
 	}
 
-	public void setOrdering(Byte ordering) {
+	public void setOrdering(Boolean ordering) {
 		this.ordering = ordering;
 	}
 
-	public Byte getPaging() {
+	public Boolean getPaging() {
 		return paging;
 	}
 
-	public void setPaging(Byte paging) {
+	public void setPaging(Boolean paging) {
 		this.paging = paging;
 	}
 
-	public Byte getProcessing() {
+	public Boolean getProcessing() {
 		return processing;
 	}
 
-	public void setProcessing(Byte processing) {
+	public void setProcessing(Boolean processing) {
 		this.processing = processing;
 	}
 
-	public Byte getScrollX() {
+	public Boolean getScrollX() {
 		return scrollX;
 	}
 
-	public void setScrollX(Byte scrollX) {
+	public void setScrollX(Boolean scrollX) {
 		this.scrollX = scrollX;
 	}
 
@@ -195,43 +195,43 @@ public class Grid implements Serializable {
 		this.scrollY = scrollY == null ? null : scrollY.trim();
 	}
 
-	public Byte getSearching() {
+	public Boolean getSearching() {
 		return searching;
 	}
 
-	public void setSearching(Byte searching) {
+	public void setSearching(Boolean searching) {
 		this.searching = searching;
 	}
 
-	public Byte getServerSide() {
+	public Boolean getServerSide() {
 		return serverSide;
 	}
 
-	public void setServerSide(Byte serverSide) {
+	public void setServerSide(Boolean serverSide) {
 		this.serverSide = serverSide;
 	}
 
-	public Byte getStateSave() {
+	public Boolean getStateSave() {
 		return stateSave;
 	}
 
-	public void setStateSave(Byte stateSave) {
+	public void setStateSave(Boolean stateSave) {
 		this.stateSave = stateSave;
 	}
 
-	public Byte getDeferLoading() {
+	public Boolean getDeferLoading() {
 		return deferLoading;
 	}
 
-	public void setDeferLoading(Byte deferLoading) {
+	public void setDeferLoading(Boolean deferLoading) {
 		this.deferLoading = deferLoading;
 	}
 
-	public Byte getDestory() {
+	public Boolean getDestory() {
 		return destory;
 	}
 
-	public void setDestory(Byte destory) {
+	public void setDestory(Boolean destory) {
 		this.destory = destory;
 	}
 
@@ -259,19 +259,19 @@ public class Grid implements Serializable {
 		this.lengthMenu = lengthMenu == null ? null : lengthMenu.trim();
 	}
 
-	public Byte getOrderCellsTop() {
+	public Boolean getOrderCellsTop() {
 		return orderCellsTop;
 	}
 
-	public void setOrderCellsTop(Byte orderCellsTop) {
+	public void setOrderCellsTop(Boolean orderCellsTop) {
 		this.orderCellsTop = orderCellsTop;
 	}
 
-	public Byte getOrderClasses() {
+	public Boolean getOrderClasses() {
 		return orderClasses;
 	}
 
-	public void setOrderClasses(Byte orderClasses) {
+	public void setOrderClasses(Boolean orderClasses) {
 		this.orderClasses = orderClasses;
 	}
 
@@ -283,11 +283,11 @@ public class Grid implements Serializable {
 		this.order = order == null ? null : order.trim();
 	}
 
-	public Byte getOrderMulti() {
+	public Boolean getOrderMulti() {
 		return orderMulti;
 	}
 
-	public void setOrderMulti(Byte orderMulti) {
+	public void setOrderMulti(Boolean orderMulti) {
 		this.orderMulti = orderMulti;
 	}
 
@@ -307,11 +307,11 @@ public class Grid implements Serializable {
 		this.pageLength = pageLength;
 	}
 
-	public Byte getScrollCollapse() {
+	public Boolean getScrollCollapse() {
 		return scrollCollapse;
 	}
 
-	public void setScrollCollapse(Byte scrollCollapse) {
+	public void setScrollCollapse(Boolean scrollCollapse) {
 		this.scrollCollapse = scrollCollapse;
 	}
 
@@ -403,11 +403,11 @@ public class Grid implements Serializable {
 		this.modifier = modifier == null ? null : modifier.trim();
 	}
 
-	public Byte getIsDeleted() {
+	public Boolean getIsDeleted() {
 		return isDeleted;
 	}
 
-	public void setIsDeleted(Byte isDeleted) {
+	public void setIsDeleted(Boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 
