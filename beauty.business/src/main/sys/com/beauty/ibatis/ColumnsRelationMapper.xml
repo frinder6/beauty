@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.beauty.interfaces.ColumnsRelationDao">
+
+	<sql id="Base_Where_Clause">
+		<if test="searchValue">
+			AND ( column_name LIKE "%" #{searchValue} "%" OR title LIKE "%" #{searchValue} "%" )
+		</if>
+	</sql>
+
+	<select id="selectPage" parameterType="java.util.HashMap" resultMap="com.beauty.interfaces.ColumnsDao.BaseResultMap">
+		<if test="conf == null">
+			SELECT DISTINCT t2.id, t2.column_name, t2.title
+			FROM information_schema.`COLUMNS` t1
+			LEFT JOIN beauty_conf_columns t2 ON t1.COLUMN_NAME = t2.column_name
+			WHERE t1.TABLE_SCHEMA = (SELECT dict_value FROM beauty_dict WHERE dict_key = 'schema')
+			AND t1.TABLE_NAME = #{tableName}
+			AND NOT EXISTS (SELECT 1 FROM beauty_table_columns_relation WHERE column_id = t2.id)
+		</if>
+		<if test="conf">
+			SELECT t1.id, t2.column_name, t2.title
+			FROM beauty_table_columns_relation t1
+			LEFT JOIN beauty_conf_columns t2 ON t1.column_id = t2.id
+			WHERE t1.grid_name = #{tableName}
+		</if>
+		<include refid="Base_Where_Clause" />
+		ORDER BY
+		<if test="orderColumn">
+			${orderColumn} ${orderDir}
+		</if>
+		<if test="orderColumn == null">
+			id
+		</if>
+		LIMIT #{from}, #{size}
+	</select>
+	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
+		<if test="conf == null">
+			SELECT COUNT(DISTINCT t2.id)
+			FROM information_schema.`COLUMNS` t1
+			LEFT JOIN beauty_conf_columns t2 ON t1.COLUMN_NAME = t2.column_name
+			WHERE t1.TABLE_NAME = #{tableName}
+			AND NOT EXISTS (SELECT 1 FROM beauty_table_columns_relation WHERE column_id = t2.id)
+		</if>
+		<if test="conf">
+			SELECT COUNT(1)
+			FROM beauty_table_columns_relation t1
+			LEFT JOIN beauty_conf_columns t2 ON t1.column_id = t2.id
+			WHERE t1.grid_name = #{tableName}
+		</if>
+		<include refid="Base_Where_Clause" />
+	</select>
+
+
+</mapper>
