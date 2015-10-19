@@ -148,23 +148,10 @@
 
 
 	<jsp:include page="import-js.jsp" />
-
+	<script src="${basePath }/resources/customer/my.nav.js"></script>
 	<script type="text/javascript">
-		_NAVS = {};
 		$(function() {
-			$('#main-nav').children('li').click(function() {
-				// 二级菜单样式
-				$('#main-nav').children('li').removeClass('active');
-				$(this).addClass('active');
-			});
-
-			// 保存选中菜单及父菜单的信息
-			$('#main-nav').find('ul').find('li').click(function() {
-				fillNav(this);
-				var url = $(this).children('a').attr('data-href');
-				_REDIRECT(url);
-			});
-
+			var nav = $('#main-nav').Nav();
 		});
 	</script>
 </body>

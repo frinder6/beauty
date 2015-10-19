@@ -18,7 +18,6 @@ var _render_type = function(data, type, row, meta) {
 };
 
 $(function() {
-	init();
 
 	var tools = '<div class="btn-group">\
 		<a data-href="/pages/bracket/sys/auth-add.jsp" class="btn btn-default fa fa-plus-square-o auth" data-auth="RES-AUTH-ADD" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\

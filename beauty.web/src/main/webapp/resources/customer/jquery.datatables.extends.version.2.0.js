@@ -1,6 +1,70 @@
 !(function($, window, document, undefined) {
 	'use strict';
 
+	var language = {
+		sProcessing : '处理中...',
+		sLengthMenu : '_MENU_ 条记录每页',
+		sZeroRecords : '没有匹配结果',
+		sInfo : '第 _PAGE_ 页 ( 总共 _PAGES_ 页 / _TOTAL_ 条 )',
+		sInfoEmpty : '无记录',
+		sInfoFiltered : '(由 _MAX_ 项结果过滤)',
+		sInfoPostFix : '',
+		sSearch : '搜索：',
+		sUrl : '',
+		sEmptyTable : '表中数据为空',
+		sLoadingRecords : '载入中...',
+		sInfoThousands : ',',
+		oPaginate : {
+			sFirst : '首页',
+			sPrevious : '上一页',
+			sNext : '下一页',
+			sLast : '尾页'
+		},
+		oAria : {
+			sSortAscending : ': 以升序排列此列',
+			sSortDescending : ': 以降序排列此列'
+		}
+	};
+
+	// grid defaults
+	var defaults = {
+		pagingType : 'full',
+		language : language,
+		autoWidth : true,
+		lengthChange : true,
+		ordering : true,
+		paging : true,
+		processing : true,
+		scrollX : true,
+		searching : true,
+		serverSide : true,
+		stateSave : true,
+		destory : false,
+		displayStart : 0,
+		dom : '',
+		order : [ [ 2, 'asc' ] ],
+		pageLength : 10,
+		columns : []
+	// orderMulti : false,
+	// orderFixed : [ 2, 'asc' ],
+	// lengthMenu : [],
+	// orderCellsTop : false,
+	// orderClasses : true,
+	// deferLoading : false,
+	// scrollY : 500,
+	// deferRender : true,
+	// info : true,
+	// jQueryUi : false,
+	// scrollCollapse : false,
+	// searchCols : [],
+	// searchDelay : 0,
+	// renderer : '',
+	// retrieve : '',
+	// stateDuration : 0,
+	// stripeClasses : '',
+	// tabIndex : 0
+	};
+
 	var DGrid = function(element, options) {
 		this.$this = element;
 		this.$opts = options;
@@ -151,68 +215,3 @@
 	$.fn.DGrid.Constructor = DGrid;
 
 })(jQuery, window, document);
-
-
-var language = {
-	sProcessing : '处理中...',
-	sLengthMenu : '_MENU_ 条记录每页',
-	sZeroRecords : '没有匹配结果',
-	sInfo : '第 _PAGE_ 页 ( 总共 _PAGES_ 页 / _TOTAL_ 条 )',
-	sInfoEmpty : '无记录',
-	sInfoFiltered : '(由 _MAX_ 项结果过滤)',
-	sInfoPostFix : '',
-	sSearch : '搜索：',
-	sUrl : '',
-	sEmptyTable : '表中数据为空',
-	sLoadingRecords : '载入中...',
-	sInfoThousands : ',',
-	oPaginate : {
-		sFirst : '首页',
-		sPrevious : '上一页',
-		sNext : '下一页',
-		sLast : '尾页'
-	},
-	oAria : {
-		sSortAscending : ': 以升序排列此列',
-		sSortDescending : ': 以降序排列此列'
-	}
-};
-
-// grid defaults
-var defaults = {
-	pagingType : 'full',
-	language : language,
-	autoWidth : true,
-	lengthChange : true,
-	ordering : true,
-	paging : true,
-	processing : true,
-	scrollX : true,
-	searching : true,
-	serverSide : true,
-	stateSave : true,
-	destory : false,
-	displayStart : 0,
-	dom : '',
-	order : [ [ 2, 'asc' ] ],
-	pageLength : 10,
-	columns : []
-// orderMulti : false,
-// orderFixed : [ 2, 'asc' ],
-// lengthMenu : [],
-// orderCellsTop : false,
-// orderClasses : true,
-// deferLoading : false,
-// scrollY : 500,
-// deferRender : true,
-// info : true,
-// jQueryUi : false,
-// scrollCollapse : false,
-// searchCols : [],
-// searchDelay : 0,
-// renderer : '',
-// retrieve : '',
-// stateDuration : 0,
-// stripeClasses : '',
-// tabIndex : 0
-};

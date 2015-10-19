@@ -29,7 +29,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">权限编码： <span class="asterisk">*</span></label>
 					<div class="col-sm-6">
-						<input type="text" name="code" ng-model="code" class="form-control" placeholder="Type please..." value="{{code | uppercase}}" required  />
+						<input type="text" name="code" ng-model="code" class="form-control" placeholder="Type please..." value="{{code | uppercase}}" required />
 					</div>
 				</div>
 
@@ -66,10 +66,28 @@
 
 
 	<%@include file="../import-js.jsp"%>
+	
 	<script type="text/javascript">
-		var id = '${param.id}';
+		$(function() {
+
+			var id = '${param.id}';
+
+			$('#pselect').select2({
+				width : '100%',
+				minimumResultsForSearch : Infinity
+			});
+
+			var form = $('#basicForm').Form({
+				listUrl : '/pages/bracket/sys/auth-list.jsp',
+				idUrl : '/auth/load/id.action',
+				id : id,
+				select : function(data) {
+					$('#pselect').val(data.type).trigger('change');
+				}
+			});
+
+		});
 	</script>
-	<script src="${basePath }/resources/customer/sys/auth-update.js"></script>
 
 </body>
 

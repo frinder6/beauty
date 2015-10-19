@@ -28,22 +28,21 @@
 <script src="${basePath }/resources/bracket/DataTables/dataTables.select.js"></script>
 <script src="${basePath }/resources/bracket/DataTables/dataTables.fixedColumns.js"></script>
 <script src="${basePath }/resources/bracket/js/dataTables.buttons.min.js"></script>
-<%-- <script src="${basePath }/resources/bracket/js/dataTables.editor.js"></script> --%>
 <script src="${basePath }/resources/angular/angular.js"></script>
 <script src="${basePath }/resources/layer/layer.js"></script>
 <script src="${basePath }/resources/bracket/js/select2.full.js"></script>
-<script src="${basePath }/resources/customer/jquery-select2.js"></script>
+<script src="${basePath }/resources/customer/jquery.select2.js"></script>
 <script src="${basePath }/resources/bracket/js/jquery.form.js"></script>
 <script src="${basePath }/resources/bracket/js/jquery.formFill.js"></script>
 <script src="${basePath }/resources/bracket/js/jquery.validate.min.js"></script>
-<script src="${basePath }/resources/customer/jquery-validate-extends.js"></script>
-
+<script src="${basePath }/resources/customer/jquery.validate.extends.js"></script>
 
 <script src="${basePath }/resources/bracket/js/custom.js"></script>
-<%-- <script src="${basePath }/resources/bracket/js/dashboard.js"></script> --%>
-<script src="${basePath }/resources/customer/jquery-datatables.js"></script>
+<script src="${basePath }/resources/customer/jquery.datatables.js"></script>
 <script src="${basePath }/resources/customer/auth.js"></script>
-<script src="${basePath }/resources/customer/beauty-sys.js"></script>
+<script src="${basePath }/resources/customer/util.js"></script>
+<script src="${basePath }/resources/customer/my.form.js"></script>
+<script src="${basePath }/resources/customer/my.sys.js"></script>
 
 <script type="text/javascript">
 	layer.config({

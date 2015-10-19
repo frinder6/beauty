@@ -93,10 +93,20 @@
 
 
 	<%@include file="../import-js.jsp"%>
+
 	<script type="text/javascript">
-		var id = '${param.id}';
+		$(function() {
+
+			var id = '${param.id}';
+
+			var form = $('#basicForm').Form({
+				listUrl : '/pages/bracket/sys/user-list.jsp',
+				idUrl : '/user/load/id.action',
+				id : id
+			});
+
+		});
 	</script>
-	<script src="${basePath }/resources/customer/sys/user-update.js"></script>
 
 </body>
 

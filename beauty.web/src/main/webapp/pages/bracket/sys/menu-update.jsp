@@ -71,10 +71,33 @@
 
 
 	<%@include file="../import-js.jsp"%>
+
 	<script type="text/javascript">
-		var id = '${param.id}';
+		$(function() {
+
+			var id = '${param.id}';
+
+			$('#pselect').select2({
+				width : '100%',
+				minimumResultsForSearch : Infinity
+			});
+
+			var form = $('#basicForm').Form({
+				listUrl : '/pages/bracket/sys/menu-list.jsp',
+				idUrl : '/menu/load/id.action',
+				id : id,
+				select : function(data) {
+					$('#pselect').select({
+						sid : '#pselect',
+						url : '/menu/select.action',
+						pid : data.parentId,
+						init : true
+					});
+				}
+			});
+
+		});
 	</script>
-	<script src="${basePath }/resources/customer/sys/menu-update.js"></script>
 
 </body>
 

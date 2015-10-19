@@ -65,7 +65,21 @@
 
 
 	<%@include file="../import-js.jsp"%>
-	<script src="${basePath }/resources/customer/sys/auth-add.js"></script>
+	
+	<script type="text/javascript">
+		$(function(){
+			
+			$('#pselect').select2({
+				width : '100%',
+				minimumResultsForSearch: Infinity
+			});
+			
+			var form = $('#basicForm').Form({
+				listUrl : '/pages/bracket/sys/auth-list.jsp'
+			});
+		});
+	</script>
+
 
 </body>
 

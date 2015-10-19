@@ -5,7 +5,6 @@
  */
 
 $(function() {
-	init();
 
 	var tools = '<div class="btn-group">\
 		<a class="btn btn-default fa fa-bookmark" onclick="mark()">&nbsp;标记</a>\

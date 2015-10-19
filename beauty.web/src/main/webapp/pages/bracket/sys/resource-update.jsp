@@ -63,10 +63,21 @@
 
 
 	<%@include file="../import-js.jsp"%>
+
 	<script type="text/javascript">
-		var id = '${param.id}';
+		$(function() {
+
+			var id = '${param.id}';
+
+			var form = $('#basicForm').Form({
+				listUrl : '/pages/bracket/sys/resource-list.jsp',
+				idUrl : '/resource/load/id.action',
+				id : id
+			});
+
+		});
 	</script>
-	<script src="${basePath }/resources/customer/sys/resource-update.js"></script>
+
 
 </body>
 

@@ -21,7 +21,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">菜单名称： <span class="asterisk">*</span></label>
 					<div class="col-sm-6">
-						<input type="text" name="name" class="form-control" placeholder="Type please..." required  ng-model="remark" />
+						<input type="text" name="name" class="form-control" placeholder="Type please..." required ng-model="remark" />
 					</div>
 				</div>
 
@@ -71,7 +71,20 @@
 
 
 	<%@include file="../import-js.jsp"%>
-	<script src="${basePath }/resources/customer/sys/menu-add.js"></script>
+	
+	<script type="text/javascript">
+		$(function() {
+
+			$('#pselect').select({
+				url : '/menu/select.action'
+			});
+
+			var form = $('#basicForm').Form({
+				listUrl : '/pages/bracket/sys/menu-list.jsp'
+			});
+			
+		});
+	</script>
 
 </body>
 

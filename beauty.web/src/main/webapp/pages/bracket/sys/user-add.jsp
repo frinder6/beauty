@@ -92,7 +92,15 @@
 
 
 	<%@include file="../import-js.jsp"%>
-	<script src="${basePath }/resources/customer/sys/user-add.js"></script>
+	
+		<script type="text/javascript">
+		$(function(){
+			
+			var form = $('#basicForm').Form({
+				listUrl : '/pages/bracket/sys/user-list.jsp'
+			});
+		});
+	</script>
 
 </body>
 

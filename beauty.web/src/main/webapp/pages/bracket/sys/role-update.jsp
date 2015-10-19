@@ -56,10 +56,23 @@
 
 
 	<%@include file="../import-js.jsp"%>
+	
 	<script type="text/javascript">
-		var id = '${param.id}';
+		$(function() {
+
+			var id = '${param.id}';
+
+			var form = $('#basicForm').Form({
+				listUrl : '/pages/bracket/sys/role-list.jsp',
+				idUrl : '/role/load/id.action',
+				id : id,
+				select : function(data) {
+					$('#pselect').val(data.type).trigger('change');
+				}
+			});
+
+		});
 	</script>
-	<script src="${basePath }/resources/customer/sys/role-update.js"></script>
 
 </body>
 

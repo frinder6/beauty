@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../beauty.base/beauty.base.iml" filepath="$PROJECT_DIR$/../beauty.base/beauty.base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../beauty.business/beauty.business.iml" filepath="$PROJECT_DIR$/../beauty.business/beauty.business.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../beauty.common/beauty.common.iml" filepath="$PROJECT_DIR$/../beauty.common/beauty.common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/beauty.compile.iml" filepath="$PROJECT_DIR$/beauty.compile.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../beauty.pom/beauty.pom.iml" filepath="$PROJECT_DIR$/../beauty.pom/beauty.pom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../beauty.security/beauty.security.iml" filepath="$PROJECT_DIR$/../beauty.security/beauty.security.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../beauty.web/beauty.web.iml" filepath="$PROJECT_DIR$/../beauty.web/beauty.web.iml" />
+    </modules>
+  </component>
+</project>

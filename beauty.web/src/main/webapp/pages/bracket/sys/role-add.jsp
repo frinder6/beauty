@@ -28,7 +28,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">角色编码： <span class="asterisk">*</span></label>
 					<div class="col-sm-6">
-						<input type="text" name="code" class="form-control" placeholder="Type please..." ng-model="code" required value="{{code | uppercase}}"/>
+						<input type="text" name="code" class="form-control" placeholder="Type please..." ng-model="code" required value="{{code | uppercase}}" />
 					</div>
 				</div>
 
@@ -55,7 +55,15 @@
 
 
 	<%@include file="../import-js.jsp"%>
-	<script src="${basePath }/resources/customer/sys/role-add.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+
+			var form = $('#basicForm').Form({
+				listUrl : '/pages/bracket/sys/role-list.jsp'
+			});
+		});
+	</script>
 
 </body>
 

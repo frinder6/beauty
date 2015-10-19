@@ -116,9 +116,6 @@
 			<if test="def2 != null"> #{def2,jdbcType=VARCHAR}, </if>
 			<if test="def3 != null"> #{def3,jdbcType=TIMESTAMP}, </if>
 		</trim>
-		<selectKey resultType="java.lang.Integer" keyProperty="id">
-			CALL IDENTITY()
-		</selectKey>
 	</insert>
 	<update id="batchGroup" parameterType="com.beauty.model.Value">
 		update beauty_authority set group_id = #{data}
