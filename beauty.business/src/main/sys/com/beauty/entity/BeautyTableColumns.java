@@ -12,6 +12,8 @@ public class BeautyTableColumns extends BaseEntity {
 
 	private Long id;
 
+	private Long columnId;
+
 	private String tableName;
 
 	private String cellType;
@@ -50,6 +52,14 @@ public class BeautyTableColumns extends BaseEntity {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Long getColumnId() {
+		return columnId;
+	}
+
+	public void setColumnId(Long columnId) {
+		this.columnId = columnId;
 	}
 
 	public String getTableName() {

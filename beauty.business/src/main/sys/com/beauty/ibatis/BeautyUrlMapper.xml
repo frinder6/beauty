@@ -91,9 +91,9 @@
 		delete from beauty_url
 		where 1 != 1
 		<if test="list.size() > 0">
-			or id in
+			OR id IN
 			<foreach collection="list" open="(" close=")" item="id" separator=",">
-				${id}
+				#{id}
 			</foreach>
 		</if>
 	</delete>
@@ -101,9 +101,9 @@
 		update beauty_url set is_deleted = IF(is_deleted = 0, 1, 0)
 		where 1 != 1
 		<if test="list.size() > 0">
-			or id in
+			OR id IN
 			<foreach collection="list" open="(" close=")" item="id" separator=",">
-				${id}
+				#{id}
 			</foreach>
 		</if>
 	</update>

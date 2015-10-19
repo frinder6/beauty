@@ -4,15 +4,9 @@
  * @date 2015-08-23 22:07
  */
 $(function() {
-	init();
-
-	var ltools = '<div class="btn-group">\
-                <button type="button" class="btn btn-default fa fa-copy" onclick="lexport()">&nbsp;导入</button>\
-            </div>';
 
 	var _grid = {
 		ajax : {
-			url : _PATH('/crelation/load/page.action'),
 			data : {
 				tableName : tableName
 			}
@@ -23,84 +17,48 @@ $(function() {
 		pagingType : 'simple'
 	};
 
-	var lopts = _grid;
-	lopts.dom = '<"row"<"#columns_relation_ltool.col-xs-12"f>>t<"row"<"col-xs-6"i><"col-xs-6"p>>';
-	var ltable = $('#l-list').DGrid({
-		gridName : 'columns_relation',
-		tools : ltools,
-		toolId : '#columns_relation_ltool',
-		grid : lopts
-	});
+	var ltools = '<div class="btn-group">\
+        <button type="button" class="btn btn-default fa fa-copy oper-delete">&nbsp;导入</button>\
+    </div>';
 
-	// 导入方法
-	lexport = function() {
-		var items = ltable.selectItems(ltable.getTable());
-		if (items.length == 0) {
-			layer.msg('至少选择一条！');
-			return;
+	var lopts = _grid;
+	lopts.dom = '<"row"<"#BEAUTY_SCHEMA_COLUMNS_ltool.col-xs-12"f>>t<"row"<"col-xs-6"i><"col-xs-6"p>>';
+	lopts.ajax.url = _PATH('/schema/load/page.action');
+	var ltable = $('#l-list').DGrid({
+		gridName : 'BEAUTY_SCHEMA_COLUMNS',
+		tools : ltools,
+		toolId : '#BEAUTY_SCHEMA_COLUMNS_ltool',
+		grid : lopts,
+		remove : true,
+		value : tableName,
+		delUrl : '/columns/conf.action', // 导入方法
+		extraLoad : function() {
+			rtable.reload();
 		}
-		var ids = $.map(items, function(item, i) {
-			return item.id;
-		});
-		alert(ids);
-		var params = {
-			data : {
-				values : resourceIds.join(','),
-				value : authorityId,
-				type : type
-			},
-			url : '/crelation/add.action'
-		};
-		//
-		ajax(params, function() {
-			ltable.row('.selected').remove().draw(false);
-			rtable.row('.selected').remove().draw(false);
-			ltable.ajax.reload();
-			rtable.ajax.reload();
-		});
-	};
+	});
 
 	/**
 	 * -------------------------------------表格2相关--------------------------------------------
 	 */
 
 	var rtools = '<div class="btn-group">\
-	             	<button type="button" class="btn btn-default fa fa-minus-square-o" onclick="del()">&nbsp;删除</button>\
-	            </div>';
+     	<button type="button" class="btn btn-default fa fa-minus-square-o oper-delete">&nbsp;删除</button>\
+    </div>';
 
 	var ropts = _grid;
 	ropts.ajax.data.conf = true;
-	ropts.dom = '<"row"<"#columns_relation_rtool.col-xs-12"f>>t<"row"<"col-xs-6"i><"col-xs-6"p>>';
+	ropts.dom = '<"row"<"#BEAUTY_TABLE_COLUMNS_2_rtool.col-xs-12"f>>t<"row"<"col-xs-6"i><"col-xs-6"p>>';
+	ropts.ajax.url = _PATH('/columns/load/page.action');
 	var rtable = $('#r-list').DGrid({
-		gridName : 'columns_relation',
+		gridName : 'BEAUTY_TABLE_COLUMNS_2',
 		tools : rtools,
-		toolId : '#columns_relation_rtool',
-		grid : ropts
+		toolId : '#BEAUTY_TABLE_COLUMNS_2_rtool',
+		grid : ropts,
+		remove : true,
+		delUrl : '/columns/remove.action',
+		extraLoad : function() {
+			ltable.reload();
+		}
 	});
 
-	del = function() {
-		var items = rtable.rows({
-			selected : true
-		}).data();
-		if (items.length == 0) {
-			layer.msg('至少选择一条！');
-			return;
-		}
-		var ids = $.map(items, function(item, i) {
-			return item.id;
-		});
-		var params = {
-			data : {
-				values : ids.join(',')
-			},
-			url : '/crelation/remove.action'
-		};
-		//
-		ajax(params, function() {
-			ltable.row('.selected').remove().draw(false);
-			rtable.row('.selected').remove().draw(false);
-			ltable.ajax.reload();
-			rtable.ajax.reload();
-		});
-	};
 });

@@ -114,9 +114,9 @@
 		delete from beauty_resource
 		where 1 != 1
 		<if test="list.size() > 0">
-			or id in
+			OR id IN
 			<foreach collection="list" open="(" close=")" item="id" separator=",">
-				${id}
+				#{id}
 			</foreach>
 		</if>
 	</delete>
@@ -125,9 +125,9 @@
 		update beauty_resource set group_id = #{data}
 		where 1 != 1
 		<if test="values.size() > 0">
-			or id in
+			OR id IN
 			<foreach collection="values" open="(" close=")" item="id" separator=",">
-				${id}
+				#{id}
 			</foreach>
 		</if>
 	</update>

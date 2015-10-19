@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.beauty.dao.BeautySchemaColumnsMapper">
+<mapper namespace="com.beauty.interfaces.SchemaColumnsDao">
 	<resultMap id="BaseResultMap" type="com.beauty.entity.BeautySchemaColumns">
 		<id column="id" property="id" jdbcType="BIGINT" />
+		<id column="id" property="DT_RowId" jdbcType="BIGINT" />
 		<result column="data" property="data" jdbcType="VARCHAR" />
 		<result column="column_name" property="columnName" jdbcType="VARCHAR" />
 		<result column="title" property="title" jdbcType="VARCHAR" />
@@ -17,8 +18,12 @@
 		<result column="def3" property="def3" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, data, column_name, title, remark, create_time, creater, last_update_time, modifier,
-		is_deleted, def1, def2, def3
+		t1.id, t1.data, t1.column_name, t1.title
+	</sql>
+	<sql id="Base_Where_Clause">
+		<if test="searchValue">
+			AND ( data LIKE "%" #{searchValue} "%" OR column_name LIKE "%" #{searchValue} "%" OR title LIKE "%" #{searchValue} "%" )
+		</if>
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
 		select
@@ -26,22 +31,44 @@
 		from beauty_schema_columns
 		where id = #{id,jdbcType=BIGINT}
 	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM beauty_schema_columns t1
+		LEFT JOIN information_schema.`COLUMNS` t2 ON t2.COLUMN_NAME = t1.column_name
+		WHERE t2.TABLE_SCHEMA = (SELECT dict_value FROM beauty_dict WHERE dict_key = 'schema')
+		AND t2.TABLE_NAME = #{tableName}
+		AND NOT EXISTS (SELECT 1 FROM beauty_table_columns WHERE column_id = t1.id)
+		<include refid="Base_Where_Clause" />
+		ORDER BY
+		<if test="orderColumn">
+			${orderColumn} ${orderDir}
+		</if>
+		<if test="orderColumn == null">
+			id
+		</if>
+		LIMIT #{from}, #{size}
+	</select>
+	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT
+		COUNT(1)
+		FROM beauty_schema_columns t1
+		LEFT JOIN information_schema.`COLUMNS` t2 ON t2.COLUMN_NAME = t1.column_name
+		WHERE t2.TABLE_SCHEMA = (SELECT dict_value FROM beauty_dict WHERE dict_key = 'schema')
+		AND t2.TABLE_NAME = #{tableName}
+		AND NOT EXISTS (SELECT 1 FROM beauty_table_columns WHERE column_id = t1.id)
+		<include refid="Base_Where_Clause" />
+	</select>
+	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
 		delete from beauty_schema_columns
-		where id = #{id,jdbcType=BIGINT}
+		where 1 != 1
+		<if test="list.size() > 0">
+			or id in
+			<foreach collection="list" open="(" close=")" item="id" separator=",">
+				${id}
+			</foreach>
+		</if>
 	</delete>
-	<insert id="insert" parameterType="com.beauty.entity.BeautySchemaColumns">
-		insert into beauty_schema_columns (id, data, column_name,
-		title, remark, create_time,
-		creater, last_update_time, modifier,
-		is_deleted, def1, def2,
-		def3)
-		values (#{id,jdbcType=BIGINT}, #{data,jdbcType=VARCHAR}, #{columnName,jdbcType=VARCHAR},
-		#{title,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
-		#{creater,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR},
-		#{isDeleted,jdbcType=TINYINT}, #{def1,jdbcType=VARCHAR}, #{def2,jdbcType=VARCHAR},
-		#{def3,jdbcType=TIMESTAMP})
-	</insert>
 	<insert id="insertSelective" parameterType="com.beauty.entity.BeautySchemaColumns">
 		insert into beauty_schema_columns
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -167,22 +194,6 @@
 				def3 = #{def3,jdbcType=TIMESTAMP},
 			</if>
 		</set>
-		where id = #{id,jdbcType=BIGINT}
-	</update>
-	<update id="updateByPrimaryKey" parameterType="com.beauty.entity.BeautySchemaColumns">
-		update beauty_schema_columns
-		set data = #{data,jdbcType=VARCHAR},
-		column_name = #{columnName,jdbcType=VARCHAR},
-		title = #{title,jdbcType=VARCHAR},
-		remark = #{remark,jdbcType=VARCHAR},
-		create_time = #{createTime,jdbcType=TIMESTAMP},
-		creater = #{creater,jdbcType=VARCHAR},
-		last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
-		modifier = #{modifier,jdbcType=VARCHAR},
-		is_deleted = #{isDeleted,jdbcType=TINYINT},
-		def1 = #{def1,jdbcType=VARCHAR},
-		def2 = #{def2,jdbcType=VARCHAR},
-		def3 = #{def3,jdbcType=TIMESTAMP}
 		where id = #{id,jdbcType=BIGINT}
 	</update>
 </mapper>

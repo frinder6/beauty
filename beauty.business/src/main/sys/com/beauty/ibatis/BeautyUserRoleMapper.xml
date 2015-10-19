@@ -60,9 +60,9 @@
 		delete from beauty_user_role
 		where 1 != 1
 		<if test="list.size() > 0">
-			or id in
+			OR id IN
 			<foreach collection="list" open="(" close=")" item="id" separator=",">
-				${id}
+				#{id}
 			</foreach>
 		</if>
 	</delete>
@@ -72,7 +72,7 @@
 		<if test="values.size() > 0">
 			<foreach collection="values" item="id" separator=",">
 				<trim prefix="(" suffix=")" suffixOverrides=",">
-					${value}, ${id}
+					#{value}, #{id}
 				</trim>
 			</foreach>
 		</if>

@@ -11,7 +11,7 @@
 	</sql>
 	<sql id="Base_Where_Clause">
 		<where>
-			TABLE_SCHEMA = #{tableSchema}
+			TABLE_SCHEMA IN ( SELECT dict_value FROM beauty_dict WHERE dict_key = 'schema' )
 			<if test="searchValue">
 				AND ( TABLE_NAME LIKE "%" #{searchValue} "%" OR TABLE_COMMENT LIKE "%" #{searchValue} "%" )
 			</if>
@@ -27,7 +27,7 @@
 			${orderColumn} ${orderDir}
 		</if>
 		<if test="orderColumn == null">
-			id
+			TABLE_NAME
 		</if>
 		LIMIT #{from}, #{size}
 	</select>

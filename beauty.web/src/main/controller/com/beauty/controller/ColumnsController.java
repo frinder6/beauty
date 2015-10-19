@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.beauty.entity.Columns;
+import com.beauty.entity.BeautyTableColumns;
 import com.beauty.entity.Page;
 import com.beauty.model.Value;
 import com.beauty.service.ColumnsService;
@@ -27,34 +27,45 @@ public class ColumnsController {
 
 	@RequestMapping(value = "/load/columns", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public List<?> loadColumns(@RequestParam("gridName") String gridName) {
-		return this.columnsService.selectByGridName(gridName);
+	public List<?> loadColumns(@RequestParam("tableName") String tableName) {
+		return this.columnsService.selectByGridName(tableName);
 	}
 
 	@RequestMapping(value = "/load/page", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public Page queryPage(HttpServletRequest request, Columns entity) {
+	public Page queryPage(HttpServletRequest request) {
 		Page page = new Page();
 		page.init(request);
 		Map<String, Object> params = new HashMap<String, Object>();
+		String tableName = request.getParameter("tableName");
+		params.put("tableName", tableName);
 		// 将page值设置到map中
-		page.pageToMap(Columns.class, params);
+		page.pageToMap(BeautyTableColumns.class, params);
 		int count = this.columnsService.selectCount(params);
 		List<?> list = this.columnsService.selectPage(params);
 		page.setResult(list, count + "", count + "");
 		return page;
 	}
 
+	@RequestMapping(value = "/conf", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Value export(Value value) {
+		if (!value.getValues().isEmpty()) {
+			this.columnsService.batchExport(value);
+		}
+		return new Value(CodeUtil.ADD_SUCCESS);
+	}
+
 	@RequestMapping(value = "/add", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public Value persist(Columns entity) {
+	public Value persist(BeautyTableColumns entity) {
 		this.columnsService.insertSelective(entity);
 		return new Value(CodeUtil.ADD_SUCCESS);
 	}
 
 	@RequestMapping(value = "/update", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public Value modify(Columns entity) {
+	public Value modify(BeautyTableColumns entity) {
 		this.columnsService.updateByPrimaryKeySelective(entity);
 		return new Value(CodeUtil.EDIT_SUCCESS);
 	}
@@ -70,7 +81,7 @@ public class ColumnsController {
 
 	@RequestMapping(value = "/load/id", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public Columns load(@RequestParam("id") Long id) {
+	public BeautyTableColumns load(@RequestParam("id") Long id) {
 		return this.columnsService.selectByPrimaryKey(id);
 	}
 

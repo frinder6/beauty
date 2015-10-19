@@ -182,13 +182,12 @@ public class TableConfigController {
 	 */
 	@RequestMapping(value = "/load/schema/tables", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public Page querySchemaTables(HttpServletRequest request, @RequestParam("tableSchema") String tableSchema) {
+	public Page querySchemaTables(HttpServletRequest request) {
 		Page page = new Page();
 		page.init(request);
 		Map<String, Object> params = new HashMap<String, Object>();
 		// 将page值设置到map中
 		page.pageToMap(SysTables.class, params);
-		params.put("tableSchema", tableSchema);
 		int count = this.sysTableService.selectCount(params);
 		List<?> list = this.sysTableService.selectPage(params);
 		page.setResult(list, count + "", count + "");

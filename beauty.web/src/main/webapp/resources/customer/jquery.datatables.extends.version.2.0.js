@@ -42,6 +42,9 @@
 		destory : false,
 		displayStart : 0,
 		dom : '',
+		select : {
+			style : 'multi'
+		},
 		order : [ [ 2, 'asc' ] ],
 		pageLength : 10,
 		columns : []
@@ -77,7 +80,7 @@
 				type : 'POST',
 				url : (_BASE + '/columns/load/columns.action'),
 				data : {
-					gridName : this.$opts.gridName
+					tableName : this.$opts.gridName
 				},
 				dataType : 'JSON',
 				async : false,
@@ -123,6 +126,13 @@
 				dom : ('<"row"<"' + toolId + '.col-xs-6"><"col-xs-6"f>r>t<"row"<"col-xs-3"l><"col-xs-3"i><"col-xs-6"p>>'),
 				initComplete : function() {
 					e.pdiv().find(toolId).append($opts.tools);
+
+					if ($opts.remove) {
+						e.pdiv().find('button.oper-delete').click(function() {
+							e.remove();
+						});
+					}
+
 					if ($opts.initCallback) {
 						$opts.initCallback();
 					}
@@ -202,7 +212,35 @@
 
 		},
 		remove : function() {
-
+			var $opts = this.$opts;
+			var e = this;
+			var table = e.getTable();
+			var items = this.selectItems(table);
+			if (items.length == 0) {
+				layer.msg('至少选择一条！');
+				return;
+			}
+			var ids = $.map(items, function(item, i) {
+				return item.id;
+			});
+			var params = {
+				data : {
+					values : ids.join(','),
+					value : $opts.value
+				},
+				url : $opts.delUrl
+			};
+			ajax(params, function() {
+				e.reload(table);
+				if ($opts.extraLoad) {
+					$opts.extraLoad();
+				}
+			});
+		},
+		reload : function() {
+			var table = this.getTable();
+			table.row('.selected').remove().draw(false);
+			table.ajax.reload();
 		}
 	};
 

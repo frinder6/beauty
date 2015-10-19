@@ -2,60 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4edbbf48-adb0-4901-b202-35f4bca932ec" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\pages\bracket\Copy of dwr.jsp" afterPath="" />
-      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\pages\bracket\Copy of index.jsp" afterPath="" />
-      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer\Copy of beauty-sys.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer\Copy of index.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer\index.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer\sys\Copy of Copy of index.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer\sys\Copy of menu-list.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer\sys\auth-add.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer\sys\auth-update.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer\sys\edit-btn-resource-list.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer\sys\menu-add.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer\sys\menu-update.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer\sys\resource-add.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer\sys\resource-update.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer\sys\role-add.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer\sys\role-update.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer\sys\user-add.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer\sys\user-update.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.base/target/test-classes/com/beauty/AppTest.class" afterPath="$PROJECT_DIR$/../beauty.base/target/test-classes/com/beauty/AppTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.business/target/test-classes/com/beauty/AppTest.class" afterPath="$PROJECT_DIR$/../beauty.business/target/test-classes/com/beauty/AppTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.common/target/test-classes/com/beauty/AppTest.class" afterPath="$PROJECT_DIR$/../beauty.common/target/test-classes/com/beauty/AppTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/CSVUtil.class" afterPath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/CSVUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/CamelCaseUtils.class" afterPath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/CamelCaseUtils.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/CodeUtil.class" afterPath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/CodeUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/EncodeUtil.class" afterPath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/EncodeUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/HttpUtil.class" afterPath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/HttpUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/JSONUtil.class" afterPath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/JSONUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/JavaHttp.class" afterPath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/JavaHttp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/StringUtil.class" afterPath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/StringUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.gitignore" afterPath="$PROJECT_DIR$/../.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/controller/com/beauty/controller/AuthorityController.java" afterPath="$PROJECT_DIR$/../beauty.web/src/main/controller/com/beauty/controller/AuthorityController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyAuthorityMapper.xml" afterPath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyAuthorityMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/sys/auth-add.jsp" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/sys/auth-add.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/sys/auth-list.js" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/sys/auth-list.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/sys/auth-update.jsp" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/sys/auth-update.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/sys/columns-list.js" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/sys/columns-list.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/content.jsp" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/content.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/import-js.jsp" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/import-js.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/index.jsp" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/jquery.datatables.extends.version.2.0.js" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/jquery.datatables.extends.version.2.0.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/sys/menu-add.jsp" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/sys/menu-add.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/sys/menu-update.jsp" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/sys/menu-update.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/my.sys.js" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/my.sys.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/target/m2e-wtp/web-resources/META-INF/maven/beauty.web/beauty.web/pom.properties" afterPath="$PROJECT_DIR$/../beauty.web/target/m2e-wtp/web-resources/META-INF/maven/beauty.web/beauty.web/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/sys/resource-add.jsp" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/sys/resource-add.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/sys/resource-update.jsp" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/sys/resource-update.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/sys/role-add.jsp" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/sys/role-add.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/sys/role-update.jsp" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/sys/role-update.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/sys/user-add.jsp" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/sys/user-add.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/sys/user-update.jsp" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/sys/user-update.jsp" />
-      <change type="MOVED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer\beauty-sys.js" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/util.js" />
-      <change type="MOVED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer\jquery-datatables.js" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/jquery.datatables.js" />
-      <change type="MOVED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer\jquery-select2.js" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/jquery.select2.js" />
-      <change type="MOVED" beforePath="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer\jquery-validate-extends.js" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/jquery.validate.extends.js" />
+      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.business\src\main\sys\com\beauty\entity\Columns.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.business\src\main\sys\com\beauty\entity\Grid.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.business\src\main\sys\com\beauty\entity\Relation.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.business\src\main\sys\com\beauty\ibatis\ColumnsMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.business\src\main\sys\com\beauty\ibatis\ColumnsRelationMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.business\src\main\sys\com\beauty\ibatis\RelationMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.business\src\main\sys\com\beauty\ibatis\common-mapping.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.business\src\main\sys\com\beauty\ibatis\menu-mapping.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.business\src\main\sys\com\beauty\interfaces\ColumnsRelationDao.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.business\src\main\sys\com\beauty\interfaces\RelationDao.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.business\src\main\sys\com\beauty\service\ColumnsRelationService.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.business\src\main\sys\com\beauty\service\RelationService.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautySchemaColumnsMapper.xml" afterPath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautySchemaColumnsMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyTableColumnsMapper.xml" afterPath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyTableColumnsMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/interfaces/ColumnsDao.java" afterPath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/interfaces/ColumnsDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/service/ColumnsService.java" afterPath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/service/ColumnsService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.security/pom.xml" afterPath="$PROJECT_DIR$/../beauty.security/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="beauty.compile.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -84,11 +49,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../beauty.security/pom.xml">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../beauty.web/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.5249169">
-              <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="30" column="44" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserDetailServiceImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/UserDetailServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.43818182">
+              <caret line="41" column="12" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -109,8 +84,9 @@
       <list>
         <option value="$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/AjaxAccessDeniedHandlerImpl.java" />
         <option value="$PROJECT_DIR$/../beauty.web/src/test/java/com/beauty/controller/Test.java" />
-        <option value="$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/InvocationSecurityMetadataSourceServiceImpl.java" />
         <option value="$PROJECT_DIR$/../beauty.web/src/test/java/com/beauty/controller/MenuControllerTest.java" />
+        <option value="$PROJECT_DIR$/../beauty.security/pom.xml" />
+        <option value="$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/InvocationSecurityMetadataSourceServiceImpl.java" />
       </list>
     </option>
   </component>
@@ -144,8 +120,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="136" />
-    <option name="y" value="22" />
+    <option name="x" value="105" />
+    <option name="y" value="28" />
     <option name="width" value="1177" />
     <option name="height" value="683" />
   </component>
@@ -180,59 +156,17 @@
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages ProjectPane="false" />
+      <flattenPackages ProjectPane="true" />
       <showMembers ProjectPane="true" />
       <showModules />
       <showLibraryContents />
       <hideEmptyPackages ProjectPane="true" />
       <abbreviatePackageNames />
-      <autoscrollToSource ProjectPane="true" />
-      <autoscrollFromSource PackagesPane="true" ProjectPane="true" />
+      <autoscrollToSource ProjectPane="false" />
+      <autoscrollFromSource PackagesPane="true" ProjectPane="false" />
       <sortByType ProjectPane="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beauty.compile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beauty.compile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beauty.security" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beauty.compile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beauty.pom" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-        <option name="show-excluded-files" value="false" />
-      </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beauty.compile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Production">
           <PATH>
@@ -273,24 +207,62 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beauty.compile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beauty.compile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <option name="show-excluded-files" value="false" />
+      </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../beauty.security" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="SearchEverywhereHistoryKey" value="spring-security.version&#9;null&#9;null" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="dynamic.classpath" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="70" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="72" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="85" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="803" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="70" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="72" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="85" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="803" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
   </component>
-  <component name="RunManager" selected="Tomcat Server.tomcat7">
+  <component name="RunManager" selected="Maven.beauty.web">
     <configuration default="false" name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -829,15 +801,15 @@
       <method />
     </configuration>
     <list size="9">
-      <item index="0" class="java.lang.String" itemvalue="Application.Test" />
-      <item index="1" class="java.lang.String" itemvalue="Maven.beauty.security" />
-      <item index="2" class="java.lang.String" itemvalue="Maven.beauty.common" />
-      <item index="3" class="java.lang.String" itemvalue="Maven.beauty.compile" />
-      <item index="4" class="java.lang.String" itemvalue="Maven.beauty.base" />
-      <item index="5" class="java.lang.String" itemvalue="Maven.beauty.business" />
-      <item index="6" class="java.lang.String" itemvalue="Maven.beauty.pom" />
-      <item index="7" class="java.lang.String" itemvalue="Maven.beauty.web" />
-      <item index="8" class="java.lang.String" itemvalue="Tomcat Server.tomcat7" />
+      <item index="0" class="java.lang.String" itemvalue="Maven.beauty.security" />
+      <item index="1" class="java.lang.String" itemvalue="Maven.beauty.common" />
+      <item index="2" class="java.lang.String" itemvalue="Maven.beauty.compile" />
+      <item index="3" class="java.lang.String" itemvalue="Maven.beauty.base" />
+      <item index="4" class="java.lang.String" itemvalue="Maven.beauty.business" />
+      <item index="5" class="java.lang.String" itemvalue="Maven.beauty.pom" />
+      <item index="6" class="java.lang.String" itemvalue="Maven.beauty.web" />
+      <item index="7" class="java.lang.String" itemvalue="Tomcat Server.tomcat7" />
+      <item index="8" class="java.lang.String" itemvalue="Application.Test" />
     </list>
     <recent_temporary>
       <list size="1">
@@ -857,44 +829,45 @@
       <updated>1444973493587</updated>
       <workItem from="1444973495404" duration="2211000" />
       <workItem from="1445064599452" duration="2248000" />
-      <workItem from="1445222267879" duration="8624000" />
+      <workItem from="1445222267879" duration="11460000" />
+      <workItem from="1445242385033" duration="697000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13083000" />
+    <option name="totallyTimeSpent" value="16616000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="136" y="22" width="1177" height="683" extended-state="0" />
-    <editor active="true" />
+    <frame x="105" y="28" width="1177" height="683" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4079861" sideWeight="0.5080214" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298611" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.43229166" sideWeight="0.49197862" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32921174" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39965546" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="512" y="46" width="341" height="645" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2635659" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="512" y="46" width="341" height="645" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36805555" sideWeight="0.49197862" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -908,6 +881,9 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="1" />
@@ -919,6 +895,14 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../beauty.web/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/AjaxAccessDeniedHandlerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -963,7 +947,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.47020933">
           <caret line="872" column="64" selection-start-line="872" selection-start-column="64" selection-end-line="872" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -971,7 +954,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.25">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -979,7 +961,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.20833333">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -987,7 +968,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -995,7 +975,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3558776">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1003,7 +982,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33242506">
           <caret line="44" column="40" selection-start-line="44" selection-start-column="40" selection-end-line="44" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1011,7 +989,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33242506">
           <caret line="43" column="17" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1019,7 +996,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1027,7 +1003,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2107438">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1047,39 +1022,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/UserDetailServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4380032">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../beauty.business/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/InvocationSecurityMetadataSourceServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.408867">
-          <caret line="40" column="19" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.web/src/test/java/com/beauty/controller/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6979472">
-          <caret line="14" column="52" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1087,7 +1033,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.4539683">
           <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1095,15 +1040,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.32380953">
           <caret line="82" column="4" selection-start-line="82" selection-start-column="4" selection-end-line="82" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.web/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.7269841">
-          <caret line="41" column="42" selection-start-line="41" selection-start-column="42" selection-end-line="41" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1111,7 +1047,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1123,10 +1058,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/test/java/com/beauty/controller/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../beauty.security/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5249169">
-          <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.44444445">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../maven.repository/javax/servlet/servlet-api/2.5/servlet-api-2.5-sources.jar!/javax/servlet/http/HttpServletRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.547504">
+          <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/controller/com/beauty/controller/AuthorityController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16425121">
+          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/InvocationSecurityMetadataSourceServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3558776">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.web/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="44" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/UserDetailServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43818182">
+          <caret line="41" column="12" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -1134,6 +1114,32 @@
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>beauty.web:war</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Web</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
           <splitter-proportions>
@@ -1157,8 +1163,22 @@
           </splitter-proportions>
         </settings>
       </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>beauty.web</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
+          <last-edited>Maven: antlr:antlr:2.7.7</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

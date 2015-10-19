@@ -3,7 +3,7 @@
  * 
  * @date 2015-08-23 22:07
  */
-var _RENDER_OPER = function(data, type, row, meta) {
+var _render_oper = function(data, type, row, meta) {
 	var result = '\
 		<span class="fa fa-copy pointer" title="配置" data-href="/pages/bracket/sys/columns-conf.jsp?table={0}" onclick="_S_REDIRECT(this)"></span>\
 	';
@@ -17,14 +17,20 @@ $(function() {
                 <button type="button" class="btn btn-default fa fa-copy" onclick="config()">&nbsp;配置</button>\
             </div>';
 
-	var table = $('#list').DGrid({
-		gridName : 'TABLES',
+	var columnDefs = [ {
+		'targets' : 1,
+		'render' : _render_oper
+	} ];
+
+	var table = $('#list').datatable({
+		tableName : 'TABLES',
+		url : '/table/load/schema/tables.action',
+		selected : true,
+		data : {
+			tableSchema : 'beauty'
+		},
 		tools : tools,
-		grid : {
-			ajax : {
-				url : _PATH('/table/load/schema/tables.action')
-			}
-		}
+		columnDefs : columnDefs
 	});
 
 	config = function() {

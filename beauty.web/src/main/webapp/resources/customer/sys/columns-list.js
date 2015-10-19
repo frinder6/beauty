@@ -12,14 +12,11 @@ $(function() {
     </div>';
 
 	var table = $('#list').DGrid({
-		gridName : 'beauty_conf_columns',
+		gridName : 'BEAUTY_TABLE_COLUMNS',
 		tools : tools,
 		grid : {
 			ajax : {
 				url : _PATH('/columns/load/page.action')
-			},
-			select : {
-				style : 'multi'
 			}
 		}
 	});

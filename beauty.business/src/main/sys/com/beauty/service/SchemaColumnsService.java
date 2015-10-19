@@ -6,25 +6,25 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.beauty.entity.Columns;
-import com.beauty.interfaces.ColumnsRelationDao;
+import com.beauty.entity.BeautySchemaColumns;
+import com.beauty.interfaces.SchemaColumnsDao;
 
 @Service
-public class ColumnsRelationService extends BaseService<Columns> implements IMapperService<Columns> {
+public class SchemaColumnsService extends BaseService<BeautySchemaColumns> implements IMapperService<BeautySchemaColumns> {
 
 	@Autowired
-	private ColumnsRelationDao columnsRelationDao;
+	private SchemaColumnsDao schemaColumnsDao;
 
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.columnsRelationDao.selectCount(params);
+		return this.schemaColumnsDao.selectCount(params);
 	}
 
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.columnsRelationDao.selectPage(params);
+		return this.schemaColumnsDao.selectPage(params);
 	}
 
 }

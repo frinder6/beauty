@@ -6,11 +6,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.beauty.entity.Columns;
+import com.beauty.entity.BeautyTableColumns;
 import com.beauty.interfaces.ColumnsDao;
+import com.beauty.model.Value;
 
 @Service
-public class ColumnsService extends BaseService<Columns> implements IMapperService<Columns> {
+public class ColumnsService extends BaseService<BeautyTableColumns> implements IMapperService<BeautyTableColumns> {
 
 	@Autowired
 	private ColumnsDao columnsDao;
@@ -28,18 +29,34 @@ public class ColumnsService extends BaseService<Columns> implements IMapperServi
 	}
 
 	@Override
-	public void insertSelective(Columns entity) {
+	public void insertSelective(BeautyTableColumns entity) {
 		// TODO Auto-generated method stub
 		this.columnsDao.insertSelective(entity);
 	}
 
 	@Override
-	public Columns selectByPrimaryKey(Long id) {
+	public BeautyTableColumns selectByPrimaryKey(Long id) {
 		// TODO Auto-generated method stub
 		return this.columnsDao.selectByPrimaryKey(id);
 	}
 
-	public List<?> selectByGridName(String gridName) {
-		return this.columnsDao.selectByGridName(gridName);
+	@Override
+	public void deleteByPrimaryKeys(List<Object> list) {
+		// TODO Auto-generated method stub
+		this.columnsDao.deleteByPrimaryKeys(list);
+	}
+
+	@Override
+	public void updateByPrimaryKeySelective(BeautyTableColumns entity) {
+		// TODO Auto-generated method stub
+		this.columnsDao.updateByPrimaryKeySelective(entity);
+	}
+
+	public List<?> selectByGridName(String tableName) {
+		return this.columnsDao.selectByGridName(tableName);
+	}
+
+	public void batchExport(Value value) {
+		this.columnsDao.batchExport(value);
 	}
 }
