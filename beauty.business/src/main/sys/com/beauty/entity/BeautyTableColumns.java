@@ -36,11 +36,13 @@ public class BeautyTableColumns extends BaseEntity {
 
 	private String render;
 
-	private Byte orderable;
+	private Boolean orderable;
 
-	private Byte searchable;
+	private Boolean searchable;
 
-	private Byte visible;
+	private Boolean visible;
+
+	private Boolean editable;
 
 	private String targets;
 
@@ -67,7 +69,7 @@ public class BeautyTableColumns extends BaseEntity {
 	}
 
 	public void setTableName(String tableName) {
-		this.tableName = tableName == null ? null : tableName.trim();
+		this.tableName = tableName == null ? null : tableName.trim().toUpperCase();
 	}
 
 	public String getCellType() {
@@ -150,28 +152,36 @@ public class BeautyTableColumns extends BaseEntity {
 		this.render = render == null ? null : render.trim();
 	}
 
-	public Byte getOrderable() {
+	public Boolean getOrderable() {
 		return orderable;
 	}
 
-	public void setOrderable(Byte orderable) {
+	public void setOrderable(Boolean orderable) {
 		this.orderable = orderable;
 	}
 
-	public Byte getSearchable() {
+	public Boolean getSearchable() {
 		return searchable;
 	}
 
-	public void setSearchable(Byte searchable) {
+	public void setSearchable(Boolean searchable) {
 		this.searchable = searchable;
 	}
 
-	public Byte getVisible() {
+	public Boolean getVisible() {
 		return visible;
 	}
 
-	public void setVisible(Byte visible) {
+	public void setVisible(Boolean visible) {
 		this.visible = visible;
+	}
+
+	public Boolean getEditable() {
+		return editable;
+	}
+
+	public void setEditable(Boolean editable) {
+		this.editable = editable;
 	}
 
 	public String getTargets() {

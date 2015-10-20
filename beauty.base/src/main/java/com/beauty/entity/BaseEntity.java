@@ -25,7 +25,7 @@ public class BaseEntity implements Serializable {
 
 	protected String modifier;
 
-	protected Byte isDeleted;
+	protected Boolean isDeleted;
 
 	protected String def1;
 
@@ -73,11 +73,11 @@ public class BaseEntity implements Serializable {
 		this.modifier = modifier == null ? null : modifier.trim();
 	}
 
-	public Byte getIsDeleted() {
+	public Boolean getIsDeleted() {
 		return isDeleted;
 	}
 
-	public void setIsDeleted(Byte isDeleted) {
+	public void setIsDeleted(Boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 

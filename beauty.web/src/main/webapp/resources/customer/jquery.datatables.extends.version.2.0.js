@@ -43,7 +43,8 @@
 		displayStart : 0,
 		dom : '',
 		select : {
-			style : 'multi'
+			style : 'multi',
+			selector : 'td:first-child'
 		},
 		order : [ [ 2, 'asc' ] ],
 		pageLength : 10,
@@ -116,6 +117,48 @@
 				width : 10
 			});
 		},
+		editables : function(options) {
+			if (options.columns) {
+				var edits = [];
+				$.each(options.columns, function(i, c) {
+					if (c.editable) {
+						var key = 'td:eq({0})'.format(i);
+						var edit = {};
+						edit[key] = c.data;
+						edits.push(edit);
+					}
+				});
+				this.$edits = edits;
+			}
+		},
+		xedit : function(nRow, aData) {
+			var edits = this.$edits;
+			var $opts = this.$opts;
+			$.each(edits, function(i, edit) {
+				$.each(edit, function(k, v) {
+					$(k, nRow).editable({
+						// mode : 'inline',
+						// defaultValue : '',
+						pk : 1,
+						showbuttons : false,
+						emptytext : '',
+						placement : 'right',
+						success : function(response, newValue) {
+							var data = {
+								id : aData.id
+							};
+							data[v] = newValue;
+							var params = {
+								data : data,
+								url : $opts.editUrl
+							};
+							// alert(JSON.stringify(params));
+							ajax(params);
+						}
+					});
+				});
+			});
+		},
 		initLoadGrid : function() {
 			var $opts = this.$opts;
 			var $this = this.$this;
@@ -128,7 +171,7 @@
 					e.pdiv().find(toolId).append($opts.tools);
 
 					if ($opts.remove) {
-						e.pdiv().find('button.oper-delete').click(function() {
+						e.pdiv().find('div.btn-group').find('a.oper-delete').click(function() {
 							e.remove();
 						});
 					}
@@ -136,11 +179,17 @@
 					if ($opts.initCallback) {
 						$opts.initCallback();
 					}
+
+					$(this).Sys();
 				},
 				drawCallback : function(settings) {
 					if ($opts.drawCallback) {
 						$opts.drawCallback();
 					}
+				},
+				fnRowCallback : function(nRow, aData, iDisplayIndex) {
+					e.xedit(nRow, aData);
+					return nRow;
 				}
 			};
 
@@ -156,6 +205,9 @@
 			// checkbox
 			this.checkbox(options);
 
+			// editable
+			this.editables(options);
+
 			// alert(JSON.stringify(options));
 
 			// return table
@@ -164,20 +216,22 @@
 			this.$table = table;
 
 			// select
-			this.select(table);
+			this.select();
 
 			// change page length
-			this.changePageLength(table);
+			this.changePageLength();
 
 			// order
-			this.orderSearch(table);
+			this.orderSearch();
 
 			return $this;
 		},
 		getTable : function() {
 			return this.$table;
 		},
-		select : function(table) {
+		select : function() {
+			var e = this;
+			var table = e.getTable();
 			this.pdiv().find('input.table-select').click(function() {
 				var checked = $(this).attr('checked');
 				if (checked) {
@@ -189,40 +243,55 @@
 				}
 			});
 		},
-		changePageLength : function(table) {
+		changePageLength : function() {
 			var e = this;
+			var table = e.getTable();
 			table.on('length.dt', function() {
+				table.rows().deselect();
 			});
 		},
-		orderSearch : function(table) {
+		orderSearch : function() {
 			var e = this;
+			var table = e.getTable();
 			table.on('search.dt order.dt', function() {
 				var ck = e.pdiv().find('input.table-select');
 				ck.attr('checked') == 'checked' ? ck.removeAttr('checked') : '';
 				table.rows().deselect();
 			});
 		},
-		selectItems : function(table) {
+		selectItems : function() {
+			var e = this;
+			var table = e.getTable();
 			var items = table.rows({
 				selected : true
 			}).data();
-			return items;
-		},
-		persist : function() {
-
-		},
-		remove : function() {
-			var $opts = this.$opts;
-			var e = this;
-			var table = e.getTable();
-			var items = this.selectItems(table);
 			if (items.length == 0) {
 				layer.msg('至少选择一条！');
+				return;
+			}
+			return items;
+		},
+		selectIds : function() {
+			var e = this;
+			var items = e.selectItems();
+			if (!items) {
 				return;
 			}
 			var ids = $.map(items, function(item, i) {
 				return item.id;
 			});
+			return ids;
+		},
+		persist : function() {
+
+		},
+		remove : function() {
+			var e = this;
+			var $opts = this.$opts;
+			var ids = e.selectIds();
+			if (!ids) {
+				return;
+			}
 			var params = {
 				data : {
 					values : ids.join(','),
@@ -230,12 +299,19 @@
 				},
 				url : $opts.delUrl
 			};
-			ajax(params, function() {
-				e.reload(table);
-				if ($opts.extraLoad) {
-					$opts.extraLoad();
-				}
+			layer.confirm('操作不可逆，确定执行？', {
+				offset : '100px'
+			}, function() {
+				ajax(params, function() {
+					e.reload();
+					if ($opts.extraLoad) {
+						$opts.extraLoad();
+					}
+				});
 			});
+		},
+		mark : function() {
+			var table = this.getTable();
 		},
 		reload : function() {
 			var table = this.getTable();

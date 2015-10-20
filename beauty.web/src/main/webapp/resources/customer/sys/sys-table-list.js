@@ -11,7 +11,6 @@ var _RENDER_OPER = function(data, type, row, meta) {
 };
 
 $(function() {
-	init();
 
 	var tools = '<div class="btn-group">\
                 <button type="button" class="btn btn-default fa fa-copy" onclick="config()">&nbsp;配置</button>\

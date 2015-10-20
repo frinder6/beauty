@@ -19,6 +19,7 @@
 		<result column="orderable" property="orderable" jdbcType="TINYINT" />
 		<result column="searchable" property="searchable" jdbcType="TINYINT" />
 		<result column="visible" property="visible" jdbcType="TINYINT" />
+		<result column="editable" property="editable" jdbcType="TINYINT" />
 		<result column="targets" property="targets" jdbcType="VARCHAR" />
 		<result column="sequence" property="sequence" jdbcType="INTEGER" />
 		<result column="remark" property="remark" jdbcType="VARCHAR" />
@@ -32,7 +33,7 @@
 		<result column="def3" property="def3" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, column_id, table_name, class_name, data, column_name, title, width, render, orderable, searchable, visible, sequence
+		id, column_id, table_name, class_name, data, column_name, title, width, render, orderable, searchable, visible, editable, sequence
 	</sql>
 	<sql id="Base_Where_Clause">
 		<where>
@@ -79,9 +80,20 @@
 		<include refid="Base_Where_Clause" />
 	</select>
 	<insert id="batchExport" parameterType="com.beauty.model.Value">
-		INSERT beauty_table_columns (table_name, `data`, column_name, title, column_id) 
+		INSERT beauty_table_columns (table_name, `data`, column_name, title, column_id)
 		SELECT #{value}, `data`, column_name, title, id
 		FROM beauty_schema_columns
+		WHERE 1 != 1
+		<if test="values.size() > 0">
+			OR id IN
+			<foreach collection="values" open="(" close=")" item="id" separator=",">
+				#{id}
+			</foreach>
+		</if>
+	</insert>
+	<insert id="batchCopy" parameterType="com.beauty.model.Value">
+		INSERT INTO `beauty_table_columns` ( `column_id`, `table_name`, `cell_type`, `class_name`, `data`, `column_name`, `default_content`, `name`, `type`, `title`, `width`, `render`, `orderable`, `searchable`, `visible`, `editable`, `targets`, `sequence` )
+		SELECT `column_id`, CONCAT(`table_name`, '_COPY'), `cell_type`, `class_name`, `data`, `column_name`, `default_content`, `name`, `type`, `title`, `width`, `render`, `orderable`, `searchable`, `visible`, `editable`, `targets`, `sequence` FROM `beauty_table_columns`
 		WHERE 1 != 1
 		<if test="values.size() > 0">
 			OR id IN
@@ -150,6 +162,9 @@
 			</if>
 			<if test="visible != null">
 				visible,
+			</if>
+			<if test="editable != null">
+				editable,
 			</if>
 			<if test="targets != null">
 				targets,
@@ -234,6 +249,9 @@
 			<if test="visible != null">
 				#{visible,jdbcType=TINYINT},
 			</if>
+			<if test="editable != null">
+				#{editable,jdbcType=TINYINT},
+			</if>
 			<if test="targets != null">
 				#{targets,jdbcType=VARCHAR},
 			</if>
@@ -316,6 +334,9 @@
 			</if>
 			<if test="visible != null">
 				visible = #{visible,jdbcType=TINYINT},
+			</if>
+			<if test="editable != null">
+				editable = #{editable,jdbcType=TINYINT},
 			</if>
 			<if test="targets != null">
 				targets = #{targets,jdbcType=VARCHAR},

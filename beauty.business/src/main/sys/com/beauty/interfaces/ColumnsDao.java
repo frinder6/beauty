@@ -12,4 +12,6 @@ public interface ColumnsDao extends IMapperDao<BeautyTableColumns> {
 
 	public void batchExport(Value value);
 
+	public void batchCopy(Value value);
+
 }

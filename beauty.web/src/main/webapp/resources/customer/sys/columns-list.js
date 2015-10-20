@@ -7,8 +7,8 @@
 $(function() {
 
 	var tools = '<div class="btn-group">\
-		<a class="btn btn-default fa fa-bookmark" onclick="mark()">&nbsp;标记</a>\
-		<a class="btn btn-default fa fa-minus-square-o" onclick="del()">&nbsp;删除</a>\
+		<a class="btn btn-default fa fa-copy" onclick="copy()">&nbsp;复制</a>\
+		<a class="btn btn-default fa fa-minus-square-o oper-delete">&nbsp;删除</a>\
     </div>';
 
 	var table = $('#list').DGrid({
@@ -18,7 +18,25 @@ $(function() {
 			ajax : {
 				url : _PATH('/columns/load/page.action')
 			}
-		}
+		},
+		remove : true,
+		delUrl : '/columns/remove.action',
+		editUrl : '/columns/update.action'
 	});
+
+	copy = function() {
+		var ids = table.selectIds();
+		if (!ids) {
+			return;
+		}
+		ajax({
+			data : {
+				values : ids.join(',')
+			},
+			url : '/columns/copy.action'
+		}, function() {
+			table.reload();
+		});
+	};
 
 });

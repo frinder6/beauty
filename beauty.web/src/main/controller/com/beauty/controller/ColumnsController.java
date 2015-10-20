@@ -56,6 +56,15 @@ public class ColumnsController {
 		return new Value(CodeUtil.ADD_SUCCESS);
 	}
 
+	@RequestMapping(value = "/copy", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Value copy(Value value) {
+		if (!value.getValues().isEmpty()) {
+			this.columnsService.batchCopy(value);
+		}
+		return new Value(CodeUtil.ADD_SUCCESS);
+	}
+
 	@RequestMapping(value = "/add", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public Value persist(BeautyTableColumns entity) {

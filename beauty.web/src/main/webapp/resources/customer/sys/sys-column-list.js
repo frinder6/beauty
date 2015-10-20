@@ -22,10 +22,7 @@ $(function() {
 		pagingType : 'simple',
 		dom : "<'row'<'#my-ltool.col-xs-12'>>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
 		toolid : '#my-ltool',
-		title : '<input type="checkbox" onclick="lcheckbox(this)" />',
-		select : {
-			style : 'multi'
-		}
+		title : '<input type="checkbox" onclick="lcheckbox(this)" />'
 	});
 
 	// 表格全选方法

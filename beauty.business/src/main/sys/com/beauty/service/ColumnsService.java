@@ -59,4 +59,8 @@ public class ColumnsService extends BaseService<BeautyTableColumns> implements I
 	public void batchExport(Value value) {
 		this.columnsDao.batchExport(value);
 	}
+
+	public void batchCopy(Value value) {
+		this.columnsDao.batchCopy(value);
+	}
 }

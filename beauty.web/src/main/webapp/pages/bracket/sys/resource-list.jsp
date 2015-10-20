@@ -27,7 +27,7 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content" style="width: 800px;">
 				<div class="modal-body">
-					<table id="m-list" class="table table-bordered nowrap" width="100%">
+					<table id="m-list" class="table table-bordered" width="100%">
 					</table>
 				</div>
 			</div>

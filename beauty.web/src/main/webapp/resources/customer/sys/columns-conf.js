@@ -11,14 +11,11 @@ $(function() {
 				tableName : tableName
 			}
 		},
-		select : {
-			style : 'multi'
-		},
 		pagingType : 'simple'
 	};
 
 	var ltools = '<div class="btn-group">\
-        <button type="button" class="btn btn-default fa fa-copy oper-delete">&nbsp;导入</button>\
+        <a class="btn btn-default fa fa-copy oper-delete">&nbsp;导入</a>\
     </div>';
 
 	var lopts = _grid;
@@ -42,7 +39,7 @@ $(function() {
 	 */
 
 	var rtools = '<div class="btn-group">\
-     	<button type="button" class="btn btn-default fa fa-minus-square-o oper-delete">&nbsp;删除</button>\
+     	<a class="btn btn-default fa fa-minus-square-o oper-delete">&nbsp;删除</a>\
     </div>';
 
 	var ropts = _grid;

@@ -31,13 +31,13 @@
 
 		}
 	};
-	
+
 	$.fn.Sys = function(options) {
 		var sys = new Sys(this, options);
 		sys.setHeight();
 		return sys;
 	};
-	
+
 	$(this).Sys();
 
 	$.fn.Sys.Constructor = Sys;

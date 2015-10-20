@@ -4,7 +4,15 @@
  * @date 2015-08-23 22:07
  */
 $(function() {
-	init();
+
+	var _grid = {
+		ajax : {
+			data : {
+				authorityId : authorityId,
+			}
+		},
+		pagingType : 'simple'
+	};
 
 	var ltools = '<div class="btn-group">\
                 <button type="button" class="btn btn-default fa fa-copy" onclick="lexport()">&nbsp;导入</button>\
