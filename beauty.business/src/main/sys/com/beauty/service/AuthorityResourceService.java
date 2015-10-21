@@ -11,7 +11,7 @@ import com.beauty.interfaces.AuthorityResourceDao;
 import com.beauty.model.Value;
 
 @Service
-public class AuthorityResourceService extends BaseService<BeautyAuthorityResource> implements IMapperService<BeautyAuthorityResource> {
+public class AuthorityResourceService extends BaseService<BeautyAuthorityResource> {
 
 	@Autowired
 	private AuthorityResourceDao authorityResourceDao;
@@ -26,6 +26,14 @@ public class AuthorityResourceService extends BaseService<BeautyAuthorityResourc
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		return this.authorityResourceDao.selectPage(params);
+	}
+
+	public int selectConfCount(Map<String, Object> params) {
+		return this.authorityResourceDao.selectConfCount(params);
+	}
+
+	public List<?> selectConfPage(Map<String, Object> params) {
+		return this.authorityResourceDao.selectConfPage(params);
 	}
 
 	@Override
@@ -51,8 +59,8 @@ public class AuthorityResourceService extends BaseService<BeautyAuthorityResourc
 		// TODO Auto-generated method stub
 		this.authorityResourceDao.insertSelective(entity);
 	}
-	
-	public void insert(Value value){
+
+	public void insert(Value value) {
 		this.authorityResourceDao.insert(value);
 	}
 }

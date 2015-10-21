@@ -19,17 +19,17 @@ public interface IService<T> {
 	 * @date 2015年9月13日 下午10:52:37
 	 * @throws
 	 */
-	public T selectByPrimaryKey(Long id);
-
-	public int selectCount(Map<String, Object> params);
-
-	public List<?> selectPage(Map<String, Object> params);
-
-	public void insertSelective(T entity);
-
-	public void updateByPrimaryKeySelective(T entity);
-
-	public void deleteByPrimaryKeys(List<Object> list);
+	// public T selectByPrimaryKey(Long id);
+	//
+	// public int selectCount(Map<String, Object> params);
+	//
+	// public List<?> selectPage(Map<String, Object> params);
+	//
+	// public void insertSelective(T entity);
+	//
+	// public void updateByPrimaryKeySelective(T entity);
+	//
+	// public void deleteByPrimaryKeys(List<Object> list);
 
 	/******************************************* mybatis *********************************************/
 

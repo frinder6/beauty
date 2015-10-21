@@ -10,7 +10,7 @@ import com.beauty.entity.BeautySchemaColumns;
 import com.beauty.interfaces.SchemaColumnsDao;
 
 @Service
-public class SchemaColumnsService extends BaseService<BeautySchemaColumns> implements IMapperService<BeautySchemaColumns> {
+public class SchemaColumnsService extends BaseService<BeautySchemaColumns> {
 
 	@Autowired
 	private SchemaColumnsDao schemaColumnsDao;

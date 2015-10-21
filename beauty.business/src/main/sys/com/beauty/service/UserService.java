@@ -10,7 +10,7 @@ import com.beauty.entity.BeautyUser;
 import com.beauty.interfaces.UserDao;
 
 @Service
-public class UserService extends BaseService<BeautyUser> implements IMapperService<BeautyUser> {
+public class UserService extends BaseService<BeautyUser> {
 
 	@Autowired
 	private UserDao userDao;

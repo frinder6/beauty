@@ -9,136 +9,56 @@ $(function() {
 		ajax : {
 			data : {
 				authorityId : authorityId,
+				type : type
 			}
 		},
 		pagingType : 'simple'
 	};
 
 	var ltools = '<div class="btn-group">\
-                <button type="button" class="btn btn-default fa fa-copy" onclick="lexport()">&nbsp;导入</button>\
-            </div>';
+        <a class="btn btn-default fa fa-copy oper-operate">&nbsp;导入</a>\
+    </div>';
 
-	var ltable = $('#l-list').datatable({
-		tableName : (type == 1 ? 'BEAUTY_A_R_M' : 'BEAUTY_A_R'),
-		url : '/ar/load/page.action',
-		data : {
-			authorityId : authorityId,
-			type : type
-		},
+	var lopts = _grid;
+	lopts.dom = '<"row"<"#BEAUTY_AUTHORITY_RESOURCE_ltool.col-xs-12"f>>t<"row"<"col-xs-6"i><"col-xs-6"p>>';
+	lopts.ajax.url = _PATH('/ar/load/page.action');
+	var ltable = $('#l-list').DGrid({
+		gridName : 'BEAUTY_AUTHORITY_RESOURCE',
 		tools : ltools,
-		selected : true,
-		pagingType : 'simple',
-		dom : "<'row'<'#my-ltool.col-xs-12'f>>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
-		toolid : '#my-ltool',
-		title : '<input type="checkbox" onclick="lcheckbox(this)" />',
-		select : {
-			style : 'multi'
-		}
-	});
-
-	// 表格全选方法
-	lcheckbox = function(e) {
-		var checked = $(e).attr('checked');
-		if (checked) {
-			// 全选
-			ltable.rows().select();
-		} else {
-			// 取消全选
-			ltable.rows().deselect();
-		}
-	};
-
-	// 导入方法
-	lexport = function() {
-		var items = ltable.rows({
-			selected : true
-		}).data();
-		if (items.length == 0) {
-			layer.msg('至少选择一条！');
-			return;
-		}
-		var resourceIds = $.map(items, function(item, i) {
-			return item.resourceId;
-		});
-		var params = {
+		toolId : '#BEAUTY_AUTHORITY_RESOURCE_ltool',
+		grid : lopts,
+		ajax : {
+			url : '/ar/add.action',
 			data : {
-				values : resourceIds.join(','),
 				value : authorityId,
 				type : type
-			},
-			url : '/ar/add.action'
-		};
-		//
-		ajax(params, function() {
-			ltable.row('.selected').remove().draw(false);
-			rtable.row('.selected').remove().draw(false);
-			ltable.ajax.reload();
-			rtable.ajax.reload();
-		});
-	};
+			}
+		},
+		extraLoad : function() {
+			rtable.reload();
+		}
+	});
 
 	/**
 	 * -------------------------------------表格2相关--------------------------------------------
 	 */
 
 	var rtools = '<div class="btn-group">\
-	             	<button type="button" class="btn btn-default fa fa-minus-square-o" onclick="del()">&nbsp;删除</button>\
-	            </div>';
+     	<a class="btn btn-default fa fa-minus-square-o oper-delete">&nbsp;删除</a>\
+    </div>';
 
-	var rtable = $('#r-list').datatable({
-		tableName : (type == 1 ? 'BEAUTY_A_R_M_CONFIGED' : 'BEAUTY_A_R_CONFIGED'),
-		url : '/ar/load/page.action',
-		data : {
-			authorityId : authorityId,
-			conf : true,
-			type : type
-		},
+	var ropts = _grid;
+	ropts.dom = '<"row"<"#BEAUTY_AUTHORITY_RESOURCE_rtool.col-xs-12"f>>t<"row"<"col-xs-6"i><"col-xs-6"p>>';
+	ropts.ajax.url = _PATH('/ar/load/conf/page.action');
+	var rtable = $('#r-list').DGrid({
+		gridName : 'BEAUTY_AUTHORITY_RESOURCE',
 		tools : rtools,
-		selected : true,
-		pagingType : 'simple',
-		dom : "<'row'<'#my-rtool.col-xs-12'>>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
-		toolid : '#my-rtool',
-		title : '<input type="checkbox" onclick="rcheckbox(this)" />',
-		select : {
-			style : 'multi'
+		toolId : '#BEAUTY_AUTHORITY_RESOURCE_rtool',
+		grid : ropts,
+		delUrl : '/ar/remove.action',
+		extraLoad : function() {
+			ltable.reload();
 		}
 	});
 
-	// 表格全选方法
-	rcheckbox = function(e) {
-		var checked = $(e).attr('checked');
-		if (checked) {
-			// 全选
-			rtable.rows().select();
-		} else {
-			// 取消全选
-			rtable.rows().deselect();
-		}
-	};
-
-	del = function() {
-		var items = rtable.rows({
-			selected : true
-		}).data();
-		if (items.length == 0) {
-			layer.msg('至少选择一条！');
-			return;
-		}
-		var ids = $.map(items, function(item, i) {
-			return item.id;
-		});
-		var params = {
-			data : {
-				values : ids.join(',')
-			},
-			url : '/ar/remove.action'
-		};
-		//
-		ajax(params, function() {
-			ltable.row('.selected').remove().draw(false);
-			rtable.row('.selected').remove().draw(false);
-			ltable.ajax.reload();
-			rtable.ajax.reload();
-		});
-	};
 });

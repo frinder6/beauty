@@ -15,36 +15,25 @@
 	</sql>
 	<sql id="Base_Where_Clause">
 		<if test="searchValue">
-			AND ( name LIKE "%" #{searchValue} "%" OR code LIKE "%" #{searchValue} "%" OR remark LIKE "%" #{searchValue} "%" OR url LIKE "%" #{searchValue} "%" )
+			AND ( name LIKE "%" #{searchValue} "%" OR code LIKE "%" #{searchValue} "%"
+			OR remark LIKE "%" #{searchValue} "%" OR url LIKE "%" #{searchValue} "%"
+			)
+		</if>
+	</sql>
+	<sql id="Base_Table_Name">
+		<if test="type == 1">
+			beauty_menu
+		</if>
+		<if test="type == 2">
+			beauty_resource
 		</if>
 	</sql>
 	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
-		<if test="conf == null">
-			<if test="type == 1">
-				SELECT id resource_id, `code`, `name`, url
-				FROM beauty_menu m
-				WHERE id NOT IN (SELECT resource_id FROM beauty_authority_resource WHERE authority_id = #{authorityId} AND type = #{type})
-			</if>
-			<if test="type == 2">
-				SELECT id resource_id, `code`, `name`, url
-				FROM beauty_resource r
-				WHERE id NOT IN (SELECT resource_id FROM beauty_authority_resource WHERE authority_id = #{authorityId} AND type = #{type})
-			</if>
-		</if>
-		<if test="conf">
-			<if test="type == 1">
-				SELECT m.id resource_id, ar.authority_id, ar.id, m.`code`, m.`name`, m.url
-				FROM beauty_menu m
-				LEFT JOIN beauty_authority_resource ar ON m.id = ar.resource_id
-				WHERE ar.authority_id = #{authorityId} AND ar.type = #{type}
-			</if>
-			<if test="type == 2">
-				SELECT r.id resource_id, ar.authority_id, ar.id, r.`code`, r.`name`, r.url
-				FROM beauty_resource r
-				LEFT JOIN beauty_authority_resource ar ON r.id = ar.resource_id
-				WHERE ar.authority_id = #{authorityId} AND ar.type = #{type}
-			</if>
-		</if>
+		SELECT id, `code`, `name`, url
+		FROM
+		<include refid="Base_Table_Name" />
+		t1
+		WHERE id NOT IN (SELECT resource_id FROM beauty_authority_resource WHERE type = #{type})
 		<include refid="Base_Where_Clause" />
 		ORDER BY
 		<if test="orderColumn">
@@ -56,32 +45,27 @@
 		LIMIT #{from}, #{size}
 	</select>
 	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
-		<if test="conf == null">
-			<if test="type == 1">
-				SELECT COUNT(1)
-				FROM beauty_menu m
-				WHERE id NOT IN (SELECT resource_id FROM beauty_authority_resource WHERE authority_id = #{authorityId} AND type = #{type})
-			</if>
-			<if test="type == 2">
-				SELECT COUNT(1)
-				FROM beauty_resource r
-				WHERE id NOT IN (SELECT resource_id FROM beauty_authority_resource WHERE authority_id = #{authorityId} AND type = #{type})
-			</if>
-		</if>
-		<if test="conf">
-			<if test="type == 1">
-				SELECT COUNT(1)
-				FROM beauty_menu m
-				LEFT JOIN beauty_authority_resource ar ON m.id = ar.resource_id
-				WHERE ar.authority_id = #{authorityId} AND ar.type = #{type}
-			</if>
-			<if test="type == 2">
-				SELECT COUNT(1)
-				FROM beauty_resource r
-				LEFT JOIN beauty_authority_resource ar ON r.id = ar.resource_id
-				WHERE ar.authority_id = #{authorityId} AND ar.type = #{type}
-			</if>
-		</if>
+		SELECT COUNT(1)
+		FROM
+		<include refid="Base_Table_Name" />
+		t1
+		WHERE id NOT IN (SELECT resource_id FROM beauty_authority_resource WHERE type = #{type})
+		<include refid="Base_Where_Clause" />
+	</select>
+	<select id="selectConfPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT t1.id, t2.`code`, t2.`name`, t2.url
+		FROM beauty_authority_resource t1 LEFT JOIN
+		<include refid="Base_Table_Name" />
+		t2 ON t2.id = t1.resource_id
+		WHERE t1.authority_id = #{authorityId} AND t1.type = #{type}
+		<include refid="Base_Where_Clause" />
+	</select>
+	<select id="selectConfCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(1)
+		FROM beauty_authority_resource t1 LEFT JOIN
+		<include refid="Base_Table_Name" />
+		t2 ON t2.id = t1.resource_id
+		WHERE t1.authority_id = #{authorityId} AND t1.type = #{type}
 		<include refid="Base_Where_Clause" />
 	</select>
 	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">

@@ -11,7 +11,7 @@ import com.beauty.interfaces.ColumnsDao;
 import com.beauty.model.Value;
 
 @Service
-public class ColumnsService extends BaseService<BeautyTableColumns> implements IMapperService<BeautyTableColumns> {
+public class ColumnsService extends BaseService<BeautyTableColumns> {
 
 	@Autowired
 	private ColumnsDao columnsDao;

@@ -10,7 +10,7 @@ import com.beauty.entity.BeautyRole;
 import com.beauty.interfaces.RoleDao;
 
 @Service
-public class RoleService extends BaseService<BeautyRole> implements IMapperService<BeautyRole> {
+public class RoleService extends BaseService<BeautyRole> {
 
 	@Autowired
 	private RoleDao roleDao;

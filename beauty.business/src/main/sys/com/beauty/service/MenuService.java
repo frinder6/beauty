@@ -10,7 +10,7 @@ import com.beauty.entity.BeautyMenu;
 import com.beauty.interfaces.MenuDao;
 
 @Service
-public class MenuService extends BaseService<BeautyMenu> implements IMapperService<BeautyMenu> {
+public class MenuService extends BaseService<BeautyMenu> {
 
 	@Autowired
 	private MenuDao menuDao;

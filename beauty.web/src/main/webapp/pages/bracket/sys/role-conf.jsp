@@ -51,12 +51,11 @@ div.dataTables_wrapper {
 	</div>
 
 	<jsp:include page="../import-js.jsp" />
-	<script type="text/javascript" src="${basePath }/resources/customer/sys/role-conf.js"></script>
-
 	<script type="text/javascript">
 		var roleId = '${param.id}';
 	</script>
-
+	<script type="text/javascript" src="${basePath }/resources/customer/sys/role-conf.js"></script>
+	
 </body>
 
 </html>

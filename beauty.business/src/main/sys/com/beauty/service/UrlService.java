@@ -10,7 +10,7 @@ import com.beauty.entity.BeautyUrl;
 import com.beauty.interfaces.UrlDao;
 
 @Service
-public class UrlService extends BaseService<BeautyUrl> implements IMapperService<BeautyUrl> {
+public class UrlService extends BaseService<BeautyUrl> {
 
 	@Autowired
 	private UrlDao urlDao;
@@ -41,5 +41,11 @@ public class UrlService extends BaseService<BeautyUrl> implements IMapperService
 
 	public void batchMark(List<Object> list) {
 		this.urlDao.batchMark(list);
+	}
+
+	@Override
+	public void deleteByPrimaryKeys(List<Object> list) {
+		// TODO Auto-generated method stub
+		this.urlDao.deleteByPrimaryKeys(list);
 	}
 }

@@ -19,7 +19,6 @@ $(function() {
 				url : _PATH('/columns/load/page.action')
 			}
 		},
-		remove : true,
 		delUrl : '/columns/remove.action',
 		editUrl : '/columns/update.action'
 	});

@@ -17,17 +17,9 @@
 		</if>
 	</sql>
 	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
-		<if test="conf == null">
-			SELECT id AS authority_id, `code`, `name`
-			FROM beauty_authority a
-			WHERE id NOT IN (SELECT authority_id FROM beauty_role_authority t WHERE t.role_id = #{roleId})
-		</if>
-		<if test="conf">
-			SELECT ra.id, ra.role_id, a.id AS authority_id, a.`code`, a.`name`
-			FROM beauty_authority a
-			LEFT JOIN beauty_role_authority ra ON a.id = ra.authority_id
-			WHERE ra.role_id = #{roleId}
-		</if>
+		SELECT id, `code`, `name`
+		FROM beauty_authority a
+		WHERE id NOT IN (SELECT authority_id FROM beauty_role_authority t WHERE t.role_id = #{roleId})
 		<include refid="Base_Where_Clause" />
 		ORDER BY
 		<if test="orderColumn">
@@ -39,17 +31,31 @@
 		LIMIT #{from}, #{size}
 	</select>
 	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
-		<if test="conf == null">
-			SELECT COUNT(1)
-			FROM beauty_authority a
-			WHERE id NOT IN (SELECT authority_id FROM beauty_role_authority t WHERE t.role_id = #{roleId})
+		SELECT COUNT(1)
+		FROM beauty_authority a
+		WHERE id NOT IN (SELECT authority_id FROM beauty_role_authority t WHERE t.role_id = #{roleId})
+		<include refid="Base_Where_Clause" />
+	</select>
+	<select id="selectConfPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT ra.id, ra.role_id, a.id AS authority_id, a.`code`, a.`name`
+		FROM beauty_role_authority ra
+		LEFT JOIN beauty_authority a ON a.id = ra.authority_id
+		WHERE ra.role_id = #{roleId}
+		<include refid="Base_Where_Clause" />
+		ORDER BY
+		<if test="orderColumn">
+			${orderColumn} ${orderDir}
 		</if>
-		<if test="conf">
-			SELECT COUNT(1)
-			FROM beauty_authority a
-			LEFT JOIN beauty_role_authority ra ON a.id = ra.authority_id
-			WHERE ra.role_id = #{roleId}
+		<if test="orderColumn == null">
+			id
 		</if>
+		LIMIT #{from}, #{size}
+	</select>
+	<select id="selectConfCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(1)
+		FROM beauty_role_authority ra
+		LEFT JOIN beauty_authority a ON a.id = ra.authority_id
+		WHERE ra.role_id = #{roleId}
 		<include refid="Base_Where_Clause" />
 	</select>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">

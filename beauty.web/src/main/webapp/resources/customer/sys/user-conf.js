@@ -4,130 +4,64 @@
  * @date 2015-08-23 22:07
  */
 $(function() {
-	init();
+
+	var _grid = {
+		ajax : {
+			data : {
+				userId : userId
+			}
+		},
+		pagingType : 'simple'
+	};
 
 	var ltools = '<div class="btn-group">\
-                <button type="button" class="btn btn-default fa fa-copy" onclick="lexport()">&nbsp;导入</button>\
-            </div>';
+        <a class="btn btn-default fa fa-copy oper-operate">&nbsp;导入</a>\
+    </div>';
 
-	var ltable = $('#l-list').datatable({
-		tableName : 'BEAUTY_U_R',
-		url : '/ur/load/page.action',
-		data : {
-			userId : userId
-		},
+	var lopts = _grid;
+	lopts.dom = '<"row"<"#BEAUTY_USER_ROLE_ltool.col-xs-12"f>>t<"row"<"col-xs-6"i><"col-xs-6"p>>';
+	lopts.ajax.url = _PATH('/ur/load/page.action');
+	var ltable = $('#l-list').DGrid({
+		gridName : 'BEAUTY_USER_ROLE',
 		tools : ltools,
-		selected : true,
-		pagingType : 'simple',
-		dom : "<'row'<'#my-ltool.col-xs-12'f>>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
-		toolid : '#my-ltool',
-		title : '<input type="checkbox" onclick="lcheckbox(this)" />',
-		select : {
-			style : 'multi'
+		toolId : '#BEAUTY_USER_ROLE_ltool',
+		grid : lopts,
+		ajax : {
+			url : '/ur/add.action',
+			data : {
+				value : userId
+			}
+		},
+		extraLoad : function() {
+			rtable.reload();
 		}
 	});
-
-	// 表格全选方法
-	lcheckbox = function(e) {
-		var checked = $(e).attr('checked');
-		if (checked) {
-			// 全选
-			ltable.rows().select();
-		} else {
-			// 取消全选
-			ltable.rows().deselect();
-		}
-	};
-
-	// 导入方法
-	lexport = function() {
-		var items = ltable.rows({
-			selected : true
-		}).data();
-		if (items.length == 0) {
-			layer.msg('至少选择一条！');
-			return;
-		}
-		var roleIds = $.map(items, function(item, i) {
-			return item.roleId;
-		});
-		var params = {
-			data : {
-				values : roleIds.join(','),
-				value : userId
-			},
-			url : '/ur/add.action'
-		};
-		//
-		ajax(params, function() {
-			ltable.row('.selected').remove().draw(false);
-			rtable.row('.selected').remove().draw(false);
-			ltable.ajax.reload();
-			rtable.ajax.reload();
-		});
-	};
 
 	/**
 	 * -------------------------------------表格2相关--------------------------------------------
 	 */
 
 	var rtools = '<div class="btn-group">\
-	             	<button type="button" class="btn btn-default fa fa-minus-square-o" onclick="del()">&nbsp;删除</button>\
-	            </div>';
+     	<a class="btn btn-default fa fa-minus-square-o oper-operate">&nbsp;删除</a>\
+    </div>';
 
-	var rtable = $('#r-list').datatable({
-		tableName : 'BEAUTY_U_R_CONFIGED',
-		url : '/ur/load/page.action',
-		data : {
-			userId : userId,
-			conf : true
-		},
+	var ropts = _grid;
+	ropts.dom = '<"row"<"#BEAUTY_USER_ROLE_rtool.col-xs-12"f>>t<"row"<"col-xs-6"i><"col-xs-6"p>>';
+	ropts.ajax.url = _PATH('/ur/load/conf/page.action');
+	var rtable = $('#r-list').DGrid({
+		gridName : 'BEAUTY_USER_ROLE',
 		tools : rtools,
-		selected : true,
-		pagingType : 'simple',
-		dom : "<'row'<'#my-rtool.col-xs-12'>>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
-		toolid : '#my-rtool',
-		title : '<input type="checkbox" onclick="rcheckbox(this)" />',
-		select : {
-			style : 'multi'
+		toolId : '#BEAUTY_USER_ROLE_rtool',
+		grid : ropts,
+		ajax : {
+			url : '/ur/remove.action',
+			data : {
+				value : userId
+			}
+		},
+		extraLoad : function() {
+			ltable.reload();
 		}
 	});
 
-	// 表格全选方法
-	rcheckbox = function(e) {
-		var checked = $(e).attr('checked');
-		if (checked) {
-			// 全选
-			rtable.rows().select();
-		} else {
-			// 取消全选
-			rtable.rows().deselect();
-		}
-	};
-
-	del = function() {
-		var items = rtable.rows({
-			selected : true
-		}).data();
-		if (items.length == 0) {
-			layer.msg('至少选择一条！');
-			return;
-		}
-		var ids = $.map(items, function(item, i) {
-			return item.id;
-		});
-		var params = {
-			data : {
-				values : ids.join(',')
-			},
-			url : '/ur/remove.action'
-		};
-		//
-		ajax(params, function() {
-			ltable.row('.selected').remove().draw(false);
-			rtable.row('.selected').remove().draw(false);
-			ltable.ajax.reload();
-			rtable.ajax.reload();
-		});
-	};
 });

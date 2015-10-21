@@ -11,7 +11,7 @@ import com.beauty.interfaces.UserRoleDao;
 import com.beauty.model.Value;
 
 @Service
-public class UserRoleService extends BaseService<BeautyUserRole> implements IMapperService<BeautyUserRole> {
+public class UserRoleService extends BaseService<BeautyUserRole> {
 
 	@Autowired
 	private UserRoleDao userRoleDao;
@@ -29,6 +29,18 @@ public class UserRoleService extends BaseService<BeautyUserRole> implements IMap
 	}
 
 	@Override
+	public int selectConfCount(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return this.userRoleDao.selectConfCount(params);
+	}
+
+	@Override
+	public List<?> selectConfPage(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return this.userRoleDao.selectConfPage(params);
+	}
+
+	@Override
 	public void deleteByPrimaryKeys(List<Object> list) {
 		// TODO Auto-generated method stub
 		this.userRoleDao.deleteByPrimaryKeys(list);
@@ -37,4 +49,5 @@ public class UserRoleService extends BaseService<BeautyUserRole> implements IMap
 	public void insert(Value value) {
 		this.userRoleDao.insert(value);
 	}
+
 }

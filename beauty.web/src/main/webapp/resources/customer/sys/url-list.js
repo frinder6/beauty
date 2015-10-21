@@ -3,6 +3,12 @@
  * 
  * @date 2015-08-23 22:07
  */
+var _RENDER_MARK = function(data, type, row, meta) {
+	var result = '\
+		<span class="fa fa-bookmark pointer auth" title="标记" data-id="{0}" onclick="markId(this)"></span>\
+	';
+	return result.format(row.id);
+};
 
 $(function() {
 
@@ -19,7 +25,6 @@ $(function() {
 				url : _PATH('/url/load/page.action')
 			}
 		},
-		remove : true,
 		delUrl : '/url/remove.action'
 	});
 
@@ -38,4 +43,16 @@ $(function() {
 		});
 	};
 
+	markId = function(e) {
+		var id = $(e).attr('data-id');
+		var ids = [ id ];
+		ajax({
+			data : {
+				values : ids.join(',')
+			},
+			url : '/url/mark.action'
+		}, function() {
+			table.reload();
+		});
+	};
 });

@@ -51,13 +51,14 @@ div.dataTables_wrapper {
 	</div>
 
 	<jsp:include page="../import-js.jsp" />
-	<script type="text/javascript" src="${basePath }/resources/customer/sys/auth-conf.js"></script>
 
 	<script type="text/javascript">
 		var authorityId = '${param.id}';
 		var type = '${param.type}';
 	</script>
 
+	<script type="text/javascript" src="${basePath }/resources/customer/sys/auth-conf.js"></script>
+	
 </body>
 
 </html>

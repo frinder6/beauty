@@ -10,7 +10,7 @@ import com.beauty.dao.IDao;
 import com.beauty.entity.Page;
 
 @Component("baseService")
-public class BaseService<T> implements IService<T> {
+public class BaseService<T> implements IService<T>, IMapperService<T> {
 
 	@Autowired
 	private IDao<T> baseDao;
@@ -91,6 +91,18 @@ public class BaseService<T> implements IService<T> {
 	public void insertSelective(T entity) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public List<?> selectConfPage(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int selectConfCount(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

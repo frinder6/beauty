@@ -168,11 +168,18 @@
 				columns : [],
 				dom : ('<"row"<"' + toolId + '.col-xs-6"><"col-xs-6"f>r>t<"row"<"col-xs-3"l><"col-xs-3"i><"col-xs-6"p>>'),
 				initComplete : function() {
+
 					e.pdiv().find(toolId).append($opts.tools);
 
-					if ($opts.remove) {
+					if ($opts.delUrl) {
 						e.pdiv().find('div.btn-group').find('a.oper-delete').click(function() {
 							e.remove();
+						});
+					}
+
+					if ($opts.ajax) {
+						e.pdiv().find('div.btn-group').find('a.oper-operate').click(function() {
+							e.operate();
 						});
 					}
 
@@ -180,9 +187,10 @@
 						$opts.initCallback();
 					}
 
-					$(this).Sys();
 				},
 				drawCallback : function(settings) {
+					$(this).Sys();
+
 					if ($opts.drawCallback) {
 						$opts.drawCallback();
 					}
@@ -266,7 +274,9 @@
 				selected : true
 			}).data();
 			if (items.length == 0) {
-				layer.msg('至少选择一条！');
+				layer.msg('至少选择一条！', {
+					offset : '120px'
+				});
 				return;
 			}
 			return items;
@@ -299,6 +309,28 @@
 				},
 				url : $opts.delUrl
 			};
+			layer.confirm('操作不可逆，确定执行？', {
+				offset : '100px'
+			}, function() {
+				ajax(params, function() {
+					e.reload();
+					if ($opts.extraLoad) {
+						$opts.extraLoad();
+					}
+				});
+			});
+		},
+		operate : function() {
+			var e = this;
+			var $opts = this.$opts;
+			var ids = e.selectIds();
+			if (!ids) {
+				return;
+			}
+			var params = $.extend(true, {
+				data : {}
+			}, $opts.ajax);
+			params.data.values = ids.join(',');
 			layer.confirm('操作不可逆，确定执行？', {
 				offset : '100px'
 			}, function() {

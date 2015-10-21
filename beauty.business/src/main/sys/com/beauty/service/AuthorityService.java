@@ -11,7 +11,7 @@ import com.beauty.interfaces.AuthorityDao;
 import com.beauty.model.Value;
 
 @Service
-public class AuthorityService extends BaseService<BeautyAuthority> implements IMapperService<BeautyAuthority> {
+public class AuthorityService extends BaseService<BeautyAuthority> {
 
 	@Autowired
 	private AuthorityDao authorityDao;
@@ -46,14 +46,13 @@ public class AuthorityService extends BaseService<BeautyAuthority> implements IM
 		return this.authorityDao.selectByPrimaryKey(id);
 	}
 
-	
 	@Override
 	public void insertSelective(BeautyAuthority entity) {
 		// TODO Auto-generated method stub
 		this.authorityDao.insertSelective(entity);
 	}
-	
-	public void batchGroup(Value value){
+
+	public void batchGroup(Value value) {
 		this.authorityDao.batchGroup(value);
 	}
 }

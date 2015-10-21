@@ -17,16 +17,9 @@
 		</if>
 	</sql>
 	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
-		<if test="conf == null">
-			SELECT id AS role_id, code, name 
-			FROM beauty_role r 
-			WHERE id NOT IN (SELECT role_id FROM beauty_user_role WHERE user_id = #{userId})
-		</if>
-		<if test="conf">
-			SELECT ur.id, r.id AS role_id, code, name 
-			FROM beauty_role r LEFT JOIN beauty_user_role ur ON r.id = ur.role_id 
-			WHERE ur.user_id = #{userId}
-		</if>
+		SELECT id, code, name
+		FROM beauty_role r
+		WHERE id NOT IN (SELECT role_id FROM beauty_user_role WHERE user_id = #{userId})
 		<include refid="Base_Where_Clause" />
 		ORDER BY
 		<if test="orderColumn">
@@ -38,16 +31,29 @@
 		LIMIT #{from}, #{size}
 	</select>
 	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
-		<if test="conf == null">
-			SELECT COUNT(1) 
-			FROM beauty_role r 
-			WHERE id NOT IN (SELECT role_id FROM beauty_user_role WHERE user_id = #{userId})
+		SELECT COUNT(1)
+		FROM beauty_role r
+		WHERE id NOT IN (SELECT role_id FROM beauty_user_role WHERE user_id = #{userId})
+		<include refid="Base_Where_Clause" />
+	</select>
+	<select id="selectConfPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT t1.id, t2.code, t2.name
+		FROM beauty_user_role t1 LEFT JOIN beauty_role t2 ON t1.role_id = t2.id
+		WHERE t1.user_id = #{userId}
+		<include refid="Base_Where_Clause" />
+		ORDER BY
+		<if test="orderColumn">
+			${orderColumn} ${orderDir}
 		</if>
-		<if test="conf">
-			SELECT COUNT(1) 
-			FROM beauty_role r LEFT JOIN beauty_user_role ur ON r.id = ur.role_id 
-			WHERE ur.user_id = #{userId}
+		<if test="orderColumn == null">
+			id
 		</if>
+		LIMIT #{from}, #{size}
+	</select>
+	<select id="selectConfCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT COUNT(1)
+		FROM beauty_user_role t1 LEFT JOIN beauty_role t2 ON t1.role_id = t2.id
+		WHERE t1.user_id = #{userId}
 		<include refid="Base_Where_Clause" />
 	</select>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">

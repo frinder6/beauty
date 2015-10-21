@@ -43,13 +43,12 @@ $(function() {
     </div>';
 
 	var ropts = _grid;
-	ropts.ajax.data.conf = true;
-	ropts.dom = '<"row"<"#BEAUTY_TABLE_COLUMNS_2_rtool.col-xs-12"f>>t<"row"<"col-xs-6"i><"col-xs-6"p>>';
+	ropts.dom = '<"row"<"#BEAUTY_SCHEMA_COLUMNS_rtool.col-xs-12"f>>t<"row"<"col-xs-6"i><"col-xs-6"p>>';
 	ropts.ajax.url = _PATH('/columns/load/page.action');
 	var rtable = $('#r-list').DGrid({
-		gridName : 'BEAUTY_TABLE_COLUMNS_2',
+		gridName : 'BEAUTY_SCHEMA_COLUMNS',
 		tools : rtools,
-		toolId : '#BEAUTY_TABLE_COLUMNS_2_rtool',
+		toolId : '#BEAUTY_SCHEMA_COLUMNS_rtool',
 		grid : ropts,
 		remove : true,
 		delUrl : '/columns/remove.action',

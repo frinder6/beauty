@@ -11,7 +11,7 @@ import com.beauty.interfaces.RoleAuthorityDao;
 import com.beauty.model.Value;
 
 @Service
-public class RoleAuthorityService extends BaseService<BeautyRoleAuthority> implements IMapperService<BeautyRoleAuthority> {
+public class RoleAuthorityService extends BaseService<BeautyRoleAuthority> {
 
 	@Autowired
 	private RoleAuthorityDao roleAuthorityDao;
@@ -36,5 +36,13 @@ public class RoleAuthorityService extends BaseService<BeautyRoleAuthority> imple
 
 	public void insert(Value value) {
 		this.roleAuthorityDao.insert(value);
+	}
+
+	public List<?> selectConfPage(Map<String, Object> params) {
+		return this.roleAuthorityDao.selectConfPage(params);
+	}
+
+	public int selectConfCount(Map<String, Object> params) {
+		return this.roleAuthorityDao.selectConfCount(params);
 	}
 }

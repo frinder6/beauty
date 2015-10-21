@@ -17,4 +17,8 @@ public interface IMapperDao<T> {
 
 	public void insertSelective(T entity);
 
+	public List<?> selectConfPage(Map<String, Object> params);
+
+	public int selectConfCount(Map<String, Object> params);
+
 }

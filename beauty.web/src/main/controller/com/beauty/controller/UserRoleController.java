@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.beauty.entity.BeautyUserRole;
@@ -26,16 +27,30 @@ public class UserRoleController {
 
 	@RequestMapping(value = "/load/page", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public Page queryPage(HttpServletRequest request, BeautyUserRole entity) {
+	public Page queryPage(HttpServletRequest request, @RequestParam("userId") String userId) {
 		Page page = new Page();
 		page.init(request);
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("conf", request.getParameter("conf"));
-		params.put("userId", request.getParameter("userId"));
+		params.put("userId", userId);
 		// 将page值设置到map中
 		page.pageToMap(BeautyUserRole.class, params);
 		int count = this.userRoleService.selectCount(params);
 		List<?> list = this.userRoleService.selectPage(params);
+		page.setResult(list, count + "", count + "");
+		return page;
+	}
+
+	@RequestMapping(value = "/load/conf/page", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Page queryConfPage(HttpServletRequest request, @RequestParam("userId") String userId) {
+		Page page = new Page();
+		page.init(request);
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("userId", userId);
+		// 将page值设置到map中
+		page.pageToMap(BeautyUserRole.class, params);
+		int count = this.userRoleService.selectConfCount(params);
+		List<?> list = this.userRoleService.selectConfPage(params);
 		page.setResult(list, count + "", count + "");
 		return page;
 	}

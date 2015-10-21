@@ -11,7 +11,7 @@ import com.beauty.interfaces.ResourceDao;
 import com.beauty.model.Value;
 
 @Service
-public class ResourceService extends BaseService<BeautyResource> implements IMapperService<BeautyResource> {
+public class ResourceService extends BaseService<BeautyResource> {
 
 	@Autowired
 	private ResourceDao resourceDao;
