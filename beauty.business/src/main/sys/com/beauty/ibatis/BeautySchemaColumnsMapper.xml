@@ -22,7 +22,7 @@
 	</sql>
 	<sql id="Base_Where_Clause">
 		<if test="searchValue">
-			AND ( data LIKE "%" #{searchValue} "%" OR column_name LIKE "%" #{searchValue} "%" OR title LIKE "%" #{searchValue} "%" )
+			AND ( t1.data LIKE "%" #{searchValue} "%" OR t1.column_name LIKE "%" #{searchValue} "%" OR t1.title LIKE "%" #{searchValue} "%" )
 		</if>
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">

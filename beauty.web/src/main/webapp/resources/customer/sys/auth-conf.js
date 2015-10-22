@@ -44,7 +44,7 @@ $(function() {
 	 */
 
 	var rtools = '<div class="btn-group">\
-     	<a class="btn btn-default fa fa-minus-square-o oper-delete">&nbsp;删除</a>\
+     	<a class="btn btn-default fa fa-minus-square-o oper-operate">&nbsp;删除</a>\
     </div>';
 
 	var ropts = _grid;
@@ -55,7 +55,9 @@ $(function() {
 		tools : rtools,
 		toolId : '#BEAUTY_AUTHORITY_RESOURCE_rtool',
 		grid : ropts,
-		delUrl : '/ar/remove.action',
+		ajax : {
+			url : '/ar/remove.action'
+		},
 		extraLoad : function() {
 			ltable.reload();
 		}

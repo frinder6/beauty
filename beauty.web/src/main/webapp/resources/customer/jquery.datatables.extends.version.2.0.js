@@ -171,6 +171,8 @@
 
 					e.pdiv().find(toolId).append($opts.tools);
 
+					$(this).Auth();
+
 					if ($opts.delUrl) {
 						e.pdiv().find('div.btn-group').find('a.oper-delete').click(function() {
 							e.remove();
@@ -205,32 +207,32 @@
 			var options = $.extend(true, {}, defaults, _options, $opts.grid);
 
 			// combine the settings
-			this.init(options);
+			e.init(options);
 
 			// convert render to object
-			this.render(options);
+			e.render(options);
 
 			// checkbox
-			this.checkbox(options);
+			e.checkbox(options);
 
 			// editable
-			this.editables(options);
+			e.editables(options);
 
 			// alert(JSON.stringify(options));
 
 			// return table
-			var table = this.$this.DataTable(options);
+			var table = $this.DataTable(options);
 			//
-			this.$table = table;
+			e.$table = table;
 
 			// select
-			this.select();
+			e.select();
 
 			// change page length
-			this.changePageLength();
+			e.changePageLength();
 
 			// order
-			this.orderSearch();
+			e.orderSearch();
 
 			return $this;
 		},
@@ -291,9 +293,6 @@
 				return item.id;
 			});
 			return ids;
-		},
-		persist : function() {
-
 		},
 		remove : function() {
 			var e = this;

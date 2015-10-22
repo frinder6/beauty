@@ -15,7 +15,7 @@ $(function() {
 	};
 
 	var ltools = '<div class="btn-group">\
-        <a class="btn btn-default fa fa-copy oper-delete">&nbsp;导入</a>\
+        <a class="btn btn-default fa fa-copy oper-operate">&nbsp;导入</a>\
     </div>';
 
 	var lopts = _grid;
@@ -26,9 +26,12 @@ $(function() {
 		tools : ltools,
 		toolId : '#BEAUTY_SCHEMA_COLUMNS_ltool',
 		grid : lopts,
-		remove : true,
-		value : tableName,
-		delUrl : '/columns/conf.action', // 导入方法
+		ajax : {
+			url : '/columns/conf.action',
+			data : {
+				value : tableName
+			}
+		},
 		extraLoad : function() {
 			rtable.reload();
 		}
@@ -39,7 +42,7 @@ $(function() {
 	 */
 
 	var rtools = '<div class="btn-group">\
-     	<a class="btn btn-default fa fa-minus-square-o oper-delete">&nbsp;删除</a>\
+     	<a class="btn btn-default fa fa-minus-square-o oper-operate">&nbsp;删除</a>\
     </div>';
 
 	var ropts = _grid;
@@ -50,8 +53,9 @@ $(function() {
 		tools : rtools,
 		toolId : '#BEAUTY_SCHEMA_COLUMNS_rtool',
 		grid : ropts,
-		remove : true,
-		delUrl : '/columns/remove.action',
+		ajax : {
+			url : '/columns/remove.action'
+		},
 		extraLoad : function() {
 			ltable.reload();
 		}

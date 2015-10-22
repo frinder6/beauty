@@ -49,13 +49,17 @@ var ajax = function(params, fn) {
 		dataType : 'JSON',
 		async : false,
 		success : function(data) {
-			layer.msg(data.value);
+			layer.msg(data.value, {
+				offset : '120px'
+			});
 			if (fn) {
 				fn();
 			}
 		},
 		error : function(msg) {
-			layer.msg(msg);
+			layer.msg(msg, {
+				offset : '120px'
+			});
 		}
 	});
 };

@@ -21,7 +21,7 @@ $(function() {
 
 	var tools = '<div class="btn-group">\
 		<a data-href="/pages/bracket/sys/auth-add.jsp" class="btn btn-default fa fa-plus-square-o auth" data-auth="RES-AUTH-ADD" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
-		<a class="btn btn-default fa fa-minus-square-o auth oper-delete" data-auth="RES-AUTH-DEL">&nbsp;删除</a>\
+		<a class="btn btn-default fa fa-minus-square-o auth oper-operate" data-auth="RES-AUTH-DEL">&nbsp;删除</a>\
 		<a class="btn btn-default fa fa-group auth" data-auth="RES-AUTH-GROUP" onclick="group()">&nbsp;分组</a>\
     </div>';
 
@@ -33,8 +33,9 @@ $(function() {
 				url : _PATH('/auth/load/page.action')
 			}
 		},
-		remove : true,
-		delUrl : '/auth/remove.action'
+		ajax : {
+			url : '/auth/remove.action'
+		}
 	});
 
 	group = function() {

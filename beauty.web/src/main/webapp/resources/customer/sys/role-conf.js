@@ -15,7 +15,7 @@ $(function() {
 	};
 
 	var ltools = '<div class="btn-group">\
-        <a class="btn btn-default fa fa-copy oper-delete">&nbsp;导入</a>\
+        <a class="btn btn-default fa fa-copy oper-operate">&nbsp;导入</a>\
     </div>';
 
 	var lopts = _grid;
@@ -26,9 +26,12 @@ $(function() {
 		tools : ltools,
 		toolId : '#BEAUTY_ROLE_AUTHORITY_ltool',
 		grid : lopts,
-		remove : true,
-		value : roleId,
-		delUrl : '/ra/add.action',
+		ajax : {
+			url : '/ra/add.action',
+			data : {
+				value : roleId
+			}
+		},
 		extraLoad : function() {
 			rtable.reload();
 		}
@@ -39,7 +42,7 @@ $(function() {
 	 */
 
 	var rtools = '<div class="btn-group">\
-     	<a class="btn btn-default fa fa-minus-square-o oper-delete">&nbsp;删除</a>\
+     	<a class="btn btn-default fa fa-minus-square-o oper-operate">&nbsp;删除</a>\
     </div>';
 
 	var ropts = _grid;
@@ -50,8 +53,9 @@ $(function() {
 		tools : rtools,
 		toolId : '#BEAUTY_ROLE_AUTHORITY_rtool',
 		grid : ropts,
-		remove : true,
-		delUrl : '/ra/remove.action',
+		ajax : {
+			url : '/ra/remove.action'
+		},
 		extraLoad : function() {
 			ltable.reload();
 		}

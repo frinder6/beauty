@@ -25,7 +25,9 @@ $(function() {
 				url : _PATH('/url/load/page.action')
 			}
 		},
-		delUrl : '/url/remove.action'
+		ajax : {
+			url : '/url/remove.action'
+		}
 	});
 
 	mark = function() {

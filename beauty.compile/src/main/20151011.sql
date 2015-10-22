@@ -28,3 +28,14 @@ WHERE
 	column_name IN (
 		'editable'
 	)
+	
+	
+	
+	
+INSERT INTO `beauty`.`beauty_role_authority` (`role_id`, `authority_id`) SELECT
+	1,
+	id
+FROM
+	beauty_authority
+WHERE
+	id NOT IN (SELECT authority_id FROM beauty_role_authority WHERE role_id = 1)

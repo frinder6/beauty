@@ -22,13 +22,13 @@ $(function() {
 
 	var tools = '<div class="btn-group">\
 		<a data-href="/pages/bracket/sys/resource-add.jsp" class="btn btn-default fa fa-plus-square-o" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
-		<a class="btn btn-default fa fa-minus-square-o oper-delete">&nbsp;删除</a>\
+		<a class="btn btn-default fa fa-minus-square-o oper-operate">&nbsp;删除</a>\
 		<a class="btn btn-default fa fa-copy" data-toggle="modal" data-target=".bs-url-modal">&nbsp;导入</a>\
 		<a class="btn btn-default fa fa-group" onclick="group()">&nbsp;分组</a>\
     </div>';
 
 	var mtools = '<div class="btn-group">\
-		<a class="btn btn-default fa fa-copy oper-delete">&nbsp;导入</a>\
+		<a class="btn btn-default fa fa-copy oper-operate">&nbsp;导入</a>\
     </div>';
 
 	var table = $('#list').DGrid({
@@ -39,8 +39,9 @@ $(function() {
 				url : _PATH('/resource/load/page.action')
 			}
 		},
-		remove : true,
-		delUrl : '/resource/remove.action'
+		ajax : {
+			url : '/resource/remove.action'
+		}
 	});
 
 	var mtable = $('#m-list').DGrid({
@@ -57,8 +58,9 @@ $(function() {
 			pagingType : 'simple',
 			dom : "<'row'<'#BEAUTY_URL_mtool.col-xs-12'f>>t<'row'<'col-xs-6'i><'col-xs-6'p>>"
 		},
-		remove : true,
-		delUrl : '/resource/config.action',
+		ajax : {
+			url : '/resource/config.action'
+		},
 		extraLoad : function() {
 			table.reload();
 		}

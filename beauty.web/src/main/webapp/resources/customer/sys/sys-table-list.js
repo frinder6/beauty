@@ -16,7 +16,7 @@ $(function() {
 		gridName : 'TABLES',
 		grid : {
 			ajax : {
-				url : _PATH('/table/load/schema/tables.action')
+				url : _PATH('/table/load/page.action')
 			}
 		}
 	});

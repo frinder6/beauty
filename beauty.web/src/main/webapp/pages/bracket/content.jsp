@@ -16,21 +16,6 @@
 
 	<h1>Welcome to the System!</h1>
 
-	<div class="table-responsive">
-
-		<table id="list" class="table table-bordered mb30" width="100%">
-		</table>
-
-	</div>
-
-
-	<jsp:include page="import-js.jsp" />
-	
-	<script src="${basePath }/resources/customer/my.sys.js"></script>
-	
-	<script type="text/javascript">
-		
-	</script>
 
 </body>
 </html>

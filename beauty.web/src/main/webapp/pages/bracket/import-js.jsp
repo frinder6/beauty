@@ -7,6 +7,11 @@
 	request.setAttribute("basePath", basePath);
 	session.setAttribute("basePath", basePath);
 %>
+<script type="text/javascript">
+<!--
+_BASE = '${basePath}';
+//-->
+</script>
 <script src="${basePath }/resources/bracket/js/jquery-1.11.1.min.js"></script>
 <script src="${basePath }/resources/bracket/js/jquery-migrate-1.2.1.min.js"></script>
 <script src="${basePath }/resources/bracket/js/jquery-ui-1.10.3.min.js"></script>
@@ -39,7 +44,7 @@
 
 <script src="${basePath }/resources/bracket/js/custom.js"></script>
 <script src="${basePath }/resources/customer/util.js"></script>
-<script src="${basePath }/resources/customer/auth.js"></script>
+<script src="${basePath }/resources/customer/my.auth.js"></script>
 <script src="${basePath }/resources/customer/jquery.datatables.extends.version.2.0.js"></script>
 <script src="${basePath }/resources/customer/my.form.js"></script>
 <script src="${basePath }/resources/customer/my.sys.js"></script>
@@ -48,6 +53,4 @@
 	layer.config({
 		extend : '${basePath}/resources/layer/extend/layer.ext.js'
 	})
-	_BASE = '${basePath}';
-	_LOAD_AUTHS();
 </script>

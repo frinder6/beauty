@@ -18,7 +18,7 @@ $(function() {
 
 	var tools = '<div class="btn-group">\
 		<a data-href="/pages/bracket/sys/menu-add.jsp" class="btn btn-default fa fa-plus-square-o auth" data-auth="RES-MENU-ADD" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
-		<a class="btn btn-default fa fa-minus-square-o auth oper-delete" data-auth="RES-MENU-DEL">&nbsp;删除</a>\
+		<a class="btn btn-default fa fa-minus-square-o auth oper-operate" data-auth="RES-MENU-DEL">&nbsp;删除</a>\
     </div>';
 
 	var table = $('#list').DGrid({
@@ -29,8 +29,9 @@ $(function() {
 				url : _PATH('/menu/load/page.action')
 			}
 		},
-		remove : true,
-		delUrl : '/menu/remove.action'
+		ajax : {
+			url : '/menu/remove.action'
+		}
 	});
 
 });

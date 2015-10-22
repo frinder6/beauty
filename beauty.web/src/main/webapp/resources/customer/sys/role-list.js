@@ -16,7 +16,7 @@ $(function() {
 
 	var tools = '<div class="btn-group">\
 		<a data-href="/pages/bracket/sys/role-add.jsp" class="btn btn-default fa fa-plus-square-o auth" data-auth="RES-ROLE-ADD" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
-		<a class="btn btn-default fa fa-minus-square-o auth oper-delete" data-auth="RES-ROLE-DEL">&nbsp;删除</a>\
+		<a class="btn btn-default fa fa-minus-square-o auth oper-operate" data-auth="RES-ROLE-DEL">&nbsp;删除</a>\
     </div>';
 
 	var table = $('#list').DGrid({
@@ -27,8 +27,9 @@ $(function() {
 				url : _PATH('/role/load/page.action')
 			}
 		},
-		remove : true,
-		delUrl : '/role/remove.action'
+		ajax : {
+			url : '/role/remove.action'
+		}
 	});
 
 });

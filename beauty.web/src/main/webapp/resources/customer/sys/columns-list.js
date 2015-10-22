@@ -8,7 +8,7 @@ $(function() {
 
 	var tools = '<div class="btn-group">\
 		<a class="btn btn-default fa fa-copy" onclick="copy()">&nbsp;复制</a>\
-		<a class="btn btn-default fa fa-minus-square-o oper-delete">&nbsp;删除</a>\
+		<a class="btn btn-default fa fa-minus-square-o oper-operate">&nbsp;删除</a>\
     </div>';
 
 	var table = $('#list').DGrid({
@@ -19,7 +19,9 @@ $(function() {
 				url : _PATH('/columns/load/page.action')
 			}
 		},
-		delUrl : '/columns/remove.action',
+		ajax : {
+			url : '/columns/remove.action'
+		},
 		editUrl : '/columns/update.action'
 	});
 
