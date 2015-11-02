@@ -50,4 +50,8 @@ public class RoleService extends BaseService<BeautyRole> {
 		// TODO Auto-generated method stub
 		this.roleDao.insertSelective(entity);
 	}
+
+	public void batchSync() {
+		this.roleDao.batchSync();
+	}
 }

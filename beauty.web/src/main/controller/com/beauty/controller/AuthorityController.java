@@ -16,6 +16,7 @@ import com.beauty.entity.BeautyAuthority;
 import com.beauty.entity.Page;
 import com.beauty.model.Value;
 import com.beauty.service.AuthorityService;
+import com.beauty.service.RoleService;
 import com.beauty.util.CodeUtil;
 import com.beauty.util.DatatablesUtil;
 import com.beauty.util.StringUtil;
@@ -26,6 +27,9 @@ public class AuthorityController {
 
 	@Autowired
 	private AuthorityService authorityService;
+
+	@Autowired
+	private RoleService roleService;
 
 	@RequestMapping(value = "/load/page", produces = "application/json; charset=utf-8")
 	@ResponseBody
@@ -53,6 +57,7 @@ public class AuthorityController {
 	@ResponseBody
 	public Value persist(BeautyAuthority entity) {
 		this.authorityService.insertSelective(entity);
+		this.roleService.batchSync();
 		return new Value(CodeUtil.ADD_SUCCESS);
 	}
 

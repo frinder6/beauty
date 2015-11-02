@@ -4,6 +4,16 @@
 <head>
 <jsp:include page="import-css.jsp" />
 <title>首页</title>
+<jsp:include page="import-js.jsp" />
+<script src="${basePath }/resources/customer/my.menu.js"></script>
+<script src="${basePath }/resources/customer/my.nav.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var menu = $('#leftpanelinner').Menu();
+		var nav = $('#main-nav').Nav();
+	});
+</script>
+<script src="${basePath }/resources/bracket/js/custom.js"></script>
 </head>
 <body class="leftpanel-collapsed stickyheader" style="overflow: visible;">
 
@@ -25,9 +35,7 @@
 			</div>
 			<!-- logopanel -->
 
-			<div class="leftpanelinner">
-				<h5 class="sidebartitle">导航栏</h5>
-				<my:load-main-menu userId="${CURRENT_USER.id }" />
+			<div id="leftpanelinner" class="leftpanelinner">
 			</div>
 			<!-- leftpanelinner -->
 		</div>
@@ -147,12 +155,5 @@
 	</section>
 
 
-	<jsp:include page="import-js.jsp" />
-	<script src="${basePath }/resources/customer/my.nav.js"></script>
-	<script type="text/javascript">
-		$(function() {
-			var nav = $('#main-nav').Nav();
-		});
-	</script>
 </body>
 </html>

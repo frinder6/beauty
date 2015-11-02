@@ -20,6 +20,9 @@
 		<result column="def2" property="def2" jdbcType="VARCHAR" />
 		<result column="def3" property="def3" jdbcType="TIMESTAMP" />
 	</resultMap>
+	<resultMap type="com.beauty.entity.BeautyMenu" id="MenuBaseResultMap" extends="BaseResultMap">
+		<collection property="children" javaType="ArrayList" ofType="com.beauty.entity.BeautyMenu" column="id" select="selectChildren"></collection>
+	</resultMap>
 	<resultMap id="SelectResultMap" type="com.beauty.model.Select">
 		<id column="id" property="id" jdbcType="BIGINT" />
 		<result column="name" property="text" jdbcType="VARCHAR" />
@@ -140,7 +143,7 @@
 	</select>
 
 
-	<select id="selectMainMenu" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+	<select id="selectMainMenu" parameterType="java.util.HashMap" resultMap="MenuBaseResultMap">
 		SELECT DISTINCT
 		m.id, m.code, m.name, m.url, m.parent_id, m.remark, m.create_time, m.def1, m.def2
 		FROM
@@ -152,10 +155,15 @@
 		LEFT JOIN beauty_user_role ur ON ur.role_id = r.id
 		LEFT JOIN beauty_user u ON u.id = ur.user_id
 		WHERE
-		m.parent_id = #{parentId}
+		m.parent_id = 0
 		AND u.id = #{userId}
 		ORDER BY
 		m.id
+	</select>
+	<select id="selectChildren" resultMap="MenuBaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM beauty_menu WHERE parent_id = #{id}
 	</select>
 
 

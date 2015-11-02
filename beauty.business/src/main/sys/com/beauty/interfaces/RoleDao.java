@@ -5,4 +5,6 @@ import com.beauty.entity.BeautyRole;
 
 public interface RoleDao extends IMapperDao<BeautyRole> {
 
+	public void batchSync();
+
 }

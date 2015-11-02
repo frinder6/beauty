@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.beauty.entity.BeautyMenu;
 import com.beauty.entity.Page;
 import com.beauty.model.Value;
+import com.beauty.security.UserInfo;
 import com.beauty.service.MenuService;
 import com.beauty.util.CodeUtil;
 import com.beauty.util.StringUtil;
@@ -62,6 +64,15 @@ public class MenuController {
 			this.menuService.deleteByPrimaryKeys(value.getValues());
 		}
 		return new Value(CodeUtil.DELETE_SUCCESS);
+	}
+
+	@RequestMapping(value = "/load/main", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public List<?> load() {
+		Map<String, Object> params = new HashMap<String, Object>();
+		UserInfo user = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		params.put("userId", user.getId());
+		return this.menuService.selectMainMenu(params);
 	}
 
 	@RequestMapping(value = "/load/id", produces = "application/json; charset=utf-8")

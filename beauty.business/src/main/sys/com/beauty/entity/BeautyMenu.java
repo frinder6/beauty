@@ -3,8 +3,6 @@ package com.beauty.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.beauty.annotation.Orderable;
-
 public class BeautyMenu extends BaseEntity {
 
 	/**
@@ -19,13 +17,10 @@ public class BeautyMenu extends BaseEntity {
 
 	private Long id;
 
-	@Orderable(columnName = "code")
 	private String code;
 
-	@Orderable(columnName = "name")
 	private String name;
 
-	@Orderable(columnName = "url")
 	private String url;
 
 	private Long parentId;
