@@ -19,7 +19,7 @@ import com.beauty.model.Value;
 import com.beauty.service.ResourceService;
 import com.beauty.service.UrlService;
 import com.beauty.util.CodeUtil;
-import com.beauty.util.DatatablesUtil;
+import com.beauty.util.RedisUtil;
 import com.beauty.util.StringUtil;
 
 @Controller
@@ -40,7 +40,11 @@ public class ResourceController {
 		Map<String, Object> params = new HashMap<String, Object>();
 		// 将page值设置到map中
 		page.pageToMap(BeautyResource.class, params);
+		params.put(RedisUtil._KEY_1, 1);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("RESOURCE", params));
 		int count = this.resourceService.selectCount(params);
+		params.put(RedisUtil._KEY_2, 2);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("RESOURCE", params));
 		List<?> list = this.resourceService.selectPage(params);
 		page.setResult(list, count + "", count + "");
 		return page;
@@ -101,25 +105,4 @@ public class ResourceController {
 		return new Value(CodeUtil.ADD_SUCCESS);
 	}
 
-	@RequestMapping(value = "/inline", produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public Value inline(HttpServletRequest request) {
-		String action = DatatablesUtil.getAction(request.getParameterMap());
-		if ("create".equalsIgnoreCase(action)) {
-			BeautyResource entity = DatatablesUtil.convert(BeautyResource.class, request.getParameterMap());
-			entity.setId(null); // 重置id生成策略
-			this.resourceService.insertSelective(entity);
-			return new Value(entity);
-		} else if ("edit".equalsIgnoreCase(action)) {
-			List<BeautyResource> entitys = DatatablesUtil.convert2(BeautyResource.class, request.getParameterMap());
-			for (BeautyResource entity : entitys) {
-				this.resourceService.updateByPrimaryKeySelective(entity);
-			}
-			return new Value(entitys);
-		} else if ("remove".equalsIgnoreCase(action)) {
-			List<Object> list = DatatablesUtil.getIds(request.getParameterMap());
-			this.resourceService.deleteByPrimaryKeys(list);
-		}
-		return new Value();
-	}
 }

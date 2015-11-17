@@ -14,7 +14,7 @@ $(function() {
 
 	var tools = '<div class="btn-group">\
 		<a class="btn btn-default fa fa-bookmark" onclick="mark()">&nbsp;标记</a>\
-		<a class="btn btn-default fa fa-minus-square-o oper-delete">&nbsp;删除</a>\
+		<a class="btn btn-default fa fa-minus-square-o oper-operate">&nbsp;删除</a>\
     </div>';
 
 	var table = $('#list').DGrid({

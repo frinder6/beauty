@@ -5,3 +5,11 @@
 /beauty.web/.classpath
 /beauty.web/target
 /beauty.pom/a.txt
+/.idea
+/beauty.web.iml
+/beauty.base.iml
+/beauty.business.iml
+/beauty.common.iml
+/beauty.compile.iml
+/beauty.pom.iml
+/beauty.security.iml

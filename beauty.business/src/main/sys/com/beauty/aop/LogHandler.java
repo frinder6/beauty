@@ -8,17 +8,21 @@
  */
 package com.beauty.aop;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Date;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSON;
+import com.beauty.entity.BeautyHandlerLogs;
+import com.beauty.service.LogService;
 
 /**
  * 
@@ -28,11 +32,14 @@ import com.alibaba.fastjson.JSON;
  * @date 2015年9月5日 下午8:57:34
  *
  */
-//@Component
-//@Aspect
+@Component
+@Aspect
 public class LogHandler {
 
 	private final Logger logger = LogManager.getLogger(getClass());
+
+	@Autowired
+	private LogService logService;
 
 	/**
 	 * 
@@ -69,34 +76,6 @@ public class LogHandler {
 		System.out.println("我是异常通知。");
 	}
 
-	// 环绕通知
-	@Around("anyMethod()")
-	public Object doLog(ProceedingJoinPoint point) throws Throwable {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("type", 1);
-		String className = point.getTarget().getClass().getName();
-		params.put("className", className);
-		String methodName = point.getSignature().getName();
-		params.put("methodName", methodName);
-		// 返回结果
-		Object retValue = point.proceed();
-		//
-		return retValue;
-	}
-
-	/**
-	 * 
-	 * @Title: anyMethodForInfoLog
-	 * @Description: TODO(切面)
-	 * @author frinder_liu
-	 * @return void
-	 * @date 2015年4月6日 下午2:05:34
-	 * @throws
-	 */
-	//@Pointcut("execution(* com.mvc.controller..*.*(..))")
-	public void anyMethodForInfoLog() {
-	}
-
 	/**
 	 * 
 	 * @Title: doInfoLog
@@ -109,30 +88,31 @@ public class LogHandler {
 	 * @date 2015年4月6日 下午2:05:17
 	 * @throws
 	 */
-	//@Around("anyMethodForInfoLog()")
+	@Around("anyMethod()")
 	public Object doInfoLog(ProceedingJoinPoint point) throws Throwable {
-		Map<String, Object> params = new HashMap<String, Object>();
+		BeautyHandlerLogs log = new BeautyHandlerLogs();
+		log.setBeginTime(new Date());
 		String className = point.getTarget().getClass().getName();
-		params.put("ClassName", className);
+		log.setClassName(className);
 		String methodName = point.getSignature().getName();
-		params.put("MethodName", methodName);
-		Object[] args = point.getArgs();
+		log.setMethodName(methodName);
 		try {
-			JSON.toJSONString(args);
-			params.put("Args", args);
+			Object[] args = point.getArgs();
+			log.setArgs(JSON.toJSONString(args));
 		} catch (Exception e) {
-			params.put("Args", e.getMessage());
+			log.setArgs(JSON.toJSONString(e.getMessage()));
 		}
-		logger.info("begin to execute : " + JSON.toJSONString(params));
+		logger.info("begin to execute : " + JSON.toJSONString(log));
 		// 返回结果
 		Object retValue = point.proceed();
 		try {
-			JSON.toJSONString(retValue);
-			params.put("RetValue", retValue);
+			log.setReturnValue(JSON.toJSONString(retValue));
 		} catch (Exception e) {
-			params.put("RetValue", e.getMessage());
+			log.setReturnValue(e.getMessage());
 		}
-		logger.info("end of execute : " + JSON.toJSONString(params));
+		log.setEndTime(new Date());
+		this.logService.insertSelective(log);
+		logger.info("end of execute : " + JSON.toJSONString(log));
 		return retValue;
 	}
 

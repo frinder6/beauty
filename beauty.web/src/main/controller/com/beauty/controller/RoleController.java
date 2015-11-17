@@ -17,7 +17,7 @@ import com.beauty.entity.Page;
 import com.beauty.model.Value;
 import com.beauty.service.RoleService;
 import com.beauty.util.CodeUtil;
-import com.beauty.util.DatatablesUtil;
+import com.beauty.util.RedisUtil;
 import com.beauty.util.StringUtil;
 
 @Controller
@@ -35,7 +35,11 @@ public class RoleController {
 		Map<String, Object> params = new HashMap<String, Object>();
 		// 将page值设置到map中
 		page.pageToMap(BeautyRole.class, params);
+		params.put(RedisUtil._KEY_1, 1);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("ROLE", params));
 		int count = this.roleService.selectCount(params);
+		params.put(RedisUtil._KEY_2, 2);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("ROLE", params));
 		List<?> list = this.roleService.selectPage(params);
 		page.setResult(list, count + "", count + "");
 		return page;
@@ -70,28 +74,6 @@ public class RoleController {
 	@ResponseBody
 	public BeautyRole load(@RequestParam("id") Long id) {
 		return this.roleService.selectByPrimaryKey(id);
-	}
-
-	@RequestMapping(value = "/inline", produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public Value inline(HttpServletRequest request) {
-		String action = DatatablesUtil.getAction(request.getParameterMap());
-		if ("create".equalsIgnoreCase(action)) {
-			BeautyRole entity = DatatablesUtil.convert(BeautyRole.class, request.getParameterMap());
-			entity.setId(null); // 重置id生成策略
-			this.roleService.insertSelective(entity);
-			return new Value(entity);
-		} else if ("edit".equalsIgnoreCase(action)) {
-			List<BeautyRole> entitys = DatatablesUtil.convert2(BeautyRole.class, request.getParameterMap());
-			for (BeautyRole entity : entitys) {
-				this.roleService.updateByPrimaryKeySelective(entity);
-			}
-			return new Value(entitys);
-		} else if ("remove".equalsIgnoreCase(action)) {
-			List<Object> list = DatatablesUtil.getIds(request.getParameterMap());
-			this.roleService.deleteByPrimaryKeys(list);
-		}
-		return new Value();
 	}
 
 }

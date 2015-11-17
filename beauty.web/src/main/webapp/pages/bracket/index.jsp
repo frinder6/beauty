@@ -4,20 +4,9 @@
 <head>
 <jsp:include page="import-css.jsp" />
 <title>首页</title>
-<jsp:include page="import-js.jsp" />
-<script src="${basePath }/resources/customer/my.menu.js"></script>
-<script src="${basePath }/resources/customer/my.nav.js"></script>
-<script type="text/javascript">
-	$(function() {
-		var menu = $('#leftpanelinner').Menu();
-		var nav = $('#main-nav').Nav();
-	});
-</script>
-<script src="${basePath }/resources/bracket/js/custom.js"></script>
 </head>
 <body class="leftpanel-collapsed stickyheader" style="overflow: visible;">
 
-	<!-- Preloader -->
 	<div id="preloader">
 		<div id="status">
 			<i class="fa fa-spinner fa-spin"></i>
@@ -33,13 +22,9 @@
 					<span>[</span> 我的后台<span>]</span>
 				</h1>
 			</div>
-			<!-- logopanel -->
 
-			<div id="leftpanelinner" class="leftpanelinner">
-			</div>
-			<!-- leftpanelinner -->
+			<div id="leftpanelinner" class="leftpanelinner"></div>
 		</div>
-		<!-- leftpanel -->
 
 		<div class="mainpanel">
 
@@ -68,46 +53,6 @@
 												</h5>
 											</div>
 										</li>
-										<li class="new">
-											<div class="thumb">
-												<a href=""><img src="${basePath }/resources/bracket/images/photos/user2.png" alt="" /></a>
-											</div>
-											<div class="desc">
-												<h5>
-													<a href="">Zaham Sindilmaca (@zaham)</a> <span class="badge badge-success">new</span>
-												</h5>
-											</div>
-										</li>
-										<li>
-											<div class="thumb">
-												<a href=""><img src="${basePath }/resources/bracket/images/photos/user3.png" alt="" /></a>
-											</div>
-											<div class="desc">
-												<h5>
-													<a href="">Weno Carasbong (@wenocar)</a>
-												</h5>
-											</div>
-										</li>
-										<li>
-											<div class="thumb">
-												<a href=""><img src="${basePath }/resources/bracket/images/photos/user4.png" alt="" /></a>
-											</div>
-											<div class="desc">
-												<h5>
-													<a href="">Nusja Nawancali (@nusja)</a>
-												</h5>
-											</div>
-										</li>
-										<li>
-											<div class="thumb">
-												<a href=""><img src="${basePath }/resources/bracket/images/photos/user5.png" alt="" /></a>
-											</div>
-											<div class="desc">
-												<h5>
-													<a href="">Lane Kitmari (@lane_kitmare)</a>
-												</h5>
-											</div>
-										</li>
 										<li class="new"><a href="">See All Users</a></li>
 									</ul>
 								</div>
@@ -119,19 +64,16 @@
 									<img src="${basePath }/resources/bracket/images/photos/loggeduser.png" alt="" /> ${SPRING_SECURITY_CONTEXT.authentication.name} <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-									<li><a href="profile.html"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
-									<li><a href="#"><i class="glyphicon glyphicon-cog"></i> Account Settings</a></li>
-									<li><a href="#"><i class="glyphicon glyphicon-question-sign"></i> Help</a></li>
-									<li><a href="${basePath}/j_spring_security_logout"><i class="glyphicon glyphicon-log-out"></i> Log Out</a></li>
+									<li><a id="user-profile" href="javascript:_REDIRECT('/pages/bracket/user-profile.jsp');"><i class="glyphicon glyphicon-user"></i> 用户信息</a></li>
+									<li><a id="cache-flush" href="javascript:void(0)"><i class="glyphicon glyphicon-refresh"></i> 刷新缓存</a></li>
+									<li><a href="${basePath}/j_spring_security_logout"><i class="glyphicon glyphicon-log-out"></i> 退出</a></li>
 								</ul>
 							</div>
 						</li>
 					</ul>
 				</div>
-				<!-- header-right -->
 
 			</div>
-			<!-- headerbar -->
 
 			<div class="pageheader">
 				<h2>
@@ -139,21 +81,44 @@
 				</h2>
 			</div>
 
-
 			<div class="contentpanel" style="padding: 10px; background-color: #E4E7EA;">
-
-				<!-- table-responsive -->
 				<iframe id="iframe-main" src="${basePath }/pages/bracket/content.jsp" name="iframe-main" frameborder="0" width="100%" scrolling="no"></iframe>
-
 			</div>
-			<!-- contentpanel -->
 
 		</div>
-		<!-- mainpanel -->
-
 
 	</section>
 
 
+	<jsp:include page="import-js.jsp" />
+	<script src="${basePath }/resources/customer/my.menu.js"></script>
+	<script src="${basePath }/resources/customer/my.nav.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var menu = $('#leftpanelinner').Menu();
+			var nav = $('#main-nav').Nav();
+
+			$('#cache-flush').click(function() {
+				ajax({
+					url : '/redis/flush.action'
+				});
+			});
+
+			$('#user-profile').click(function() {
+				var nav = '\
+					<h2>\
+						<i class="{0}"></i> {1} <span>{2}</span>\
+					</h2>\
+				';
+				var data = {
+					icon : 'fa fa-user',
+					title : '用户管理',
+					stitle : '用户信息'
+				};
+				$(window.document).find('div.pageheader').html(nav.format(data.icon, data.title, data.stitle));
+			});
+		});
+	</script>
+	<script src="${basePath }/resources/bracket/js/custom.js"></script>
 </body>
 </html>

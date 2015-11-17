@@ -17,6 +17,7 @@ import com.beauty.entity.Page;
 import com.beauty.model.Value;
 import com.beauty.service.UserRoleService;
 import com.beauty.util.CodeUtil;
+import com.beauty.util.RedisUtil;
 
 @Controller
 @RequestMapping("/ur")
@@ -34,7 +35,11 @@ public class UserRoleController {
 		params.put("userId", userId);
 		// 将page值设置到map中
 		page.pageToMap(BeautyUserRole.class, params);
+		params.put(RedisUtil._KEY_1, 1);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("USER-ROLE", params));
 		int count = this.userRoleService.selectCount(params);
+		params.put(RedisUtil._KEY_2, 2);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("USER-ROLE", params));
 		List<?> list = this.userRoleService.selectPage(params);
 		page.setResult(list, count + "", count + "");
 		return page;
@@ -49,7 +54,11 @@ public class UserRoleController {
 		params.put("userId", userId);
 		// 将page值设置到map中
 		page.pageToMap(BeautyUserRole.class, params);
+		params.put(RedisUtil._KEY_1, 1);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("USER-ROLE", params));
 		int count = this.userRoleService.selectConfCount(params);
+		params.put(RedisUtil._KEY_2, 2);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("USER-ROLE", params));
 		List<?> list = this.userRoleService.selectConfPage(params);
 		page.setResult(list, count + "", count + "");
 		return page;

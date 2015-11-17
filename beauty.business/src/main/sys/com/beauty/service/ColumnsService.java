@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.beauty.entity.BeautyTableColumns;
 import com.beauty.interfaces.ColumnsDao;
 import com.beauty.model.Value;
+import com.beauty.util.RedisUtil;
 
 @Service
 public class ColumnsService extends BaseService<BeautyTableColumns> {
@@ -16,12 +18,14 @@ public class ColumnsService extends BaseService<BeautyTableColumns> {
 	@Autowired
 	private ColumnsDao columnsDao;
 
+	@Cacheable(value = RedisUtil._REDIS_CACHE_VALUE, key = "#params.get('_REDIS_CACHE_KEY')")
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		return this.columnsDao.selectCount(params);
 	}
 
+	@Cacheable(value = RedisUtil._REDIS_CACHE_VALUE, key = "#params.get('_REDIS_CACHE_KEY')")
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
@@ -52,8 +56,9 @@ public class ColumnsService extends BaseService<BeautyTableColumns> {
 		this.columnsDao.updateByPrimaryKeySelective(entity);
 	}
 
-	public List<?> selectByGridName(String tableName) {
-		return this.columnsDao.selectByGridName(tableName);
+	@Cacheable(value = RedisUtil._REDIS_CACHE_VALUE, key = "#params.get('_REDIS_CACHE_KEY')")
+	public List<?> selectByGridName(Map<String, Object> params) {
+		return this.columnsDao.selectByGridName(params);
 	}
 
 	public void batchExport(Value value) {

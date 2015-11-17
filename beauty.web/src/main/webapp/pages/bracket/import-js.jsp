@@ -42,7 +42,7 @@ _BASE = '${basePath}';
 <script src="${basePath }/resources/bracket/js/jquery.validate.min.js"></script>
 <script src="${basePath }/resources/customer/jquery.validate.extends.js"></script>
 
-<%-- <script src="${basePath }/resources/bracket/js/custom.js"></script> --%>
+<script src="${basePath }/resources/bracket/js/custom.js"></script>
 <script src="${basePath }/resources/customer/util.js"></script>
 <script src="${basePath }/resources/customer/my.auth.js"></script>
 <script src="${basePath }/resources/customer/jquery.datatables.extends.version.2.0.js"></script>

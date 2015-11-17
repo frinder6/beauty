@@ -1,7 +1,5 @@
 package com.beauty.entity;
 
-import com.beauty.annotation.Orderable;
-
 public class BeautyUser extends BaseEntity {
 	/**
 	 * @Fields serialVersionUID
@@ -10,15 +8,12 @@ public class BeautyUser extends BaseEntity {
 
 	private Long id;
 
-	@Orderable(columnName = "account")
 	private String account;
 
-	@Orderable(columnName = "name")
 	private String name;
 
 	private String password;
 
-	@Orderable(columnName = "gender")
 	private Byte gender;
 
 	private String mobile;

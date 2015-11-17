@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.beauty.interfaces.LogDao">
+	<resultMap id="BaseResultMap" type="com.beauty.entity.BeautyHandlerLogs">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<id column="id" property="DT_RowId" jdbcType="BIGINT" />
+		<result column="account" property="account" jdbcType="VARCHAR" />
+		<result column="class_name" property="className" jdbcType="VARCHAR" />
+		<result column="method_name" property="methodName" jdbcType="VARCHAR" />
+		<result column="args" property="args" jdbcType="VARCHAR" />
+		<result column="return_value" property="returnValue" jdbcType="VARCHAR" />
+		<result column="begin_time" property="beginTime" jdbcType="TIMESTAMP" />
+		<result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, account, class_name, method_name, args, return_value, begin_time, end_time, create_time
+	</sql>
+	<sql id="Base_Where_Clause">
+		<where>
+			1 = 1
+			<if test="searchValue">
+				AND ( account LIKE "%" #{searchValue} "%" OR class_name LIKE "%" #{searchValue} "%" OR method_name LIKE "%" #{searchValue} "%" OR args LIKE "%" #{searchValue} "%" OR return_value LIKE "%" #{searchValue} "%" )
+			</if>
+		</where>
+	</sql>
+	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM beauty_handler_logs
+		<include refid="Base_Where_Clause" />
+		ORDER BY
+		<if test="orderColumn">
+			${orderColumn} ${orderDir}
+		</if>
+		<if test="orderColumn == null">
+			id DESC
+		</if>
+		LIMIT #{from}, #{size}
+	</select>
+	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT
+		COUNT(1)
+		FROM beauty_handler_logs
+		<include refid="Base_Where_Clause" />
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from beauty_handler_logs
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
+		delete from beauty_handler_logs
+		where 1 != 1
+		<if test="list.size() > 0">
+			or id in
+			<foreach collection="list" open="(" close=")" item="id" separator=",">
+				#{id}
+			</foreach>
+		</if>
+	</delete>
+	<insert id="insertSelective" parameterType="com.beauty.entity.BeautyHandlerLogs">
+		insert into beauty_handler_logs
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="account != null">
+				account,
+			</if>
+			<if test="className != null">
+				class_name,
+			</if>
+			<if test="methodName != null">
+				method_name,
+			</if>
+			<if test="args != null">
+				args,
+			</if>
+			<if test="returnValue != null">
+				return_value,
+			</if>
+			<if test="beginTime != null">
+				begin_time,
+			</if>
+			<if test="endTime != null">
+				end_time,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="account != null">
+				#{account,jdbcType=VARCHAR},
+			</if>
+			<if test="className != null">
+				#{className,jdbcType=VARCHAR},
+			</if>
+			<if test="methodName != null">
+				#{methodName,jdbcType=VARCHAR},
+			</if>
+			<if test="args != null">
+				#{args,jdbcType=VARCHAR},
+			</if>
+			<if test="returnValue != null">
+				#{returnValue,jdbcType=VARCHAR},
+			</if>
+			<if test="beginTime != null">
+				#{beginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endTime != null">
+				#{endTime,jdbcType=TIMESTAMP},
+			</if>
+			NOW()
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.beauty.entity.BeautyHandlerLogs">
+		update beauty_handler_logs
+		<set>
+			<if test="account != null">
+				account = #{account,jdbcType=VARCHAR},
+			</if>
+			<if test="className != null">
+				class_name = #{className,jdbcType=VARCHAR},
+			</if>
+			<if test="methodName != null">
+				method_name = #{methodName,jdbcType=VARCHAR},
+			</if>
+			<if test="args != null">
+				args = #{args,jdbcType=VARCHAR},
+			</if>
+			<if test="returnValue != null">
+				return_value = #{returnValue,jdbcType=VARCHAR},
+			</if>
+			<if test="beginTime != null">
+				begin_time = #{beginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endTime != null">
+				end_time = #{endTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

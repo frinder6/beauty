@@ -19,6 +19,7 @@ import com.beauty.model.Value;
 import com.beauty.security.UserInfo;
 import com.beauty.service.MenuService;
 import com.beauty.util.CodeUtil;
+import com.beauty.util.RedisUtil;
 import com.beauty.util.StringUtil;
 
 @Controller
@@ -38,6 +39,7 @@ public class MenuController {
 		if (StringUtil.valueOf(pid).length() > 0) {
 			params.put("pid", pid);
 		}
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("MENU", params));
 		return this.menuService.selectMenuSelect(params);
 	}
 
@@ -72,6 +74,7 @@ public class MenuController {
 		Map<String, Object> params = new HashMap<String, Object>();
 		UserInfo user = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		params.put("userId", user.getId());
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("MENU", params));
 		return this.menuService.selectMainMenu(params);
 	}
 
@@ -89,7 +92,11 @@ public class MenuController {
 		Map<String, Object> params = new HashMap<String, Object>();
 		// 将page值设置到map中
 		page.pageToMap(BeautyMenu.class, params);
+		params.put(RedisUtil._KEY_1, 1);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("MENU", params));
 		int count = this.menuService.selectCount(params);
+		params.put(RedisUtil._KEY_2, 2);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("MENU", params));
 		List<?> list = this.menuService.selectPage(params);
 		page.setResult(list, count + "", count + "");
 		return page;

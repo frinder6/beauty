@@ -77,6 +77,7 @@
 	DGrid.prototype = {
 		constructor : DGrid,
 		init : function(options) {
+			var e = this;
 			$.ajax({
 				type : 'POST',
 				url : (_BASE + '/columns/load/columns.action'),
@@ -86,12 +87,47 @@
 				dataType : 'JSON',
 				async : false,
 				success : function(data) {
+					e.search(data);
 					$.extend(true, options.columns, data);
 				},
 				error : function(msg) {
 					console.error(JSON.stringify(msg));
 				}
 			});
+		},
+		search : function(datas) {
+			var ldatas = [];
+			$.each(datas, function(i, data) {
+				var searchable = data.searchable;
+				if (searchable) {
+					ldatas.push(data);
+				}
+			});
+			var fgroups = [];
+			var fgroup = '<div class="form-group">{0}</div>';
+			var linput = '\
+				<label class="col-sm-1 control-label">{0}：</label>\
+	            <div class="col-sm-3">\
+	              <input type="text" name="{1}" class="form-control input-sm" />\
+	            </div>\
+			';
+			var len = ldatas.length, size = 3, index = 0;
+			var page = parseInt((len + size - 1) / size);
+			for (var i = 0; i < page; i++) {
+				var linputs = [];
+				for (var j = 0; j < size; j++) {
+					var data = ldatas[index];
+					if (data) {
+						linputs.push(linput.format(data.title, data.columnName));
+						index++;
+					} else {
+						break;
+					}
+				}
+				fgroups.push(fgroup.format(linputs.join('')));
+			}
+			var html = fgroups.join('');
+			$(document).find('.search-div').html(html);
 		},
 		render : function(options) {
 			if (options.columns) {

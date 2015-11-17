@@ -2,15 +2,12 @@ package com.beauty.entity;
 
 import java.util.Date;
 
-import com.beauty.annotation.Orderable;
-
 public class SysTables {
 
 	private String tableCatalog;
 
 	private String tableSchema;
 
-	@Orderable(columnName = "table_name")
 	private String tableName;
 
 	private String tableType;

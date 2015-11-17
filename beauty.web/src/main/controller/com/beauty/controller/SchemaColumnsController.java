@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.beauty.entity.BeautyTableColumns;
 import com.beauty.entity.Page;
 import com.beauty.service.SchemaColumnsService;
+import com.beauty.util.RedisUtil;
 
 @Controller
 @RequestMapping("/schema")
@@ -32,7 +33,11 @@ public class SchemaColumnsController {
 		params.put("tableName", tableName);
 		// 将page值设置到map中
 		page.pageToMap(BeautyTableColumns.class, params);
+		params.put(RedisUtil._KEY_1, 1);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("SCHEMA-COLUMNS", params));
 		int count = this.schemaColumnsService.selectCount(params);
+		params.put(RedisUtil._KEY_2, 2);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("SCHEMA-COLUMNS", params));
 		List<?> list = this.schemaColumnsService.selectPage(params);
 		page.setResult(list, count + "", count + "");
 		return page;

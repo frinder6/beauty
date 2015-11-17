@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.beauty.entity.Page;
 import com.beauty.entity.SysTables;
 import com.beauty.service.SysTableService;
+import com.beauty.util.RedisUtil;
 
 @Controller
 @RequestMapping("/table")
@@ -30,7 +31,11 @@ public class SysTableController {
 		Map<String, Object> params = new HashMap<String, Object>();
 		// 将page值设置到map中
 		page.pageToMap(SysTables.class, params);
+		params.put(RedisUtil._KEY_1, 1);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("SYS-TABLE", params));
 		int count = this.sysTableService.selectCount(params);
+		params.put(RedisUtil._KEY_2, 2);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("SYS-TABLE", params));
 		List<?> list = this.sysTableService.selectPage(params);
 		page.setResult(list, count + "", count + "");
 		return page;

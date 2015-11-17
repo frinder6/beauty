@@ -9,8 +9,11 @@
 package com.beauty.security;
 
 import java.util.Collection;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+
+import com.beauty.entity.BeautyUser;
 
 /**
  * @ClassName: User
@@ -28,6 +31,7 @@ public class UserInfo extends User {
 
 	private Long id;
 	private String name;
+	private BeautyUser user;
 
 	public UserInfo(Long id, String name, String account, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
 		super(account, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
@@ -63,6 +67,14 @@ public class UserInfo extends User {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public BeautyUser getUser() {
+		return user;
+	}
+
+	public void setUser(BeautyUser user) {
+		this.user = user;
 	}
 
 }

@@ -1,6 +1,5 @@
 package com.beauty.entity;
 
-import com.beauty.annotation.Orderable;
 
 public class BeautyUrl extends BaseEntity {
 	/**
@@ -10,7 +9,6 @@ public class BeautyUrl extends BaseEntity {
 
 	private Long id;
 
-	@Orderable(columnName = "url")
 	private String url;
 
 	public BeautyUrl() {

@@ -71,7 +71,6 @@ public class Page implements Serializable {
 		// params.put("orderColumn", DatatablesUtil.getColumn(clazz,
 		// this.getOrderColumn()));
 		params.put("orderColumn", CamelCaseUtils.toUnderlineName(this.getOrderColumn()));
-		System.out.println(params.get("orderColumn"));
 		params.put("orderDir", this.getOrderDir());
 		params.put("searchValue", this.getSearchValue());
 		params.put("from", Integer.parseInt(this.getStart()));

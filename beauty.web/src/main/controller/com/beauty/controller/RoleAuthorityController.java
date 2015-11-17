@@ -17,6 +17,7 @@ import com.beauty.entity.Page;
 import com.beauty.model.Value;
 import com.beauty.service.RoleAuthorityService;
 import com.beauty.util.CodeUtil;
+import com.beauty.util.RedisUtil;
 
 @Controller
 @RequestMapping("/ra")
@@ -34,7 +35,11 @@ public class RoleAuthorityController {
 		params.put("roleId", roleId);
 		// 将page值设置到map中
 		page.pageToMap(BeautyRoleAuthority.class, params);
+		params.put(RedisUtil._KEY_1, 1);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("ROLE-AUTHORITY", params));
 		int count = this.roleAuthorityService.selectCount(params);
+		params.put(RedisUtil._KEY_2, 2);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("ROLE-AUTHORITY", params));
 		List<?> list = this.roleAuthorityService.selectPage(params);
 		page.setResult(list, count + "", count + "");
 		return page;
@@ -49,7 +54,11 @@ public class RoleAuthorityController {
 		params.put("roleId", roleId);
 		// 将page值设置到map中
 		page.pageToMap(BeautyRoleAuthority.class, params);
+		params.put(RedisUtil._KEY_1, 1);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("ROLE-AUTHORITY", params));
 		int count = this.roleAuthorityService.selectConfCount(params);
+		params.put(RedisUtil._KEY_2, 2);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("ROLE-AUTHORITY", params));
 		List<?> list = this.roleAuthorityService.selectConfPage(params);
 		page.setResult(list, count + "", count + "");
 		return page;

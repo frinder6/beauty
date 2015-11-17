@@ -17,6 +17,7 @@ import com.beauty.entity.Page;
 import com.beauty.model.Value;
 import com.beauty.service.ColumnsService;
 import com.beauty.util.CodeUtil;
+import com.beauty.util.RedisUtil;
 
 @Controller
 @RequestMapping("/columns")
@@ -28,7 +29,10 @@ public class ColumnsController {
 	@RequestMapping(value = "/load/columns", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public List<?> loadColumns(@RequestParam("tableName") String tableName) {
-		return this.columnsService.selectByGridName(tableName);
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("tableName", tableName);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("COLUMNS", params));
+		return this.columnsService.selectByGridName(params);
 	}
 
 	@RequestMapping(value = "/load/page", produces = "application/json; charset=utf-8")
@@ -41,7 +45,11 @@ public class ColumnsController {
 		params.put("tableName", tableName);
 		// 将page值设置到map中
 		page.pageToMap(BeautyTableColumns.class, params);
+		params.put(RedisUtil._KEY_1, 1);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("COLUMNS", params));
 		int count = this.columnsService.selectCount(params);
+		params.put(RedisUtil._KEY_2, 2);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("COLUMNS", params));
 		List<?> list = this.columnsService.selectPage(params);
 		page.setResult(list, count + "", count + "");
 		return page;

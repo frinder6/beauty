@@ -18,7 +18,7 @@ import com.beauty.model.Value;
 import com.beauty.service.AuthorityService;
 import com.beauty.service.RoleService;
 import com.beauty.util.CodeUtil;
-import com.beauty.util.DatatablesUtil;
+import com.beauty.util.RedisUtil;
 import com.beauty.util.StringUtil;
 
 @Controller
@@ -39,7 +39,11 @@ public class AuthorityController {
 		Map<String, Object> params = new HashMap<String, Object>();
 		// 将page值设置到map中
 		page.pageToMap(BeautyAuthority.class, params);
+		params.put(RedisUtil._KEY_1, 1);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("AUTHORITY", params));
 		int count = this.authorityService.selectCount(params);
+		params.put(RedisUtil._KEY_2, 2);
+		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("AUTHORITY", params));
 		List<?> list = this.authorityService.selectPage(params);
 		page.setResult(list, count + "", count + "");
 		return page;
@@ -81,28 +85,6 @@ public class AuthorityController {
 	@ResponseBody
 	public BeautyAuthority load(@RequestParam("id") Long id) {
 		return this.authorityService.selectByPrimaryKey(id);
-	}
-
-	@RequestMapping(value = "/inline", produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public Value inline(HttpServletRequest request) {
-		String action = DatatablesUtil.getAction(request.getParameterMap());
-		if ("create".equalsIgnoreCase(action)) {
-			BeautyAuthority entity = DatatablesUtil.convert(BeautyAuthority.class, request.getParameterMap());
-			entity.setId(null); // 重置id生成策略
-			this.authorityService.insertSelective(entity);
-			return new Value(entity);
-		} else if ("edit".equalsIgnoreCase(action)) {
-			List<BeautyAuthority> entitys = DatatablesUtil.convert2(BeautyAuthority.class, request.getParameterMap());
-			for (BeautyAuthority entity : entitys) {
-				this.authorityService.updateByPrimaryKeySelective(entity);
-			}
-			return new Value(entitys);
-		} else if ("remove".equalsIgnoreCase(action)) {
-			List<Object> list = DatatablesUtil.getIds(request.getParameterMap());
-			this.authorityService.deleteByPrimaryKeys(list);
-		}
-		return new Value();
 	}
 
 }

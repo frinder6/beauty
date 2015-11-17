@@ -71,6 +71,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 		logger.info("the current user : [ " + username + "'s ] authorities : [ " + JSON.toJSONString(authorities) + " ]");
 		// 构建登陆用户
 		UserInfo userinfo = new UserInfo(user.getId(), user.getName(), user.getAccount(), user.getPassword(), true, true, true, true, authorities);
+		userinfo.setUser(user);
 		logger.info("UserDetailServiceImpl.loadUserByUsername.....................................end !");
 		return userinfo;
 	}

@@ -1,6 +1,5 @@
 package com.beauty.entity;
 
-import com.beauty.annotation.Orderable;
 
 public class SysColumns {
 
@@ -10,7 +9,6 @@ public class SysColumns {
 
 	private String tableName;
 
-	@Orderable(columnName = "column_name")
 	private String columnName;
 
 	private Long ordinalPosition;

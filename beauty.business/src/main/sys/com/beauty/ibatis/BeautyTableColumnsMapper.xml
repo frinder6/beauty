@@ -52,7 +52,7 @@
 		from beauty_table_columns
 		where id = #{id,jdbcType=BIGINT}
 	</select>
-	<select id="selectByGridName" resultMap="BaseResultMap" parameterType="java.lang.String">
+	<select id="selectByGridName" resultMap="BaseResultMap" parameterType="java.util.HashMap">
 		SELECT
 		<include refid="Base_Column_List" />
 		FROM beauty_table_columns

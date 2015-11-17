@@ -2,8 +2,6 @@ package com.beauty.entity;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
-import com.beauty.annotation.Orderable;
-
 public class BeautyResource extends BaseEntity {
 	/**
 	 * @Fields serialVersionUID
@@ -12,13 +10,10 @@ public class BeautyResource extends BaseEntity {
 
 	private Long id;
 
-	@Orderable(columnName = "code")
 	private String code;
 
-	@Orderable(columnName = "name")
 	private String name;
 
-	@Orderable(columnName = "url")
 	private String url;
 
 	private Long groupId;
