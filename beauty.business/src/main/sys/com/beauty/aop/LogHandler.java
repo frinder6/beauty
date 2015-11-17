@@ -111,6 +111,7 @@ public class LogHandler {
 			log.setReturnValue(e.getMessage());
 		}
 		log.setEndTime(new Date());
+		log.setCreateTime(new Date());
 		this.logService.insertSelective(log);
 		logger.info("end of execute : " + JSON.toJSONString(log));
 		return retValue;

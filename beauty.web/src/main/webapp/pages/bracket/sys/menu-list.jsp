@@ -12,22 +12,22 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="panel-btns">
-					<a href="#" class="panel-close">×</a> <a href="#" class="minimize maximize">+</a>
+					<a href="#" class="minimize">-</a>
 				</div>
-				<h3 class="panel-title">搜索条件</h3>
+				<h3 class="panel-title">检索条件</h3>
 			</div>
-			<div class="panel-body search-div" style="display: none; padding: 5px 20px 5px 0px;"></div>
-			<div class="panel-footer" style="display: none; padding: 5px;">
+			<div class="panel-body search-div" style="padding: 5px 20px 5px 0px;"></div>
+			<div class="panel-footer" style="padding: 5px;">
 				<div class="row">
 					<div class="col-sm-7 col-sm-offset-5">
-						<button class="btn btn-primary">&nbsp;搜&nbsp;索&nbsp;</button>
-						<button type="reset" class="btn btn-default">&nbsp;重&nbsp;置&nbsp;</button>
+						<button type="button" class="btn btn-primary fa fa-search">&nbsp;搜&nbsp;索&nbsp;</button>
+						<button type="reset" class="btn btn-default fa fa-times-circle">&nbsp;重&nbsp;置&nbsp;</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
-	
+
 	<div class="table-responsive">
 		<table id="list" class="table table-bordered nowrap" cellspacing="0" width="100%">
 		</table>
@@ -35,6 +35,7 @@
 	<!-- table-responsive -->
 
 	<jsp:include page="../import-js.jsp" />
+	<script src="${basePath }/resources/bracket/js/custom.js"></script>
 	<script type="text/javascript" src="${basePath }/resources/customer/sys/menu-list.js"></script>
 
 </body>

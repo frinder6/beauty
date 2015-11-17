@@ -39,6 +39,9 @@
 			<if test="pid">
 				AND id = #{pid}
 			</if>
+			<if test="serialize">
+				${serialize}
+			</if>
 		</where>
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">

@@ -116,7 +116,9 @@
 			<if test="endTime != null">
 				#{endTime,jdbcType=TIMESTAMP},
 			</if>
-			NOW()
+			<if test="createTime != null">
+				NOW(),
+			</if>
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="com.beauty.entity.BeautyHandlerLogs">

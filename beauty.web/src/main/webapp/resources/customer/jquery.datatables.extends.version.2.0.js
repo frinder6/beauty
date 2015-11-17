@@ -87,7 +87,7 @@
 				dataType : 'JSON',
 				async : false,
 				success : function(data) {
-					e.search(data);
+					e.fillSearch(data);
 					$.extend(true, options.columns, data);
 				},
 				error : function(msg) {
@@ -95,7 +95,7 @@
 				}
 			});
 		},
-		search : function(datas) {
+		fillSearch : function(datas) {
 			var ldatas = [];
 			$.each(datas, function(i, data) {
 				var searchable = data.searchable;
@@ -128,6 +128,13 @@
 			}
 			var html = fgroups.join('');
 			$(document).find('.search-div').html(html);
+		},
+		search : function() {
+			var e = this;
+			var table = e.getTable();
+			$(window.document).find('.btn-primary').click(function() {
+				table.draw();
+			});
 		},
 		render : function(options) {
 			if (options.columns) {
@@ -195,6 +202,17 @@
 				});
 			});
 		},
+		serialize : function() {
+			var frm = $(window.document).find('form');
+			var array = frm.serializeArray();
+			var serialize = '', temp = ' AND {0} LIKE \'{1}%\' ';
+			$(array).each(function() {
+				if (this.value && this.value.length > 0) {
+					serialize += temp.format(this.name, this.value);
+				}
+			});
+			return serialize;
+		},
 		initLoadGrid : function() {
 			var $opts = this.$opts;
 			var $this = this.$this;
@@ -202,7 +220,9 @@
 			var toolId = $opts.toolId ? $opts.toolId : ('#' + $opts.gridName + '_tool');
 			var _options = {
 				columns : [],
-				dom : ('<"row"<"' + toolId + '.col-xs-6"><"col-xs-6"f>r>t<"row"<"col-xs-3"l><"col-xs-3"i><"col-xs-6"p>>'),
+				// dom : ('<"row"<"' + toolId +
+				// '.col-xs-6"><"col-xs-6"f>r>t<"row"<"col-xs-3"l><"col-xs-3"i><"col-xs-6"p>>'),
+				dom : ('<"row"<"' + toolId + '.col-xs-6"><"col-xs-6">r>t<"row"<"col-xs-3"l><"col-xs-3"i><"col-xs-6"p>>'),
 				initComplete : function() {
 
 					e.pdiv().find(toolId).append($opts.tools);
@@ -236,6 +256,11 @@
 				fnRowCallback : function(nRow, aData, iDisplayIndex) {
 					e.xedit(nRow, aData);
 					return nRow;
+				},
+				fnServerParams : function(aoData) {
+					// var params = $(window.document).find('form').form2Json();
+					// $.extend(true, aoData, params);
+					aoData.serialize = e.serialize();
 				}
 			};
 
@@ -269,6 +294,9 @@
 
 			// order
 			e.orderSearch();
+
+			// search
+			e.search();
 
 			return $this;
 		},

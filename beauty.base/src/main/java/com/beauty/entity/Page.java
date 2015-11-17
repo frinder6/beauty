@@ -35,6 +35,8 @@ public class Page implements Serializable {
 
 	private Object data;
 
+	private String serialize;
+
 	/**
 	 * 
 	 * @Title: getInstance
@@ -55,6 +57,7 @@ public class Page implements Serializable {
 		this.searchValue = StringUtil.isNull(request.getParameter("search[value]"), this.searchValue);
 		String template = "columns[%s][data]";
 		this.orderColumn = StringUtil.isNull(request.getParameter(String.format(template, orderIndex)), this.orderColumn);
+		this.serialize = StringUtil.isNull(request.getParameter("serialize"), this.serialize);
 	}
 
 	/**
@@ -75,6 +78,11 @@ public class Page implements Serializable {
 		params.put("searchValue", this.getSearchValue());
 		params.put("from", Integer.parseInt(this.getStart()));
 		params.put("size", Integer.parseInt(this.getLength()));
+		params.put("serialize", this.getSerialize());
+	}
+
+	public void pageToMap(Map<String, Object> params) {
+		pageToMap(null, params);
 	}
 
 	/**
@@ -253,6 +261,14 @@ public class Page implements Serializable {
 	 */
 	public void setOrderIndex(String orderIndex) {
 		this.orderIndex = orderIndex;
+	}
+
+	public String getSerialize() {
+		return serialize;
+	}
+
+	public void setSerialize(String serialize) {
+		this.serialize = serialize;
 	}
 
 }

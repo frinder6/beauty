@@ -91,7 +91,7 @@ public class MenuController {
 		page.init(request);
 		Map<String, Object> params = new HashMap<String, Object>();
 		// 将page值设置到map中
-		page.pageToMap(BeautyMenu.class, params);
+		page.pageToMap(params);
 		params.put(RedisUtil._KEY_1, 1);
 		params.put(RedisUtil._REDIS_CACHE_KEY, RedisUtil.getRedisKey("MENU", params));
 		int count = this.menuService.selectCount(params);
