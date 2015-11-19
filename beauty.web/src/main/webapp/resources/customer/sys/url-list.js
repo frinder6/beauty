@@ -5,7 +5,7 @@
  */
 var _RENDER_MARK = function(data, type, row, meta) {
 	var result = '\
-		<span class="fa fa-bookmark pointer auth" title="标记" data-id="{0}" onclick="markId(this)"></span>\
+		<span class="fa fa-bookmark pointer" title="标记" data-id="{0}" onclick="markId(this)"></span>\
 	';
 	return result.format(row.id);
 };

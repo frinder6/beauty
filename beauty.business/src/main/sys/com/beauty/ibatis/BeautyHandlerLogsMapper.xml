@@ -22,6 +22,9 @@
 			<if test="searchValue">
 				AND ( account LIKE "%" #{searchValue} "%" OR class_name LIKE "%" #{searchValue} "%" OR method_name LIKE "%" #{searchValue} "%" OR args LIKE "%" #{searchValue} "%" OR return_value LIKE "%" #{searchValue} "%" )
 			</if>
+			<if test="serialize">
+				${serialize}
+			</if>
 		</where>
 	</sql>
 	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">

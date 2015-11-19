@@ -27,6 +27,9 @@
 			<if test="searchValue">
 				AND ( name LIKE "%" #{searchValue} "%" OR code LIKE "%" #{searchValue} "%" OR remark LIKE "%" #{searchValue} "%" OR url LIKE "%" #{searchValue} "%" )
 			</if>
+			<if test="serialize">
+				${serialize}
+			</if>
 		</where>
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">

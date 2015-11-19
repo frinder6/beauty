@@ -27,6 +27,9 @@
 			<if test="searchValue">
 				AND ( name LIKE "%" #{searchValue} "%" OR code LIKE "%" #{searchValue} "%" OR remark LIKE "%" #{searchValue} "%" )
 			</if>
+			<if test="serialize">
+				${serialize}
+			</if>
 		</where>
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -40,7 +43,7 @@
 		<include refid="Base_Column_List" />
 		FROM beauty_authority
 		<include refid="Base_Where_Clause" />
-		ORDER BY group_id, 
+		ORDER BY group_id,
 		<if test="orderColumn">
 			${orderColumn} ${orderDir}
 		</if>

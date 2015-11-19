@@ -15,6 +15,9 @@
 			<if test="searchValue">
 				AND ( TABLE_NAME LIKE "%" #{searchValue} "%" OR TABLE_COMMENT LIKE "%" #{searchValue} "%" )
 			</if>
+			<if test="serialize">
+				${serialize}
+			</if>
 		</where>
 	</sql>
 	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">

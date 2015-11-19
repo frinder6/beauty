@@ -48,6 +48,7 @@ $(function() {
 		gridName : 'BEAUTY_URL',
 		tools : mtools,
 		toolId : '#BEAUTY_URL_mtool',
+		unfill : true,
 		grid : {
 			ajax : {
 				url : _PATH('/url/load/page.action'),

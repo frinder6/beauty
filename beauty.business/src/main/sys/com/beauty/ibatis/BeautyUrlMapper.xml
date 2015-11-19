@@ -28,6 +28,9 @@
 				AND NOT EXISTS (SELECT 1 FROM beauty_resource r WHERE r.url = u.url)
 				AND is_deleted = 1
 			</if>
+			<if test="serialize">
+				${serialize}
+			</if>
 		</where>
 	</sql>
 	<sql id="Base_Column_List">

@@ -24,6 +24,9 @@
 		<if test="searchValue">
 			AND ( t1.data LIKE "%" #{searchValue} "%" OR t1.column_name LIKE "%" #{searchValue} "%" OR t1.title LIKE "%" #{searchValue} "%" )
 		</if>
+		<if test="serialize">
+			${serialize}
+		</if>
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
 		select

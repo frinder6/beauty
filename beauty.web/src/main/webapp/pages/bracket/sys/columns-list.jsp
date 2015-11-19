@@ -8,15 +8,16 @@
 </head>
 <body style="background-color: #E4E7EA;">
 
-	<div class="table-responsive">
+	<%@include file="../import-search.jsp" %>
 
+	<div class="table-responsive">
 		<table id="list" class="table table-bordered" width="100%">
 		</table>
-
 	</div>
 	<!-- table-responsive -->
 
 	<jsp:include page="../import-js.jsp" />
+	<script src="${basePath }/resources/bracket/js/custom.js"></script>
 	<script type="text/javascript" src="${basePath }/resources/customer/sys/columns-list.js"></script>
 
 </body>

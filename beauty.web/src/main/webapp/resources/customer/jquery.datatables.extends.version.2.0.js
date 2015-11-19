@@ -78,6 +78,8 @@
 		constructor : DGrid,
 		init : function(options) {
 			var e = this;
+			var $opts = this.$opts;
+			var unfill = $opts.unfill;
 			$.ajax({
 				type : 'POST',
 				url : (_BASE + '/columns/load/columns.action'),
@@ -87,7 +89,9 @@
 				dataType : 'JSON',
 				async : false,
 				success : function(data) {
-					e.fillSearch(data);
+					if (!unfill) {
+						e.fillSearch(data);
+					}
 					$.extend(true, options.columns, data);
 				},
 				error : function(msg) {
