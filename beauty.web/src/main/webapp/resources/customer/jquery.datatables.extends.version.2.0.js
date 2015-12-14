@@ -181,9 +181,13 @@
 		xedit : function(nRow, aData) {
 			var edits = this.$edits;
 			var $opts = this.$opts;
+			// console.log(JSON.stringify(edits));
+			var text = '<span>{0}</span>';
 			$.each(edits, function(i, edit) {
 				$.each(edit, function(k, v) {
-					$(k, nRow).editable({
+					var val = $(k, nRow).text();
+					$(k, nRow).html(text.format(val));
+					$(k, nRow).find('span').editable({
 						// mode : 'inline',
 						// defaultValue : '',
 						pk : 1,
@@ -226,7 +230,7 @@
 				columns : [],
 				// dom : ('<"row"<"' + toolId +
 				// '.col-xs-6"><"col-xs-6"f>r>t<"row"<"col-xs-3"l><"col-xs-3"i><"col-xs-6"p>>'),
-				dom : ('<"row"<"' + toolId + '.col-xs-6"><"col-xs-6">r>t<"row"<"col-xs-3"l><"col-xs-3"i><"col-xs-6"p>>'),
+				dom : ('<"row"<"' + toolId + '.col-xs-6"><"col-xs-6"f>r>t<"row"<"col-xs-3"l><"col-xs-3"i><"col-xs-6"p>>'),
 				initComplete : function() {
 
 					e.pdiv().find(toolId).append($opts.tools);

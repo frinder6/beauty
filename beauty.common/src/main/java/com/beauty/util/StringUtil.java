@@ -9,6 +9,8 @@
 package com.beauty.util;
 
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,6 +24,56 @@ import org.apache.commons.codec.digest.DigestUtils;
  * 
  */
 public class StringUtil {
+
+	/**
+	 * 
+	 * @Title: invalidSql
+	 * @Description: TODO(是否为无效sql)
+	 * @author frinder_liu
+	 * @param resource
+	 * @return
+	 * @return String
+	 * @date 2015年11月19日 下午11:04:29
+	 * @throws
+	 */
+	public static String invalidSql(String resource) {
+		resource = valueOf(resource);
+		if (resource.isEmpty()) {
+			return null;
+		}
+		resource = removeExtraSpace(resource).toLowerCase();
+		String[] keys = { "delete", "update", "add", "truncate", "create", "drop", "alter", "select", "or", "or 1=" };
+		for (String key : keys) {
+			if (resource.indexOf(key) > -1) {
+				resource = null;
+				break;
+			}
+		}
+		return resource;
+	}
+
+	/**
+	 * 
+	 * @Title: removeExtraSpace
+	 * @Description: TODO(去多余空格)
+	 * @author frinder_liu
+	 * @param resource
+	 * @return
+	 * @return String
+	 * @date 2015年11月19日 下午10:53:43
+	 * @throws
+	 */
+	public static String removeExtraSpace(String resource) {
+		Pattern p = Pattern.compile(" {2,}");
+		Matcher m = p.matcher(resource);
+		String second = m.replaceAll(" ");
+		return second;
+	}
+
+	public static void main(String[] args) {
+		String abc = "a   b  c  ";
+		System.out.println(removeExtraSpace(abc));
+	}
 
 	/**
 	 * 
@@ -249,13 +301,6 @@ public class StringUtil {
 			aimStr = new StringBuffer("SELECT count(1) total FROM %s.%s %s");
 			return String.format(aimStr.toString(), dbname, tbname, where);
 		}
-	}
-
-	public static void main(String[] args) {
-		String sql = "a,b,c";
-		String[] sqls = sql.split("\\,");
-		System.out.println(sqls[2]);
-
 	}
 
 }

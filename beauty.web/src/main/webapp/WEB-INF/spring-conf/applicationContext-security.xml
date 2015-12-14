@@ -4,7 +4,7 @@ http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/security
 http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-	<global-method-security jsr250-annotations="enabled" secured-annotations="enabled" />
+	<global-method-security jsr250-annotations="enabled" secured-annotations="enabled" pre-post-annotations="enabled" />
 
 	<!-- 开启Spring Security3认证和授权日志 -->
 	<beans:bean class="org.springframework.security.authentication.event.LoggerListener" />

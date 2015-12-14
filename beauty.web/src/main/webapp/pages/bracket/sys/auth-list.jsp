@@ -2,13 +2,6 @@
 <html>
 <head>
 <jsp:include page="../import-css.jsp" />
-<style type="text/css">
-.modal .dataTables_wrapper {
-	min-width: 800px;
-	max-width: 800px;
-	margin: 0 auto;
-}
-</style>
 
 <title>内容块</title>
 </head>
