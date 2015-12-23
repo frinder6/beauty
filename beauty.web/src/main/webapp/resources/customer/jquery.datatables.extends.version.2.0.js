@@ -189,10 +189,10 @@
 					$(k, nRow).html(text.format(val));
 					$(k, nRow).find('span').editable({
 						// mode : 'inline',
-						// defaultValue : '',
+						defaultValue : '',
 						pk : 1,
 						showbuttons : false,
-						emptytext : '',
+						emptytext : '--',
 						placement : 'right',
 						success : function(response, newValue) {
 							var data = {
