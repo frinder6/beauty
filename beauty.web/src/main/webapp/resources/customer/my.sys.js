@@ -23,6 +23,7 @@
 			var result = height;
 			if (height < sheight) {
 				result = sheight;
+				result += 500;
 			}
 			frame.height(result);
 			panel.height(result);
