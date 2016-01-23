@@ -63,5 +63,4 @@
 	<import resource="applicationContext-redis.xml" />
 	<import resource="applicationContext-dwr.xml" />
 
-
 </beans>

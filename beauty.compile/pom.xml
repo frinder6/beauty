@@ -10,9 +10,9 @@
 
 	<modules>
 		<module>../beauty.pom</module>
+		<module>../beauty.common</module>
 		<module>../beauty.base</module>
 		<module>../beauty.business</module>
-		<module>../beauty.common</module>
 		<module>../beauty.security</module>
 		<module>../beauty.web</module>
 	</modules>
