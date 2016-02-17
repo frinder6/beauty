@@ -20,7 +20,10 @@
         <dependent-module archiveName="beauty.security-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/beauty.security/beauty.security">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="beauty.rabbit-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/beauty.rabbit/beauty.rabbit">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="java-output-path" value="/beauty.web/target/classes"/>
-        <property name="context-root" value="beauty.web"/>
+        <property name="context-root" value="beauty"/>
     </wb-module>
 </project-modules>

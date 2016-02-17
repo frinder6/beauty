@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<form class="form-horizontal">
+<form class="form-horizontal search-frm">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<div class="panel-btns">

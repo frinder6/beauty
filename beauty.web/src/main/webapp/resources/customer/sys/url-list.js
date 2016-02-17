@@ -20,10 +20,12 @@ $(function() {
 	var table = $('#list').DGrid({
 		gridName : 'BEAUTY_URL',
 		tools : tools,
+		// unfill : true,
 		grid : {
 			ajax : {
 				url : _PATH('/url/load/page.action')
 			}
+		// showDetail : true
 		},
 		ajax : {
 			url : '/url/remove.action'

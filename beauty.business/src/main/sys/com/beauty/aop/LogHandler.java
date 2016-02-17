@@ -10,6 +10,8 @@ package com.beauty.aop;
 
 import java.util.Date;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
@@ -17,6 +19,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -40,6 +43,9 @@ public class LogHandler {
 
 	@Autowired
 	private LogService logService;
+
+	@Resource(name = "logDirectTemplate")
+	private RabbitTemplate logDirectTemplate;
 
 	/**
 	 * 
@@ -112,7 +118,8 @@ public class LogHandler {
 		}
 		log.setEndTime(new Date());
 		log.setCreateTime(new Date());
-		this.logService.insertSelective(log);
+		// this.logService.insertSelective(log);
+		this.logDirectTemplate.convertAndSend(log);
 		logger.info("end of execute : " + JSON.toJSONString(log));
 		return retValue;
 	}

@@ -12,6 +12,7 @@
 		<module>../beauty.pom</module>
 		<module>../beauty.common</module>
 		<module>../beauty.base</module>
+		<module>../beauty.rabbit</module>
 		<module>../beauty.business</module>
 		<module>../beauty.security</module>
 		<module>../beauty.web</module>

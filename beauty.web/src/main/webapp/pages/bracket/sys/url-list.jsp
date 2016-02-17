@@ -2,7 +2,7 @@
 <html>
 <head>
 <jsp:include page="../import-css.jsp" />
-
+<%-- <link href="${basePath }/resources/customer/my.detail.css" rel="stylesheet"> --%>
 
 <title>内容块</title>
 </head>

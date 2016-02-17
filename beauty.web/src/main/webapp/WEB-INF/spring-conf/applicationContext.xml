@@ -19,6 +19,7 @@
 				<value>/WEB-INF/props/c3p0.properties</value>
 				<value>/WEB-INF/props/redis.properties</value>
 				<value>/WEB-INF/props/freemarker.properties</value>
+				<value>/WEB-INF/props/rabbitmq.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -55,12 +56,14 @@
 	<import resource="applicationContext-transaction.xml" />
 	<import resource="applicationContext-aop.xml" />
 	<import resource="applicationContext-json.xml" />
-	<!-- <import resource="applicationContext-quartz.xml" /> -->
+	<import resource="applicationContext-quartz.xml" />
 	<!-- <import resource="applicationContext-freemarker.xml" /> -->
 	<import resource="applicationContext-security.xml" />
 	<!-- <import resource="applicationContext-hibernate.xml" /> -->
 	<import resource="applicationContext-ibatis.xml" />
 	<import resource="applicationContext-redis.xml" />
 	<import resource="applicationContext-dwr.xml" />
+	<import resource="applicationContext-rabbitmq.xml" />
+	<import resource="applicationContext-batch.xml" />
 
 </beans>

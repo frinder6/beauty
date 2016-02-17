@@ -78,8 +78,6 @@
 		constructor : DGrid,
 		init : function(options) {
 			var e = this;
-			var $opts = this.$opts;
-			var unfill = $opts.unfill;
 			$.ajax({
 				type : 'POST',
 				url : (_BASE + '/columns/load/columns.action'),
@@ -89,9 +87,7 @@
 				dataType : 'JSON',
 				async : false,
 				success : function(data) {
-					if (!unfill) {
-						e.fillSearch(data);
-					}
+					e.fillSearch(data);
 					$.extend(true, options.columns, data);
 				},
 				error : function(msg) {
@@ -100,6 +96,12 @@
 			});
 		},
 		fillSearch : function(datas) {
+			var $opts = this.$opts;
+			var unfill = $opts.unfill;
+			if (unfill) {
+				$('form.search-frm').remove();
+				return;
+			}
 			var ldatas = [];
 			$.each(datas, function(i, data) {
 				var searchable = data.searchable;
@@ -147,6 +149,7 @@
 						c.render = eval('(' + c.render + ')');
 					}
 				});
+				// alert(JSON.stringify(options.columns));
 			}
 		},
 		pdiv : function() {
@@ -154,11 +157,12 @@
 			return div;
 		},
 		checkbox : function(options) {
+			var classValue = options.showDetail ? 'select-checkbox details-control' : 'select-checkbox';
 			options.columns.unshift({
 				orderable : false,
 				searchable : false,
 				data : null,
-				className : 'select-checkbox',
+				className : classValue,
 				defaultContent : '',
 				title : '<input class="table-select" type="checkbox" />',
 				width : 10
@@ -210,6 +214,38 @@
 				});
 			});
 		},
+		detailFormat : function(data, options) {
+			if (options.columns) {
+				var tableStr = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">{0}</table>';
+				var tr = '<tr><td>{0}：</td><td>{1}</td></tr>';
+				var trs = '';
+				$.each(options.columns, function(i, c) {
+					if (i > 0) {
+						trs += tr.format(c.title, data[c.data]);
+					}
+				});
+				return tableStr.format(trs);
+			}
+		},
+		showDetail : function(options) {
+			var e = this;
+			var showDetail = e.$opts.grid.showDetail;
+			if (!showDetail) {
+				return;
+			}
+			var table = e.getTable();
+			table.on('click', 'td.details-control', function() {
+				var tr = $(this).closest('tr');
+				var row = table.row(tr);
+				if (row.child.isShown()) {
+					row.child.hide();
+					tr.removeClass('shown');
+				} else {
+					row.child(e.detailFormat(row.data(), options)).show();
+					tr.addClass('shown');
+				}
+			});
+		},
 		serialize : function() {
 			var frm = $(window.document).find('form');
 			var array = frm.serializeArray();
@@ -233,16 +269,20 @@
 				dom : ('<"row"<"' + toolId + '.col-xs-6"><"col-xs-6"f>r>t<"row"<"col-xs-3"l><"col-xs-3"i><"col-xs-6"p>>'),
 				initComplete : function() {
 
+					// 添加操作按钮
 					e.pdiv().find(toolId).append($opts.tools);
 
+					// 权限处理
 					$(this).Auth();
 
+					// 删除方法
 					if ($opts.delUrl) {
 						e.pdiv().find('div.btn-group').find('a.oper-delete').click(function() {
 							e.remove();
 						});
 					}
 
+					// 操作
 					if ($opts.ajax) {
 						e.pdiv().find('div.btn-group').find('a.oper-operate').click(function() {
 							e.operate();
@@ -255,6 +295,7 @@
 
 				},
 				drawCallback : function(settings) {
+					// 页面初始化完毕处理，如重置页面高等
 					$(this).Sys();
 
 					if ($opts.drawCallback) {
@@ -305,6 +346,9 @@
 
 			// search
 			e.search();
+
+			// show detail
+			e.showDetail(options);
 
 			return $this;
 		},
