@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/rabbit"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/rabbit
+	http://www.springframework.org/schema/rabbit/spring-rabbit-1.4.xsd">
+
+	<connection-factory
+		id="rabbitConnectionFactory"
+		host="${rabbit.mq.host}"
+		username="${rabbit.mq.user}"
+		password="${rabbit.mq.pwd}"
+		port="${rabbit.mq.port}"
+		connection-timeout="${rabbit.mq.connectionTimeout}"
+		virtual-host="${rabbit.mq.virtualHost}"
+		publisher-confirms="true"
+		publisher-returns="true" />
+
+	<admin connection-factory="rabbitConnectionFactory" />
+
+	<queue
+		id="defaultDirectQueue"
+		name="default-direct-queue"
+		durable="true"
+		auto-delete="false"
+		exclusive="false" />
+	<queue
+		id="defaultReplyDirectQueue"
+		name="default-reply-direct-queue"
+		durable="true"
+		auto-delete="false"
+		exclusive="false" />
+	<direct-exchange
+		id="defaultDirectExchange"
+		name="default-direct-exchange"
+		durable="true"
+		auto-delete="false">
+		<bindings>
+			<binding
+				queue="default-direct-queue"
+				key="default-direct-routing-key" />
+		</bindings>
+	</direct-exchange>
+	<template
+		id="defaultDirectTemplate"
+		queue="default-direct-queue"
+		exchange="default-direct-exchange"
+		routing-key="default-direct-routing-key"
+		connection-factory="rabbitConnectionFactory"
+		confirm-callback="sendConfirmCallBack"
+		return-callback="sendReturnCallBack"
+		recovery-callback="sendRecoveryCallback"
+		reply-queue="default-reply-direct-queue">
+		<reply-listener
+			acknowledge="auto"
+			auto-startup="true"
+			min-start-interval="3000" />
+	</template>
+
+
+	<queue
+		id="defaultTopicQueue"
+		name="default-topic-queue"
+		durable="true"
+		auto-delete="false"
+		exclusive="false" />
+	<topic-exchange
+		id="defaultTopicExchange"
+		name="default-topic-exchange"
+		durable="true"
+		auto-delete="false">
+		<bindings>
+			<binding
+				queue="default-topic-queue"
+				pattern="*.default.topic.*" />
+		</bindings>
+	</topic-exchange>
+	<template
+		id="defaultTopicTemplate"
+		queue="default-topic-queue"
+		exchange="default-topic-exchange"
+		routing-key="*.default.topic.*"
+		connection-factory="rabbitConnectionFactory" />
+
+
+	<queue
+		id="defaultFanoutQueue"
+		name="default-fanout-queue"
+		durable="true"
+		auto-delete="false"
+		exclusive="false" />
+	<fanout-exchange
+		id="defaultFanoutExchange"
+		name="default-fanout-exchange"
+		durable="true"
+		auto-delete="false">
+		<bindings>
+			<binding queue="default-fanout-queue" />
+		</bindings>
+	</fanout-exchange>
+	<template
+		id="defaultFanoutTemplate"
+		queue="default-fanout-queue"
+		exchange="default-fanout-exchange"
+		connection-factory="rabbitConnectionFactory" />
+
+
+	<!-- <beans:bean
+		id="directMessageListener"
+		class="org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter">
+		<beans:property
+			name="delegate"
+			ref="defaultDirectMessageHandler" />
+	</beans:bean>
+	<listener-container
+		id="messageListenerContainer"
+		connection-factory="rabbitConnectionFactory"
+		acknowledge="auto">
+		<listener
+			queues="default-direct-queue,default-topic-queue,default-fanout-queue"
+			ref="directMessageListener" />
+	</listener-container> -->
+	
+</beans:beans>

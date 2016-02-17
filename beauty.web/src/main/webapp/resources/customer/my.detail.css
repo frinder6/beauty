@@ -1,0 +1,27 @@
+td.details-control {
+	background: url('../../resources/bracket/images/details_open.png')
+		no-repeat 30px center;
+	cursor: pointer;
+}
+
+tr.shown td.details-control {
+	background: url('../../resources/bracket/images/details_close.png')
+		no-repeat 30px center;
+}
+
+table.dataTable td.select-checkbox:before {
+	content: ' ';
+	margin-top: -6px;
+	margin-left: -16px;
+	border: 1px solid black;
+	border-radius: 3px
+}
+
+table.dataTable tr.selected td.select-checkbox:after {
+	content: '\2714';
+	margin-top: -11px;
+	margin-left: -15px;
+	text-align: center;
+	text-shadow: 1px 1px #B0BED9, -1px -1px #B0BED9, 1px -1px #B0BED9, -1px
+		1px #B0BED9
+}
