@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="beauty.web:war exploded">
+  <artifact type="exploded-war" build-on-make="true" name="beauty.web:war exploded">
     <output-path>$PROJECT_DIR$/../beauty.web/target/beauty.web</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
@@ -19,6 +19,21 @@
           <element id="archive" name="beauty.security-0.0.1-SNAPSHOT.jar">
             <element id="module-output" name="beauty.security" />
           </element>
+          <element id="archive" name="beauty.rabbit-0.0.1-SNAPSHOT.jar">
+            <element id="module-output" name="beauty.rabbit" />
+          </element>
+          <element id="library" level="project" name="Maven: org.springframework.amqp:spring-amqp:1.4.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.amqp:spring-rabbit:1.4.4.RELEASE" />
+          <element id="library" level="project" name="Maven: com.rabbitmq:amqp-client:3.4.2" />
+          <element id="library" level="project" name="Maven: org.springframework.retry:spring-retry:1.1.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.batch:spring-batch-core:3.0.5.RELEASE" />
+          <element id="library" level="project" name="Maven: com.ibm.jbatch:com.ibm.jbatch-tck-spi:1.0" />
+          <element id="library" level="project" name="Maven: javax.batch:javax.batch-api:1.0" />
+          <element id="library" level="project" name="Maven: com.thoughtworks.xstream:xstream:1.4.7" />
+          <element id="library" level="project" name="Maven: xmlpull:xmlpull:1.1.3.1" />
+          <element id="library" level="project" name="Maven: xpp3:xpp3_min:1.1.4c" />
+          <element id="library" level="project" name="Maven: org.codehaus.jettison:jettison:1.2" />
+          <element id="library" level="project" name="Maven: org.springframework.batch:spring-batch-infrastructure:3.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.0.5.RELEASE" />
@@ -87,8 +102,6 @@
           <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
           <element id="library" level="project" name="Maven: taglibs:standard:1.1.2" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.6" />
-          <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.1.1" />
-          <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.1.1" />
           <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.6" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.7.6" />
           <element id="library" level="project" name="Maven: log4j:log4j:1.2.15" />
@@ -132,7 +145,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/../beauty.web/target/beauty.web/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="D:\DEV\git\beauty\beauty.web\target/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="beauty.web/web/Web" />
     </root>
