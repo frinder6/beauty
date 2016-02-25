@@ -3,6 +3,7 @@
 <html>
 <head>
 <jsp:include page="import-css.jsp" />
+<link href="${basePath }/resources/bracket/css/jquery.gritter.css" rel="stylesheet">
 <title>首页</title>
 </head>
 <body class="leftpanel-collapsed stickyheader" style="overflow: visible;">
@@ -91,34 +92,15 @@
 
 
 	<jsp:include page="import-js.jsp" />
+	<script src="${basePath }/resources/bracket/js/jquery.gritter.min.js"></script>
 	<script src="${basePath }/resources/customer/my.menu.js"></script>
 	<script src="${basePath }/resources/customer/my.nav.js"></script>
-	<script type="text/javascript">
-		$(function() {
-			var menu = $('#leftpanelinner').Menu();
-			var nav = $('#main-nav').Nav();
-
-			$('#cache-flush').click(function() {
-				ajax({
-					url : '/redis/flush.action'
-				});
-			});
-
-			$('#user-profile').click(function() {
-				var nav = '\
-					<h2>\
-						<i class="{0}"></i> {1} <span>{2}</span>\
-					</h2>\
-				';
-				var data = {
-					icon : 'fa fa-user',
-					title : '用户管理',
-					stitle : '用户信息'
-				};
-				$(window.document).find('div.pageheader').html(nav.format(data.icon, data.title, data.stitle));
-			});
-		});
-	</script>
+	<script type="text/javascript" src="${basePath }/dwr/engine.js"></script>
+	<script type="text/javascript" src="${basePath }/dwr/util.js"></script>
+	<script type='text/javascript' src='${basePath }/dwr/interface/MessageController.js'></script>
+	<script src="${basePath }/resources/customer/my.server.js"></script>
+	<script type="application/javascript">var _userId = '${CURRENT_USER_ACCOUNT}';</script>
+	<script src="${basePath }/resources/customer/my.index.js"></script>
 	<script src="${basePath }/resources/bracket/js/custom.js"></script>
 </body>
 </html>

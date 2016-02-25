@@ -16,7 +16,7 @@
 				<chunk
 					reader="amqpItemReader"
 					writer="amqpItemWriter"
-					commit-interval="10" />
+					commit-interval="1000" />
 			</tasklet>
 		</step>
 		<!-- <listeners> <listener ref="logJobExecutionListenerImpl" /> </listeners> -->

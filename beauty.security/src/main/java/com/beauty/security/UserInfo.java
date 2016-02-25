@@ -10,6 +10,7 @@ package com.beauty.security;
 
 import java.util.Collection;
 
+import com.alibaba.fastjson.JSON;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
@@ -77,4 +78,9 @@ public class UserInfo extends User {
 		this.user = user;
 	}
 
+
+	@Override
+	public String toString() {
+		return JSON.toJSONString(this);
+	}
 }

@@ -172,12 +172,6 @@
 			<if test="remark != null">
 				remark = #{remark,jdbcType=VARCHAR},
 			</if>
-			<if test="createTime != null">
-				create_time = #{createTime,jdbcType=TIMESTAMP},
-			</if>
-			<if test="creater != null">
-				creater = #{creater,jdbcType=VARCHAR},
-			</if>
 			<if test="lastUpdateTime != null">
 				last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
 			</if>

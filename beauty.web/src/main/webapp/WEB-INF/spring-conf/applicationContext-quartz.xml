@@ -31,7 +31,7 @@
 			ref="amqpItemReaderJobMethod" />
 		<property
 			name="cronExpression"
-			value="0/10 * * * * ?" />
+			value="0/60 * * * * ?" />
 	</bean>
 
 	<bean

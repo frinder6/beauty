@@ -9,7 +9,10 @@ import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class QueueEntity {
 
 	/**
@@ -18,6 +21,9 @@ public class QueueEntity {
 	public static final String _TYPE_DIRECT = "direct";
 	public static final String _TYPE_TOPIC = "topic";
 	public static final String _TYPE_FANOUT = "fanout";
+
+	@Autowired
+	private CachingConnectionFactory rabbitConnectionFactory;
 
 	private String queueName;
 	private String exchangeName;
@@ -29,10 +35,11 @@ public class QueueEntity {
 	private SimpleMessageListenerContainer container;
 	private Object delegate;
 
+	public QueueEntity() {
+	}
+
 	/**
-	 * 
-	 * @param rabbitConnectionFactory
-	 *            连接工厂
+	 *
 	 * @param queueName
 	 *            队列名
 	 * @param exchangeName
@@ -44,7 +51,7 @@ public class QueueEntity {
 	 * @param delegate
 	 *            消息处理器
 	 */
-	public QueueEntity(CachingConnectionFactory rabbitConnectionFactory, String queueName, String exchangeName, String routingKey, String type, Object delegate) {
+	public QueueEntity(String queueName, String exchangeName, String routingKey, String type, Object delegate) {
 		super();
 		this.queueName = queueName;
 		this.exchangeName = exchangeName;
@@ -53,8 +60,8 @@ public class QueueEntity {
 		this.queue = new Queue(queueName);
 		this.delegate = delegate;
 		setExchange();
-		setRabbitTemplate(rabbitConnectionFactory);
-		setContainer(rabbitConnectionFactory);
+		setRabbitTemplate();
+		setContainer();
 	}
 
 	public String getQueueName() {
@@ -111,7 +118,7 @@ public class QueueEntity {
 		return rabbitTemplate;
 	}
 
-	private void setRabbitTemplate(CachingConnectionFactory rabbitConnectionFactory) {
+	private void setRabbitTemplate() {
 		this.rabbitTemplate = new RabbitTemplate(rabbitConnectionFactory);
 		rabbitTemplate.setQueue(queueName);
 		rabbitTemplate.setExchange(exchangeName);
@@ -122,7 +129,7 @@ public class QueueEntity {
 		return container;
 	}
 
-	private void setContainer(CachingConnectionFactory rabbitConnectionFactory) {
+	private void setContainer() {
 		container = new SimpleMessageListenerContainer(rabbitConnectionFactory);
 		MessageListenerAdapter adapter = new MessageListenerAdapter();
 		adapter.setDelegate(delegate);

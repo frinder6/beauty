@@ -17,11 +17,11 @@ public class BaseEntity implements Serializable {
 
 	protected String remark;
 
-	protected Date createTime;
+	protected Date createTime = new Date();
 
 	protected String creater;
 
-	protected Date lastUpdateTime;
+	protected Date lastUpdateTime = new Date();
 
 	protected String modifier;
 

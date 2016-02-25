@@ -2,63 +2,56 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4edbbf48-adb0-4901-b202-35f4bca932ec" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_ibm_jbatch_com_ibm_jbatch_tck_spi_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_batch_javax_batch_api_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_javax_servlet_api_3_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jettison_jettison_1_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_http_9_1_1_v20140108.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_io_9_1_1_v20140108.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_server_9_1_1_v20140108.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_util_9_1_1_v20140108.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_amqp_spring_amqp_1_4_4_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_amqp_spring_rabbit_1_4_4_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_batch_spring_batch_core_3_0_5_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_batch_spring_batch_infrastructure_3_0_5_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_retry_spring_retry_1_1_2_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xmlpull_xmlpull_1_1_3_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xpp3_xpp3_min_1_1_4c.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../beauty.rabbit/beauty.rabbit.iml" />
-      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.compile\target\classes\beauty\compile\beauty\compile\App.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.compile\target\test-classes\beauty\compile\beauty\compile\AppTest.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.base/target/test-classes/com/beauty/AppTest.class" afterPath="$PROJECT_DIR$/../beauty.base/target/test-classes/com/beauty/AppTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.business/target/test-classes/com/beauty/AppTest.class" afterPath="$PROJECT_DIR$/../beauty.business/target/test-classes/com/beauty/AppTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.common/target/test-classes/com/beauty/AppTest.class" afterPath="$PROJECT_DIR$/../beauty.common/target/test-classes/com/beauty/AppTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.rabbit/target/test-classes/com/beauty/AppTest.class" afterPath="$PROJECT_DIR$/../beauty.rabbit/target/test-classes/com/beauty/AppTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/CSVUtil.class" afterPath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/CSVUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/CamelCaseUtils.class" afterPath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/CamelCaseUtils.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/CodeUtil.class" afterPath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/CodeUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/EncodeUtil.class" afterPath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/EncodeUtil.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/entity/BeautyDict.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyDictMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/entity/BeautyMessage.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyMessageMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/interfaces/DictDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../beauty.common/src/main/java/com/beauty/util/DwrUtil.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../beauty.web/src/main/filters/com/beauty/filter/LoginErrorFilter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../beauty.business/src/main/java/com/beauty/handler/MessageHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../beauty.web/src/main/filters/com/beauty/filter/UrlFilter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/my.index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/my.server.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
+      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.business\src\main\hibernate.reveng.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\DEV\git\beauty\beauty.business\src\main\java\hibernate.reveng.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/HttpUtil.class" afterPath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/HttpUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/JSONUtil.class" afterPath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/JSONUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/JavaHttp.class" afterPath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/JavaHttp.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.rabbit/target/classes/com/beauty/mq/entity/QueueEntity.class" afterPath="$PROJECT_DIR$/../beauty.rabbit/target/classes/com/beauty/mq/entity/QueueEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.rabbit/target/classes/com/beauty/mq/callback/SendConfirmCallBack.class" afterPath="$PROJECT_DIR$/../beauty.rabbit/target/classes/com/beauty/mq/callback/SendConfirmCallBack.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.rabbit/target/classes/com/beauty/mq/callback/SendRecoveryCallback.class" afterPath="$PROJECT_DIR$/../beauty.rabbit/target/classes/com/beauty/mq/callback/SendRecoveryCallback.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.rabbit/target/classes/com/beauty/mq/callback/SendReturnCallBack.class" afterPath="$PROJECT_DIR$/../beauty.rabbit/target/classes/com/beauty/mq/callback/SendReturnCallBack.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/StringUtil.class" afterPath="$PROJECT_DIR$/../beauty.common/target/classes/com/beauty/util/StringUtil.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.rabbit/target/beauty.rabbit-0.0.1-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/../beauty.rabbit/target/beauty.rabbit-0.0.1-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.rabbit/target/surefire-reports/TEST-com.beauty.AppTest.xml" afterPath="$PROJECT_DIR$/../beauty.rabbit/target/surefire-reports/TEST-com.beauty.AppTest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.base/beauty.base.iml" afterPath="$PROJECT_DIR$/../beauty.base/beauty.base.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.base/src/main/java/com/beauty/entity/BaseEntity.java" afterPath="$PROJECT_DIR$/../beauty.base/src/main/java/com/beauty/entity/BaseEntity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyHandlerLogsMapper.xml" afterPath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyHandlerLogsMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyRoleMapper.xml" afterPath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyRoleMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautySchemaColumnsMapper.xml" afterPath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautySchemaColumnsMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyUserExtraMapper.xml" afterPath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyUserExtraMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyUserMapper.xml" afterPath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyUserMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.common/src/main/java/com/beauty/util/HttpUtil.java" afterPath="$PROJECT_DIR$/../beauty.common/src/main/java/com/beauty/util/HttpUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/aop/LogHandler.java" afterPath="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/aop/LogHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/filters/com/beauty/filter/LoginFilter.java" afterPath="$PROJECT_DIR$/../beauty.web/src/main/filters/com/beauty/filter/LoginFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/MyUsernamePasswordAuthenticationFilter.java" afterPath="$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/MyUsernamePasswordAuthenticationFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.rabbit/src/main/java/com/beauty/mq/entity/QueueEntity.java" afterPath="$PROJECT_DIR$/../beauty.rabbit/src/main/java/com/beauty/mq/entity/QueueEntity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/UserInfo.java" afterPath="$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/UserInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-batch-beans.xml" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-batch-beans.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-batch.xml" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-batch.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-quartz.xml" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-quartz.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-rabbitmq.xml" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-rabbitmq.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-security-beans.xml" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-security-beans.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.business/beauty.business.iml" afterPath="$PROJECT_DIR$/../beauty.business/beauty.business.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.common/beauty.common.iml" afterPath="$PROJECT_DIR$/../beauty.common/beauty.common.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/beauty.compile.iml" afterPath="$PROJECT_DIR$/beauty.compile.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.pom/beauty.pom.iml" afterPath="$PROJECT_DIR$/../beauty.pom/beauty.pom.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.rabbit/beauty.rabbit.iml" afterPath="$PROJECT_DIR$/../beauty.rabbit/beauty.rabbit.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.security/beauty.security.iml" afterPath="$PROJECT_DIR$/../beauty.security/beauty.security.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/beauty.web.iml" afterPath="$PROJECT_DIR$/../beauty.web/beauty.web.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/beauty_web_war.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/beauty_web_war.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/beauty_web_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/beauty_web_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.rabbit/target/surefire-reports/com.beauty.AppTest.txt" afterPath="$PROJECT_DIR$/../beauty.rabbit/target/surefire-reports/com.beauty.AppTest.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/index.jsp" afterPath="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/index.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/target/m2e-wtp/web-resources/META-INF/maven/beauty.web/beauty.web/pom.properties" afterPath="$PROJECT_DIR$/../beauty.web/target/m2e-wtp/web-resources/META-INF/maven/beauty.web/beauty.web/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.pom/pom.xml" afterPath="$PROJECT_DIR$/../beauty.pom/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.rabbit/pom.xml" afterPath="$PROJECT_DIR$/../beauty.rabbit/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/pom.xml" afterPath="$PROJECT_DIR$/../beauty.web/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.business/pom.xml" afterPath="$PROJECT_DIR$/../beauty.business/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beauty.web/target/m2e-wtp/web-resources/META-INF/maven/beauty.web/beauty.web/pom.xml" afterPath="$PROJECT_DIR$/../beauty.web/target/m2e-wtp/web-resources/META-INF/maven/beauty.web/beauty.web/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="D:\DEV\git\beauty\beauty.compile\.idea\libraries\Maven__ch_qos_logback_logback_classic_1_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_rabbitmq_amqp_client_3_4_2.xml" />
-      <change type="MOVED" beforePath="D:\DEV\git\beauty\beauty.compile\.idea\libraries\Maven__ch_qos_logback_logback_core_1_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_thoughtworks_xstream_xstream_1_4_7.xml" />
     </list>
     <ignored path="beauty.compile.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,6 +64,7 @@
     <ignored path="$PROJECT_DIR$/../beauty.pom/target/" />
     <ignored path=".idea/dataSources.local.xml" />
     <ignored path="$PROJECT_DIR$/../beauty.rabbit/target/" />
+    <ignored path="D:/LEARN/workspace/hibernate/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -91,12 +85,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LoginFilter.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/filters/com/beauty/filter/LoginFilter.java">
+      <file leaf-file-name="MessageHandler.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/java/com/beauty/handler/MessageHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.59386975" vertical-offset="3370" max-vertical-offset="4100">
-              <caret line="168" column="20" selection-start-line="168" selection-start-column="20" selection-end-line="168" selection-end-column="20" />
-              <folding />
+            <state vertical-scroll-proportion="0.9211823" vertical-offset="0" max-vertical-offset="660">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="applicationContext-rabbitmq.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-rabbitmq.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.52" vertical-offset="578" max-vertical-offset="946">
+              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <folding>
+                <element signature="e#597#616#0" expanded="true" />
+                <element signature="e#682#708#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -109,14 +118,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/AjaxAccessDeniedHandlerImpl.java" />
-        <option value="$PROJECT_DIR$/../beauty.web/src/test/java/com/beauty/controller/Test.java" />
-        <option value="$PROJECT_DIR$/../beauty.web/src/test/java/com/beauty/controller/MenuControllerTest.java" />
-        <option value="$PROJECT_DIR$/../beauty.security/pom.xml" />
-        <option value="$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/InvocationSecurityMetadataSourceServiceImpl.java" />
         <option value="$PROJECT_DIR$/../beauty.pom/pom.xml" />
         <option value="$PROJECT_DIR$/../beauty.rabbit/pom.xml" />
         <option value="$PROJECT_DIR$/../beauty.web/pom.xml" />
+        <option value="$PROJECT_DIR$/../beauty.web/src/main/filters/com/beauty/filter/UrlFilter.java" />
+        <option value="$PROJECT_DIR$/../beauty.common/src/main/java/com/beauty/util/StringUtil.java" />
+        <option value="$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-security-beans.xml" />
+        <option value="$PROJECT_DIR$/../beauty.web/src/main/filters/com/beauty/filter/LoginErrorFilter.java" />
+        <option value="$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/MyUsernamePasswordAuthenticationFilter.java" />
+        <option value="$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-quartz.xml" />
+        <option value="$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-batch.xml" />
+        <option value="$PROJECT_DIR$/../beauty.web/src/main/controller/com/beauty/controller/RoleController.java" />
+        <option value="D:/LEARN/workspace/hibernate/src/main/resources/sys-conf/generatorConfig.xml" />
+        <option value="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/entity/BeautyDict.java" />
+        <option value="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/entity/BeautyMessage.java" />
+        <option value="$PROJECT_DIR$/../beauty.base/src/main/java/com/beauty/entity/BaseEntity.java" />
+        <option value="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyHandlerLogsMapper.xml" />
+        <option value="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyUserMapper.xml" />
+        <option value="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyUserExtraMapper.xml" />
+        <option value="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautySchemaColumnsMapper.xml" />
+        <option value="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyRoleMapper.xml" />
+        <option value="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyMessageMapper.xml" />
+        <option value="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyDictMapper.xml" />
+        <option value="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/interfaces/DictDao.java" />
+        <option value="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/interfaces/MessageDao.java" />
+        <option value="$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/aop/LogHandler.java" />
+        <option value="$PROJECT_DIR$/../beauty.common/src/main/java/com/beauty/util/HttpUtil.java" />
+        <option value="$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/UserInfo.java" />
+        <option value="$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-batch-beans.xml" />
+        <option value="$PROJECT_DIR$/../beauty.web/src/main/filters/com/beauty/filter/LoginFilter.java" />
+        <option value="$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/my.dwr.js" />
+        <option value="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/dwr.jsp" />
+        <option value="$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/my.server.js" />
+        <option value="$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/my.index.js" />
+        <option value="$PROJECT_DIR$/../beauty.web/src/main/controller/com/beauty/controller/PushMessageController.java" />
+        <option value="$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/../beauty.rabbit/src/main/java/com/beauty/mq/config/BaseConfiguration.java" />
+        <option value="$PROJECT_DIR$/../beauty.rabbit/src/main/java/com/beauty/mq/config/MessageConfiguration.java" />
+        <option value="$PROJECT_DIR$/../beauty.rabbit/src/main/java/com/beauty/mq/config/biz/MessageBiz.java" />
+        <option value="$PROJECT_DIR$/../beauty.rabbit/src/main/java/com/beauty/mq/message/biz/MessageBiz.java" />
+        <option value="$PROJECT_DIR$/../beauty.rabbit/src/main/java/com/beauty/mq/message/MessageHandler.java" />
+        <option value="$PROJECT_DIR$/../beauty.rabbit/src/main/java/com/beauty/mq/message/MessageConfiguration.java" />
+        <option value="$PROJECT_DIR$/../beauty.common/src/main/java/com/beauty/util/DwrUtil.java" />
+        <option value="$PROJECT_DIR$/../beauty.web/src/main/controller/com/beauty/controller/MessageController.java" />
+        <option value="$PROJECT_DIR$/../beauty.rabbit/src/main/java/com/beauty/mq/message/MessageBiz.java" />
+        <option value="$PROJECT_DIR$/../beauty.business/pom.xml" />
+        <option value="$PROJECT_DIR$/../beauty.business/src/main/java/com/beauty/message/MessageBiz.java" />
+        <option value="$PROJECT_DIR$/../beauty.business/src/main/java/com/beauty/message/MessageConfiguration.java" />
+        <option value="$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-rabbitmq.xml" />
+        <option value="$PROJECT_DIR$/../beauty.business/src/main/java/com/beauty/handler/MessageHandler.java" />
+        <option value="$PROJECT_DIR$/../beauty.rabbit/src/main/java/com/beauty/mq/entity/QueueEntity.java" />
+        <option value="$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/index.jsp" />
       </list>
     </option>
   </component>
@@ -157,12 +209,18 @@
             <id />
           </State>
           <State>
-            <id>JSP Inspections</id>
+            <id>Google Web Toolkit issues</id>
+          </State>
+          <State>
+            <id>Security issues</id>
+          </State>
+          <State>
+            <id>Serialization issues</id>
           </State>
         </expanded-state>
         <selected-state>
           <State>
-            <id>Android</id>
+            <id>SerializableHasSerialVersionUIDField</id>
           </State>
         </selected-state>
       </profile-state>
@@ -188,128 +246,11 @@
       <showLibraryContents />
       <hideEmptyPackages ProjectPane="true" />
       <abbreviatePackageNames />
-      <autoscrollToSource ProjectPane="true" />
-      <autoscrollFromSource PackagesPane="true" ProjectPane="true" />
+      <autoscrollToSource ProjectPane="false" />
+      <autoscrollFromSource PackagesPane="true" ProjectPane="false" />
       <sortByType ProjectPane="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beauty.compile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beauty.web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beauty.compile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beauty.web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.beauty.controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beauty.compile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beauty.compile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beauty.compile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beauty.web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beauty.compile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beauty.web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beauty.compile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beauty.web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beauty.compile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beauty.web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="filters" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="filter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LoginFilter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ClassTreeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-        <option name="show-excluded-files" value="false" />
-      </pane>
       <pane id="Scope">
         <subPane subId="Production">
           <PATH>
@@ -350,6 +291,27 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beauty.compile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beauty.compile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <option name="show-excluded-files" value="false" />
+      </pane>
       <pane id="Scratches" />
     </panes>
   </component>
@@ -358,7 +320,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../beauty.web" />
+    <property name="last_opened_file_path" value="D:/LEARN/workspace/hibernate/pom.xml" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
@@ -383,9 +345,24 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="803" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
-    <property name="options.lastSelected" value="fileTemplates" />
+    <property name="options.lastSelected" value="preferences.sourceCode.XML" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="LayoutCode.rearrangeEntriesJava" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\DEV\git\beauty\beauty.business\src\main\java\com\beauty\message" />
+      <recent name="D:\DEV\git\beauty\beauty.rabbit\src\main\java\com\beauty\mq\config" />
+      <recent name="D:\DEV\git\beauty\beauty.web\src\main\webapp\resources\customer" />
+      <recent name="D:\DEV\git\beauty\beauty.business\src\main\sys\com\beauty\ibatis" />
+      <recent name="D:\DEV\git\beauty\beauty.business\src\main\sys\com\beauty\entity" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.beauty.handler" />
+      <recent name="com.beauty.controller" />
+      <recent name="com.beauty.interfaces" />
+    </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.beauty">
     <configuration default="false" name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -805,7 +782,21 @@
     <configuration default="false" name="beauty.compile" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
+        <option name="myRunnerSettings">
+          <MavenRunnerSettings>
+            <option name="environmentProperties">
+              <map />
+            </option>
+            <option name="jreName" value="#USE_PROJECT_JDK" />
+            <option name="mavenProperties">
+              <map />
+            </option>
+            <option name="passParentEnv" value="true" />
+            <option name="runMavenInBackground" value="true" />
+            <option name="skipTests" value="true" />
+            <option name="vmOptions" value="" />
+          </MavenRunnerSettings>
+        </option>
         <option name="myRunnerParameters">
           <MavenRunnerParameters>
             <option name="profiles">
@@ -942,7 +933,7 @@
       <method />
     </configuration>
     <configuration default="false" name="beauty" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.42" ALTERNATIVE_JRE_ENABLED="false" ALTERNATIVE_JRE_PATH="">
-      <option name="UPDATING_POLICY" value="restart-server" />
+      <option name="UPDATING_POLICY" value="update-resources" />
       <deployment>
         <artifact name="beauty.web:war exploded">
           <settings>
@@ -1018,15 +1009,15 @@
       </method>
     </configuration>
     <list size="9">
-      <item index="0" class="java.lang.String" itemvalue="Application.Test" />
-      <item index="1" class="java.lang.String" itemvalue="Maven.beauty.security" />
-      <item index="2" class="java.lang.String" itemvalue="Maven.beauty.common" />
-      <item index="3" class="java.lang.String" itemvalue="Maven.beauty.compile" />
-      <item index="4" class="java.lang.String" itemvalue="Maven.beauty.base" />
-      <item index="5" class="java.lang.String" itemvalue="Maven.beauty.business" />
-      <item index="6" class="java.lang.String" itemvalue="Maven.beauty.pom" />
-      <item index="7" class="java.lang.String" itemvalue="Maven.beauty.web" />
-      <item index="8" class="java.lang.String" itemvalue="Tomcat Server.beauty" />
+      <item index="0" class="java.lang.String" itemvalue="Maven.beauty.security" />
+      <item index="1" class="java.lang.String" itemvalue="Maven.beauty.common" />
+      <item index="2" class="java.lang.String" itemvalue="Maven.beauty.compile" />
+      <item index="3" class="java.lang.String" itemvalue="Maven.beauty.base" />
+      <item index="4" class="java.lang.String" itemvalue="Maven.beauty.business" />
+      <item index="5" class="java.lang.String" itemvalue="Maven.beauty.pom" />
+      <item index="6" class="java.lang.String" itemvalue="Maven.beauty.web" />
+      <item index="7" class="java.lang.String" itemvalue="Tomcat Server.beauty" />
+      <item index="8" class="java.lang.String" itemvalue="Application.Test" />
     </list>
     <recent_temporary>
       <list size="1">
@@ -1052,11 +1043,17 @@
       <workItem from="1456045061533" duration="163000" />
       <workItem from="1456045340832" duration="4674000" />
       <workItem from="1456050709617" duration="6895000" />
+      <workItem from="1456280939544" duration="7440000" />
+      <workItem from="1456304432674" duration="80000" />
+      <workItem from="1456315959348" duration="6401000" />
+      <workItem from="1456366646987" duration="17654000" />
+      <workItem from="1456400452487" duration="1781000" />
+      <workItem from="1456405585399" duration="7610000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31936000" />
+    <option name="totallyTimeSpent" value="72902000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1093,27 +1090,27 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41961414" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6061093" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32921174" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5128617" sideWeight="0.49169186" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3006431" sideWeight="0.49169186" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27416918" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="512" y="46" width="341" height="645" />
+      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22432025" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="512" y="46" width="341" height="645" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3021148" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.312596" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1135,7 +1132,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../beauty.web/src/main/filters/com/beauty/filter/LoginErrorFilter.java</url>
+          <line>40</line>
+          <properties />
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1144,404 +1149,395 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/controller/com/beauty/controller/ColumnsController.java">
+    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautySchemaColumnsMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="2300">
-          <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
-          <folding />
+        <state vertical-scroll-proportion="0.7171429" vertical-offset="3304" max-vertical-offset="4422">
+          <caret line="173" column="17" selection-start-line="173" selection-start-column="17" selection-end-line="173" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/UserDetailServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautySecurityMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1500">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.78571427" vertical-offset="0" max-vertical-offset="1056">
+          <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/service/LogService.java">
+    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyResourceMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1175">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="2.3885715" vertical-offset="1122" max-vertical-offset="3146">
+          <caret line="127" column="42" selection-start-line="127" selection-start-column="42" selection-end-line="127" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/service/ColumnsService.java">
+    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyRoleMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="125" max-vertical-offset="1525">
-          <caret line="15" column="59" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="66" />
+        <state vertical-scroll-proportion="0.4342857" vertical-offset="2094" max-vertical-offset="2860">
+          <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.classpath">
+    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyAuthorityMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="100" max-vertical-offset="250">
+        <state vertical-scroll-proportion="0.15714286" vertical-offset="0" max-vertical-offset="3036">
+          <caret line="5" column="64" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyMessageMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15714286" vertical-offset="0" max-vertical-offset="3542">
+          <caret line="5" column="60" selection-start-line="5" selection-start-column="60" selection-end-line="5" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/interfaces/MessageDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21598879" vertical-offset="0" max-vertical-offset="713">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/interfaces/DictDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12342216" vertical-offset="0" max-vertical-offset="713">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.web/src/test/java/com/beauty/controller/MenuControllerTest.java">
+    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/interfaces/LogDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="607" max-vertical-offset="2225">
-          <caret line="82" column="5" selection-start-line="82" selection-start-column="5" selection-end-line="82" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1687#1688#0" expanded="false" />
-            <element signature="e#1769#1770#0" expanded="false" />
-            <element signature="e#1815#1816#0" expanded="false" />
-            <element signature="e#1849#1850#0" expanded="false" />
-            <element signature="e#1890#1891#0" expanded="false" />
-            <element signature="e#1924#1925#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.12342216" vertical-offset="0" max-vertical-offset="713">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/controller/com/beauty/controller/ColumnsController.java">
+    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/ibatis/BeautyDictMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1350" max-vertical-offset="2300">
-          <caret line="25" column="14" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
-          <folding />
+        <state vertical-scroll-proportion="0.15714286" vertical-offset="0" max-vertical-offset="3652">
+          <caret line="5" column="60" selection-start-line="5" selection-start-column="60" selection-end-line="5" selection-end-column="60" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/service/LogService.java">
+    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/interfaces/ColumnsDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1175">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.12342216" vertical-offset="0" max-vertical-offset="713">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/service/ColumnsService.java">
+    <entry file="jar://$PROJECT_DIR$/../../../maven.repository/org/springframework/security/spring-security-core/3.2.6.RELEASE/spring-security-core-3.2.6.RELEASE-sources.jar!/org/springframework/security/core/userdetails/UserDetails.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1525">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.9413629" vertical-offset="0" max-vertical-offset="1936">
+          <caret line="44" column="17" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.web/pom.xml">
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-batch-beans.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="1625">
-          <caret line="30" column="20" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.54789275" vertical-offset="792" max-vertical-offset="1342">
+          <caret line="49" column="157" selection-start-line="49" selection-start-column="157" selection-end-line="49" selection-end-column="157" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/entity/BeautyUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.67484665" vertical-offset="0" max-vertical-offset="1232">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.common/src/main/java/com/beauty/util/HttpUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5398773" vertical-offset="528" max-vertical-offset="4488">
+          <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/UserInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.68370605" vertical-offset="892" max-vertical-offset="1518">
+          <caret line="83" column="39" selection-start-line="83" selection-start-column="39" selection-end-line="83" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/UserDetailServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1500">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.web/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/AjaxAccessDeniedHandlerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="28" column="21" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.pom/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-security-beans.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30595812" vertical-offset="0" max-vertical-offset="0">
-          <caret line="52" column="84" selection-start-line="52" selection-start-column="84" selection-end-line="52" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/AccessDecisionManagerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_71/src.zip!/java/util/concurrent/ConcurrentHashMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47020933" vertical-offset="0" max-vertical-offset="0">
-          <caret line="872" column="64" selection-start-line="872" selection-start-column="64" selection-end-line="872" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25" vertical-offset="0" max-vertical-offset="0">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/resources/com/test/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20833333" vertical-offset="0" max-vertical-offset="0">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.base/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.common/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3558776" vertical-offset="0" max-vertical-offset="0">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../maven.repository/org/springframework/spring-test/4.0.5.RELEASE/spring-test-4.0.5.RELEASE-sources.jar!/org/springframework/test/web/servlet/setup/MockMvcBuilders.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33242506" vertical-offset="0" max-vertical-offset="0">
-          <caret line="44" column="40" selection-start-line="44" selection-start-column="40" selection-end-line="44" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../maven.repository/org/springframework/spring-web/4.0.5.RELEASE/spring-web-4.0.5.RELEASE-sources.jar!/org/springframework/web/context/WebApplicationContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33242506" vertical-offset="0" max-vertical-offset="0">
-          <caret line="43" column="17" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/model/Search.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/service/SecurityService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2107438" vertical-offset="0" max-vertical-offset="0">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.security/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.web/src/test/java/com/beauty/controller/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../maven.repository/javax/servlet/servlet-api/2.5/servlet-api-2.5-sources.jar!/javax/servlet/http/HttpServletRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.547504" vertical-offset="0" max-vertical-offset="0">
-          <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.business/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43965518" vertical-offset="220" max-vertical-offset="800">
-          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.5782748" vertical-offset="694" max-vertical-offset="1320">
+          <caret line="72" column="12" selection-start-line="72" selection-start-column="12" selection-end-line="72" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/controller/com/beauty/controller/AuthorityController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6235828" vertical-offset="0" max-vertical-offset="2350">
-          <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.03514377" vertical-offset="132" max-vertical-offset="1650">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/MyUsernamePasswordAuthenticationFilter.java">
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-batch.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="97" max-vertical-offset="750">
-          <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.5407166" vertical-offset="20" max-vertical-offset="682">
+          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/AjaxAccessDeniedHandlerImpl.java">
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/bracket/js/custom.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="950" max-vertical-offset="1650">
-          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+        <state vertical-scroll-proportion="-2.3064516" vertical-offset="1716" max-vertical-offset="8426">
+          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/AjaxLoginUrlAuthenticationEntryPoint.java">
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/jquery.validate.extends.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="738" max-vertical-offset="1425">
-          <caret line="48" column="7" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/InvocationSecurityMetadataSourceServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="865" max-vertical-offset="3875">
-          <caret line="60" column="50" selection-start-line="60" selection-start-column="50" selection-end-line="60" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.web/src/test/java/com/beauty/controller/MenuControllerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="607" max-vertical-offset="2225">
-          <caret line="82" column="5" selection-start-line="82" selection-start-column="5" selection-end-line="82" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1687#1688#0" expanded="false" />
-            <element signature="e#1769#1770#0" expanded="false" />
-            <element signature="e#1815#1816#0" expanded="false" />
-            <element signature="e#1849#1850#0" expanded="false" />
-            <element signature="e#1890#1891#0" expanded="false" />
-            <element signature="e#1924#1925#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/service/LogService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1175">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="633">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/service/ColumnsService.java">
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/jquery.select2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="125" max-vertical-offset="1525">
-          <caret line="15" column="59" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="66" />
+        <state vertical-scroll-proportion="-0.1042654" vertical-offset="66" max-vertical-offset="1958">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.classpath">
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="250">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state vertical-scroll-proportion="-0.45971563" vertical-offset="423" max-vertical-offset="1320">
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../maven.repository/org/springframework/spring-context/4.0.5.RELEASE/spring-context-4.0.5.RELEASE-sources.jar!/org/springframework/stereotype/Component.java">
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/my.form.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33225808" vertical-offset="547" max-vertical-offset="1050">
-          <caret line="44" column="18" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="2530">
+          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.security/pom.xml">
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/my.menu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="875">
-          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="27" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.3548387" vertical-offset="1320" max-vertical-offset="2002">
+          <caret line="70" column="19" selection-start-line="70" selection-start-column="19" selection-end-line="70" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.rabbit/pom.xml">
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/my.sys.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50980395" vertical-offset="217" max-vertical-offset="625">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.24328594" vertical-offset="0" max-vertical-offset="1122">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/jquery.datatables.extends.version.2.0.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="10626">
+          <caret line="86" column="34" selection-start-line="86" selection-start-column="34" selection-end-line="86" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/my.auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1342">
+          <caret line="34" column="35" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.rabbit/src/main/java/com/beauty/mq/entity/QueueEntity.java">
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/dwr/com/beauty/PushMessageController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.56962025" vertical-offset="375" max-vertical-offset="3600">
-          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+        <state vertical-scroll-proportion="1.8383621" vertical-offset="555" max-vertical-offset="2002">
+          <caret line="85" column="28" selection-start-line="85" selection-start-column="28" selection-end-line="85" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/entity/BeautyHandlerLogs.java">
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/my.dwr.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25316456" vertical-offset="0" max-vertical-offset="1650">
-          <caret line="6" column="51" selection-start-line="6" selection-start-column="51" selection-end-line="6" selection-end-column="51" />
+        <state vertical-scroll-proportion="-0.0016863407" vertical-offset="221" max-vertical-offset="814">
+          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/java/com/beauty/reader/AmqpItemReaderImpl.java">
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21551724" vertical-offset="125" max-vertical-offset="1025">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        <state vertical-scroll-proportion="-8.8" vertical-offset="1188" max-vertical-offset="1628">
+          <caret line="64" column="41" selection-start-line="64" selection-start-column="41" selection-end-line="64" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/UserDetailServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-dwr.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="1500">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="638" max-vertical-offset="858">
+          <caret line="29" column="52" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/dwr.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30236796" vertical-offset="186" max-vertical-offset="880">
+          <caret line="16" column="49" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/my.server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40809444" vertical-offset="0" max-vertical-offset="836">
+          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/resources/customer/my.index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.40344828" vertical-offset="564" max-vertical-offset="1144">
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
           <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="imports" expanded="false" />
+            <marker date="1456405434185" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.security/src/main/java/com/beauty/security/MyPasswordEncoder.java">
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1000">
-          <caret line="27" column="53" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.73448277" vertical-offset="1862" max-vertical-offset="2838">
+          <caret line="104" column="21" selection-start-line="104" selection-start-column="21" selection-end-line="104" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.pom/pom.xml">
+    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/java/com/beauty/handler/LogDirectMessageHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6043557" vertical-offset="10492" max-vertical-offset="15675">
-          <caret line="433" column="34" selection-start-line="433" selection-start-column="34" selection-end-line="433" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.25969645" vertical-offset="0" max-vertical-offset="593">
+          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/java/com/beauty/writer/AmqpItemWriterImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="78" max-vertical-offset="725">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5689655" vertical-offset="0" max-vertical-offset="580">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.rabbit/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41724136" vertical-offset="0" max-vertical-offset="580">
+          <caret line="11" column="42" selection-start-line="10" selection-start-column="4" selection-end-line="11" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.business/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5827586" vertical-offset="256" max-vertical-offset="836">
+          <caret line="27" column="50" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../maven.repository/org/springframework/amqp/spring-amqp/1.4.4.RELEASE/spring-amqp-1.4.4.RELEASE-sources.jar!/org/springframework/amqp/core/BindingBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4465517" vertical-offset="3525" max-vertical-offset="5302">
+          <caret line="188" column="42" selection-start-line="188" selection-start-column="42" selection-end-line="188" selection-end-column="42" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#6310#6311#0" expanded="true" />
+            <element signature="e#6374#6375#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.web/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36231884" vertical-offset="1050" max-vertical-offset="1650">
-          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/controller/com/beauty/controller/ColumnsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9051724" vertical-offset="0" max-vertical-offset="2300">
-          <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/filters/com/beauty/filter/LoginFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59386975" vertical-offset="3370" max-vertical-offset="4100">
-          <caret line="168" column="20" selection-start-line="168" selection-start-column="20" selection-end-line="168" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.5017241" vertical-offset="941" max-vertical-offset="1562">
+          <caret line="85" column="71" selection-start-line="85" selection-start-column="51" selection-end-line="85" selection-end-column="71" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.rabbit/src/main/java/com/beauty/mq/entity/QueueEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.5166051" vertical-offset="88" max-vertical-offset="3542">
+          <caret line="35" column="28" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2850#2851#0" expanded="true" />
+            <element signature="e#2878#2879#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/sys/com/beauty/aop/LogHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.1272264" vertical-offset="1210" max-vertical-offset="2310">
+          <caret line="42" column="14" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/WEB-INF/spring-conf/applicationContext-rabbitmq.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.52" vertical-offset="578" max-vertical-offset="946">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <element signature="e#597#616#0" expanded="true" />
+            <element signature="e#682#708#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/webapp/pages/bracket/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0" vertical-offset="1750" max-vertical-offset="2442">
+          <caret line="96" column="69" selection-start-line="96" selection-start-column="69" selection-end-line="96" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.common/src/main/java/com/beauty/util/DwrUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3562341" vertical-offset="388" max-vertical-offset="2068">
+          <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2317#2663#0" expanded="true" />
+            <element signature="e#2662#2663#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.web/src/main/controller/com/beauty/controller/MessageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.1195929" vertical-offset="726" max-vertical-offset="1144">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#630#631#0" expanded="true" />
+            <element signature="e#657#658#0" expanded="true" />
+            <element signature="e#922#923#0" expanded="true" />
+            <element signature="e#965#966#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../beauty.business/src/main/java/com/beauty/handler/MessageHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9211823" vertical-offset="0" max-vertical-offset="660">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1599,7 +1595,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>beauty.web</last-edited>
+          <last-edited>beauty.business</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

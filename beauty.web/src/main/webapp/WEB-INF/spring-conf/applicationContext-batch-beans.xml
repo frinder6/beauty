@@ -47,7 +47,7 @@
 			ref="dataSource" />
 		<property
 			name="sql"
-			value="INSERT INTO beauty_handler_logs (account, class_name, method_name, args, return_value, begin_time, end_time, create_time) VALUES (':account', :className, :methodName, :args, :returnValue, :beginTime, :endTime, :createTime)" />
+			value="INSERT INTO beauty_handler_logs (account, class_name, method_name, args, return_value, begin_time, end_time, create_time) VALUES (:account, :className, :methodName, :args, :returnValue, :beginTime, :endTime, :createTime)" />
 		<property name="itemSqlParameterSourceProvider">
 			<bean class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider" />
 		</property>

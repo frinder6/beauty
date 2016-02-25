@@ -29,6 +29,7 @@
         <module name="beauty.rabbit" />
         <module name="beauty.security" />
         <module name="beauty.web" />
+        <module name="hibernate" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

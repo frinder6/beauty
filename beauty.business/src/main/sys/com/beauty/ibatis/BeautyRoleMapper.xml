@@ -107,7 +107,6 @@
 			<if test="name != null"> name = #{name,jdbcType=VARCHAR}, </if>
 			<if test="groupId != null"> group_id = #{groupId,jdbcType=BIGINT}, </if>
 			<if test="remark != null"> remark = #{remark,jdbcType=VARCHAR}, </if>
-			<if test="creater != null"> creater = #{creater,jdbcType=VARCHAR}, </if>
 			<if test="modifier != null"> modifier = #{modifier,jdbcType=VARCHAR}, </if>
 			<if test="isDeleted != null"> is_deleted = #{isDeleted,jdbcType=TINYINT}, </if>
 			<if test="def1 != null"> def1 = #{def1,jdbcType=VARCHAR}, </if>

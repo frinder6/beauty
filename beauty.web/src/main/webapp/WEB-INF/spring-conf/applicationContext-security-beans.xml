@@ -6,7 +6,7 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
 	<!-- Spring Security 认证切入点 -->
 	<bean id="loginUrlEntryPoint" class="com.beauty.security.AjaxLoginUrlAuthenticationEntryPoint">
-		<property name="loginFormUrl" value="/pages/bracket/login.jsp"></property>
+		<property name="loginFormUrl" value="/pages/bracket/login.jsp" />
 	</bean>
 
 	<!-- 用户的密码加密或解密 -->

@@ -148,9 +148,6 @@
 			<if test="endTime != null">
 				end_time = #{endTime,jdbcType=TIMESTAMP},
 			</if>
-			<if test="createTime != null">
-				create_time = #{createTime,jdbcType=TIMESTAMP},
-			</if>
 		</set>
 		where id = #{id,jdbcType=BIGINT}
 	</update>
