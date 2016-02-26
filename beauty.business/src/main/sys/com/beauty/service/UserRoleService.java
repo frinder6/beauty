@@ -1,53 +1,52 @@
 package com.beauty.service;
 
-import java.util.List;
-import java.util.Map;
-
+import com.beauty.entity.BeautyUserRole;
+import com.beauty.mapper.BeautyUserRoleMapper;
+import com.beauty.model.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.beauty.entity.BeautyUserRole;
-import com.beauty.interfaces.UserRoleDao;
-import com.beauty.model.Value;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserRoleService extends BaseService<BeautyUserRole> {
 
 	@Autowired
-	private UserRoleDao userRoleDao;
+	private BeautyUserRoleMapper beautyUserRoleMapper;
 
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.userRoleDao.selectCount(params);
+		return this.beautyUserRoleMapper.selectCount(params);
 	}
 
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.userRoleDao.selectPage(params);
+		return this.beautyUserRoleMapper.selectPage(params);
 	}
 
 	@Override
 	public int selectConfCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.userRoleDao.selectConfCount(params);
+		return this.beautyUserRoleMapper.selectConfCount(params);
 	}
 
 	@Override
 	public List<?> selectConfPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.userRoleDao.selectConfPage(params);
+		return this.beautyUserRoleMapper.selectConfPage(params);
 	}
 
 	@Override
 	public void deleteByPrimaryKeys(List<Object> list) {
 		// TODO Auto-generated method stub
-		this.userRoleDao.deleteByPrimaryKeys(list);
+		this.beautyUserRoleMapper.deleteByPrimaryKeys(list);
 	}
 
 	public void insert(Value value) {
-		this.userRoleDao.insert(value);
+		this.beautyUserRoleMapper.insert(value);
 	}
 
 }

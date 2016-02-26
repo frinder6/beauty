@@ -1,53 +1,52 @@
 package com.beauty.service;
 
-import java.util.List;
-import java.util.Map;
-
+import com.beauty.entity.BeautyUser;
+import com.beauty.mapper.BeautyUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.beauty.entity.BeautyUser;
-import com.beauty.interfaces.UserDao;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserService extends BaseService<BeautyUser> {
 
 	@Autowired
-	private UserDao userDao;
+	private BeautyUserMapper beautyUserMapper;
 
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.userDao.selectCount(params);
+		return this.beautyUserMapper.selectCount(params);
 	}
 
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.userDao.selectPage(params);
+		return this.beautyUserMapper.selectPage(params);
 	}
 
 	@Override
 	public void updateByPrimaryKeySelective(BeautyUser entity) {
 		// TODO Auto-generated method stub
-		this.userDao.updateByPrimaryKeySelective(entity);
+		this.beautyUserMapper.updateByPrimaryKeySelective(entity);
 	}
 
 	@Override
 	public void deleteByPrimaryKeys(List<Object> list) {
 		// TODO Auto-generated method stub
-		this.userDao.deleteByPrimaryKeys(list);
+		this.beautyUserMapper.deleteByPrimaryKeys(list);
 	}
 
 	@Override
 	public BeautyUser selectByPrimaryKey(Long id) {
 		// TODO Auto-generated method stub
-		return this.userDao.selectByPrimaryKey(id);
+		return this.beautyUserMapper.selectByPrimaryKey(id);
 	}
 
 	@Override
 	public void insertSelective(BeautyUser entity) {
 		// TODO Auto-generated method stub
-		this.userDao.insertSelective(entity);
+		this.beautyUserMapper.insertSelective(entity);
 	}
 }

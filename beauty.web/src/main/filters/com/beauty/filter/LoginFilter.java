@@ -1,11 +1,6 @@
 package com.beauty.filter;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -14,22 +9,15 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import com.alibaba.fastjson.JSON;
 import com.beauty.util.HttpUtil;
 import org.apache.log4j.Logger;
-import org.springframework.context.ApplicationContext;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.beauty.entity.BeautyUrl;
 import com.beauty.security.UserInfo;
-import com.beauty.service.UrlService;
-import com.beauty.util.StringUtil;
 
 /**
  * Servlet Filter implementation class LoginFilter

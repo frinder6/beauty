@@ -19,7 +19,7 @@
 		publisher-confirms="true"
 		publisher-returns="true" />
 
-	<admin connection-factory="rabbitConnectionFactory" />
+	<admin id="rabbitAdmin" connection-factory="rabbitConnectionFactory" />
 
 	<queue
 		id="defaultDirectQueue"

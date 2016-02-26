@@ -1,57 +1,56 @@
 package com.beauty.service;
 
-import java.util.List;
-import java.util.Map;
-
+import com.beauty.entity.BeautyRole;
+import com.beauty.mapper.BeautyRoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.beauty.entity.BeautyRole;
-import com.beauty.interfaces.RoleDao;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class RoleService extends BaseService<BeautyRole> {
 
 	@Autowired
-	private RoleDao roleDao;
+	private BeautyRoleMapper beautyRoleMapper;
 
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.roleDao.selectCount(params);
+		return this.beautyRoleMapper.selectCount(params);
 	}
 
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.roleDao.selectPage(params);
+		return this.beautyRoleMapper.selectPage(params);
 	}
 
 	@Override
 	public void updateByPrimaryKeySelective(BeautyRole entity) {
 		// TODO Auto-generated method stub
-		this.roleDao.updateByPrimaryKeySelective(entity);
+		this.beautyRoleMapper.updateByPrimaryKeySelective(entity);
 	}
 
 	@Override
 	public void deleteByPrimaryKeys(List<Object> list) {
 		// TODO Auto-generated method stub
-		this.roleDao.deleteByPrimaryKeys(list);
+		this.beautyRoleMapper.deleteByPrimaryKeys(list);
 	}
 
 	@Override
 	public BeautyRole selectByPrimaryKey(Long id) {
 		// TODO Auto-generated method stub
-		return this.roleDao.selectByPrimaryKey(id);
+		return this.beautyRoleMapper.selectByPrimaryKey(id);
 	}
 
 	@Override
 	public void insertSelective(BeautyRole entity) {
 		// TODO Auto-generated method stub
-		this.roleDao.insertSelective(entity);
+		this.beautyRoleMapper.insertSelective(entity);
 	}
 
 	public void batchSync() {
-		this.roleDao.batchSync();
+		this.beautyRoleMapper.batchSync();
 	}
 }

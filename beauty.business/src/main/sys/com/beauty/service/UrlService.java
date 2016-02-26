@@ -1,51 +1,50 @@
 package com.beauty.service;
 
-import java.util.List;
-import java.util.Map;
-
+import com.beauty.entity.BeautyUrl;
+import com.beauty.mapper.BeautyUrlMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.beauty.entity.BeautyUrl;
-import com.beauty.interfaces.UrlDao;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class UrlService extends BaseService<BeautyUrl> {
 
 	@Autowired
-	private UrlDao urlDao;
+	private BeautyUrlMapper beautyUrlMapper;
 
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.urlDao.selectCount(params);
+		return this.beautyUrlMapper.selectCount(params);
 	}
 
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.urlDao.selectPage(params);
+		return this.beautyUrlMapper.selectPage(params);
 	}
 
 	@Override
 	public void insertSelective(BeautyUrl entity) {
 		// TODO Auto-generated method stub
-		this.urlDao.insertSelective(entity);
+		this.beautyUrlMapper.insertSelective(entity);
 	}
 
 	@Override
 	public BeautyUrl selectByPrimaryKey(Long id) {
 		// TODO Auto-generated method stub
-		return this.urlDao.selectByPrimaryKey(id);
+		return this.beautyUrlMapper.selectByPrimaryKey(id);
 	}
 
 	public void batchMark(List<Object> list) {
-		this.urlDao.batchMark(list);
+		this.beautyUrlMapper.batchMark(list);
 	}
 
 	@Override
 	public void deleteByPrimaryKeys(List<Object> list) {
 		// TODO Auto-generated method stub
-		this.urlDao.deleteByPrimaryKeys(list);
+		this.beautyUrlMapper.deleteByPrimaryKeys(list);
 	}
 }

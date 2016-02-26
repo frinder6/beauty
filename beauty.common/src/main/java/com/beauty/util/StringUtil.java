@@ -26,6 +26,15 @@ import org.apache.commons.codec.digest.DigestUtils;
 public class StringUtil {
 
 	/**
+	 * 是否为null或是""
+	 * @param obj
+	 * @return
+	 */
+	public static boolean isEmpty(Object obj){
+		return null == obj || obj.toString().trim().length() == 0;
+	}
+
+	/**
 	 * 
 	 * @Title: invalidSql
 	 * @Description: TODO(是否为无效sql)

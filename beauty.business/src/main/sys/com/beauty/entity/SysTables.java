@@ -2,7 +2,9 @@ package com.beauty.entity;
 
 import java.util.Date;
 
-public class SysTables {
+public class SysTables extends BaseEntity {
+
+	private static final long serialVersionUID = 5103579143079936891L;
 
 	private String tableCatalog;
 

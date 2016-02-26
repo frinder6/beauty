@@ -1,56 +1,55 @@
 package com.beauty.service;
 
-import java.util.List;
-import java.util.Map;
-
+import com.beauty.entity.BeautyResource;
+import com.beauty.mapper.BeautyResourceMapper;
+import com.beauty.model.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.beauty.entity.BeautyResource;
-import com.beauty.interfaces.ResourceDao;
-import com.beauty.model.Value;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class ResourceService extends BaseService<BeautyResource> {
 
 	@Autowired
-	private ResourceDao resourceDao;
+	private BeautyResourceMapper beautyResourceMapper;
 
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.resourceDao.selectCount(params);
+		return this.beautyResourceMapper.selectCount(params);
 	}
 
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.resourceDao.selectPage(params);
+		return this.beautyResourceMapper.selectPage(params);
 	}
 
 	@Override
 	public void updateByPrimaryKeySelective(BeautyResource entity) {
-		this.resourceDao.updateByPrimaryKeySelective(entity);
+		this.beautyResourceMapper.updateByPrimaryKeySelective(entity);
 	}
 
 	@Override
 	public void deleteByPrimaryKeys(List<Object> list) {
-		this.resourceDao.deleteByPrimaryKeys(list);
+		this.beautyResourceMapper.deleteByPrimaryKeys(list);
 	}
 
 	@Override
 	public BeautyResource selectByPrimaryKey(Long id) {
 		// TODO Auto-generated method stub
-		return this.resourceDao.selectByPrimaryKey(id);
+		return this.beautyResourceMapper.selectByPrimaryKey(id);
 	}
 
 	@Override
 	public void insertSelective(BeautyResource entity) {
 		// TODO Auto-generated method stub
-		this.resourceDao.insertSelective(entity);
+		this.beautyResourceMapper.insertSelective(entity);
 	}
 
 	public void batchGroup(Value value) {
-		this.resourceDao.batchGroup(value);
+		this.beautyResourceMapper.batchGroup(value);
 	}
 }

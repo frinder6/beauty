@@ -1,8 +1,9 @@
 package com.beauty.entity;
 
 
-public class SysColumns {
+public class SysColumns extends BaseEntity {
 
+	private static final long serialVersionUID = -3990427261707473232L;
 	private String tableCatalog;
 
 	private String tableSchema;

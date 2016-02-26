@@ -21,17 +21,7 @@
 
 	<!-- 自动为接口创建代理类 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.beauty.interfaces" />
+		<property name="basePackage" value="com.beauty.mapper" />
 	</bean>
-
-
-	<!-- 事务管理机制 -->
-	<!-- <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> <property name="dataSource" ref="dataSource" /> </bean> -->
-
-	<!-- 拦截器式事务管理策略 -->
-	<!-- <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor"> <property name="transactionManager" ref="transactionManager" /> <property name="transactionAttributes"> <props> <prop key="batch*">PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-Exception</prop> <prop key="insert*">PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-Exception</prop> <prop key="query*">PROPAGATION_SUPPORTS,ISOLATION_DEFAULT,readOnly</prop> <prop key="show*">PROPAGATION_SUPPORTS,ISOLATION_DEFAULT,readOnly</prop> <prop key="desc*">PROPAGATION_SUPPORTS,ISOLATION_DEFAULT,readOnly</prop> </props> </property> </bean> -->
-
-	<!-- 根据Bean的名字自动创建代理类 -->
-	<!-- <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator"> <property name="beanNames"> <list> <value>*Service</value> </list> </property> <property name="interceptorNames"> <list> <value>transactionInterceptor</value> </list> </property> </bean> -->
 
 </beans>

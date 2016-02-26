@@ -1,48 +1,47 @@
 package com.beauty.service;
 
-import java.util.List;
-import java.util.Map;
-
+import com.beauty.entity.BeautyRoleAuthority;
+import com.beauty.mapper.BeautyRoleAuthorityMapper;
+import com.beauty.model.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.beauty.entity.BeautyRoleAuthority;
-import com.beauty.interfaces.RoleAuthorityDao;
-import com.beauty.model.Value;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class RoleAuthorityService extends BaseService<BeautyRoleAuthority> {
 
 	@Autowired
-	private RoleAuthorityDao roleAuthorityDao;
+	private BeautyRoleAuthorityMapper beautyRoleAuthorityMapper;
 
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.roleAuthorityDao.selectCount(params);
+		return this.beautyRoleAuthorityMapper.selectCount(params);
 	}
 
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.roleAuthorityDao.selectPage(params);
+		return this.beautyRoleAuthorityMapper.selectPage(params);
 	}
 
 	@Override
 	public void deleteByPrimaryKeys(List<Object> list) {
 		// TODO Auto-generated method stub
-		this.roleAuthorityDao.deleteByPrimaryKeys(list);
+		this.beautyRoleAuthorityMapper.deleteByPrimaryKeys(list);
 	}
 
 	public void insert(Value value) {
-		this.roleAuthorityDao.insert(value);
+		this.beautyRoleAuthorityMapper.insert(value);
 	}
 
 	public List<?> selectConfPage(Map<String, Object> params) {
-		return this.roleAuthorityDao.selectConfPage(params);
+		return this.beautyRoleAuthorityMapper.selectConfPage(params);
 	}
 
 	public int selectConfCount(Map<String, Object> params) {
-		return this.roleAuthorityDao.selectConfCount(params);
+		return this.beautyRoleAuthorityMapper.selectConfCount(params);
 	}
 }

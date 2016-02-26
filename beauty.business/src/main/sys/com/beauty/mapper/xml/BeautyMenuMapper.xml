@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.beauty.mapper.BeautyMenuMapper">
+	<resultMap id="BaseResultMap" type="com.beauty.entity.BeautyMenu">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<id column="id" property="DT_RowId" jdbcType="BIGINT" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+		<result column="parent_id" property="parentId" jdbcType="BIGINT" />
+		<result column="level" property="level" jdbcType="TINYINT" />
+		<result column="group_id" property="groupId" jdbcType="BIGINT" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="creater" property="creater" jdbcType="VARCHAR" />
+		<result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+		<result column="modifier" property="modifier" jdbcType="VARCHAR" />
+		<result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
+		<result column="def1" property="def1" jdbcType="VARCHAR" />
+		<result column="def2" property="def2" jdbcType="VARCHAR" />
+		<result column="def3" property="def3" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap type="com.beauty.entity.BeautyMenu" id="MenuBaseResultMap" extends="BaseResultMap">
+		<collection property="children" javaType="ArrayList" ofType="com.beauty.entity.BeautyMenu" column="id" select="selectChildren"></collection>
+	</resultMap>
+	<resultMap id="SelectResultMap" type="com.beauty.model.Select">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="name" property="text" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, code, name, url, parent_id, remark, create_time, def1, def2
+	</sql>
+	<sql id="Base_Where_Clause">
+		<where>
+			1 = 1
+			<if test="searchValue">
+				AND ( name LIKE "%" #{searchValue} "%" OR code LIKE "%" #{searchValue} "%" OR remark LIKE "%" #{searchValue} "%" OR url LIKE "%" #{searchValue} "%" )
+			</if>
+			<if test="pid">
+				AND id = #{pid}
+			</if>
+			<if test="serialize">
+				${serialize}
+			</if>
+		</where>
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from beauty_menu
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM beauty_menu
+		<include refid="Base_Where_Clause" />
+		ORDER BY
+		<if test="orderColumn">
+			${orderColumn} ${orderDir}
+		</if>
+		<if test="orderColumn == null">
+			id
+		</if>
+		LIMIT #{from}, #{size}
+	</select>
+	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT
+		COUNT(1)
+		FROM beauty_menu
+		<include refid="Base_Where_Clause" />
+	</select>
+	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
+		delete from beauty_menu
+		where 1 != 1
+		<if test="list.size() > 0">
+			or id in
+			<foreach collection="list" open="(" close=")" item="id" separator=",">
+				#{id}
+			</foreach>
+		</if>
+	</delete>
+	<insert id="insertSelective" parameterType="com.beauty.entity.BeautyMenu">
+		insert into beauty_menu
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null"> id, </if>
+			<if test="code != null"> code, </if>
+			<if test="name != null"> name, </if>
+			<if test="url != null"> url, </if>
+			<if test="parentId != null"> parent_id, </if>
+			<if test="level != null"> level, </if>
+			<if test="groupId != null"> group_id, </if>
+			<if test="remark != null"> remark, </if>
+			<if test="createTime != null"> create_time, </if>
+			<if test="creater != null"> creater, </if>
+			<if test="lastUpdateTime != null"> last_update_time, </if>
+			<if test="modifier != null"> modifier, </if>
+			<if test="isDeleted != null"> is_deleted, </if>
+			<if test="def1 != null"> def1, </if>
+			<if test="def2 != null"> def2, </if>
+			<if test="def3 != null"> def3, </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null"> #{id,jdbcType=BIGINT}, </if>
+			<if test="code != null"> #{code,jdbcType=VARCHAR}, </if>
+			<if test="name != null"> #{name,jdbcType=VARCHAR}, </if>
+			<if test="url != null"> #{url,jdbcType=VARCHAR}, </if>
+			<if test="parentId != null"> #{parentId,jdbcType=BIGINT}, </if>
+			<if test="level != null"> #{level,jdbcType=TINYINT}, </if>
+			<if test="groupId != null"> #{groupId,jdbcType=BIGINT}, </if>
+			<if test="remark != null"> #{remark,jdbcType=VARCHAR}, </if>
+			<if test="createTime != null"> #{createTime,jdbcType=TIMESTAMP}, </if>
+			<if test="creater != null"> #{creater,jdbcType=VARCHAR}, </if>
+			<if test="lastUpdateTime != null"> #{lastUpdateTime,jdbcType=TIMESTAMP}, </if>
+			<if test="modifier != null"> #{modifier,jdbcType=VARCHAR}, </if>
+			<if test="isDeleted != null"> #{isDeleted,jdbcType=TINYINT}, </if>
+			<if test="def1 != null"> #{def1,jdbcType=VARCHAR}, </if>
+			<if test="def2 != null"> #{def2,jdbcType=VARCHAR}, </if>
+			<if test="def3 != null"> #{def3,jdbcType=TIMESTAMP}, </if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.beauty.entity.BeautyMenu">
+		update beauty_menu
+		<set>
+			<if test="code != null"> code = #{code,jdbcType=VARCHAR}, </if>
+			<if test="name != null"> name = #{name,jdbcType=VARCHAR}, </if>
+			<if test="url != null"> url = #{url,jdbcType=VARCHAR}, </if>
+			<if test="parentId != null"> parent_id = #{parentId,jdbcType=BIGINT}, </if>
+			<if test="level != null"> level = #{level,jdbcType=TINYINT}, </if>
+			<if test="groupId != null"> group_id = #{groupId,jdbcType=BIGINT}, </if>
+			<if test="remark != null"> remark = #{remark,jdbcType=VARCHAR}, </if>
+			<if test="modifier != null"> modifier = #{modifier,jdbcType=VARCHAR}, </if>
+			<if test="isDeleted != null"> is_deleted = #{isDeleted,jdbcType=TINYINT}, </if>
+			<if test="def1 != null"> def1 = #{def1,jdbcType=VARCHAR}, </if>
+			<if test="def2 != null"> def2 = #{def2,jdbcType=VARCHAR}, </if>
+			<if test="def3 != null"> def3 = #{def3,jdbcType=TIMESTAMP}, </if>
+			last_update_time = NOW()
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+
+	<select id="selectMenuSelect" parameterType="java.util.HashMap" resultMap="SelectResultMap">
+		SELECT id, name FROM beauty_menu
+		<include refid="Base_Where_Clause" />
+	</select>
+
+
+	<select id="selectMainMenu" parameterType="java.util.HashMap" resultMap="MenuBaseResultMap">
+		SELECT DISTINCT
+		m.id, m.code, m.name, m.url, m.parent_id, m.remark, m.create_time, m.def1, m.def2
+		FROM
+		beauty_menu m
+		LEFT JOIN beauty_authority_resource ar ON m.id = ar.resource_id AND type = 1
+		LEFT JOIN beauty_authority a ON a.id = ar.authority_id
+		LEFT JOIN beauty_role_authority ra ON ra.authority_id = a.id
+		LEFT JOIN beauty_role r ON r.id = ra.role_id
+		LEFT JOIN beauty_user_role ur ON ur.role_id = r.id
+		LEFT JOIN beauty_user u ON u.id = ur.user_id
+		WHERE
+		m.parent_id = 0
+		AND u.id = #{userId}
+		ORDER BY
+		m.id
+	</select>
+	<select id="selectChildren" resultMap="MenuBaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM beauty_menu WHERE parent_id = #{id}
+	</select>
+
+
+</mapper>

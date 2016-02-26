@@ -1,38 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/rabbit" xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans:beans xmlns="http://www.springframework.org/schema/rabbit"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/rabbit
 	http://www.springframework.org/schema/rabbit/spring-rabbit-1.4.xsd">
 
-	<connection-factory id="rabbitConnectionFactory" host="${rabbit.mq.host}" username="${rabbit.mq.user}" password="${rabbit.mq.pwd}" port="${rabbit.mq.port}" connection-timeout="${rabbit.mq.connectionTimeout}" virtual-host="${rabbit.mq.virtualHost}" publisher-confirms="true" publisher-returns="true" />
+    <connection-factory id="rabbitConnectionFactory" host="${rabbit.mq.host}" username="${rabbit.mq.user}"
+                        password="${rabbit.mq.pwd}" port="${rabbit.mq.port}"
+                        connection-timeout="${rabbit.mq.connectionTimeout}" virtual-host="${rabbit.mq.virtualHost}"
+                        publisher-confirms="true" publisher-returns="true"/>
 
-	<admin connection-factory="rabbitConnectionFactory" />
+    <admin connection-factory="rabbitConnectionFactory"/>
 
-	<queue id="logDirectQueue" name="log-direct-queue" durable="true" auto-delete="false" exclusive="false" />
-	<queue id="logReplyDirectQueue" name="log-reply-direct-queue" durable="true" auto-delete="false" exclusive="false" />
-	<direct-exchange id="logDirectExchange" name="log-direct-exchange" durable="true" auto-delete="false">
-		<bindings>
-			<binding queue="log-direct-queue" key="log-direct-routing-key" />
-		</bindings>
-	</direct-exchange>
-	<template id="logDirectTemplate" queue="log-direct-queue" exchange="log-direct-exchange" routing-key="log-direct-routing-key" connection-factory="rabbitConnectionFactory" confirm-callback="sendConfirmCallBack" return-callback="sendReturnCallBack" recovery-callback="sendRecoveryCallback" reply-queue="log-reply-direct-queue">
-		<reply-listener acknowledge="auto" auto-startup="true" min-start-interval="3000" />
-	</template>
-
-	<beans:bean id="logDirectMessageListener" class="org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter">
-		<beans:property name="delegate" ref="logDirectMessageHandler" />
-	</beans:bean>
-	<listener-container id="logMessageListenerContainer" connection-factory="rabbitConnectionFactory" acknowledge="auto" auto-startup="false">
-		<listener queues="log-direct-queue" ref="logDirectMessageListener" />
-	</listener-container>
-
-
-	<queue id="messageFanoutQueue" name="message.fanout.queue" durable="true" auto-delete="false" exclusive="false" />
-	<template id="messageFanoutTemplate" queue="message.fanout.queue" connection-factory="rabbitConnectionFactory" />
+    <queue id="logDirectQueue" name="log-direct-queue" durable="true" auto-delete="false" exclusive="false"/>
+    <queue id="logReplyDirectQueue" name="log-reply-direct-queue" durable="true" auto-delete="false" exclusive="false"/>
+    <direct-exchange id="logDirectExchange" name="log-direct-exchange" durable="true" auto-delete="false">
+        <bindings>
+            <binding queue="log-direct-queue" key="log-direct-routing-key"/>
+        </bindings>
+    </direct-exchange>
+    <template id="logDirectTemplate" queue="log-direct-queue" exchange="log-direct-exchange"
+              routing-key="log-direct-routing-key" connection-factory="rabbitConnectionFactory"
+              confirm-callback="sendConfirmCallBack" return-callback="sendReturnCallBack"
+              recovery-callback="sendRecoveryCallback" reply-queue="log-reply-direct-queue">
+        <reply-listener acknowledge="auto" auto-startup="true" min-start-interval="3000"/>
+    </template>
 
 
-
-	<!-- <queue id="defaultTopicQueue" name="default-topic-queue" durable="true" auto-delete="false" exclusive="false" /> <topic-exchange id="defaultTopicExchange" name="default-topic-exchange" durable="true" auto-delete="false"> <bindings> <binding queue="default-topic-queue" pattern="*.default.topic.*" /> </bindings> </topic-exchange> <template id="defaultTopicTemplate" queue="default-topic-queue" exchange="default-topic-exchange" routing-key="*.default.topic.*" connection-factory="rabbitConnectionFactory" /> <queue id="defaultFanoutQueue" name="default-fanout-queue" durable="true" auto-delete="false" exclusive="false" /> <fanout-exchange id="defaultFanoutExchange" name="default-fanout-exchange" durable="true" auto-delete="false"> 
-		<bindings> <binding queue="default-fanout-queue" /> </bindings> </fanout-exchange> <template id="defaultFanoutTemplate" queue="default-fanout-queue" exchange="default-fanout-exchange" connection-factory="rabbitConnectionFactory" /> -->
 
 </beans:beans>

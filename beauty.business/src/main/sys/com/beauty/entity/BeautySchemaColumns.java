@@ -1,54 +1,136 @@
 package com.beauty.entity;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import java.util.Date;
 
-@JsonInclude(Include.NON_NULL)
 public class BeautySchemaColumns extends BaseEntity {
+    private static final long serialVersionUID = -3188874950104631519L;
+    private Long id;
 
-	/**
-	 * @Fields serialVersionUID
-	 */
-	private static final long serialVersionUID = 1L;
+    private String data;
 
-	private Long id;
+    private String columnName;
 
-	private String data;
+    private String title;
 
-	private String columnName;
+    private String remark;
 
-	private String title;
+    private Date createTime;
 
-	public Long getId() {
-		return id;
-	}
+    private String creater;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    private Date lastUpdateTime;
 
-	public String getData() {
-		return data;
-	}
+    private String modifier;
 
-	public void setData(String data) {
-		this.data = data == null ? null : data.trim();
-	}
+    private Byte isDeleted;
 
-	public String getColumnName() {
-		return columnName;
-	}
+    private String def1;
 
-	public void setColumnName(String columnName) {
-		this.columnName = columnName == null ? null : columnName.trim();
-	}
+    private String def2;
 
-	public String getTitle() {
-		return title;
-	}
+    private Date def3;
 
-	public void setTitle(String title) {
-		this.title = title == null ? null : title.trim();
-	}
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data == null ? null : data.trim();
+    }
+
+    public String getColumnName() {
+        return columnName;
+    }
+
+    public void setColumnName(String columnName) {
+        this.columnName = columnName == null ? null : columnName.trim();
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getCreater() {
+        return creater;
+    }
+
+    public void setCreater(String creater) {
+        this.creater = creater == null ? null : creater.trim();
+    }
+
+    public Date getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(Date lastUpdateTime) {
+        this.lastUpdateTime = lastUpdateTime;
+    }
+
+    public String getModifier() {
+        return modifier;
+    }
+
+    public void setModifier(String modifier) {
+        this.modifier = modifier == null ? null : modifier.trim();
+    }
+
+    public Byte getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Byte isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
+    public String getDef1() {
+        return def1;
+    }
+
+    public void setDef1(String def1) {
+        this.def1 = def1 == null ? null : def1.trim();
+    }
+
+    public String getDef2() {
+        return def2;
+    }
+
+    public void setDef2(String def2) {
+        this.def2 = def2 == null ? null : def2.trim();
+    }
+
+    public Date getDef3() {
+        return def3;
+    }
+
+    public void setDef3(Date def3) {
+        this.def3 = def3;
+    }
 }

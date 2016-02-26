@@ -1,58 +1,57 @@
 package com.beauty.service;
 
-import java.util.List;
-import java.util.Map;
-
+import com.beauty.entity.BeautyAuthority;
+import com.beauty.mapper.BeautyAuthorityMapper;
+import com.beauty.model.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.beauty.entity.BeautyAuthority;
-import com.beauty.interfaces.AuthorityDao;
-import com.beauty.model.Value;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class AuthorityService extends BaseService<BeautyAuthority> {
 
 	@Autowired
-	private AuthorityDao authorityDao;
+	private BeautyAuthorityMapper beautyAuthorityMapper;
 
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.authorityDao.selectCount(params);
+		return this.beautyAuthorityMapper.selectCount(params);
 	}
 
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.authorityDao.selectPage(params);
+		return this.beautyAuthorityMapper.selectPage(params);
 	}
 
 	@Override
 	public void updateByPrimaryKeySelective(BeautyAuthority entity) {
 		// TODO Auto-generated method stub
-		this.authorityDao.updateByPrimaryKeySelective(entity);
+		this.beautyAuthorityMapper.updateByPrimaryKeySelective(entity);
 	}
 
 	@Override
 	public void deleteByPrimaryKeys(List<Object> list) {
 		// TODO Auto-generated method stub
-		this.authorityDao.deleteByPrimaryKeys(list);
+		this.beautyAuthorityMapper.deleteByPrimaryKeys(list);
 	}
 
 	@Override
 	public BeautyAuthority selectByPrimaryKey(Long id) {
 		// TODO Auto-generated method stub
-		return this.authorityDao.selectByPrimaryKey(id);
+		return this.beautyAuthorityMapper.selectByPrimaryKey(id);
 	}
 
 	@Override
 	public void insertSelective(BeautyAuthority entity) {
 		// TODO Auto-generated method stub
-		this.authorityDao.insertSelective(entity);
+		this.beautyAuthorityMapper.insertSelective(entity);
 	}
 
 	public void batchGroup(Value value) {
-		this.authorityDao.batchGroup(value);
+		this.beautyAuthorityMapper.batchGroup(value);
 	}
 }

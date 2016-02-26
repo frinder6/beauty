@@ -1,72 +1,158 @@
 package com.beauty.entity;
 
+import java.util.Date;
 import org.apache.commons.codec.digest.DigestUtils;
 
 public class BeautyResource extends BaseEntity {
-	/**
-	 * @Fields serialVersionUID
-	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -4043626785978747051L;
 
-	private Long id;
+    public BeautyResource() {
+        super();
+    }
 
-	private String code;
+    public BeautyResource(String url) {
+        super();
+        this.url = url;
+        this.code = DigestUtils.md5Hex(url.trim()).toUpperCase();
+    }
 
-	private String name;
+    private Long id;
 
-	private String url;
+    private String code;
 
-	private Long groupId;
+    private String name;
 
-	public BeautyResource() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    private String url;
 
-	public BeautyResource(String url) {
-		super();
-		this.url = url;
-		this.code = DigestUtils.md5Hex(url.trim()).toUpperCase();
-	}
+    private Long groupId;
 
-	public Long getId() {
-		return id;
-	}
+    private String remark;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    private Date createTime;
 
-	public String getCode() {
-		return code;
-	}
+    private String creater;
 
-	public void setCode(String code) {
-		this.code = code == null ? null : code.trim().toUpperCase();
-	}
+    private Date lastUpdateTime;
 
-	public String getName() {
-		return name;
-	}
+    private String modifier;
 
-	public void setName(String name) {
-		this.name = name == null ? null : name.trim();
-	}
+    private Byte isDeleted;
 
-	public String getUrl() {
-		return url;
-	}
+    private String def1;
 
-	public void setUrl(String url) {
-		this.url = url == null ? null : url.trim();
-	}
+    private String def2;
 
-	public Long getGroupId() {
-		return groupId;
-	}
+    private Date def3;
 
-	public void setGroupId(Long groupId) {
-		this.groupId = groupId;
-	}
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code == null ? null : code.trim().toUpperCase();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url == null ? null : url.trim();
+    }
+
+    public Long getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getCreater() {
+        return creater;
+    }
+
+    public void setCreater(String creater) {
+        this.creater = creater == null ? null : creater.trim();
+    }
+
+    public Date getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(Date lastUpdateTime) {
+        this.lastUpdateTime = lastUpdateTime;
+    }
+
+    public String getModifier() {
+        return modifier;
+    }
+
+    public void setModifier(String modifier) {
+        this.modifier = modifier == null ? null : modifier.trim();
+    }
+
+    public Byte getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Byte isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
+    public String getDef1() {
+        return def1;
+    }
+
+    public void setDef1(String def1) {
+        this.def1 = def1 == null ? null : def1.trim();
+    }
+
+    public String getDef2() {
+        return def2;
+    }
+
+    public void setDef2(String def2) {
+        this.def2 = def2 == null ? null : def2.trim();
+    }
+
+    public Date getDef3() {
+        return def3;
+    }
+
+    public void setDef3(Date def3) {
+        this.def3 = def3;
+    }
 }

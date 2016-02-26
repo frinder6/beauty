@@ -1,68 +1,46 @@
 package com.beauty.entity;
 
-public class BeautyAuthorityResource extends BaseReEntity {
+public class BeautyAuthorityResource extends BaseEntity {
 
-	/**
-	 * @Fields serialVersionUID
-	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 5465634462895989938L;
 
-	private Long id;
+    private Long id;
 
-	private Long authorityId;
+    private Long authorityId;
 
-	private Long resourceId;
+    private Long resourceId;
 
-	private Byte type;
+    private Byte type;
 
-	public BeautyAuthorityResource() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public BeautyAuthorityResource(Long authorityId, Long resourceId) {
-		super();
-		this.authorityId = authorityId;
-		this.resourceId = resourceId;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public Long getAuthorityId() {
+        return authorityId;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setAuthorityId(Long authorityId) {
+        this.authorityId = authorityId;
+    }
 
-	public Long getAuthorityId() {
-		return authorityId;
-	}
+    public Long getResourceId() {
+        return resourceId;
+    }
 
-	public void setAuthorityId(Long authorityId) {
-		this.authorityId = authorityId;
-	}
+    public void setResourceId(Long resourceId) {
+        this.resourceId = resourceId;
+    }
 
-	public Long getResourceId() {
-		return resourceId;
-	}
+    public Byte getType() {
+        return type;
+    }
 
-	public void setResourceId(Long resourceId) {
-		this.resourceId = resourceId;
-	}
-
-	/**
-	 * @return the type
-	 */
-	public Byte getType() {
-		return type;
-	}
-
-	/**
-	 * @param type
-	 *            the type to set
-	 */
-	public void setType(Byte type) {
-		this.type = type;
-	}
-
+    public void setType(Byte type) {
+        this.type = type;
+    }
 }

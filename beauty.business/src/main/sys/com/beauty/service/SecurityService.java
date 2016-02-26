@@ -1,28 +1,27 @@
 package com.beauty.service;
 
-import java.util.List;
-
+import com.beauty.entity.BeautyUser;
+import com.beauty.mapper.BeautySecurityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.beauty.entity.BeautyUser;
-import com.beauty.interfaces.SecurityDao;
+import java.util.List;
 
 @Service
 public class SecurityService {
 
 	@Autowired
-	private SecurityDao securityDao;
+	private BeautySecurityMapper beautySecurityMapper;
 
 	public List<?> selectUserAuths(Long userId) {
-		return this.securityDao.selectUserAuths(userId);
+		return this.beautySecurityMapper.selectUserAuths(userId);
 	}
 
 	public List<?> selectResourcess() {
-		return this.securityDao.selectResourcess();
+		return this.beautySecurityMapper.selectResourcess();
 	}
 
 	public BeautyUser queryByUsername(String account) {
-		return this.securityDao.queryByUsername(account);
+		return this.beautySecurityMapper.queryByUsername(account);
 	}
 }
