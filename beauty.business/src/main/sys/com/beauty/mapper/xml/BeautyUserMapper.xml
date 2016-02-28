@@ -1,133 +1,223 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.beauty.mapper.BeautyUserMapper">
-	<resultMap id="BaseResultMap" type="com.beauty.entity.BeautyUser">
-		<id column="id" property="id" jdbcType="BIGINT" />
-		<result column="account" property="account" jdbcType="VARCHAR" />
-		<result column="name" property="name" jdbcType="VARCHAR" />
-		<result column="password" property="password" jdbcType="VARCHAR" />
-		<result column="gender" property="gender" jdbcType="TINYINT" />
-		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
-		<result column="email" property="email" jdbcType="VARCHAR" />
-		<result column="remark" property="remark" jdbcType="VARCHAR" />
-		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-		<result column="creater" property="creater" jdbcType="VARCHAR" />
-		<result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
-		<result column="modifier" property="modifier" jdbcType="VARCHAR" />
-		<result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
-		<result column="def1" property="def1" jdbcType="VARCHAR" />
-		<result column="def2" property="def2" jdbcType="VARCHAR" />
-		<result column="def3" property="def3" jdbcType="TIMESTAMP" />
-	</resultMap>
-	<sql id="Base_Column_List">
-		id, account, name, password, gender, mobile, email, remark, create_time, creater,
-		last_update_time, modifier, is_deleted, def1, def2, def3
-	</sql>
-	<sql id="Base_Where_Clause">
-		<where>
-			1 = 1
-			<if test="searchValue">
-				AND ( name LIKE "%" #{searchValue} "%" OR account LIKE "%" #{searchValue} "%" OR remark LIKE "%" #{searchValue} "%" )
-			</if>
-			<if test="serialize">
-				${serialize}
-			</if>
-		</where>
-	</sql>
-	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
-		select
-		<include refid="Base_Column_List" />
-		from beauty_user
-		where id = #{id,jdbcType=BIGINT}
-	</select>
-	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
-		SELECT
-		<include refid="Base_Column_List" />
-		FROM beauty_user
-		<include refid="Base_Where_Clause" />
-		ORDER BY
-		<if test="orderColumn">
-			${orderColumn} ${orderDir}
-		</if>
-		<if test="orderColumn == null">
-			id
-		</if>
-		LIMIT #{from}, #{size}
-	</select>
-	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
-		SELECT
-		COUNT(1)
-		FROM beauty_user
-		<include refid="Base_Where_Clause" />
-	</select>
-	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
-		delete from beauty_user
-		where 1 != 1
-		<if test="list.size() > 0">
-			OR id IN
-			<foreach collection="list" open="(" close=")" item="id" separator=",">
-				#{id}
-			</foreach>
-		</if>
-	</delete>
-	<insert id="insertSelective" parameterType="com.beauty.entity.BeautyUser">
-		insert into beauty_user
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null"> id, </if>
-			<if test="account != null"> account, </if>
-			<if test="name != null"> name, </if>
-			<if test="password != null"> password, </if>
-			<if test="gender != null"> gender, </if>
-			<if test="mobile != null"> mobile, </if>
-			<if test="email != null"> email, </if>
-			<if test="remark != null"> remark, </if>
-			<if test="createTime != null"> create_time, </if>
-			<if test="creater != null"> creater, </if>
-			<if test="lastUpdateTime != null"> last_update_time, </if>
-			<if test="modifier != null"> modifier, </if>
-			<if test="isDeleted != null"> is_deleted, </if>
-			<if test="def1 != null"> def1, </if>
-			<if test="def2 != null"> def2, </if>
-			<if test="def3 != null"> def3, </if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null"> #{id,jdbcType=BIGINT}, </if>
-			<if test="account != null"> #{account,jdbcType=VARCHAR}, </if>
-			<if test="name != null"> #{name,jdbcType=VARCHAR}, </if>
-			<if test="password != null"> #{password,jdbcType=VARCHAR}, </if>
-			<if test="gender != null"> #{gender,jdbcType=TINYINT}, </if>
-			<if test="mobile != null"> #{mobile,jdbcType=VARCHAR}, </if>
-			<if test="email != null"> #{email,jdbcType=VARCHAR}, </if>
-			<if test="remark != null"> #{remark,jdbcType=VARCHAR}, </if>
-			<if test="createTime != null"> #{createTime,jdbcType=TIMESTAMP}, </if>
-			<if test="creater != null"> #{creater,jdbcType=VARCHAR}, </if>
-			<if test="lastUpdateTime != null"> #{lastUpdateTime,jdbcType=TIMESTAMP}, </if>
-			<if test="modifier != null"> #{modifier,jdbcType=VARCHAR}, </if>
-			<if test="isDeleted != null"> #{isDeleted,jdbcType=TINYINT}, </if>
-			<if test="def1 != null"> #{def1,jdbcType=VARCHAR}, </if>
-			<if test="def2 != null"> #{def2,jdbcType=VARCHAR}, </if>
-			<if test="def3 != null"> #{def3,jdbcType=TIMESTAMP}, </if>
-		</trim>
-	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.beauty.entity.BeautyUser">
-		update beauty_user
-		<set>
-			<if test="account != null"> account = #{account,jdbcType=VARCHAR}, </if>
-			<if test="name != null"> name = #{name,jdbcType=VARCHAR}, </if>
-			<if test="password != null"> password = #{password,jdbcType=VARCHAR}, </if>
-			<if test="gender != null"> gender = #{gender,jdbcType=TINYINT}, </if>
-			<if test="mobile != null"> mobile = #{mobile,jdbcType=VARCHAR}, </if>
-			<if test="email != null"> email = #{email,jdbcType=VARCHAR}, </if>
-			<if test="remark != null"> remark = #{remark,jdbcType=VARCHAR}, </if>
-			<if test="lastUpdateTime != null"> last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}, </if>
-			<if test="modifier != null"> modifier = #{modifier,jdbcType=VARCHAR}, </if>
-			<if test="isDeleted != null"> is_deleted = #{isDeleted,jdbcType=TINYINT}, </if>
-			<if test="def1 != null"> def1 = #{def1,jdbcType=VARCHAR}, </if>
-			<if test="def2 != null"> def2 = #{def2,jdbcType=VARCHAR}, </if>
-			<if test="def3 != null"> def3 = #{def3,jdbcType=TIMESTAMP}, </if>
-			last_update_time = now()
-		</set>
-		where id = #{id,jdbcType=BIGINT}
-	</update>
-
+<mapper namespace="com.beauty.mapper.BeautyUserMapper" >
+  <resultMap id="BaseResultMap" type="com.beauty.entity.BeautyUser" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="TINYINT" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="creater" property="creater" jdbcType="VARCHAR" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="modifier" property="modifier" jdbcType="VARCHAR" />
+    <result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
+    <result column="def1" property="def1" jdbcType="VARCHAR" />
+    <result column="def2" property="def2" jdbcType="VARCHAR" />
+    <result column="def3" property="def3" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, account, name, password, gender, mobile, email, remark, create_time, creater, 
+    last_update_time, modifier, is_deleted, def1, def2, def3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from beauty_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from beauty_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.beauty.entity.BeautyUser" >
+    insert into beauty_user (id, account, name, 
+      password, gender, mobile, 
+      email, remark, create_time, 
+      creater, last_update_time, modifier, 
+      is_deleted, def1, def2, 
+      def3)
+    values (#{id,jdbcType=BIGINT}, #{account,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{gender,jdbcType=TINYINT}, #{mobile,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{creater,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, 
+      #{isDeleted,jdbcType=TINYINT}, #{def1,jdbcType=VARCHAR}, #{def2,jdbcType=VARCHAR}, 
+      #{def3,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.beauty.entity.BeautyUser" >
+    insert into beauty_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="creater != null" >
+        creater,
+      </if>
+      <if test="lastUpdateTime != null" >
+        last_update_time,
+      </if>
+      <if test="modifier != null" >
+        modifier,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="def1 != null" >
+        def1,
+      </if>
+      <if test="def2 != null" >
+        def2,
+      </if>
+      <if test="def3 != null" >
+        def3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null" >
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="def1 != null" >
+        #{def1,jdbcType=VARCHAR},
+      </if>
+      <if test="def2 != null" >
+        #{def2,jdbcType=VARCHAR},
+      </if>
+      <if test="def3 != null" >
+        #{def3,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.beauty.entity.BeautyUser" >
+    update beauty_user
+    <set >
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null" >
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null" >
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="def1 != null" >
+        def1 = #{def1,jdbcType=VARCHAR},
+      </if>
+      <if test="def2 != null" >
+        def2 = #{def2,jdbcType=VARCHAR},
+      </if>
+      <if test="def3 != null" >
+        def3 = #{def3,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.beauty.entity.BeautyUser" >
+    update beauty_user
+    set account = #{account,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=TINYINT},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      creater = #{creater,jdbcType=VARCHAR},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      def1 = #{def1,jdbcType=VARCHAR},
+      def2 = #{def2,jdbcType=VARCHAR},
+      def3 = #{def3,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
 </mapper>

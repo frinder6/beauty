@@ -6,6 +6,4 @@ import com.beauty.model.Value;
 
 public interface BeautyAuthorityMapper extends IMapper<BeautyAuthority> {
 
-	public void batchGroup(Value value);
-	
 }

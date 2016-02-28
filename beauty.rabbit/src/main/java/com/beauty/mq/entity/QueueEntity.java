@@ -1,6 +1,7 @@
 package com.beauty.mq.entity;
 
 import com.beauty.util.StringUtil;
+import org.apache.log4j.Logger;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
@@ -12,6 +13,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class QueueEntity {
+
+    private final Logger logger = Logger.getLogger(this.getClass());
 
     /**
      * 保存所有的队列
@@ -47,6 +50,7 @@ public class QueueEntity {
      */
     public QueueEntity(CachingConnectionFactory rabbitConnectionFactory, String queueName, String exchangeName, String routingKey, int type, Object delegate) {
         super();
+        logger.info("queue...................init.................begin!");
         this.queueName = queueName;
         this.exchangeName = exchangeName;
         this.routingKey = routingKey;
@@ -60,6 +64,7 @@ public class QueueEntity {
         if (!_QUEUES_MAP.containsKey(queueName)) {
             _QUEUES_MAP.put(queueName, this);
         }
+        logger.info("queue...................init.................end!");
     }
 
     public String getQueueName() {
@@ -103,16 +108,22 @@ public class QueueEntity {
     }
 
     private void setExchange() {
+        logger.info("exchange...................init.................begin!");
         if (!StringUtil.isEmpty(exchangeName)) {
             if (1 == type) {
                 this.exchange = new DirectExchange(exchangeName);
+                logger.info("exchange...................type.................direct!");
             } else if (2 == type) {
                 this.exchange = new TopicExchange(exchangeName);
+                logger.info("exchange...................type.................topic!");
             } else if (3 == type) {
                 this.exchange = new FanoutExchange(exchangeName);
+                logger.info("exchange...................type.................fanout!");
             } else {
+                logger.info("exchange...................init.................fail!");
             }
         }
+        logger.info("exchange...................init.................end!");
     }
 
     public RabbitTemplate getRabbitTemplate() {
@@ -120,14 +131,18 @@ public class QueueEntity {
     }
 
     private void setRabbitTemplate(CachingConnectionFactory rabbitConnectionFactory) {
+        logger.info("template...................init.................begin!");
         this.rabbitTemplate = new RabbitTemplate(rabbitConnectionFactory);
         rabbitTemplate.setQueue(queueName);
         if (!StringUtil.isEmpty(exchangeName)) {
             rabbitTemplate.setExchange(exchangeName);
+            logger.info("template...................exchange.................[ ".concat(exchangeName).concat(" ]"));
         }
         if (!StringUtil.isEmpty(routingKey)) {
             rabbitTemplate.setRoutingKey(routingKey);
+            logger.info("template...................routingKey.................[ ".concat(routingKey).concat(" ]"));
         }
+        logger.info("template...................init.................end!");
     }
 
     public SimpleMessageListenerContainer getContainer() {
@@ -135,12 +150,14 @@ public class QueueEntity {
     }
 
     private void setContainer(CachingConnectionFactory rabbitConnectionFactory) {
+        logger.info("SimpleMessageListenerContainer...................init.................begin!");
         container = new SimpleMessageListenerContainer(rabbitConnectionFactory);
         MessageListenerAdapter adapter = new MessageListenerAdapter();
         adapter.setDelegate(delegate);
         container.addQueues(queue);
         container.setMessageListener(adapter);
-        container.setAutoStartup(false);
+        // container.setAutoStartup(false);
+        logger.info("SimpleMessageListenerContainer...................init.................end!");
     }
 
     public Object getDelegate() {
@@ -152,6 +169,7 @@ public class QueueEntity {
     }
 
     public void setBinding() {
+        logger.info("binding...................init.................begin!");
         if (!StringUtil.isEmpty(exchangeName) && !StringUtil.isEmpty(routingKey)) {
             if (1 == type) {
                 this.binding = BindingBuilder.bind(queue).to((DirectExchange) exchange).with(routingKey);
@@ -160,22 +178,25 @@ public class QueueEntity {
             } else if (3 == type) {
                 this.binding = BindingBuilder.bind(queue).to((FanoutExchange) exchange);
             } else {
+                logger.info("binding...................init.................fail!");
             }
         }
+        logger.info("binding...................init.................end!");
     }
 
     /**
      * 定义
+     *
      * @param admin
      */
-    public void declare(RabbitAdmin admin){
-        if (null != queue){
+    public void declare(RabbitAdmin admin) {
+        if (null != queue) {
             admin.declareQueue(queue);
         }
-        if (null != exchange){
+        if (null != exchange) {
             admin.declareExchange(exchange);
         }
-        if (null != binding){
+        if (null != binding) {
             admin.declareBinding(binding);
         }
     }

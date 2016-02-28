@@ -1,7 +1,10 @@
 package com.beauty.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.Date;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BeautyUserExtra extends BaseEntity {
     private static final long serialVersionUID = 4627411545234079902L;
     private Long id;

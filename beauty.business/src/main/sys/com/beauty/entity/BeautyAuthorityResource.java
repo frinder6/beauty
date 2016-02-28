@@ -1,5 +1,9 @@
 package com.beauty.entity;
 
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BeautyAuthorityResource extends BaseEntity {
 
     private static final long serialVersionUID = 5465634462895989938L;
@@ -11,6 +15,12 @@ public class BeautyAuthorityResource extends BaseEntity {
     private Long resourceId;
 
     private Byte type;
+
+    private String name;
+
+    private String code;
+
+    private String url;
 
     public Long getId() {
         return id;
@@ -42,5 +52,29 @@ public class BeautyAuthorityResource extends BaseEntity {
 
     public void setType(Byte type) {
         this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

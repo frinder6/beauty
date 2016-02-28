@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.beauty.mapper.BeautyUserRoleMapperImpl">
+
+	<resultMap id="BaseResultMap" extends="com.beauty.mapper.BeautyUserRoleMapper.BaseResultMap" type="com.beauty.entity.BeautyUserRole">
+		<id column="id" property="DT_RowId" jdbcType="BIGINT" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Where_Clause">
+		<if test="searchValue">
+			AND ( a.name LIKE "%" #{searchValue} "%" OR a.code LIKE "%" #{searchValue} "%" )
+		</if>
+	</sql>
+	
+	<sql id="Base_Page_Sql">
+		<if test="table == 'left'">
+			SELECT id, code, name FROM beauty_role r
+			WHERE id NOT IN (SELECT role_id FROM beauty_user_role WHERE user_id = #{userId})
+			<include refid="Base_Where_Clause" />
+			ORDER BY
+			<if test="orderColumn">
+				${orderColumn} ${orderDir}
+			</if>
+			<if test="orderColumn == null">
+				id
+			</if>
+			LIMIT #{from}, #{size}
+		</if>
+		<if test="table == 'right'">
+			SELECT t1.id, t2.code, t2.name FROM beauty_user_role t1 LEFT JOIN beauty_role t2 ON t1.role_id = t2.id
+			WHERE t1.user_id = #{userId}
+			<include refid="Base_Where_Clause" />
+			ORDER BY
+			<if test="orderColumn">
+				${orderColumn} ${orderDir}
+			</if>
+			<if test="orderColumn == null">
+				id
+			</if>
+			LIMIT #{from}, #{size}
+		</if>
+	</sql>
+	
+	<sql id="Base_Count_Sql">
+		<if test="table == 'left'">
+			SELECT COUNT(1) FROM beauty_role r
+			WHERE id NOT IN (SELECT role_id FROM beauty_user_role WHERE user_id = #{userId})
+			<include refid="Base_Where_Clause" />
+		</if>
+		<if test="table == 'right'">
+			SELECT COUNT(1) FROM beauty_user_role t1 LEFT JOIN beauty_role t2 ON t1.role_id = t2.id
+			WHERE t1.user_id = #{userId}
+			<include refid="Base_Where_Clause" />
+		</if>
+	</sql>
+	
+	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		<include refid="Base_Page_Sql" />
+	</select>
+	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
+		<include refid="Base_Count_Sql" />
+	</select>
+
+
+	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
+		delete from beauty_user_role
+		where 1 != 1
+		<if test="list.size() > 0">
+			OR id IN
+			<foreach collection="list" open="(" close=")" item="id" separator=",">
+				#{id}
+			</foreach>
+		</if>
+	</delete>
+	
+	<insert id="insert" parameterType="com.beauty.model.Value">
+		insert into beauty_user_role (user_id, role_id )
+		values
+		<if test="values.size() > 0">
+			<foreach collection="values" item="id" separator=",">
+				<trim prefix="(" suffix=")" suffixOverrides=",">
+					#{value}, #{id}
+				</trim>
+			</foreach>
+		</if>
+	</insert>
+
+</mapper>

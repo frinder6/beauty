@@ -1,13 +1,15 @@
 package com.beauty.service;
 
-import com.beauty.entity.BeautyAuthority;
-import com.beauty.mapper.BeautyAuthorityMapper;
-import com.beauty.model.Value;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import com.beauty.entity.BeautyAuthority;
+import com.beauty.mapper.BeautyAuthorityMapper;
+import com.beauty.mapper.BeautyAuthorityMapperImpl;
+import com.beauty.model.Value;
 
 @Service
 public class AuthorityService extends BaseService<BeautyAuthority> {
@@ -15,16 +17,19 @@ public class AuthorityService extends BaseService<BeautyAuthority> {
 	@Autowired
 	private BeautyAuthorityMapper beautyAuthorityMapper;
 
+	@Autowired
+	private BeautyAuthorityMapperImpl beautyAuthorityMapperImpl;
+
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.beautyAuthorityMapper.selectCount(params);
+		return this.beautyAuthorityMapperImpl.selectCount(params);
 	}
 
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.beautyAuthorityMapper.selectPage(params);
+		return this.beautyAuthorityMapperImpl.selectPage(params);
 	}
 
 	@Override
@@ -36,7 +41,7 @@ public class AuthorityService extends BaseService<BeautyAuthority> {
 	@Override
 	public void deleteByPrimaryKeys(List<Object> list) {
 		// TODO Auto-generated method stub
-		this.beautyAuthorityMapper.deleteByPrimaryKeys(list);
+		this.beautyAuthorityMapperImpl.deleteByPrimaryKeys(list);
 	}
 
 	@Override
@@ -52,6 +57,6 @@ public class AuthorityService extends BaseService<BeautyAuthority> {
 	}
 
 	public void batchGroup(Value value) {
-		this.beautyAuthorityMapper.batchGroup(value);
+		this.beautyAuthorityMapperImpl.batchGroup(value);
 	}
 }

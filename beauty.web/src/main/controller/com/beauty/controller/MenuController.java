@@ -86,7 +86,7 @@ public class MenuController {
 
 	@RequestMapping(value = "/load/page", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public Page queryPage(HttpServletRequest request, BeautyMenu menu) {
+	public Page queryPage(HttpServletRequest request) {
 		Page page = new Page();
 		page.init(request);
 		Map<String, Object> params = new HashMap<String, Object>();

@@ -1,23 +1,26 @@
 package com.beauty.handler;
 
+import com.beauty.entity.BeautyMessage;
 import com.beauty.util.DwrUtil;
-import com.beauty.util.SpringUtil;
-import com.beauty.util.StringUtil;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
-import javax.servlet.http.HttpServletRequest;
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by frinder_liu on 2016/2/25.
  */
-public class MessageHandler {
+@Component
+public class MessageHandler implements Handler {
 
-    public void handleMessage(Object message){
-        String userId = "admin";
-        DwrUtil.sendMessage(userId, message);
+    private final Logger logger = Logger.getLogger(this.getClass());
+
+    @Override
+    public void handleMessage(Object message) {
+        try {
+            BeautyMessage beautyMessage = (BeautyMessage) message;
+            DwrUtil.sendMessage(beautyMessage.getAccount(), message);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
     }
 
 

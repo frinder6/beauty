@@ -1,13 +1,15 @@
 package com.beauty.service;
 
-import com.beauty.entity.BeautyAuthorityResource;
-import com.beauty.mapper.BeautyAuthorityResourceMapper;
-import com.beauty.model.Value;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import com.beauty.entity.BeautyAuthorityResource;
+import com.beauty.mapper.BeautyAuthorityResourceMapper;
+import com.beauty.mapper.BeautyAuthorityResourceMapperImpl;
+import com.beauty.model.Value;
 
 @Service
 public class AuthorityResourceService extends BaseService<BeautyAuthorityResource> {
@@ -15,24 +17,19 @@ public class AuthorityResourceService extends BaseService<BeautyAuthorityResourc
 	@Autowired
 	private BeautyAuthorityResourceMapper beautyAuthorityResourceMapper;
 
+	@Autowired
+	private BeautyAuthorityResourceMapperImpl beautyAuthorityResourceMapperImpl;
+
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.beautyAuthorityResourceMapper.selectCount(params);
+		return this.beautyAuthorityResourceMapperImpl.selectCount(params);
 	}
 
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.beautyAuthorityResourceMapper.selectPage(params);
-	}
-
-	public int selectConfCount(Map<String, Object> params) {
-		return this.beautyAuthorityResourceMapper.selectConfCount(params);
-	}
-
-	public List<?> selectConfPage(Map<String, Object> params) {
-		return this.beautyAuthorityResourceMapper.selectConfPage(params);
+		return this.beautyAuthorityResourceMapperImpl.selectPage(params);
 	}
 
 	@Override
@@ -44,7 +41,7 @@ public class AuthorityResourceService extends BaseService<BeautyAuthorityResourc
 	@Override
 	public void deleteByPrimaryKeys(List<Object> list) {
 		// TODO Auto-generated method stub
-		this.beautyAuthorityResourceMapper.deleteByPrimaryKeys(list);
+		this.beautyAuthorityResourceMapperImpl.deleteByPrimaryKeys(list);
 	}
 
 	@Override
@@ -60,6 +57,6 @@ public class AuthorityResourceService extends BaseService<BeautyAuthorityResourc
 	}
 
 	public void insert(Value value) {
-		this.beautyAuthorityResourceMapper.insert(value);
+		this.beautyAuthorityResourceMapperImpl.insert(value);
 	}
 }

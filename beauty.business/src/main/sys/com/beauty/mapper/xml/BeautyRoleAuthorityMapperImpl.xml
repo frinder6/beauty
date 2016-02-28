@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.beauty.mapper.BeautyRoleAuthorityMapperImpl">
+
+	<resultMap id="BaseResultMap" extends="com.beauty.mapper.BeautyRoleAuthorityMapper.BaseResultMap" type="com.beauty.entity.BeautyRoleAuthority">
+		<id column="id" property="DT_RowId" jdbcType="BIGINT" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Where_Clause">
+		<if test="searchValue">
+			AND ( a.name LIKE "%" #{searchValue} "%" OR a.code LIKE "%" #{searchValue} "%" )
+		</if>
+	</sql>
+
+	<sql id="Base_Page_Sql">
+		<if test="table == 'left'">
+			SELECT id, `code`, `name` FROM beauty_authority a
+			WHERE id NOT IN (SELECT authority_id FROM beauty_role_authority t WHERE t.role_id = #{roleId})
+			<include refid="Base_Where_Clause" />
+			ORDER BY
+			<if test="orderColumn">
+				${orderColumn} ${orderDir}
+			</if>
+			<if test="orderColumn == null">
+				id
+			</if>
+			LIMIT #{from}, #{size}
+		</if>
+		<if test="table == 'right'">
+			SELECT ra.id, ra.role_id, a.id AS authority_id, a.`code`, a.`name` FROM beauty_role_authority ra LEFT JOIN beauty_authority a ON a.id = ra.authority_id
+			WHERE ra.role_id = #{roleId}
+			<include refid="Base_Where_Clause" />
+			ORDER BY
+			<if test="orderColumn">
+				${orderColumn} ${orderDir}
+			</if>
+			<if test="orderColumn == null">
+				id
+			</if>
+			LIMIT #{from}, #{size}
+		</if>
+	</sql>
+
+	<sql id="Base_Count_Sql">
+		<if test="table == 'left'">
+			SELECT COUNT(1) FROM beauty_authority a
+			WHERE id NOT IN (SELECT authority_id FROM beauty_role_authority t WHERE t.role_id = #{roleId})
+			<include refid="Base_Where_Clause" />
+		</if>
+		<if test="table == 'right'">
+			SELECT COUNT(1) FROM beauty_role_authority ra LEFT JOIN beauty_authority a ON a.id = ra.authority_id
+			WHERE ra.role_id = #{roleId}
+			<include refid="Base_Where_Clause" />
+		</if>
+	</sql>
+
+	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		<include refid="Base_Page_Sql" />
+	</select>
+	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
+		<include refid="Base_Count_Sql" />
+	</select>
+
+
+	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
+		delete from beauty_role_authority
+		where 1 != 1
+		<if test="list.size() > 0">
+			OR id IN
+			<foreach collection="list" open="(" close=")" item="id" separator=",">
+				#{id}
+			</foreach>
+		</if>
+	</delete>
+
+	<insert id="insert" parameterType="com.beauty.model.Value">
+		insert into beauty_role_authority (role_id, authority_id)
+		values
+		<if test="values.size() > 0">
+			<foreach collection="values" item="id" separator=",">
+				<trim prefix="(" suffix=")" suffixOverrides=",">
+					#{value}, #{id}
+				</trim>
+			</foreach>
+		</if>
+	</insert>
+
+</mapper>

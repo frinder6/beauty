@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.beauty.mapper.BeautyRoleMapperImpl">
+
+	<resultMap id="BaseResultMap" extends="com.beauty.mapper.BeautyRoleMapper.BaseResultMap" type="com.beauty.entity.BeautyRole">
+		<id column="id" property="DT_RowId" jdbcType="BIGINT" />
+	</resultMap>
+
+	<sql id="Base_Where_Clause">
+		<where>
+			1 = 1
+			<if test="searchValue">
+				AND ( name LIKE "%" #{searchValue} "%" OR code LIKE "%" #{searchValue} "%" OR remark LIKE "%"
+				#{searchValue} "%" )
+			</if>
+			<if test="serialize">
+				${serialize}
+			</if>
+		</where>
+	</sql>
+
+
+	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT
+		<include refid="com.beauty.mapper.BeautyRoleMapper.Base_Column_List" />
+		FROM beauty_role
+		<include refid="Base_Where_Clause" />
+		ORDER BY
+		<if test="orderColumn">
+			${orderColumn} ${orderDir}
+		</if>
+		<if test="orderColumn == null">
+			id
+		</if>
+		LIMIT #{from}, #{size}
+	</select>
+	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT
+		COUNT(1)
+		FROM beauty_role
+		<include refid="Base_Where_Clause" />
+	</select>
+
+	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
+		delete from beauty_role
+		where 1 != 1
+		<if test="list.size() > 0">
+			OR id IN
+			<foreach collection="list" open="(" close=")" item="id" separator=",">
+				#{id}
+			</foreach>
+		</if>
+	</delete>
+
+	<insert id="batchSync">
+		INSERT INTO `beauty_role_authority` (`role_id`, `authority_id`) SELECT 1, id
+		FROM beauty_authority
+		WHERE id NOT IN (SELECT authority_id FROM beauty_role_authority WHERE role_id = 1)
+	</insert>
+
+</mapper>

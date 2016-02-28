@@ -1,6 +1,5 @@
 package com.beauty.util;
 
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -31,11 +30,5 @@ public class SpringUtil {
         return getRequest().getSession();
     }
 
-    /**
-     * 获取user对象
-     * @return
-     */
-//    public static UserInfo getPrincipal() {
-//        return (UserInfo)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//    }
+
 }

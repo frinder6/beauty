@@ -6,5 +6,4 @@ import com.beauty.model.Value;
 
 public interface BeautyAuthorityResourceMapper extends IMapper<BeautyAuthorityResource> {
 
-	public void insert(Value value);
 }

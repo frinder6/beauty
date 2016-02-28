@@ -36,8 +36,8 @@
 
 				<div class="header-right">
 					<ul class="headermenu">
-						<li>
-							<div class="btn-group">
+						<li class="top-message">
+							<%--<div class="btn-group">
 								<button class="btn btn-default dropdown-toggle tp-icon" data-toggle="dropdown">
 									<i class="glyphicon glyphicon-user"></i> <span class="badge">2</span>
 								</button>
@@ -57,7 +57,7 @@
 										<li class="new"><a href="">See All Users</a></li>
 									</ul>
 								</div>
-							</div>
+							</div>--%>
 						</li>
 						<li>
 							<div class="btn-group">
@@ -95,6 +95,7 @@
 	<script src="${basePath }/resources/bracket/js/jquery.gritter.min.js"></script>
 	<script src="${basePath }/resources/customer/my.menu.js"></script>
 	<script src="${basePath }/resources/customer/my.nav.js"></script>
+	<script src="${basePath }/resources/customer/my.message.js"></script>
 	<script type="text/javascript" src="${basePath }/dwr/engine.js"></script>
 	<script type="text/javascript" src="${basePath }/dwr/util.js"></script>
 	<script type='text/javascript' src='${basePath }/dwr/interface/MessageController.js'></script>

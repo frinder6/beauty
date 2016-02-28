@@ -1,12 +1,14 @@
 package com.beauty.service;
 
-import com.beauty.entity.BeautyUrl;
-import com.beauty.mapper.BeautyUrlMapper;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import com.beauty.entity.BeautyUrl;
+import com.beauty.mapper.BeautyUrlMapper;
+import com.beauty.mapper.BeautyUrlMapperImpl;
 
 @Service
 public class UrlService extends BaseService<BeautyUrl> {
@@ -14,16 +16,19 @@ public class UrlService extends BaseService<BeautyUrl> {
 	@Autowired
 	private BeautyUrlMapper beautyUrlMapper;
 
+	@Autowired
+	private BeautyUrlMapperImpl beautyUrlMapperImpl;
+
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.beautyUrlMapper.selectCount(params);
+		return this.beautyUrlMapperImpl.selectCount(params);
 	}
 
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.beautyUrlMapper.selectPage(params);
+		return this.beautyUrlMapperImpl.selectPage(params);
 	}
 
 	@Override
@@ -39,12 +44,12 @@ public class UrlService extends BaseService<BeautyUrl> {
 	}
 
 	public void batchMark(List<Object> list) {
-		this.beautyUrlMapper.batchMark(list);
+		this.beautyUrlMapperImpl.batchMark(list);
 	}
 
 	@Override
 	public void deleteByPrimaryKeys(List<Object> list) {
 		// TODO Auto-generated method stub
-		this.beautyUrlMapper.deleteByPrimaryKeys(list);
+		this.beautyUrlMapperImpl.deleteByPrimaryKeys(list);
 	}
 }

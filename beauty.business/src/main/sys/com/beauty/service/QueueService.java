@@ -1,12 +1,14 @@
 package com.beauty.service;
 
-import com.beauty.entity.BeautyQueue;
-import com.beauty.mapper.BeautyQueueMapper;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import com.beauty.entity.BeautyQueue;
+import com.beauty.mapper.BeautyQueueMapper;
+import com.beauty.mapper.BeautyQueueMapperImpl;
 
 /**
  * Created by frinder_liu on 2016/2/26.
@@ -14,16 +16,19 @@ import java.util.Map;
 @Service
 public class QueueService extends BaseService<BeautyQueue> {
 
-    @Autowired
-    private BeautyQueueMapper beautyQueueMapper;
+	@Autowired
+	private BeautyQueueMapper beautyQueueMapper;
 
-    @Override
-    public List<?> selectPage(Map<String, Object> params) {
-        return this.beautyQueueMapper.selectPage(params);
-    }
+	@Autowired
+	private BeautyQueueMapperImpl beautyQueueMapperImpl;
 
-    @Override
-    public int selectCount(Map<String, Object> params) {
-        return this.beautyQueueMapper.selectCount(params);
-    }
+	@Override
+	public List<?> selectPage(Map<String, Object> params) {
+		return this.beautyQueueMapperImpl.selectPage(params);
+	}
+
+	@Override
+	public int selectCount(Map<String, Object> params) {
+		return this.beautyQueueMapperImpl.selectCount(params);
+	}
 }

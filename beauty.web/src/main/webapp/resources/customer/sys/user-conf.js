@@ -7,8 +7,10 @@ $(function() {
 
 	var _grid = {
 		ajax : {
+			url : _PATH('/ur/load/page.action'),
 			data : {
-				userId : userId
+				userId : userId,
+				table : 'left'
 			}
 		},
 		pagingType : 'simple'
@@ -20,7 +22,6 @@ $(function() {
 
 	var lopts = _grid;
 	lopts.dom = '<"row"<"#BEAUTY_USER_ROLE_ltool.col-xs-12"f>>t<"row"<"col-xs-6"i><"col-xs-6"p>>';
-	lopts.ajax.url = _PATH('/ur/load/page.action');
 	var ltable = $('#l-list').DGrid({
 		gridName : 'BEAUTY_USER_ROLE',
 		tools : ltools,
@@ -47,7 +48,7 @@ $(function() {
 
 	var ropts = _grid;
 	ropts.dom = '<"row"<"#BEAUTY_USER_ROLE_rtool.col-xs-12"f>>t<"row"<"col-xs-6"i><"col-xs-6"p>>';
-	ropts.ajax.url = _PATH('/ur/load/conf/page.action');
+	ropts.ajax.data.table = 'right';
 	var rtable = $('#r-list').DGrid({
 		gridName : 'BEAUTY_USER_ROLE',
 		tools : rtools,

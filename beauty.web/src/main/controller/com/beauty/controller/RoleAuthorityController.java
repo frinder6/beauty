@@ -28,11 +28,12 @@ public class RoleAuthorityController {
 
 	@RequestMapping(value = "/load/page", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public Page queryPage(HttpServletRequest request, @RequestParam("roleId") Long roleId) {
+	public Page queryPage(HttpServletRequest request, @RequestParam("roleId") Long roleId, @RequestParam("table") String table) {
 		Page page = new Page();
 		page.init(request);
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("roleId", roleId);
+		params.put("table", table);
 		// 将page值设置到map中
 		page.pageToMap(BeautyRoleAuthority.class, params);
 		params.put(RedisUtil._KEY_1, 1);

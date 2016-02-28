@@ -1,15 +1,17 @@
 package com.beauty.service;
 
-import com.beauty.entity.BeautyTableColumns;
-import com.beauty.mapper.BeautyTableColumnsMapper;
-import com.beauty.model.Value;
-import com.beauty.util.RedisUtil;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import com.beauty.entity.BeautyTableColumns;
+import com.beauty.mapper.BeautyTableColumnsMapper;
+import com.beauty.mapper.BeautyTableColumnsMapperImpl;
+import com.beauty.model.Value;
+import com.beauty.util.RedisUtil;
 
 @Service
 public class ColumnsService extends BaseService<BeautyTableColumns> {
@@ -17,18 +19,21 @@ public class ColumnsService extends BaseService<BeautyTableColumns> {
 	@Autowired
 	private BeautyTableColumnsMapper beautyTableColumnsMapper;
 
+	@Autowired
+	private BeautyTableColumnsMapperImpl beautyTableColumnsMapperImpl;
+
 	@Cacheable(value = RedisUtil._REDIS_CACHE_VALUE, key = "#params.get('_REDIS_CACHE_KEY')")
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.beautyTableColumnsMapper.selectCount(params);
+		return this.beautyTableColumnsMapperImpl.selectCount(params);
 	}
 
 	@Cacheable(value = RedisUtil._REDIS_CACHE_VALUE, key = "#params.get('_REDIS_CACHE_KEY')")
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.beautyTableColumnsMapper.selectPage(params);
+		return this.beautyTableColumnsMapperImpl.selectPage(params);
 	}
 
 	@Override
@@ -46,7 +51,7 @@ public class ColumnsService extends BaseService<BeautyTableColumns> {
 	@Override
 	public void deleteByPrimaryKeys(List<Object> list) {
 		// TODO Auto-generated method stub
-		this.beautyTableColumnsMapper.deleteByPrimaryKeys(list);
+		this.beautyTableColumnsMapperImpl.deleteByPrimaryKeys(list);
 	}
 
 	@Override
@@ -57,14 +62,14 @@ public class ColumnsService extends BaseService<BeautyTableColumns> {
 
 	@Cacheable(value = RedisUtil._REDIS_CACHE_VALUE, key = "#params.get('_REDIS_CACHE_KEY')")
 	public List<?> selectByGridName(Map<String, Object> params) {
-		return this.beautyTableColumnsMapper.selectByGridName(params);
+		return this.beautyTableColumnsMapperImpl.selectByGridName(params);
 	}
 
 	public void batchExport(Value value) {
-		this.beautyTableColumnsMapper.batchExport(value);
+		this.beautyTableColumnsMapperImpl.batchExport(value);
 	}
 
 	public void batchCopy(Value value) {
-		this.beautyTableColumnsMapper.batchCopy(value);
+		this.beautyTableColumnsMapperImpl.batchCopy(value);
 	}
 }

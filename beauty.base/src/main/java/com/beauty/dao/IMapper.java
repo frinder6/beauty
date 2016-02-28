@@ -1,24 +1,19 @@
 package com.beauty.dao;
 
-import java.util.List;
-import java.util.Map;
-
 public interface IMapper<T> {
 
-	public int selectCount(Map<String, Object> params);
+	int deleteByPrimaryKey(Long id);
 
-	public List<?> selectPage(Map<String, Object> params);
+	int insert(T record);
 
-	public void updateByPrimaryKeySelective(T entity);
+	int insertSelective(T record);
 
-	public void deleteByPrimaryKeys(List<Object> list);
+	T selectByPrimaryKey(Long id);
 
-	public T selectByPrimaryKey(Long id);
+	int updateByPrimaryKeySelective(T record);
 
-	public void insertSelective(T entity);
+	int updateByPrimaryKeyWithBLOBs(T record);
 
-	public List<?> selectConfPage(Map<String, Object> params);
-
-	public int selectConfCount(Map<String, Object> params);
+	int updateByPrimaryKey(T record);
 
 }

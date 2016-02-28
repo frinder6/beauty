@@ -1,13 +1,15 @@
 package com.beauty.service;
 
-import com.beauty.entity.BeautyResource;
-import com.beauty.mapper.BeautyResourceMapper;
-import com.beauty.model.Value;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import com.beauty.entity.BeautyResource;
+import com.beauty.mapper.BeautyResourceMapper;
+import com.beauty.mapper.BeautyResourceMapperImpl;
+import com.beauty.model.Value;
 
 @Service
 public class ResourceService extends BaseService<BeautyResource> {
@@ -15,16 +17,19 @@ public class ResourceService extends BaseService<BeautyResource> {
 	@Autowired
 	private BeautyResourceMapper beautyResourceMapper;
 
+	@Autowired
+	private BeautyResourceMapperImpl beautyResourceMapperImpl;
+
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.beautyResourceMapper.selectCount(params);
+		return this.beautyResourceMapperImpl.selectCount(params);
 	}
 
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.beautyResourceMapper.selectPage(params);
+		return this.beautyResourceMapperImpl.selectPage(params);
 	}
 
 	@Override
@@ -34,7 +39,7 @@ public class ResourceService extends BaseService<BeautyResource> {
 
 	@Override
 	public void deleteByPrimaryKeys(List<Object> list) {
-		this.beautyResourceMapper.deleteByPrimaryKeys(list);
+		this.beautyResourceMapperImpl.deleteByPrimaryKeys(list);
 	}
 
 	@Override
@@ -50,6 +55,6 @@ public class ResourceService extends BaseService<BeautyResource> {
 	}
 
 	public void batchGroup(Value value) {
-		this.beautyResourceMapper.batchGroup(value);
+		this.beautyResourceMapperImpl.batchGroup(value);
 	}
 }

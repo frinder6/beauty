@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.beauty.mapper.BeautyAuthorityResourceMapperImpl">
+
+	<resultMap id="BaseResultMap" extends="com.beauty.mapper.BeautyAuthorityResourceMapper.BaseResultMap" type="com.beauty.entity.BeautyAuthorityResource">
+		<id column="id" property="DT_RowId" jdbcType="BIGINT" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Where_Clause">
+		<if test="searchValue">
+			AND ( name LIKE "%" #{searchValue} "%" OR code LIKE "%" #{searchValue} "%"
+			OR remark LIKE "%" #{searchValue} "%" OR url LIKE "%" #{searchValue} "%"
+			)
+		</if>
+	</sql>
+
+	<sql id="Base_Page_Sql">
+		<if test="table == 'left'">
+			SELECT id, `code`, `name`, url FROM beauty_menu t1
+			WHERE id NOT IN (SELECT resource_id FROM beauty_authority_resource WHERE type = #{type})
+			<include refid="Base_Where_Clause" />
+			ORDER BY
+			<if test="orderColumn"> ${orderColumn} ${orderDir} </if>
+			<if test="orderColumn == null"> id </if>
+			LIMIT #{from}, #{size}
+		</if>
+		<if test="table == 'right'">
+			SELECT t1.id, t2.`code`, t2.`name`, t2.url FROM beauty_authority_resource t1 LEFT JOIN beauty_resource t2 ON t2.id = t1.resource_id
+			WHERE t1.authority_id = #{authorityId} AND t1.type = #{type}
+			<include refid="Base_Where_Clause" />
+		</if>
+	</sql>
+
+	<sql id="Base_Count_Sql">
+		<if test="table == 'left'">
+			SELECT COUNT(1) FROM beauty_menu t1 WHERE id NOT IN (SELECT resource_id FROM beauty_authority_resource
+			WHERE type = #{type})
+			<include refid="Base_Where_Clause" />
+		</if>
+		<if test="table == 'right'">
+			SELECT COUNT(1) FROM beauty_authority_resource t1 LEFT JOIN beauty_resource t2 ON t2.id = t1.resource_id
+			WHERE t1.authority_id = #{authorityId} AND t1.type = #{type}
+			<include refid="Base_Where_Clause" />
+		</if>
+	</sql>
+
+	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		<include refid="Base_Page_Sql" />
+	</select>
+	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
+		<include refid="Base_Count_Sql" />
+	</select>
+
+	<insert id="insert" parameterType="com.beauty.model.Value">
+		insert into beauty_authority_resource (authority_id, resource_id, type)
+		VALUES
+		<if test="values.size() > 0">
+			<foreach collection="values" item="id" separator=",">
+				<trim prefix="(" suffix=")" suffixOverrides=",">
+					#{value}, #{id}, #{type}
+				</trim>
+			</foreach>
+		</if>
+	</insert>
+
+	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
+		delete from beauty_authority_resource
+		where 1 != 1
+		<if test="list.size() > 0">
+			or id in
+			<foreach collection="list" open="(" close=")" item="id" separator=",">
+				#{id}
+			</foreach>
+		</if>
+	</delete>
+
+</mapper>

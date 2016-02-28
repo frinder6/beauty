@@ -1,13 +1,15 @@
 package com.beauty.service;
 
-import com.beauty.entity.BeautyRoleAuthority;
-import com.beauty.mapper.BeautyRoleAuthorityMapper;
-import com.beauty.model.Value;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import com.beauty.entity.BeautyRoleAuthority;
+import com.beauty.mapper.BeautyRoleAuthorityMapper;
+import com.beauty.mapper.BeautyRoleAuthorityMapperImpl;
+import com.beauty.model.Value;
 
 @Service
 public class RoleAuthorityService extends BaseService<BeautyRoleAuthority> {
@@ -15,33 +17,29 @@ public class RoleAuthorityService extends BaseService<BeautyRoleAuthority> {
 	@Autowired
 	private BeautyRoleAuthorityMapper beautyRoleAuthorityMapper;
 
+	@Autowired
+	private BeautyRoleAuthorityMapperImpl beautyRoleAuthorityMapperImpl;
+
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.beautyRoleAuthorityMapper.selectCount(params);
+		return this.beautyRoleAuthorityMapperImpl.selectCount(params);
 	}
 
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.beautyRoleAuthorityMapper.selectPage(params);
+		return this.beautyRoleAuthorityMapperImpl.selectPage(params);
 	}
 
 	@Override
 	public void deleteByPrimaryKeys(List<Object> list) {
 		// TODO Auto-generated method stub
-		this.beautyRoleAuthorityMapper.deleteByPrimaryKeys(list);
+		this.beautyRoleAuthorityMapperImpl.deleteByPrimaryKeys(list);
 	}
 
 	public void insert(Value value) {
-		this.beautyRoleAuthorityMapper.insert(value);
+		this.beautyRoleAuthorityMapperImpl.insert(value);
 	}
 
-	public List<?> selectConfPage(Map<String, Object> params) {
-		return this.beautyRoleAuthorityMapper.selectConfPage(params);
-	}
-
-	public int selectConfCount(Map<String, Object> params) {
-		return this.beautyRoleAuthorityMapper.selectConfCount(params);
-	}
 }

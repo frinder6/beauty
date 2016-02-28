@@ -1,12 +1,14 @@
 package com.beauty.service;
 
-import com.beauty.entity.BeautyRole;
-import com.beauty.mapper.BeautyRoleMapper;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import com.beauty.entity.BeautyRole;
+import com.beauty.mapper.BeautyRoleMapper;
+import com.beauty.mapper.BeautyRoleMapperImpl;
 
 @Service
 public class RoleService extends BaseService<BeautyRole> {
@@ -14,16 +16,19 @@ public class RoleService extends BaseService<BeautyRole> {
 	@Autowired
 	private BeautyRoleMapper beautyRoleMapper;
 
+	@Autowired
+	private BeautyRoleMapperImpl beautyRoleMapperImpl;
+
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.beautyRoleMapper.selectCount(params);
+		return this.beautyRoleMapperImpl.selectCount(params);
 	}
 
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.beautyRoleMapper.selectPage(params);
+		return this.beautyRoleMapperImpl.selectPage(params);
 	}
 
 	@Override
@@ -35,7 +40,7 @@ public class RoleService extends BaseService<BeautyRole> {
 	@Override
 	public void deleteByPrimaryKeys(List<Object> list) {
 		// TODO Auto-generated method stub
-		this.beautyRoleMapper.deleteByPrimaryKeys(list);
+		this.beautyRoleMapperImpl.deleteByPrimaryKeys(list);
 	}
 
 	@Override
@@ -51,6 +56,6 @@ public class RoleService extends BaseService<BeautyRole> {
 	}
 
 	public void batchSync() {
-		this.beautyRoleMapper.batchSync();
+		this.beautyRoleMapperImpl.batchSync();
 	}
 }

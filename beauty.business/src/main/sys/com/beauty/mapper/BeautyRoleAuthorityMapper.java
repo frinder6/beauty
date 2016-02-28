@@ -6,6 +6,5 @@ import com.beauty.model.Value;
 
 public interface BeautyRoleAuthorityMapper extends IMapper<BeautyRoleAuthority> {
 
-	public void insert(Value value);
 
 }

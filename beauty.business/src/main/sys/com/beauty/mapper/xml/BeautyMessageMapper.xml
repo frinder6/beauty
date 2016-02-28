@@ -1,184 +1,199 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.beauty.mapper.BeautyMessageMapper">
-    <resultMap id="BaseResultMap" type="com.beauty.entity.BeautyMessage">
-        <id column="id" property="id" jdbcType="BIGINT"/>
-        <id column="id" property="DT_RowId" jdbcType="BIGINT"/>
-        <result column="message_head" property="messageHead" jdbcType="VARCHAR"/>
-        <result column="message_body" property="messageBody" jdbcType="VARCHAR"/>
-        <result column="status" property="status" jdbcType="TINYINT"/>
-        <result column="remark" property="remark" jdbcType="VARCHAR"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="creater" property="creater" jdbcType="VARCHAR"/>
-        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
-        <result column="modifier" property="modifier" jdbcType="VARCHAR"/>
-        <result column="is_deleted" property="isDeleted" jdbcType="TINYINT"/>
-        <result column="def1" property="def1" jdbcType="VARCHAR"/>
-        <result column="def2" property="def2" jdbcType="VARCHAR"/>
-        <result column="def3" property="def3" jdbcType="TIMESTAMP"/>
-    </resultMap>
-    <sql id="Base_Column_List">
-    id, message_head, message_body, status, remark, create_time, creater, last_update_time, 
+<mapper namespace="com.beauty.mapper.BeautyMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.beauty.entity.BeautyMessage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="message_head" property="messageHead" jdbcType="VARCHAR" />
+    <result column="message_body" property="messageBody" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="creater" property="creater" jdbcType="VARCHAR" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="modifier" property="modifier" jdbcType="VARCHAR" />
+    <result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
+    <result column="def1" property="def1" jdbcType="VARCHAR" />
+    <result column="def2" property="def2" jdbcType="VARCHAR" />
+    <result column="def3" property="def3" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, account, message_head, message_body, status, remark, create_time, creater, last_update_time, 
     modifier, is_deleted, def1, def2, def3
-    </sql>
-    <sql id="Base_Where_Clause">
-        <where>
-            1 = 1
-            <if test="searchValue">
-                AND ( message_head LIKE "%" #{searchValue} "%" OR message_body LIKE "%" #{searchValue} "%" OR remark LIKE "%" #{searchValue} "%" )
-            </if>
-        </where>
-    </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
-        select
-        <include refid="Base_Column_List"/>
-        from beauty_message
-        where id = #{id,jdbcType=BIGINT}
-    </select>
-    <select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
-        SELECT
-        <include refid="Base_Column_List" />
-        FROM beauty_message
-        <include refid="Base_Where_Clause" />
-        ORDER BY
-        <if test="orderColumn">
-            ${orderColumn} ${orderDir}
-        </if>
-        <if test="orderColumn == null">
-            id
-        </if>
-        LIMIT #{from}, #{size}
-    </select>
-    <select id="selectCount" parameterType="java.util.HashMap" resultType="int">
-        SELECT
-        COUNT(1)
-        FROM beauty_message
-        <include refid="Base_Where_Clause" />
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from beauty_message
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from beauty_message
     where id = #{id,jdbcType=BIGINT}
-    </delete>
-    <insert id="insertSelective" parameterType="com.beauty.entity.BeautyMessage">
-        insert into beauty_message
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
-            <if test="messageHead != null">
-                message_head,
-            </if>
-            <if test="messageBody != null">
-                message_body,
-            </if>
-            <if test="status != null">
-                status,
-            </if>
-            <if test="remark != null">
-                remark,
-            </if>
-            <if test="createTime != null">
-                create_time,
-            </if>
-            <if test="creater != null">
-                creater,
-            </if>
-            <if test="lastUpdateTime != null">
-                last_update_time,
-            </if>
-            <if test="modifier != null">
-                modifier,
-            </if>
-            <if test="isDeleted != null">
-                is_deleted,
-            </if>
-            <if test="def1 != null">
-                def1,
-            </if>
-            <if test="def2 != null">
-                def2,
-            </if>
-            <if test="def3 != null">
-                def3,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=BIGINT},
-            </if>
-            <if test="messageHead != null">
-                #{messageHead,jdbcType=VARCHAR},
-            </if>
-            <if test="messageBody != null">
-                #{messageBody,jdbcType=VARCHAR},
-            </if>
-            <if test="status != null">
-                #{status,jdbcType=TINYINT},
-            </if>
-            <if test="remark != null">
-                #{remark,jdbcType=VARCHAR},
-            </if>
-            <if test="createTime != null">
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="creater != null">
-                #{creater,jdbcType=VARCHAR},
-            </if>
-            <if test="lastUpdateTime != null">
-                #{lastUpdateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="modifier != null">
-                #{modifier,jdbcType=VARCHAR},
-            </if>
-            <if test="isDeleted != null">
-                #{isDeleted,jdbcType=TINYINT},
-            </if>
-            <if test="def1 != null">
-                #{def1,jdbcType=VARCHAR},
-            </if>
-            <if test="def2 != null">
-                #{def2,jdbcType=VARCHAR},
-            </if>
-            <if test="def3 != null">
-                #{def3,jdbcType=TIMESTAMP},
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.beauty.entity.BeautyMessage">
-        update beauty_message
-        <set>
-            <if test="messageHead != null">
-                message_head = #{messageHead,jdbcType=VARCHAR},
-            </if>
-            <if test="messageBody != null">
-                message_body = #{messageBody,jdbcType=VARCHAR},
-            </if>
-            <if test="status != null">
-                status = #{status,jdbcType=TINYINT},
-            </if>
-            <if test="remark != null">
-                remark = #{remark,jdbcType=VARCHAR},
-            </if>
-            <if test="lastUpdateTime != null">
-                last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="modifier != null">
-                modifier = #{modifier,jdbcType=VARCHAR},
-            </if>
-            <if test="isDeleted != null">
-                is_deleted = #{isDeleted,jdbcType=TINYINT},
-            </if>
-            <if test="def1 != null">
-                def1 = #{def1,jdbcType=VARCHAR},
-            </if>
-            <if test="def2 != null">
-                def2 = #{def2,jdbcType=VARCHAR},
-            </if>
-            <if test="def3 != null">
-                def3 = #{def3,jdbcType=TIMESTAMP},
-            </if>
-        </set>
-        where id = #{id,jdbcType=BIGINT}
-    </update>
-
+  </delete>
+  <insert id="insert" parameterType="com.beauty.entity.BeautyMessage" >
+    insert into beauty_message (id, account, message_head, 
+      message_body, status, remark, 
+      create_time, creater, last_update_time, 
+      modifier, is_deleted, def1, 
+      def2, def3)
+    values (#{id,jdbcType=BIGINT}, #{account,jdbcType=VARCHAR}, #{messageHead,jdbcType=VARCHAR}, 
+      #{messageBody,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
+      #{modifier,jdbcType=VARCHAR}, #{isDeleted,jdbcType=TINYINT}, #{def1,jdbcType=VARCHAR}, 
+      #{def2,jdbcType=VARCHAR}, #{def3,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.beauty.entity.BeautyMessage" >
+    insert into beauty_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="messageHead != null" >
+        message_head,
+      </if>
+      <if test="messageBody != null" >
+        message_body,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="creater != null" >
+        creater,
+      </if>
+      <if test="lastUpdateTime != null" >
+        last_update_time,
+      </if>
+      <if test="modifier != null" >
+        modifier,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="def1 != null" >
+        def1,
+      </if>
+      <if test="def2 != null" >
+        def2,
+      </if>
+      <if test="def3 != null" >
+        def3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="messageHead != null" >
+        #{messageHead,jdbcType=VARCHAR},
+      </if>
+      <if test="messageBody != null" >
+        #{messageBody,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null" >
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="def1 != null" >
+        #{def1,jdbcType=VARCHAR},
+      </if>
+      <if test="def2 != null" >
+        #{def2,jdbcType=VARCHAR},
+      </if>
+      <if test="def3 != null" >
+        #{def3,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.beauty.entity.BeautyMessage" >
+    update beauty_message
+    <set >
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="messageHead != null" >
+        message_head = #{messageHead,jdbcType=VARCHAR},
+      </if>
+      <if test="messageBody != null" >
+        message_body = #{messageBody,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null" >
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null" >
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="def1 != null" >
+        def1 = #{def1,jdbcType=VARCHAR},
+      </if>
+      <if test="def2 != null" >
+        def2 = #{def2,jdbcType=VARCHAR},
+      </if>
+      <if test="def3 != null" >
+        def3 = #{def3,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.beauty.entity.BeautyMessage" >
+    update beauty_message
+    set account = #{account,jdbcType=VARCHAR},
+      message_head = #{messageHead,jdbcType=VARCHAR},
+      message_body = #{messageBody,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      creater = #{creater,jdbcType=VARCHAR},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      def1 = #{def1,jdbcType=VARCHAR},
+      def2 = #{def2,jdbcType=VARCHAR},
+      def3 = #{def3,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
 </mapper>

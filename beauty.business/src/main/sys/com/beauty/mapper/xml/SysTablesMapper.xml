@@ -1,43 +1,178 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.beauty.mapper.SysTablesMapper">
-	<resultMap id="BaseResultMap" type="com.beauty.entity.SysTables">
-		<result column="TABLE_SCHEMA" jdbcType="VARCHAR" property="tableSchema" />
-		<result column="TABLE_NAME" jdbcType="VARCHAR" property="tableName" />
-		<result column="TABLE_COMMENT" jdbcType="VARCHAR" property="tableComment" />
-	</resultMap>
-	<sql id="Base_Column_List">
-		TABLE_SCHEMA, TABLE_NAME, TABLE_COMMENT
-	</sql>
-	<sql id="Base_Where_Clause">
-		<where>
-			TABLE_SCHEMA IN ( SELECT dict_value FROM beauty_dict WHERE dict_key = 'schema' )
-			<if test="searchValue">
-				AND ( TABLE_NAME LIKE "%" #{searchValue} "%" OR TABLE_COMMENT LIKE "%" #{searchValue} "%" )
-			</if>
-			<if test="serialize">
-				${serialize}
-			</if>
-		</where>
-	</sql>
-	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
-		SELECT
-		<include refid="Base_Column_List" />
-		FROM information_schema.`TABLES`
-		<include refid="Base_Where_Clause" />
-		ORDER BY 
-		<if test="orderColumn">
-			${orderColumn} ${orderDir}
-		</if>
-		<if test="orderColumn == null">
-			TABLE_NAME
-		</if>
-		LIMIT #{from}, #{size}
-	</select>
-	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
-		SELECT COUNT(1)
-		FROM information_schema.`TABLES`
-		<include refid="Base_Where_Clause" />
-	</select>
-
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.beauty.mapper.SysTablesMapper" >
+  <resultMap id="BaseResultMap" type="com.beauty.entity.SysTables" >
+    <result column="TABLE_CATALOG" property="tableCatalog" jdbcType="VARCHAR" />
+    <result column="TABLE_SCHEMA" property="tableSchema" jdbcType="VARCHAR" />
+    <result column="TABLE_NAME" property="tableName" jdbcType="VARCHAR" />
+    <result column="TABLE_TYPE" property="tableType" jdbcType="VARCHAR" />
+    <result column="ENGINE" property="engine" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="BIGINT" />
+    <result column="ROW_FORMAT" property="rowFormat" jdbcType="VARCHAR" />
+    <result column="TABLE_ROWS" property="tableRows" jdbcType="BIGINT" />
+    <result column="AVG_ROW_LENGTH" property="avgRowLength" jdbcType="BIGINT" />
+    <result column="DATA_LENGTH" property="dataLength" jdbcType="BIGINT" />
+    <result column="MAX_DATA_LENGTH" property="maxDataLength" jdbcType="BIGINT" />
+    <result column="INDEX_LENGTH" property="indexLength" jdbcType="BIGINT" />
+    <result column="DATA_FREE" property="dataFree" jdbcType="BIGINT" />
+    <result column="AUTO_INCREMENT" property="autoIncrement" jdbcType="BIGINT" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="CHECK_TIME" property="checkTime" jdbcType="TIMESTAMP" />
+    <result column="TABLE_COLLATION" property="tableCollation" jdbcType="VARCHAR" />
+    <result column="CHECKSUM" property="checksum" jdbcType="BIGINT" />
+    <result column="CREATE_OPTIONS" property="createOptions" jdbcType="VARCHAR" />
+    <result column="TABLE_COMMENT" property="tableComment" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.beauty.entity.SysTables" >
+    insert into TABLES (TABLE_CATALOG, TABLE_SCHEMA, TABLE_NAME, 
+      TABLE_TYPE, ENGINE, VERSION, 
+      ROW_FORMAT, TABLE_ROWS, AVG_ROW_LENGTH, 
+      DATA_LENGTH, MAX_DATA_LENGTH, INDEX_LENGTH, 
+      DATA_FREE, AUTO_INCREMENT, CREATE_TIME, 
+      UPDATE_TIME, CHECK_TIME, TABLE_COLLATION, 
+      CHECKSUM, CREATE_OPTIONS, TABLE_COMMENT
+      )
+    values (#{tableCatalog,jdbcType=VARCHAR}, #{tableSchema,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, 
+      #{tableType,jdbcType=VARCHAR}, #{engine,jdbcType=VARCHAR}, #{version,jdbcType=BIGINT}, 
+      #{rowFormat,jdbcType=VARCHAR}, #{tableRows,jdbcType=BIGINT}, #{avgRowLength,jdbcType=BIGINT}, 
+      #{dataLength,jdbcType=BIGINT}, #{maxDataLength,jdbcType=BIGINT}, #{indexLength,jdbcType=BIGINT}, 
+      #{dataFree,jdbcType=BIGINT}, #{autoIncrement,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{checkTime,jdbcType=TIMESTAMP}, #{tableCollation,jdbcType=VARCHAR}, 
+      #{checksum,jdbcType=BIGINT}, #{createOptions,jdbcType=VARCHAR}, #{tableComment,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.beauty.entity.SysTables" >
+    insert into TABLES
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tableCatalog != null" >
+        TABLE_CATALOG,
+      </if>
+      <if test="tableSchema != null" >
+        TABLE_SCHEMA,
+      </if>
+      <if test="tableName != null" >
+        TABLE_NAME,
+      </if>
+      <if test="tableType != null" >
+        TABLE_TYPE,
+      </if>
+      <if test="engine != null" >
+        ENGINE,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="rowFormat != null" >
+        ROW_FORMAT,
+      </if>
+      <if test="tableRows != null" >
+        TABLE_ROWS,
+      </if>
+      <if test="avgRowLength != null" >
+        AVG_ROW_LENGTH,
+      </if>
+      <if test="dataLength != null" >
+        DATA_LENGTH,
+      </if>
+      <if test="maxDataLength != null" >
+        MAX_DATA_LENGTH,
+      </if>
+      <if test="indexLength != null" >
+        INDEX_LENGTH,
+      </if>
+      <if test="dataFree != null" >
+        DATA_FREE,
+      </if>
+      <if test="autoIncrement != null" >
+        AUTO_INCREMENT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="checkTime != null" >
+        CHECK_TIME,
+      </if>
+      <if test="tableCollation != null" >
+        TABLE_COLLATION,
+      </if>
+      <if test="checksum != null" >
+        CHECKSUM,
+      </if>
+      <if test="createOptions != null" >
+        CREATE_OPTIONS,
+      </if>
+      <if test="tableComment != null" >
+        TABLE_COMMENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tableCatalog != null" >
+        #{tableCatalog,jdbcType=VARCHAR},
+      </if>
+      <if test="tableSchema != null" >
+        #{tableSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null" >
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableType != null" >
+        #{tableType,jdbcType=VARCHAR},
+      </if>
+      <if test="engine != null" >
+        #{engine,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=BIGINT},
+      </if>
+      <if test="rowFormat != null" >
+        #{rowFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="tableRows != null" >
+        #{tableRows,jdbcType=BIGINT},
+      </if>
+      <if test="avgRowLength != null" >
+        #{avgRowLength,jdbcType=BIGINT},
+      </if>
+      <if test="dataLength != null" >
+        #{dataLength,jdbcType=BIGINT},
+      </if>
+      <if test="maxDataLength != null" >
+        #{maxDataLength,jdbcType=BIGINT},
+      </if>
+      <if test="indexLength != null" >
+        #{indexLength,jdbcType=BIGINT},
+      </if>
+      <if test="dataFree != null" >
+        #{dataFree,jdbcType=BIGINT},
+      </if>
+      <if test="autoIncrement != null" >
+        #{autoIncrement,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkTime != null" >
+        #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tableCollation != null" >
+        #{tableCollation,jdbcType=VARCHAR},
+      </if>
+      <if test="checksum != null" >
+        #{checksum,jdbcType=BIGINT},
+      </if>
+      <if test="createOptions != null" >
+        #{createOptions,jdbcType=VARCHAR},
+      </if>
+      <if test="tableComment != null" >
+        #{tableComment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
 </mapper>

@@ -9,9 +9,9 @@
 <body style="background-color: #E4E7EA;">
 
 	<%@include file="../import-search.jsp"%>
-	
+
 	<div class="table-responsive">
-		<table id="list" class="table table-bordered" width="100%">
+		<table id="list" class="table table-bordered nowrap" cellspacing="0" width="100%">
 		</table>
 	</div>
 	<!-- table-responsive -->

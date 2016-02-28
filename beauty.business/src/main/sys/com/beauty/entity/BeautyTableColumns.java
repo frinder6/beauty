@@ -1,9 +1,14 @@
 package com.beauty.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.Date;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BeautyTableColumns extends BaseEntity {
+
     private static final long serialVersionUID = 5796730273999538791L;
+
     private Long id;
 
     private Long columnId;
@@ -30,13 +35,13 @@ public class BeautyTableColumns extends BaseEntity {
 
     private String render;
 
-    private Byte orderable;
+    private Boolean orderable;
 
-    private Byte searchable;
+    private Boolean searchable;
 
-    private Byte visible;
+    private Boolean visible;
 
-    private Byte editable;
+    private Boolean editable;
 
     private String targets;
 
@@ -164,35 +169,35 @@ public class BeautyTableColumns extends BaseEntity {
         this.render = render == null ? null : render.trim();
     }
 
-    public Byte getOrderable() {
+    public Boolean getOrderable() {
         return orderable;
     }
 
-    public void setOrderable(Byte orderable) {
+    public void setOrderable(Boolean orderable) {
         this.orderable = orderable;
     }
 
-    public Byte getSearchable() {
+    public Boolean getSearchable() {
         return searchable;
     }
 
-    public void setSearchable(Byte searchable) {
+    public void setSearchable(Boolean searchable) {
         this.searchable = searchable;
     }
 
-    public Byte getVisible() {
+    public Boolean getVisible() {
         return visible;
     }
 
-    public void setVisible(Byte visible) {
+    public void setVisible(Boolean visible) {
         this.visible = visible;
     }
 
-    public Byte getEditable() {
+    public Boolean getEditable() {
         return editable;
     }
 
-    public void setEditable(Byte editable) {
+    public void setEditable(Boolean editable) {
         this.editable = editable;
     }
 

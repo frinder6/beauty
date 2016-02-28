@@ -6,101 +6,56 @@
 		<result column="authority_id" property="authorityId" jdbcType="BIGINT" />
 		<result column="resource_id" property="resourceId" jdbcType="BIGINT" />
 		<result column="type" property="type" jdbcType="TINYINT" />
-		<result column="code" property="code" jdbcType="VARCHAR" />
-		<result column="name" property="name" jdbcType="VARCHAR" />
-		<result column="url" property="url" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, authority_id, resource_id
+		id, authority_id, resource_id, type
 	</sql>
-	<sql id="Base_Where_Clause">
-		<if test="searchValue">
-			AND ( name LIKE "%" #{searchValue} "%" OR code LIKE "%" #{searchValue} "%"
-			OR remark LIKE "%" #{searchValue} "%" OR url LIKE "%" #{searchValue} "%"
-			)
-		</if>
-	</sql>
-	<sql id="Base_Table_Name">
-		<if test="type == 1">
-			beauty_menu
-		</if>
-		<if test="type == 2">
-			beauty_resource
-		</if>
-	</sql>
-	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
-		SELECT id, `code`, `name`, url
-		FROM
-		<include refid="Base_Table_Name" />
-		t1
-		WHERE id NOT IN (SELECT resource_id FROM beauty_authority_resource WHERE type = #{type})
-		<include refid="Base_Where_Clause" />
-		ORDER BY
-		<if test="orderColumn">
-			${orderColumn} ${orderDir}
-		</if>
-		<if test="orderColumn == null">
-			id
-		</if>
-		LIMIT #{from}, #{size}
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from beauty_authority_resource
+		where id = #{id,jdbcType=BIGINT}
 	</select>
-	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
-		SELECT COUNT(1)
-		FROM
-		<include refid="Base_Table_Name" />
-		t1
-		WHERE id NOT IN (SELECT resource_id FROM beauty_authority_resource WHERE type = #{type})
-		<include refid="Base_Where_Clause" />
-	</select>
-	<select id="selectConfPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
-		SELECT t1.id, t2.`code`, t2.`name`, t2.url
-		FROM beauty_authority_resource t1 LEFT JOIN
-		<include refid="Base_Table_Name" />
-		t2 ON t2.id = t1.resource_id
-		WHERE t1.authority_id = #{authorityId} AND t1.type = #{type}
-		<include refid="Base_Where_Clause" />
-	</select>
-	<select id="selectConfCount" parameterType="java.util.HashMap" resultType="int">
-		SELECT COUNT(1)
-		FROM beauty_authority_resource t1 LEFT JOIN
-		<include refid="Base_Table_Name" />
-		t2 ON t2.id = t1.resource_id
-		WHERE t1.authority_id = #{authorityId} AND t1.type = #{type}
-		<include refid="Base_Where_Clause" />
-	</select>
-	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
 		delete from beauty_authority_resource
-		where 1 != 1
-		<if test="list.size() > 0">
-			or id in
-			<foreach collection="list" open="(" close=")" item="id" separator=",">
-				#{id}
-			</foreach>
-		</if>
+		where id = #{id,jdbcType=BIGINT}
 	</delete>
+	<insert id="insert" parameterType="com.beauty.entity.BeautyAuthorityResource">
+		insert into beauty_authority_resource (id, authority_id, resource_id,
+		type)
+		values (#{id,jdbcType=BIGINT}, #{authorityId,jdbcType=BIGINT}, #{resourceId,jdbcType=BIGINT},
+		#{type,jdbcType=TINYINT})
+	</insert>
 	<insert id="insertSelective" parameterType="com.beauty.entity.BeautyAuthorityResource">
 		insert into beauty_authority_resource
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null"> id, </if>
-			<if test="authorityId != null"> authority_id, </if>
-			<if test="resourceId != null"> resource_id, </if>
+			<if test="id != null">
+				id,
+			</if>
+			<if test="authorityId != null">
+				authority_id,
+			</if>
+			<if test="resourceId != null">
+				resource_id,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null"> #{id,jdbcType=BIGINT}, </if>
-			<if test="authorityId != null"> #{authorityId,jdbcType=BIGINT}, </if>
-			<if test="resourceId != null"> #{resourceId,jdbcType=BIGINT}, </if>
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="authorityId != null">
+				#{authorityId,jdbcType=BIGINT},
+			</if>
+			<if test="resourceId != null">
+				#{resourceId,jdbcType=BIGINT},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=TINYINT},
+			</if>
 		</trim>
-	</insert>
-	<insert id="insert" parameterType="com.beauty.model.Value">
-		insert into beauty_authority_resource (authority_id, resource_id, type)
-		VALUES
-		<if test="values.size() > 0">
-			<foreach collection="values" item="id" separator=",">
-				<trim prefix="(" suffix=")" suffixOverrides=",">
-					#{value}, #{id}, #{type}
-				</trim>
-			</foreach>
-		</if>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="com.beauty.entity.BeautyAuthorityResource">
 		update beauty_authority_resource
@@ -111,7 +66,17 @@
 			<if test="resourceId != null">
 				resource_id = #{resourceId,jdbcType=BIGINT},
 			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=TINYINT},
+			</if>
 		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.beauty.entity.BeautyAuthorityResource">
+		update beauty_authority_resource
+		set authority_id = #{authorityId,jdbcType=BIGINT},
+		resource_id = #{resourceId,jdbcType=BIGINT},
+		type = #{type,jdbcType=TINYINT}
 		where id = #{id,jdbcType=BIGINT}
 	</update>
 </mapper>

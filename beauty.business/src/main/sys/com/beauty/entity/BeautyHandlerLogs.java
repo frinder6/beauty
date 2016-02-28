@@ -1,7 +1,10 @@
 package com.beauty.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.Date;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BeautyHandlerLogs extends BaseEntity {
     private static final long serialVersionUID = 5506741818699522534L;
     private Long id;

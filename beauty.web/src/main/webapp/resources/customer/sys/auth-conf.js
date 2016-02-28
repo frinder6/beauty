@@ -7,9 +7,11 @@ $(function() {
 
 	var _grid = {
 		ajax : {
+			url : _PATH('/ar/load/page.action'),
 			data : {
 				authorityId : authorityId,
-				type : type
+				type : type,
+				table : 'left'
 			}
 		},
 		pagingType : 'simple'
@@ -21,7 +23,6 @@ $(function() {
 
 	var lopts = _grid;
 	lopts.dom = '<"row"<"#BEAUTY_AUTHORITY_RESOURCE_ltool.col-xs-12"f>>t<"row"<"col-xs-6"i><"col-xs-6"p>>';
-	lopts.ajax.url = _PATH('/ar/load/page.action');
 	var ltable = $('#l-list').DGrid({
 		gridName : 'BEAUTY_AUTHORITY_RESOURCE',
 		tools : ltools,
@@ -49,7 +50,7 @@ $(function() {
 
 	var ropts = _grid;
 	ropts.dom = '<"row"<"#BEAUTY_AUTHORITY_RESOURCE_rtool.col-xs-12"f>>t<"row"<"col-xs-6"i><"col-xs-6"p>>';
-	ropts.ajax.url = _PATH('/ar/load/conf/page.action');
+	ropts.ajax.data.table = 'right';
 	var rtable = $('#r-list').DGrid({
 		gridName : 'BEAUTY_AUTHORITY_RESOURCE',
 		tools : rtools,

@@ -1,6 +1,8 @@
 package com.beauty.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SysColumns extends BaseEntity {
 
 	private static final long serialVersionUID = -3990427261707473232L;

@@ -1,109 +1,71 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.beauty.mapper.BeautyRoleAuthorityMapper">
-	<resultMap id="BaseResultMap" type="com.beauty.entity.BeautyRoleAuthority">
-		<id column="id" property="id" jdbcType="BIGINT" />
-		<result column="role_id" property="roleId" jdbcType="BIGINT" />
-		<result column="authority_id" property="authorityId" jdbcType="BIGINT" />
-		<result column="code" property="code" jdbcType="VARCHAR" />
-		<result column="name" property="name" jdbcType="VARCHAR" />
-	</resultMap>
-	<sql id="Base_Column_List">
-		id, role_id, authority_id
-	</sql>
-	<sql id="Base_Where_Clause">
-		<if test="searchValue">
-			AND ( a.name LIKE "%" #{searchValue} "%" OR a.code LIKE "%" #{searchValue} "%" )
-		</if>
-	</sql>
-	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
-		SELECT id, `code`, `name`
-		FROM beauty_authority a
-		WHERE id NOT IN (SELECT authority_id FROM beauty_role_authority t WHERE t.role_id = #{roleId})
-		<include refid="Base_Where_Clause" />
-		ORDER BY
-		<if test="orderColumn">
-			${orderColumn} ${orderDir}
-		</if>
-		<if test="orderColumn == null">
-			id
-		</if>
-		LIMIT #{from}, #{size}
-	</select>
-	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
-		SELECT COUNT(1)
-		FROM beauty_authority a
-		WHERE id NOT IN (SELECT authority_id FROM beauty_role_authority t WHERE t.role_id = #{roleId})
-		<include refid="Base_Where_Clause" />
-	</select>
-	<select id="selectConfPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
-		SELECT ra.id, ra.role_id, a.id AS authority_id, a.`code`, a.`name`
-		FROM beauty_role_authority ra
-		LEFT JOIN beauty_authority a ON a.id = ra.authority_id
-		WHERE ra.role_id = #{roleId}
-		<include refid="Base_Where_Clause" />
-		ORDER BY
-		<if test="orderColumn">
-			${orderColumn} ${orderDir}
-		</if>
-		<if test="orderColumn == null">
-			id
-		</if>
-		LIMIT #{from}, #{size}
-	</select>
-	<select id="selectConfCount" parameterType="java.util.HashMap" resultType="int">
-		SELECT COUNT(1)
-		FROM beauty_role_authority ra
-		LEFT JOIN beauty_authority a ON a.id = ra.authority_id
-		WHERE ra.role_id = #{roleId}
-		<include refid="Base_Where_Clause" />
-	</select>
-	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
-		select
-		<include refid="Base_Column_List" />
-		from beauty_role_authority
-		where id = #{id,jdbcType=BIGINT}
-	</select>
-	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
-		delete from beauty_role_authority
-		where 1 != 1
-		<if test="list.size() > 0">
-			OR id IN
-			<foreach collection="list" open="(" close=")" item="id" separator=",">
-				#{id}
-			</foreach>
-		</if>
-	</delete>
-	<insert id="insert" parameterType="com.beauty.model.Value">
-		insert into beauty_role_authority (role_id, authority_id)
-		values
-		<if test="values.size() > 0">
-			<foreach collection="values" item="id" separator=",">
-				<trim prefix="(" suffix=")" suffixOverrides=",">
-					#{value}, #{id}
-				</trim>
-			</foreach>
-		</if>
-	</insert>
-	<insert id="insertSelective" parameterType="com.beauty.entity.BeautyRoleAuthority">
-		insert into beauty_role_authority
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null"> id, </if>
-			<if test="roleId != null"> role_id, </if>
-			<if test="authorityId != null"> authority_id, </if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null"> #{id,jdbcType=BIGINT}, </if>
-			<if test="roleId != null"> #{roleId,jdbcType=BIGINT}, </if>
-			<if test="authorityId != null"> #{authorityId,jdbcType=BIGINT}, </if>
-		</trim>
-	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.beauty.entity.BeautyRoleAuthority">
-		update beauty_role_authority
-		<set>
-			<if test="roleId != null"> role_id = #{roleId,jdbcType=BIGINT}, </if>
-			<if test="authorityId != null"> authority_id = #{authorityId,jdbcType=BIGINT}, </if>
-		</set>
-		where id = #{id,jdbcType=BIGINT}
-	</update>
+<mapper namespace="com.beauty.mapper.BeautyRoleAuthorityMapper" >
+  <resultMap id="BaseResultMap" type="com.beauty.entity.BeautyRoleAuthority" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="role_id" property="roleId" jdbcType="BIGINT" />
+    <result column="authority_id" property="authorityId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, role_id, authority_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from beauty_role_authority
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from beauty_role_authority
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.beauty.entity.BeautyRoleAuthority" >
+    insert into beauty_role_authority (id, role_id, authority_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{authorityId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.beauty.entity.BeautyRoleAuthority" >
+    insert into beauty_role_authority
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="authorityId != null" >
+        authority_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="authorityId != null" >
+        #{authorityId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.beauty.entity.BeautyRoleAuthority" >
+    update beauty_role_authority
+    <set >
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="authorityId != null" >
+        authority_id = #{authorityId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.beauty.entity.BeautyRoleAuthority" >
+    update beauty_role_authority
+    set role_id = #{roleId,jdbcType=BIGINT},
+      authority_id = #{authorityId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
 </mapper>

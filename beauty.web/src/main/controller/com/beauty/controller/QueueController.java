@@ -1,8 +1,8 @@
 package com.beauty.controller;
 
-import com.alibaba.fastjson.JSON;
+import com.beauty.entity.BeautyMessage;
 import com.beauty.entity.BeautyQueue;
-import com.beauty.handler.MessageHandler;
+import com.beauty.handler.Handler;
 import com.beauty.model.Value;
 import com.beauty.mq.entity.QueueEntity;
 import com.beauty.service.QueueService;
@@ -20,6 +20,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
@@ -39,6 +40,9 @@ public class QueueController implements InitializingBean, ApplicationContextAwar
     private RabbitAdmin rabbitAdmin;
 
     @Autowired
+    private Handler messageHandler;
+
+    @Autowired
     private QueueService queueService;
 
     @Autowired
@@ -55,26 +59,22 @@ public class QueueController implements InitializingBean, ApplicationContextAwar
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.err.println("-------------------------------------------------------------");
-        System.err.println("-------------------------------------------------------------");
         Map<String, Object> params = new HashMap<>();
         params.put("from", 0);
         params.put("size", 10);
         List<BeautyQueue> queues = (List<BeautyQueue>)this.queueService.selectPage(params);
         for (BeautyQueue queue : queues){
-            QueueEntity queueEntity = new QueueEntity(rabbitConnectionFactory, queue.getQueueName(), queue.getExchangeName(), queue.getRoutingKey(), queue.getType(), new MessageHandler());
+            QueueEntity queueEntity = new QueueEntity(rabbitConnectionFactory, queue.getQueueName(), queue.getExchangeName(), queue.getRoutingKey(), queue.getType(), messageHandler);
             queueEntity.declare(rabbitAdmin);
-            System.err.println(JSON.toJSONString(queueEntity));
+            queueEntity.getContainer().start();
         }
-        System.err.println("-------------------------------------------------------------");
-        System.err.println("-------------------------------------------------------------");
     }
 
     @RequestMapping("send")
     @ResponseBody
-    public Value send(){
-        System.err.println(JSON.toJSONString(QueueEntity._QUEUES_MAP));
-        QueueEntity._QUEUES_MAP.get("message.topic.queue").getRabbitTemplate().convertAndSend("hello world...");
+    public Value send(@RequestParam("account") String account){
+        BeautyMessage message = new BeautyMessage(account, "提示信息", "hello world...");
+        QueueEntity._QUEUES_MAP.get("message.topic.queue").getRabbitTemplate().convertAndSend(message);
         return new Value(CodeUtil.SUCCESS);
     }
 

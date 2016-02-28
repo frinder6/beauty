@@ -19,15 +19,16 @@ public class DwrUtil {
 
     /**
      * 初始化session
+     *
      * @param userId
      */
     public static void init(String userId) {
-        final String _userId = userId;
         logger.debug("dwr...............init..............begin !");
+        logger.info("dwr................init..............userId..............[ ".concat(userId).concat(" ]!"));
         // 获取 script session
         ScriptSession scriptSession = WebContextFactory.get().getScriptSession();
         // 将登陆用户放入 script session 中
-        scriptSession.setAttribute(_userId, _userId);
+        scriptSession.setAttribute(userId, userId);
         // 获取 dwr 容器
         Container container = ServerContextFactory.get().getContainer();
         // 获取 session 管理器
@@ -36,10 +37,10 @@ public class DwrUtil {
         ScriptSessionListener listener = new ScriptSessionListener() {
             public void sessionCreated(ScriptSessionEvent event) {
                 // 获取 http session
-                // HttpSession session = WebContextFactory.get().getSession();
-                // String userId = ((UserInfo) session.getAttribute("CURRENT_USER")).getName();
+                HttpSession session = WebContextFactory.get().getSession();
+                String userId = StringUtil.valueOf(session.getAttribute("CURRENT_USER_ACCOUNT"));
                 // 将 userId 放到 session 中，为实现精确推送奠基
-                event.getSession().setAttribute("userId", _userId);
+                event.getSession().setAttribute("userId", userId);
                 logger.debug("dwr............a ScriptSession is created!");
             }
 
@@ -55,10 +56,12 @@ public class DwrUtil {
 
     /**
      * 向客户端推送消息
+     *
      * @param userId
      * @param message
      */
     public static void sendMessage(String userId, Object message) {
+        logger.info("dwr................send..............userId..............[ ".concat(userId).concat(" ]!"));
         final String _userId = userId;
         final String _message = JSON.toJSONString(message);
         // 查找 userId，并实现消息推送

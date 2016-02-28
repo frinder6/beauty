@@ -27,11 +27,13 @@ public class AuthorityResourceController {
 
 	@RequestMapping(value = "/load/page", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public Page queryPage(HttpServletRequest request, @RequestParam("type") Integer type) {
+	public Page queryPage(HttpServletRequest request, @RequestParam("type") Integer type, @RequestParam("authorityId") Long authorityId, @RequestParam("table") String table) {
 		Page page = new Page();
 		page.init(request);
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("type", type);
+		params.put("authorityId", authorityId);
+		params.put("table", table);
 		// 将page值设置到map中
 		page.pageToMap(BeautyAuthorityResource.class, params);
 		int count = this.authorityResourceService.selectCount(params);

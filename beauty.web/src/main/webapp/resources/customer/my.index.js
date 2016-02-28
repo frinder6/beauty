@@ -1,47 +1,47 @@
-$(function() {
-	var menu = $('#leftpanelinner').Menu();
-	var nav = $('#main-nav').Nav();
-	var smg = $(document).ServerMessage({
-		userId : _userId
-	});
+$(function () {
+    var menu = $('#leftpanelinner').Menu();
+    var nav = $('#main-nav').Nav();
+    var message = $(document).Message();
+    var serverMessage = $(document).ServerMessage({
+        userId: _userId
+    });
 
-	$('#cache-flush').click(function() {
-		ajax({
-			url : '/redis/flush.action'
-		});
-	});
+    $('#cache-flush').click(function () {
+        ajax({
+            url: '/redis/flush.action'
+        });
+    });
 
-	$('#user-profile').click(function() {
-		var nav = '\
+    $('#user-profile').click(function () {
+        var nav = '\
 					<h2>\
 						<i class="{0}"></i> {1} <span>{2}</span>\
 					</h2>\
 				';
-		var data = {
-			icon : 'fa fa-user',
-			title : '用户管理',
-			stitle : '用户信息'
-		};
-		$(window.document).find('div.pageheader').html(nav.format(data.icon, data.title, data.stitle));
-	});
+        var data = {
+            icon: 'fa fa-user',
+            title: '用户管理',
+            stitle: '用户信息'
+        };
+        $(window.document).find('div.pageheader').html(nav.format(data.icon, data.title, data.stitle));
+    });
 
-	$('.fa-home').click(function() {
-		smg.sendClientMessage('hello dwr...');
-	});
+
 });
 
 /**
  * 显示信息
- * 
+ *
  * @param message
  */
 function showMessage(message) {
-	jQuery.gritter.add({
-		title : 'This is a regular notice!',
-		text : 'This will fade out after a certain amount of time.',
-		image : _PATH('/resources/bracket/images/screen.png'),
-		sticky : false,
-		time : 1000
-	});
-	return false;
+    var obj = JSON.parse(message);
+    jQuery.gritter.add({
+        title: obj.messageHead,
+        text: obj.messageBody,
+        image: _PATH('/resources/bracket/images/screen.png'),
+        sticky: false,
+        time: 10000
+    });
+    return false;
 }

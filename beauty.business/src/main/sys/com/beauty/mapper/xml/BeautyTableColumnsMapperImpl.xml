@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.beauty.mapper.BeautyTableColumnsMapperImpl">
+
+	<resultMap id="BaseResultMap" extends="com.beauty.mapper.BeautyTableColumnsMapper.BaseResultMap" type="com.beauty.entity.BeautyTableColumns">
+		<id column="id" property="DT_RowId" jdbcType="BIGINT" />
+	</resultMap>
+
+	<sql id="Base_Column_List_Extend">
+		<include refid="com.beauty.mapper.BeautyTableColumnsMapper.Base_Column_List" />
+	</sql>
+
+	<sql id="Base_Column_List">
+		id, column_id, table_name, class_name, data, column_name, default_content,
+		name, type, title, width, render, orderable, searchable, visible, editable, sequence
+	</sql>
+
+	<sql id="Base_Where_Clause">
+		<where>
+			1 = 1
+			<if test="tableName">
+				AND table_name = #{tableName}
+			</if>
+			<if test="searchValue">
+				AND ( table_name LIKE "%" #{searchValue} "%" OR data LIKE "%" #{searchValue} "%" OR column_name LIKE "%" #{searchValue} "%" OR title LIKE "%" #{searchValue} "%" )
+			</if>
+			<if test="serialize">
+				${serialize}
+			</if>
+		</where>
+	</sql>
+
+	<select id="selectByGridName" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM beauty_table_columns
+		WHERE table_name = #{tableName}
+		ORDER BY sequence
+	</select>
+
+	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM beauty_table_columns
+		<include refid="Base_Where_Clause" />
+		ORDER BY
+		<if test="orderColumn">
+			${orderColumn} ${orderDir}
+		</if>
+		<if test="orderColumn == null">
+			id
+		</if>
+		LIMIT #{from}, #{size}
+	</select>
+	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT
+		COUNT(1)
+		FROM beauty_table_columns
+		<include refid="Base_Where_Clause" />
+	</select>
+
+	<insert id="batchExport" parameterType="com.beauty.model.Value">
+		INSERT beauty_table_columns (table_name, `data`, column_name, title, column_id)
+		SELECT #{value}, `data`, column_name, title, id
+		FROM beauty_schema_columns
+		WHERE 1 != 1
+		<if test="values.size() > 0">
+			OR id IN
+			<foreach collection="values" open="(" close=")" item="id" separator=",">
+				#{id}
+			</foreach>
+		</if>
+	</insert>
+
+	<insert id="batchCopy" parameterType="com.beauty.model.Value">
+		INSERT INTO `beauty_table_columns` ( `column_id`, `table_name`, `cell_type`, `class_name`, `data`, `column_name`, `default_content`, `name`, `type`, `title`, `width`, `render`, `orderable`, `searchable`, `visible`, `editable`, `targets`, `sequence` )
+		SELECT `column_id`, CONCAT(`table_name`, '_COPY'), `cell_type`, `class_name`, `data`, `column_name`, `default_content`, `name`, `type`, `title`, `width`, `render`, `orderable`, `searchable`, `visible`, `editable`, `targets`, `sequence` FROM `beauty_table_columns`
+		WHERE 1 != 1
+		<if test="values.size() > 0">
+			OR id IN
+			<foreach collection="values" open="(" close=")" item="id" separator=",">
+				#{id}
+			</foreach>
+		</if>
+	</insert>
+
+	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
+		delete from beauty_table_columns
+		where 1 != 1
+		<if test="list.size() > 0">
+			OR id IN
+			<foreach collection="list" open="(" close=")" item="id" separator=",">
+				#{id}
+			</foreach>
+		</if>
+	</delete>
+
+</mapper>

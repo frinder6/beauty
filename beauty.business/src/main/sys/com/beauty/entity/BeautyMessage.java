@@ -1,10 +1,25 @@
 package com.beauty.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.Date;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BeautyMessage extends BaseEntity {
     private static final long serialVersionUID = -2566380512870455461L;
+
+    public BeautyMessage() {
+    }
+
+    public BeautyMessage(String account, String messageHead, String messageBody) {
+        this.account = account;
+        this.messageHead = messageHead;
+        this.messageBody = messageBody;
+    }
+
     private Long id;
+
+    private String account;
 
     private String messageHead;
 
@@ -36,6 +51,14 @@ public class BeautyMessage extends BaseEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public String getMessageHead() {

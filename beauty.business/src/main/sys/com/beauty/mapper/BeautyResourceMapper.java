@@ -6,6 +6,5 @@ import com.beauty.model.Value;
 
 public interface BeautyResourceMapper extends IMapper<BeautyResource> {
 
-	public void batchGroup(Value value);
 
 }

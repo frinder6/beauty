@@ -5,6 +5,5 @@ import com.beauty.entity.BeautyRole;
 
 public interface BeautyRoleMapper extends IMapper<BeautyRole> {
 
-	public void batchSync();
 
 }

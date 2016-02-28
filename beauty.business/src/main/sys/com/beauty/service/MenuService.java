@@ -1,14 +1,16 @@
 package com.beauty.service;
 
-import com.beauty.entity.BeautyMenu;
-import com.beauty.mapper.BeautyMenuMapper;
-import com.beauty.util.RedisUtil;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import com.beauty.entity.BeautyMenu;
+import com.beauty.mapper.BeautyMenuMapper;
+import com.beauty.mapper.BeautyMenuMapperImpl;
+import com.beauty.util.RedisUtil;
 
 @Service
 public class MenuService extends BaseService<BeautyMenu> {
@@ -16,28 +18,31 @@ public class MenuService extends BaseService<BeautyMenu> {
 	@Autowired
 	private BeautyMenuMapper beautyMenuMapper;
 
+	@Autowired
+	private BeautyMenuMapperImpl beautyMenuMapperImpl;
+
 	@Cacheable(value = RedisUtil._REDIS_CACHE_VALUE, key = "#params.get('_REDIS_CACHE_KEY')")
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.beautyMenuMapper.selectCount(params);
+		return this.beautyMenuMapperImpl.selectCount(params);
 	}
 
 	@Cacheable(value = RedisUtil._REDIS_CACHE_VALUE, key = "#params.get('_REDIS_CACHE_KEY')")
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.beautyMenuMapper.selectPage(params);
+		return this.beautyMenuMapperImpl.selectPage(params);
 	}
 
 	@Cacheable(value = RedisUtil._REDIS_CACHE_VALUE, key = "#params.get('_REDIS_CACHE_KEY')")
 	public List<?> selectMenuSelect(Map<String, Object> params) {
-		return this.beautyMenuMapper.selectMenuSelect(params);
+		return this.beautyMenuMapperImpl.selectMenuSelect(params);
 	}
 
 	@Cacheable(value = RedisUtil._REDIS_CACHE_VALUE, key = "#params.get('_REDIS_CACHE_KEY')")
 	public List<?> selectMainMenu(Map<String, Object> params) {
-		return this.beautyMenuMapper.selectMainMenu(params);
+		return this.beautyMenuMapperImpl.selectMainMenu(params);
 	}
 
 	@Override
@@ -49,7 +54,7 @@ public class MenuService extends BaseService<BeautyMenu> {
 	@Override
 	public void deleteByPrimaryKeys(List<Object> list) {
 		// TODO Auto-generated method stub
-		this.beautyMenuMapper.deleteByPrimaryKeys(list);
+		this.beautyMenuMapperImpl.deleteByPrimaryKeys(list);
 	}
 
 	@Override

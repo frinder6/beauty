@@ -1,7 +1,11 @@
 package com.beauty.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.Date;
 
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BeautyDict extends BaseEntity {
     private static final long serialVersionUID = 2804331080262222206L;
 

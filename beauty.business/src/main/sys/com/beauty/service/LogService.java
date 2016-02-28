@@ -1,12 +1,14 @@
 package com.beauty.service;
 
-import com.beauty.entity.BeautyHandlerLogs;
-import com.beauty.mapper.BeautyHandlerLogsMapper;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import com.beauty.entity.BeautyHandlerLogs;
+import com.beauty.mapper.BeautyHandlerLogsMapper;
+import com.beauty.mapper.BeautyHandlerLogsMapperImpl;
 
 @Service
 public class LogService extends BaseService<BeautyHandlerLogs> {
@@ -14,22 +16,25 @@ public class LogService extends BaseService<BeautyHandlerLogs> {
 	@Autowired
 	private BeautyHandlerLogsMapper beautyHandlerLogsMapper;
 
+	@Autowired
+	private BeautyHandlerLogsMapperImpl beautyHandlerLogsMapperImpl;
+
 	@Override
 	public int selectCount(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.beautyHandlerLogsMapper.selectCount(params);
+		return this.beautyHandlerLogsMapperImpl.selectCount(params);
 	}
 
 	@Override
 	public List<?> selectPage(Map<String, Object> params) {
 		// TODO Auto-generated method stub
-		return this.beautyHandlerLogsMapper.selectPage(params);
+		return this.beautyHandlerLogsMapperImpl.selectPage(params);
 	}
 
 	@Override
 	public void deleteByPrimaryKeys(List<Object> list) {
 		// TODO Auto-generated method stub
-		this.beautyHandlerLogsMapper.deleteByPrimaryKeys(list);
+		this.beautyHandlerLogsMapperImpl.deleteByPrimaryKeys(list);
 	}
 
 	@Override
