@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.beauty.mapper.BeautyMenuMapperImpl">
+
+	<resultMap id="BaseResultMap" extends="com.beauty.mapper.BeautyMenuMapper.BaseResultMap" type="com.beauty.entity.BeautyMenu">
+		<id column="id" property="DT_RowId" jdbcType="BIGINT" />
+	</resultMap>
+
+	<resultMap type="com.beauty.entity.BeautyMenu" id="MenuBaseResultMap" extends="BaseResultMap">
+		<collection property="children" javaType="ArrayList" ofType="com.beauty.entity.BeautyMenu" column="id" select="selectChildren"></collection>
+	</resultMap>
+
+	<resultMap id="SelectResultMap" type="com.beauty.model.Select">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="name" property="text" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		<include refid="com.beauty.mapper.BeautyMenuMapper.Base_Column_List" />
+	</sql>
+
+	<sql id="Base_Where_Clause">
+		<where>
+			1 = 1
+			<if test="searchValue">
+				AND ( name LIKE "%" #{searchValue} "%" OR code LIKE "%" #{searchValue} "%" OR remark LIKE "%"
+				#{searchValue} "%" OR url LIKE "%" #{searchValue} "%" )
+			</if>
+			<if test="pid">
+				AND id = #{pid}
+			</if>
+			<if test="serialize">
+				${serialize}
+			</if>
+		</where>
+	</sql>
+
+
+	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM beauty_menu
+		<include refid="Base_Where_Clause" />
+		ORDER BY
+		<if test="orderColumn">
+			${orderColumn} ${orderDir}
+		</if>
+		<if test="orderColumn == null">
+			id
+		</if>
+		LIMIT #{from}, #{size}
+	</select>
+	<select id="selectCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT
+		COUNT(1)
+		FROM beauty_menu
+		<include refid="Base_Where_Clause" />
+	</select>
+
+	<select id="selectMenuSelect" parameterType="java.util.HashMap" resultMap="SelectResultMap">
+		SELECT id, name FROM beauty_menu
+		<include refid="Base_Where_Clause" />
+	</select>
+
+
+	<select id="selectMainMenu" parameterType="java.util.HashMap" resultMap="MenuBaseResultMap">
+		SELECT DISTINCT
+		m.id, m.code, m.name, m.url, m.parent_id, m.remark, m.create_time, m.def1, m.def2
+		FROM
+		beauty_menu m
+		LEFT JOIN beauty_authority_resource ar ON m.id = ar.resource_id AND type = 1
+		LEFT JOIN beauty_authority a ON a.id = ar.authority_id
+		LEFT JOIN beauty_role_authority ra ON ra.authority_id = a.id
+		LEFT JOIN beauty_role r ON r.id = ra.role_id
+		LEFT JOIN beauty_user_role ur ON ur.role_id = r.id
+		LEFT JOIN beauty_user u ON u.id = ur.user_id
+		WHERE
+		m.parent_id = 0
+		AND u.id = #{userId}
+		ORDER BY
+		m.id
+	</select>
+	<select id="selectChildren" resultMap="MenuBaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM beauty_menu WHERE parent_id = #{id}
+	</select>
+
+	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
+		delete from beauty_menu
+		where 1 != 1
+		<if test="list.size() > 0">
+			or id in
+			<foreach collection="list" open="(" close=")" item="id" separator=",">
+				#{id}
+			</foreach>
+		</if>
+	</delete>
+
+</mapper>
