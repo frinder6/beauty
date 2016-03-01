@@ -14,7 +14,7 @@
         <where>
             1 = 1
             <if test="searchValue">
-                AND ( name LIKE "%" #{searchValue} "%" OR group LIKE "%" #{searchValue} "%" OR method_name LIKE "%"
+                AND ( name LIKE "%" #{searchValue} "%" OR group_name LIKE "%" #{searchValue} "%" OR method_name LIKE "%"
                 #{searchValue} "%" OR class_name LIKE "%" #{searchValue} "%" )
             </if>
             <if test="serialize">

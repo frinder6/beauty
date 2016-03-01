@@ -14,10 +14,10 @@
 		init : function() {
 			dwr.engine.setActiveReverseAjax(true);
 			dwr.engine.setNotifyServerOnPageUnload(true);
-			MessageController.init(this.$opts.userId);
+			PushMessageController.init(this.$opts.userId);
 		},
 		sendClientMessage : function(message){
-			MessageController.sendServerMessage(this.$opts.userId, message);
+			PushMessageController.sendServerMessage(this.$opts.userId, message);
 		}
 	};
 

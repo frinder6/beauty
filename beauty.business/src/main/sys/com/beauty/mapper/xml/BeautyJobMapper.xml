@@ -4,10 +4,10 @@
   <resultMap id="BaseResultMap" type="com.beauty.entity.BeautyJob" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="group" property="group" jdbcType="VARCHAR" />
-    <result column="clsass_name" property="clsassName" jdbcType="VARCHAR" />
+    <result column="group_name" property="groupName" jdbcType="VARCHAR" />
+    <result column="class_path" property="classPath" jdbcType="VARCHAR" />
     <result column="method_name" property="methodName" jdbcType="VARCHAR" />
-    <result column="cronExpression" property="cronexpression" jdbcType="VARCHAR" />
+    <result column="cron_expression" property="cronExpression" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="TINYINT" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -20,7 +20,7 @@
     <result column="def3" property="def3" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, group, clsass_name, method_name, cronExpression, status, remark, create_time, 
+    id, name, group_name, class_path, method_name, cron_expression, status, remark, create_time, 
     creater, last_update_time, modifier, is_deleted, def1, def2, def3
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
@@ -34,14 +34,14 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.beauty.entity.BeautyJob" >
-    insert into beauty_job (id, name, group, 
-      clsass_name, method_name, cronExpression, 
+    insert into beauty_job (id, name, group_name, 
+      class_path, method_name, cron_expression, 
       status, remark, create_time, 
       creater, last_update_time, modifier, 
       is_deleted, def1, def2, 
       def3)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{group,jdbcType=VARCHAR}, 
-      #{clsassName,jdbcType=VARCHAR}, #{methodName,jdbcType=VARCHAR}, #{cronexpression,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{groupName,jdbcType=VARCHAR}, 
+      #{classPath,jdbcType=VARCHAR}, #{methodName,jdbcType=VARCHAR}, #{cronExpression,jdbcType=VARCHAR}, 
       #{status,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{creater,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, 
       #{isDeleted,jdbcType=TINYINT}, #{def1,jdbcType=VARCHAR}, #{def2,jdbcType=VARCHAR}, 
@@ -56,17 +56,17 @@
       <if test="name != null" >
         name,
       </if>
-      <if test="group != null" >
-        group,
+      <if test="groupName != null" >
+        group_name,
       </if>
-      <if test="clsassName != null" >
-        clsass_name,
+      <if test="classPath != null" >
+        class_path,
       </if>
       <if test="methodName != null" >
         method_name,
       </if>
-      <if test="cronexpression != null" >
-        cronExpression,
+      <if test="cronExpression != null" >
+        cron_expression,
       </if>
       <if test="status != null" >
         status,
@@ -106,17 +106,17 @@
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="group != null" >
-        #{group,jdbcType=VARCHAR},
+      <if test="groupName != null" >
+        #{groupName,jdbcType=VARCHAR},
       </if>
-      <if test="clsassName != null" >
-        #{clsassName,jdbcType=VARCHAR},
+      <if test="classPath != null" >
+        #{classPath,jdbcType=VARCHAR},
       </if>
       <if test="methodName != null" >
         #{methodName,jdbcType=VARCHAR},
       </if>
-      <if test="cronexpression != null" >
-        #{cronexpression,jdbcType=VARCHAR},
+      <if test="cronExpression != null" >
+        #{cronExpression,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         #{status,jdbcType=TINYINT},
@@ -156,17 +156,17 @@
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="group != null" >
-        group = #{group,jdbcType=VARCHAR},
+      <if test="groupName != null" >
+        group_name = #{groupName,jdbcType=VARCHAR},
       </if>
-      <if test="clsassName != null" >
-        clsass_name = #{clsassName,jdbcType=VARCHAR},
+      <if test="classPath != null" >
+        class_path = #{classPath,jdbcType=VARCHAR},
       </if>
       <if test="methodName != null" >
         method_name = #{methodName,jdbcType=VARCHAR},
       </if>
-      <if test="cronexpression != null" >
-        cronExpression = #{cronexpression,jdbcType=VARCHAR},
+      <if test="cronExpression != null" >
+        cron_expression = #{cronExpression,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         status = #{status,jdbcType=TINYINT},
@@ -204,10 +204,10 @@
   <update id="updateByPrimaryKey" parameterType="com.beauty.entity.BeautyJob" >
     update beauty_job
     set name = #{name,jdbcType=VARCHAR},
-      group = #{group,jdbcType=VARCHAR},
-      clsass_name = #{clsassName,jdbcType=VARCHAR},
+      group_name = #{groupName,jdbcType=VARCHAR},
+      class_path = #{classPath,jdbcType=VARCHAR},
       method_name = #{methodName,jdbcType=VARCHAR},
-      cronExpression = #{cronexpression,jdbcType=VARCHAR},
+      cron_expression = #{cronExpression,jdbcType=VARCHAR},
       status = #{status,jdbcType=TINYINT},
       remark = #{remark,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},

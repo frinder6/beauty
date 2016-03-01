@@ -4,19 +4,19 @@ import java.util.Date;
 
 public class BeautyJob extends BaseEntity {
 
-    private static final long serialVersionUID = 969310597410296628L;
+    private static final long serialVersionUID = -7236453098190322941L;
 
     private Long id;
 
     private String name;
 
-    private String group;
+    private String groupName;
 
-    private String clsassName;
+    private String classPath;
 
     private String methodName;
 
-    private String cronexpression;
+    private String cronExpression;
 
     private Byte status;
 
@@ -54,20 +54,20 @@ public class BeautyJob extends BaseEntity {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getGroup() {
-        return group;
+    public String getGroupName() {
+        return groupName;
     }
 
-    public void setGroup(String group) {
-        this.group = group == null ? null : group.trim();
+    public void setGroupName(String groupName) {
+        this.groupName = groupName == null ? null : groupName.trim();
     }
 
-    public String getClsassName() {
-        return clsassName;
+    public String getClassPath() {
+        return classPath;
     }
 
-    public void setClsassName(String clsassName) {
-        this.clsassName = clsassName == null ? null : clsassName.trim();
+    public void setClassPath(String classPath) {
+        this.classPath = classPath;
     }
 
     public String getMethodName() {
@@ -78,12 +78,12 @@ public class BeautyJob extends BaseEntity {
         this.methodName = methodName == null ? null : methodName.trim();
     }
 
-    public String getCronexpression() {
-        return cronexpression;
+    public String getCronExpression() {
+        return cronExpression;
     }
 
-    public void setCronexpression(String cronexpression) {
-        this.cronexpression = cronexpression == null ? null : cronexpression.trim();
+    public void setCronExpression(String cronExpression) {
+        this.cronExpression = cronExpression;
     }
 
     public Byte getStatus() {

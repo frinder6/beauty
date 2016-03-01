@@ -88,7 +88,7 @@
 				async : false,
 				success : function(data) {
 					e.fillSearch(data);
-					console.log(JSON.stringify(data));
+					// console.log(JSON.stringify(data));
 					$.extend(true, options.columns, data);
 				},
 				error : function(msg) {

@@ -14,7 +14,8 @@ var _RENDER_MARK = function(data, type, row, meta) {
 $(function() {
 
 	var tools = '<div class="btn-group">\
-		<a class="btn btn-default fa fa-bookmark oper-operate">&nbsp;标记</a>\
+		<a data-href="/pages/bracket/sys/message-add.jsp" class="btn btn-default fa fa-plus-square-o auth" data-auth="RES-MENU-ADD" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
+		<a class="btn btn-default fa fa-minus-square-o auth oper-operate" data-auth="RES-MENU-DEL">&nbsp;删除</a>\
     </div>';
 
 	var table = $('#list').DGrid({
@@ -24,6 +25,9 @@ $(function() {
 			ajax : {
 				url : _PATH('/message/load/page.action')
 			}
+		},
+		ajax : {
+			url : '/message/remove.action'
 		}
 	});
 

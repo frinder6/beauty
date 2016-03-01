@@ -19,7 +19,14 @@
 
 	<sql id="Base_Page_Sql">
 		<if test="table == 'left'">
-			SELECT id, `code`, `name`, url FROM beauty_menu t1
+			SELECT id, `code`, `name`, url FROM
+			<if test="type == 1">
+				beauty_menu
+			</if>
+			<if test="type == 2">
+				beauty_resource
+			</if>
+			t1
 			WHERE id NOT IN (SELECT resource_id FROM beauty_authority_resource WHERE type = #{type})
 			<include refid="Base_Where_Clause" />
 			ORDER BY
@@ -28,21 +35,40 @@
 			LIMIT #{from}, #{size}
 		</if>
 		<if test="table == 'right'">
-			SELECT t1.id, t2.`code`, t2.`name`, t2.url FROM beauty_authority_resource t1 LEFT JOIN beauty_resource t2 ON t2.id = t1.resource_id
-			WHERE t1.authority_id = #{authorityId} AND t1.type = #{type}
+			SELECT t1.id, t2.`code`, t2.`name`, t2.url FROM beauty_authority_resource t1 LEFT JOIN
+			<if test="type == 1">
+				beauty_menu
+			</if>
+			<if test="type == 2">
+				beauty_resource
+			</if>
+			t2 ON t2.id = t1.resource_id WHERE t1.authority_id = #{authorityId} AND t1.type = #{type}
 			<include refid="Base_Where_Clause" />
 		</if>
 	</sql>
 
 	<sql id="Base_Count_Sql">
 		<if test="table == 'left'">
-			SELECT COUNT(1) FROM beauty_menu t1 WHERE id NOT IN (SELECT resource_id FROM beauty_authority_resource
+			SELECT COUNT(1) FROM
+			<if test="type == 1">
+				beauty_menu
+			</if>
+			<if test="type == 2">
+				beauty_resource
+			</if>
+			t1 WHERE id NOT IN (SELECT resource_id FROM beauty_authority_resource
 			WHERE type = #{type})
 			<include refid="Base_Where_Clause" />
 		</if>
 		<if test="table == 'right'">
-			SELECT COUNT(1) FROM beauty_authority_resource t1 LEFT JOIN beauty_resource t2 ON t2.id = t1.resource_id
-			WHERE t1.authority_id = #{authorityId} AND t1.type = #{type}
+			SELECT COUNT(1) FROM beauty_authority_resource t1 LEFT JOIN
+			<if test="type == 1">
+				beauty_menu
+			</if>
+			<if test="type == 2">
+				beauty_resource
+			</if>
+			t2 ON t2.id = t1.resource_id WHERE t1.authority_id = #{authorityId} AND t1.type = #{type}
 			<include refid="Base_Where_Clause" />
 		</if>
 	</sql>

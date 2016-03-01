@@ -7,12 +7,12 @@
         http://www.directwebremoting.org/schema/spring-dwr  
  		http://www.directwebremoting.org/schema/spring-dwr-3.0.xsd">
 
-	<context:annotation-config />
 
 	<!-- 注意这里新增加的dwr tag, 为使其生效，文件头中要声明namespace -->
 	<dwr:configuration />
 	<dwr:annotation-config />
 	<dwr:url-mapping />
+	<dwr:annotation-scan scanRemoteProxy="true" scanDataTransferObject="true" base-package="com.beauty" />
 
 	<!-- 部署项目时, 请把debug设为false -->
 	<dwr:controller id="dwrController" debug="true">
@@ -23,12 +23,24 @@
 		<dwr:config-param name="initApplicationScopeCreatorsAtStartup" value="true" />
 	</dwr:controller>
 
+
 	<!-- order值越小, 优先级越高 -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
 		<property name="order" value="1" />
 	</bean>
 	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
 		<property name="order" value="2" />
+	</bean>
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="order" value="3" />
+		<property value="true" name="alwaysUseFullPath"></property>
+		<property name="mappings">
+			<props>
+				<prop key="/dwr/**">dwrController</prop>
+			</props>
+		</property>
 	</bean>
 
 </beans>

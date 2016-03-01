@@ -1,7 +1,9 @@
 package com.beauty.controller;
 
+import com.beauty.entity.BeautyJob;
 import com.beauty.model.Value;
 import com.beauty.quartz.entity.ScheduleJob;
+import com.beauty.service.JobService;
 import com.beauty.util.CodeUtil;
 import org.quartz.*;
 import org.quartz.impl.matchers.GroupMatcher;
@@ -19,7 +21,7 @@ import java.util.*;
  * Created by frinder_liu on 2016/2/29.
  */
 @Controller
-@RequestMapping("/quartz")
+@RequestMapping("/qz/manager")
 public class QuartzManagerController implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
@@ -27,8 +29,11 @@ public class QuartzManagerController implements ApplicationContextAware {
     @Autowired
     private Scheduler scheduler;
 
-   // @Autowired
-    private CronTrigger trigger;
+    @Autowired
+    private JobService jobService;
+
+    @Autowired
+    private CronTrigger amqpItemReaderTrigger;
 
 
     /**
@@ -90,7 +95,7 @@ public class QuartzManagerController implements ApplicationContextAware {
     @ResponseBody
     public Value pause() {
         try {
-            scheduler.pauseJob(trigger.getJobKey());
+            scheduler.pauseJob(amqpItemReaderTrigger.getJobKey());
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
@@ -102,10 +107,10 @@ public class QuartzManagerController implements ApplicationContextAware {
     public Value changeTrigger() {
         String cronExpression = "0/5 * * * * ?";
         try {
-            TriggerKey triggerKey = trigger.getKey();
+            TriggerKey triggerKey = amqpItemReaderTrigger.getKey();
             CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(cronExpression);
-            trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();
-            scheduler.rescheduleJob(triggerKey, trigger);
+            amqpItemReaderTrigger = amqpItemReaderTrigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();
+            scheduler.rescheduleJob(triggerKey, amqpItemReaderTrigger);
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
@@ -115,16 +120,21 @@ public class QuartzManagerController implements ApplicationContextAware {
 
     @RequestMapping("test")
     @ResponseBody
-    public Value test(){
+    public Value test() {
         try {
-            ScheduleJob scheduleJob = new ScheduleJob("amqpItemReaderQtz", "DEFAULT", "com.beauty.quartz.AmqpItemReaderJobImpl", "execute", "0/5 * * * * ?", scheduler);
+            Map<String, Object> params = new HashMap<>();
+            params.put("from", 0);
+            params.put("size", 10);
+            List<?> list = this.jobService.selectPage(params);
+            for (Object obj : list) {
+                BeautyJob job = (BeautyJob) obj;
+                new ScheduleJob(job.getName(), job.getGroupName(), job.getClassPath(), job.getMethodName(), job.getCronExpression(), scheduler);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return new Value(CodeUtil.SUCCESS);
     }
-
-
 
 
     @Override

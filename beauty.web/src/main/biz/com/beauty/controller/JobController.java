@@ -1,9 +1,10 @@
 package com.beauty.controller;
 
-import com.beauty.entity.BeautyQueue;
-import com.beauty.entity.BeautyQueue;
+import com.beauty.entity.BeautyJob;
+import com.beauty.entity.BeautyJob;
 import com.beauty.entity.Page;
 import com.beauty.model.Value;
+import com.beauty.service.JobService;
 import com.beauty.service.QueueService;
 import com.beauty.util.CodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,11 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/queue")
-public class QueueController {
+@RequestMapping("/job")
+public class JobController {
 
     @Autowired
-    private QueueService queueService;
+    private JobService jobService;
 
     @RequestMapping(value = "/load/page", produces = "application/json; charset=utf-8")
     @ResponseBody
@@ -31,8 +32,8 @@ public class QueueController {
         page.init(request);
         Map<String, Object> params = new HashMap<String, Object>();
         page.pageToMap(params);
-        int count = this.queueService.selectCount(params);
-        List<?> list = this.queueService.selectPage(params);
+        int count = this.jobService.selectCount(params);
+        List<?> list = this.jobService.selectPage(params);
         page.setResult(list, count + "", count + "");
         return page;
     }
@@ -40,15 +41,15 @@ public class QueueController {
 
     @RequestMapping(value = "/add", produces = "application/json; charset=utf-8")
     @ResponseBody
-    public Value persist(BeautyQueue entity) {
-        this.queueService.insertSelective(entity);
+    public Value persist(BeautyJob entity) {
+        this.jobService.insertSelective(entity);
         return new Value(CodeUtil.ADD_SUCCESS);
     }
 
     @RequestMapping(value = "/update", produces = "application/json; charset=utf-8")
     @ResponseBody
-    public Value modify(BeautyQueue entity) {
-        this.queueService.updateByPrimaryKeySelective(entity);
+    public Value modify(BeautyJob entity) {
+        this.jobService.updateByPrimaryKeySelective(entity);
         return new Value(CodeUtil.EDIT_SUCCESS);
     }
 
@@ -56,16 +57,15 @@ public class QueueController {
     @ResponseBody
     public Value delete(Value value) {
         if (!value.getValues().isEmpty()) {
-            this.queueService.deleteByPrimaryKeys(value.getValues());
+            this.jobService.deleteByPrimaryKeys(value.getValues());
         }
         return new Value(CodeUtil.DELETE_SUCCESS);
     }
 
     @RequestMapping(value = "/load/id", produces = "application/json; charset=utf-8")
     @ResponseBody
-    public BeautyQueue load(@RequestParam("id") Long id) {
-        return this.queueService.selectByPrimaryKey(id);
+    public BeautyJob load(@RequestParam("id") Long id) {
+        return this.jobService.selectByPrimaryKey(id);
     }
-
 
 }

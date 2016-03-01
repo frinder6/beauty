@@ -12,6 +12,7 @@
 	<!-- proxy-target-class="true"; cglib代理，基于类 -->
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 
+
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>

@@ -37,27 +37,6 @@
 				<div class="header-right">
 					<ul class="headermenu">
 						<li class="top-message">
-							<%--<div class="btn-group">
-								<button class="btn btn-default dropdown-toggle tp-icon" data-toggle="dropdown">
-									<i class="glyphicon glyphicon-user"></i> <span class="badge">2</span>
-								</button>
-								<div class="dropdown-menu dropdown-menu-head pull-right">
-									<h5 class="title">2 Newly Registered Users</h5>
-									<ul class="dropdown-list user-list">
-										<li class="new">
-											<div class="thumb">
-												<a href=""><img src="${basePath }/resources/bracket/images/photos/user1.png" alt="" /></a>
-											</div>
-											<div class="desc">
-												<h5>
-													<a href="">Draniem Daamul (@draniem)</a> <span class="badge badge-success">new</span>
-												</h5>
-											</div>
-										</li>
-										<li class="new"><a href="">See All Users</a></li>
-									</ul>
-								</div>
-							</div>--%>
 						</li>
 						<li>
 							<div class="btn-group">
@@ -98,8 +77,8 @@
 	<script src="${basePath }/resources/customer/my.message.js"></script>
 	<script type="text/javascript" src="${basePath }/dwr/engine.js"></script>
 	<script type="text/javascript" src="${basePath }/dwr/util.js"></script>
-	<script type='text/javascript' src='${basePath }/dwr/interface/MessageController.js'></script>
-	<script src="${basePath }/resources/customer/my.server.js"></script>
+	<script type='text/javascript' src='${basePath }/dwr/interface/PushMessageController.js'></script>
+	<script type='text/javascript' src="${basePath }/resources/customer/my.server.js"></script>
 	<script type="application/javascript">var _userId = '${CURRENT_USER_ACCOUNT}';</script>
 	<script src="${basePath }/resources/customer/my.index.js"></script>
 	<script src="${basePath }/resources/bracket/js/custom.js"></script>

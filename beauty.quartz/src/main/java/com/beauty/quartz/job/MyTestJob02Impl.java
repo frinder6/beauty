@@ -11,14 +11,15 @@ public class MyTestJob02Impl implements Job {
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        System.out.print("job2.....................");
-        System.out.print("job2.....................");
-        System.out.print("job2.....................");
-        System.out.print("job2.....................");
-        System.out.print("job2.....................");
-        System.out.print("job2.....................");
-        System.out.print("job2.....................");
-        System.out.print("job2.....................");
-        System.out.print("job2.....................");
+        System.out.println("job2.....................");
+        System.out.println("job2.....................");
+        System.out.println("job2.....................");
+        System.out.println("job2.....................");
+        System.out.println("job2.....................");
+        System.out.println("job2.....................");
+        System.out.println("job2.....................");
+        System.out.println("job2.....................");
+        System.out.println("job2.....................");
+        System.out.println("job2.....................");
     }
 }
