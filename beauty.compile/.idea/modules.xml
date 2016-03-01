@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/../beauty.common/beauty.common.iml" filepath="$PROJECT_DIR$/../beauty.common/beauty.common.iml" />
       <module fileurl="file://$PROJECT_DIR$/beauty.compile.iml" filepath="$PROJECT_DIR$/beauty.compile.iml" />
       <module fileurl="file://$PROJECT_DIR$/../beauty.pom/beauty.pom.iml" filepath="$PROJECT_DIR$/../beauty.pom/beauty.pom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../beauty.quartz/beauty.quartz.iml" filepath="$PROJECT_DIR$/../beauty.quartz/beauty.quartz.iml" />
       <module fileurl="file://$PROJECT_DIR$/../beauty.rabbit/beauty.rabbit.iml" filepath="$PROJECT_DIR$/../beauty.rabbit/beauty.rabbit.iml" />
       <module fileurl="file://$PROJECT_DIR$/../beauty.security/beauty.security.iml" filepath="$PROJECT_DIR$/../beauty.security/beauty.security.iml" />
       <module fileurl="file://$PROJECT_DIR$/../beauty.web/beauty.web.iml" filepath="$PROJECT_DIR$/../beauty.web/beauty.web.iml" />

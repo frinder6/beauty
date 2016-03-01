@@ -6,6 +6,10 @@
 		<id column="id" property="DT_RowId" jdbcType="BIGINT" />
 	</resultMap>
 
+	<sql id="Base_Column_List">
+		<include refid="com.beauty.mapper.BeautyUrlMapper.Base_Column_List" />
+	</sql>
+
 	<sql id="Base_Where_Clause">
 		<where>
 			1 = 1
@@ -27,7 +31,7 @@
 
 	<select id="selectPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
 		SELECT
-		<include refid="com.beauty.mapper.BeautyUrlMapper.Base_Column_List" />
+		<include refid="Base_Column_List" />
 		FROM beauty_url u
 		<include refid="Base_Where_Clause" />
 		ORDER BY

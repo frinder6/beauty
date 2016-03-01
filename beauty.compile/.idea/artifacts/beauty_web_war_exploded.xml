@@ -22,6 +22,9 @@
           <element id="archive" name="beauty.rabbit-0.0.1-SNAPSHOT.jar">
             <element id="module-output" name="beauty.rabbit" />
           </element>
+          <element id="archive" name="beauty.quartz-0.0.1-SNAPSHOT.jar">
+            <element id="module-output" name="beauty.quartz" />
+          </element>
           <element id="library" level="project" name="Maven: org.springframework.amqp:spring-amqp:1.4.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.amqp:spring-rabbit:1.4.4.RELEASE" />
           <element id="library" level="project" name="Maven: com.rabbitmq:amqp-client:3.4.2" />
@@ -59,8 +62,8 @@
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:3.2.6.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:3.2.6.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:3.2.6.RELEASE" />
-          <element id="library" level="project" name="Maven: org.quartz-scheduler:quartz:2.2.1" />
-          <element id="library" level="project" name="Maven: org.quartz-scheduler:quartz-jobs:2.2.1" />
+          <element id="library" level="project" name="Maven: org.quartz-scheduler:quartz:2.2.2" />
+          <element id="library" level="project" name="Maven: org.quartz-scheduler:quartz-jobs:2.2.2" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.5.0" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.5.0" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.5.0" />

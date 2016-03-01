@@ -27,9 +27,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Created by frinder_liu on 2016/2/29.
+ */
 @Controller
-@RequestMapping("/queue")
-public class QueueController implements InitializingBean, ApplicationContextAware {
+@RequestMapping("/init")
+public class InitController implements InitializingBean, ApplicationContextAware {
 
     protected ApplicationContext applicationContext;
 

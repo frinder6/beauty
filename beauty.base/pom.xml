@@ -7,7 +7,7 @@
 	</parent>
 	<groupId>beauty.base</groupId>
 	<artifactId>beauty.base</artifactId>
-	<packaging>jar</packaging>
+	<packaging>pom</packaging>
 
 	<name>beauty.base</name>
 	<url>http://maven.apache.org</url>

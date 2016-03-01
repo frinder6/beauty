@@ -23,21 +23,22 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="beauty.base" />
         <module name="beauty.business" />
         <module name="beauty.common" />
+        <module name="beauty.quartz" />
         <module name="beauty.rabbit" />
         <module name="beauty.security" />
         <module name="beauty.web" />
         <module name="hibernate" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.7">
       <module name="beauty.base" target="1.7" />
       <module name="beauty.business" target="1.7" />
       <module name="beauty.common" target="1.7" />
-      <module name="beauty.compile" target="1.5" />
+      <module name="beauty.compile" target="1.7" />
       <module name="beauty.pom" target="1.7" />
+      <module name="beauty.quartz" target="1.7" />
       <module name="beauty.rabbit" target="1.7" />
       <module name="beauty.security" target="1.7" />
       <module name="beauty.web" target="1.7" />
