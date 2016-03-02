@@ -411,6 +411,17 @@
 			});
 			return ids;
 		},
+		getSelectItems : function(key){
+			var e = this;
+			var items = e.selectItems();
+			if (!items) {
+				return;
+			}
+			var items = $.map(items, function(item, i) {
+				return item[key];
+			});
+			return items;
+		},
 		remove : function() {
 			var e = this;
 			var $opts = this.$opts;

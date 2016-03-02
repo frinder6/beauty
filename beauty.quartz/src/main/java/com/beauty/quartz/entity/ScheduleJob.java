@@ -1,5 +1,6 @@
 package com.beauty.quartz.entity;
 
+import com.alibaba.fastjson.JSON;
 import org.quartz.*;
 import org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;
 
@@ -26,7 +27,7 @@ public class ScheduleJob {
 
     private String cronExpression;
 
-    private Boolean isStart = true;
+    private volatile Boolean isStart = false;
 
     private Scheduler scheduler;
 
@@ -37,6 +38,8 @@ public class ScheduleJob {
     private CronTrigger cronTrigger;
 
     private JobDetail jobDetail;
+
+    private volatile boolean isInit = false;
 
     public ScheduleJob(String name, String group, String className, String methodName, String cronExpression, Scheduler scheduler) throws Exception {
         this.name = name;
@@ -49,11 +52,8 @@ public class ScheduleJob {
         setTriggerKey();
         setJobDetail();
         setCronTrigger();
-        scheduler.scheduleJob(jobDetail, cronTrigger);
+        // scheduler.scheduleJob(jobDetail, cronTrigger);
         _JOB_MAP.put(name, this);
-        if (scheduler.isStarted()){
-            scheduler.resumeJob(jobKey);
-        }
     }
 
     /**
@@ -70,13 +70,19 @@ public class ScheduleJob {
         }
     }
 
+
     /**
-     * restart
+     * start
      */
-    public synchronized void restart() {
+    public synchronized void start() {
         try {
             if (!isStart) {
-                scheduler.resumeJob(this.jobKey);
+                if (!isInit) {
+                    scheduler.scheduleJob(jobDetail, cronTrigger);
+                    isInit = true;
+                } else {
+                    scheduler.resumeJob(this.jobKey);
+                }
                 isStart = true;
             }
         } catch (SchedulerException e) {
@@ -90,13 +96,12 @@ public class ScheduleJob {
      *
      * @param cronExpression
      */
-    public void resetTrigger(String cronExpression) {
+    public synchronized void resetTrigger(String cronExpression) {
         try {
-            TriggerKey triggerKey = TriggerKey.triggerKey(this.name, this.group);
-            CronTrigger trigger = (CronTrigger) this.scheduler.getTrigger(triggerKey);
-            CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(cronExpression);
-            trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();
-            scheduler.rescheduleJob(triggerKey, trigger);
+            cronTrigger = cronTrigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(CronScheduleBuilder.cronSchedule(cronExpression)).build();
+            scheduler.rescheduleJob(triggerKey, cronTrigger);
+            this.isStart = true;
+            this.cronExpression = cronExpression;
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
@@ -109,6 +114,7 @@ public class ScheduleJob {
     public void delete() {
         try {
             scheduler.deleteJob(this.jobKey);
+            _JOB_MAP.remove(name);
         } catch (SchedulerException e) {
             e.printStackTrace();
         }

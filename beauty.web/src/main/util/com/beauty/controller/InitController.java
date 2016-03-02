@@ -34,26 +34,7 @@ import java.util.Map;
 @RequestMapping("/init")
 public class InitController implements InitializingBean, ApplicationContextAware {
 
-    protected ApplicationContext applicationContext;
-
-    @Autowired
-    private CachingConnectionFactory rabbitConnectionFactory;
-
-    @Autowired
-    private RabbitAdmin rabbitAdmin;
-
-    @Autowired
-    private Handler messageHandler;
-
-    @Autowired
-    private QueueService queueService;
-
-    @Autowired
-    private JobLauncher jobLauncher;
-
-    @Autowired
-    private Job logProcessJob;
-
+    private ApplicationContext applicationContext;
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -62,51 +43,6 @@ public class InitController implements InitializingBean, ApplicationContextAware
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        Map<String, Object> params = new HashMap<>();
-        params.put("from", 0);
-        params.put("size", 10);
-        List<BeautyQueue> queues = (List<BeautyQueue>)this.queueService.selectPage(params);
-        for (BeautyQueue queue : queues){
-            QueueEntity queueEntity = new QueueEntity(rabbitConnectionFactory, queue.getQueueName(), queue.getExchangeName(), queue.getRoutingKey(), queue.getType(), messageHandler);
-            queueEntity.declare(rabbitAdmin);
-            queueEntity.getContainer().start();
-        }
-    }
 
-    @RequestMapping("send")
-    @ResponseBody
-    public Value send(@RequestParam("account") String account){
-        BeautyMessage message = new BeautyMessage(account, "提示信息", "hello world...");
-        QueueEntity._QUEUES_MAP.get("message.topic.queue").getRabbitTemplate().convertAndSend(message);
-        return new Value(CodeUtil.SUCCESS);
     }
-
-    @RequestMapping("start")
-    @ResponseBody
-    public Value start(){
-        QueueEntity._QUEUES_MAP.get("message.topic.queue").getContainer().start();
-        return new Value(CodeUtil.SUCCESS);
-    }
-
-    @RequestMapping("stop")
-    @ResponseBody
-    public Value stop(){
-        QueueEntity._QUEUES_MAP.get("message.topic.queue").getContainer().stop();
-        return new Value(CodeUtil.SUCCESS);
-    }
-
-    @RequestMapping("job")
-    @ResponseBody
-    public Value job() {
-        try {
-            JobExecution result = jobLauncher.run(logProcessJob, new JobParameters());
-            System.out.println("==========================================");
-            System.out.println(result);
-            System.out.println("==========================================");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return new Value(CodeUtil.SUCCESS);
-    }
-
 }

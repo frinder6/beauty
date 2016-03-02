@@ -14,13 +14,5 @@ public class MyTestJob01Impl implements Job {
         System.out.println("job1.....................");
         System.out.println("job1.....................");
         System.out.println("job1.....................");
-        System.out.println("job1.....................");
-        System.out.println("job1.....................");
-        System.out.println("job1.....................");
-        System.out.println("job1.....................");
-        System.out.println("job1.....................");
-        System.out.println("job1.....................");
-        System.out.println("job1.....................");
-        System.out.println("job1.....................");
     }
 }

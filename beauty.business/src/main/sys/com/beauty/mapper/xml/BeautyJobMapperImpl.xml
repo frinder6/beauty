@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.beauty.mapper.BeautyJobMapperImpl">
 
-    <resultMap id="BaseResultMap" extends="com.beauty.mapper.BeautyJobMapper.BaseResultMap" type="com.beauty.entity.BeautyJob">
+    <resultMap id="BaseResultMap" extends="com.beauty.mapper.BeautyJobMapper.BaseResultMap"
+               type="com.beauty.entity.BeautyJob">
         <id column="id" property="DT_RowId" jdbcType="BIGINT"/>
     </resultMap>
 
@@ -43,6 +44,19 @@
         COUNT(1)
         FROM beauty_job
         <include refid="Base_Where_Clause"/>
+    </select>
+
+    <select id="selectByPrimaryKeys" parameterType="java.util.List" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM beauty_job
+        where 1 != 1
+        <if test="list.size() > 0">
+            or id in
+            <foreach collection="list" open="(" close=")" item="id" separator=",">
+                #{id}
+            </foreach>
+        </if>
     </select>
 
     <delete id="deleteByPrimaryKeys" parameterType="java.util.List">

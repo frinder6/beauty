@@ -54,4 +54,8 @@ public class JobService extends BaseService<BeautyJob> {
         // TODO Auto-generated method stub
         this.beautyJobMapper.insertSelective(entity);
     }
+
+    public List<BeautyJob> selectByPrimaryKeys(List<Object> list) {
+        return this.beautyJobMapperImpl.selectByPrimaryKeys(list);
+    }
 }

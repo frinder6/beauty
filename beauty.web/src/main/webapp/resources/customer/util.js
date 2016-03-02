@@ -70,3 +70,11 @@ var ajax = function(params, fn) {
 var _RENDER_BOOLEAN = function(data, type, row, meta) {
 	return (data ? '是' : '否');
 };
+
+
+/**
+ * 禁用/启用
+ */
+var _RENDER_ENABLE = function(data, type, row, meta) {
+	return (data == 0 ? '禁用' : '启用');
+};
