@@ -10,7 +10,7 @@
 
 	<beans:import resource="applicationContext-batch-beans.xml" />
 
-	<job id="logProcessJob">
+	<job id="logProcessJob" restartable="true">
 		<step id="logStep" allow-start-if-complete="true">
 			<tasklet>
 				<chunk

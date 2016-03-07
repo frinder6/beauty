@@ -6,7 +6,6 @@
 var _RENDER_OPER = function(data, type, row, meta) {
 	var result = '\
 		<span class="fa fa-edit pointer auth" data-auth="RES-AUTH-UPD" title="更新" data-href="/pages/bracket/sys/auth-update.jsp?id={0}" onclick="_S_REDIRECT(this)"></span>\
-		&nbsp;\
 		<span class="fa fa-copy pointer auth" data-auth="RES-AUTH-CONF" title="配置" data-href="/pages/bracket/sys/auth-conf.jsp?id={1}&name={2}&type={3}" onclick="_S_REDIRECT(this)"></span>\
 	';
 	return result.format(row.id, row.id, row.name, row.type);

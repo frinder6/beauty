@@ -6,7 +6,7 @@
 
 var _RENDER_OPER = function(data, type, row, meta) {
 	var result = '\
-		<span class="fa fa-edit pointer" title="更新" data-href="/pages/bracket/sys/resource-update.jsp?id={0}" onclick="_S_REDIRECT(this)"></span>\
+		<span class="fa fa-edit pointer auth" data-auth="RES-RESOURCE-UPD" title="更新" data-href="/pages/bracket/sys/resource-update.jsp?id={0}" onclick="_S_REDIRECT(this)"></span>\
 	';
 	return result.format(row.id);
 };
@@ -21,10 +21,10 @@ var _RENDER_MARK = function(data, type, row, meta) {
 $(function() {
 
 	var tools = '<div class="btn-group">\
-		<a data-href="/pages/bracket/sys/resource-add.jsp" class="btn btn-default fa fa-plus-square-o" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
-		<a class="btn btn-default fa fa-minus-square-o oper-operate">&nbsp;删除</a>\
-		<a class="btn btn-default fa fa-copy" data-toggle="modal" data-target=".bs-url-modal">&nbsp;导入</a>\
-		<a class="btn btn-default fa fa-group" onclick="group()">&nbsp;分组</a>\
+		<a data-href="/pages/bracket/sys/resource-add.jsp" class="btn btn-default fa fa-plus-square-o auth" data-auth="RES-RESOURCE-ADD" onclick="_S_REDIRECT(this)">&nbsp;新增</a>\
+		<a class="btn btn-default fa fa-minus-square-o oper-operate auth" data-auth="RES-RESOURCE-DEL">&nbsp;删除</a>\
+		<a class="btn btn-default fa fa-copy auth" data-auth="RES-RESOURCE-CONF" data-toggle="modal" data-target=".bs-url-modal">&nbsp;导入</a>\
+		<a class="btn btn-default fa fa-group auth" data-auth="RES-RESOURCE-GROUP" onclick="group()">&nbsp;分组</a>\
     </div>';
 
 	var mtools = '<div class="btn-group">\

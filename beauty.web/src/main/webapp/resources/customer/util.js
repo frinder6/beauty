@@ -65,6 +65,33 @@ var ajax = function(params, fn) {
 };
 
 /**
+ *
+ * @param params
+ * @private
+ */
+var _OPER = function (table, params) {
+	var ids = [];
+	var id = params.id;
+	if (id) {
+		ids.push(id);
+	} else {
+		ids = table.selectIds();
+	}
+	if (!ids) {
+		return;
+	}
+	ajax({
+		data: {
+			values: ids.join(',')
+		},
+		url: params.url
+	}, function () {
+		table.reload();
+	});
+};
+
+
+/**
  * 类型
  */
 var _RENDER_BOOLEAN = function(data, type, row, meta) {

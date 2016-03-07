@@ -44,6 +44,7 @@
 			</if>
 			t2 ON t2.id = t1.resource_id WHERE t1.authority_id = #{authorityId} AND t1.type = #{type}
 			<include refid="Base_Where_Clause" />
+			LIMIT #{from}, #{size}
 		</if>
 	</sql>
 

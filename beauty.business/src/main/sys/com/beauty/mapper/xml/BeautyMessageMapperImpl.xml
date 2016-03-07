@@ -43,4 +43,34 @@
 		<include refid="Base_Where_Clause" />
 	</select>
 
+	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
+		delete from beauty_message
+		where 1 != 1
+		<if test="list.size() > 0">
+			or id in
+			<foreach collection="list" open="(" close=")" item="id" separator=",">
+				#{id}
+			</foreach>
+		</if>
+	</delete>
+
+
+	<update id="batchMark" parameterType="java.util.List">
+		update beauty_message set status = IF(status = 0, 1, 0)
+		where 1 != 1
+		<if test="list.size() > 0">
+			OR id IN
+			<foreach collection="list" open="(" close=")" item="id" separator=",">
+				#{id}
+			</foreach>
+		</if>
+	</update>
+
+	<select id="selectByAccount" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM beauty_message
+		WHERE status = 0 AND account = #{account}
+	</select>
+
 </mapper>

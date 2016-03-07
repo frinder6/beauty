@@ -4,6 +4,7 @@ import com.beauty.entity.BeautyJob;
 import com.beauty.entity.BeautyJob;
 import com.beauty.entity.Page;
 import com.beauty.model.Value;
+import com.beauty.quartz.entity.ScheduleJob;
 import com.beauty.service.JobService;
 import com.beauty.service.QueueService;
 import com.beauty.util.CodeUtil;
@@ -57,6 +58,14 @@ public class JobController {
     @ResponseBody
     public Value delete(Value value) {
         if (!value.getValues().isEmpty()) {
+            List<?> jobs = this.jobService.selectByPrimaryKeys(value.getValues());
+            for (Object obj : jobs) {
+                BeautyJob job = (BeautyJob) obj;
+                ScheduleJob scheduleJob = ScheduleJob._JOB_MAP.get(job.getName());
+                if (null != scheduleJob) {
+                    scheduleJob.delete();
+                }
+            }
             this.jobService.deleteByPrimaryKeys(value.getValues());
         }
         return new Value(CodeUtil.DELETE_SUCCESS);

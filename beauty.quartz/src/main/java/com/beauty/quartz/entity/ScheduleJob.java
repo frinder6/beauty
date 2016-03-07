@@ -1,21 +1,25 @@
 package com.beauty.quartz.entity;
 
 import com.alibaba.fastjson.JSON;
+import org.apache.log4j.Logger;
 import org.quartz.*;
 import org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by frinder_liu on 2016/2/29.
  */
 public class ScheduleJob {
 
+    private Logger logger = Logger.getLogger(getClass());
+
     /**
      * 保存所有的job
      */
-    public static final Map<String, ScheduleJob> _JOB_MAP = new HashMap<>();
+    public static final Map<String, ScheduleJob> _JOB_MAP = new ConcurrentHashMap<>();
 
     private String name;
 
@@ -42,6 +46,7 @@ public class ScheduleJob {
     private volatile boolean isInit = false;
 
     public ScheduleJob(String name, String group, String className, String methodName, String cronExpression, Scheduler scheduler) throws Exception {
+        logger.info("job...............init................begin!");
         this.name = name;
         this.group = group;
         this.className = className;
@@ -54,20 +59,25 @@ public class ScheduleJob {
         setCronTrigger();
         // scheduler.scheduleJob(jobDetail, cronTrigger);
         _JOB_MAP.put(name, this);
+        logger.info("job...............init................end!");
     }
 
     /**
      * pause
      */
     public synchronized void pause() {
+        logger.info("job...............pause................begin!");
         try {
             if (isStart) {
                 scheduler.pauseJob(this.jobKey);
                 isStart = false;
+                logger.info("job...............pause................success!");
             }
         } catch (SchedulerException e) {
             e.printStackTrace();
+            logger.info("job...............pause................fail! ".concat(e.getMessage()));
         }
+        logger.info("job...............pause................end!");
     }
 
 
@@ -75,6 +85,7 @@ public class ScheduleJob {
      * start
      */
     public synchronized void start() {
+        logger.info("job...............start................begin!");
         try {
             if (!isStart) {
                 if (!isInit) {
@@ -84,10 +95,13 @@ public class ScheduleJob {
                     scheduler.resumeJob(this.jobKey);
                 }
                 isStart = true;
+                logger.info("job...............start................success!");
             }
         } catch (SchedulerException e) {
             e.printStackTrace();
+            logger.info("job...............start................fail! ".concat(e.getMessage()));
         }
+        logger.info("job...............start................end!");
     }
 
 
@@ -97,14 +111,18 @@ public class ScheduleJob {
      * @param cronExpression
      */
     public synchronized void resetTrigger(String cronExpression) {
+        logger.info("job...............resetTrigger................begin!");
         try {
             cronTrigger = cronTrigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(CronScheduleBuilder.cronSchedule(cronExpression)).build();
             scheduler.rescheduleJob(triggerKey, cronTrigger);
             this.isStart = true;
             this.cronExpression = cronExpression;
+            logger.info("job...............resetTrigger................success!");
         } catch (SchedulerException e) {
             e.printStackTrace();
+            logger.info("job...............resetTrigger................fail!");
         }
+        logger.info("job...............resetTrigger................end!");
     }
 
 
@@ -112,12 +130,16 @@ public class ScheduleJob {
      * delete
      */
     public void delete() {
+        logger.info("job...............delete................begin!");
         try {
             scheduler.deleteJob(this.jobKey);
             _JOB_MAP.remove(name);
+            logger.info("job...............delete................success!");
         } catch (SchedulerException e) {
             e.printStackTrace();
+            logger.info("job...............delete................fail! ".concat(e.getMessage()));
         }
+        logger.info("job...............delete................end!");
     }
 
 
@@ -190,7 +212,9 @@ public class ScheduleJob {
     }
 
     public void setTriggerKey() {
+        logger.info("job...............setTriggerKey................begin!");
         this.triggerKey = TriggerKey.triggerKey(name, group);
+        logger.info("job...............setTriggerKey................end!");
     }
 
     public CronTrigger getCronTrigger() {
@@ -198,7 +222,9 @@ public class ScheduleJob {
     }
 
     public void setCronTrigger() {
+        logger.info("job...............setCronTrigger................begin!");
         this.cronTrigger = TriggerBuilder.newTrigger().withIdentity(triggerKey).withSchedule(CronScheduleBuilder.cronSchedule(cronExpression)).build();
+        logger.info("job...............setCronTrigger................end!");
     }
 
     public JobDetail getJobDetail() {
@@ -206,7 +232,9 @@ public class ScheduleJob {
     }
 
     public void setJobDetail() throws Exception {
+        logger.info("job...............setJobDetail................begin!");
         Class clazz = Class.forName(className);
         this.jobDetail = JobBuilder.newJob(clazz).withIdentity(jobKey).build();
+        logger.info("job...............setJobDetail................end!");
     }
 }

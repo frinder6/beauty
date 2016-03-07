@@ -39,7 +39,7 @@ public class UserController {
 			UserInfo user = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			Collection<GrantedAuthority> authorities = user.getAuthorities();
 			for (GrantedAuthority ga : authorities) {
-				auths.add(ga.getAuthority());
+				auths.add(ga.getAuthority().toUpperCase());
 			}
 			return auths;
 		} catch (Exception e) {

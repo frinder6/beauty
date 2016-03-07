@@ -1,13 +1,10 @@
 package com.beauty.controller;
 
-import com.beauty.entity.BeautyAuthority;
 import com.beauty.entity.BeautyMessage;
 import com.beauty.entity.Page;
 import com.beauty.model.Value;
 import com.beauty.service.MessageService;
 import com.beauty.util.CodeUtil;
-import com.beauty.util.DwrUtil;
-import org.directwebremoting.annotations.RemoteMethod;
 import org.directwebremoting.annotations.RemoteProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,6 +41,14 @@ public class MessageController {
 		return page;
 	}
 
+	@RequestMapping(value = "/load/by/account", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public List<?> queryByAccount(HttpSession session){
+		Map<String, Object> params = new HashMap<>();
+		params.put("account", session.getAttribute("CURRENT_USER_ACCOUNT"));
+		return this.messageService.selectByAccount(params);
+	}
+
 	@RequestMapping(value = "/add", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public Value persist(BeautyMessage entity) {
@@ -64,6 +70,15 @@ public class MessageController {
 			this.messageService.deleteByPrimaryKeys(value.getValues());
 		}
 		return new Value(CodeUtil.DELETE_SUCCESS);
+	}
+
+	@RequestMapping(value = "/mark", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Value mark(Value value) {
+		if (!value.getValues().isEmpty()) {
+			this.messageService.batchMark(value.getValues());
+		}
+		return new Value(CodeUtil.SUCCESS);
 	}
 
 	@RequestMapping(value = "/load/id", produces = "application/json; charset=utf-8")

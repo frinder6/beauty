@@ -26,6 +26,7 @@
 			});
 		},
 		isAuth : function(v) {
+			v = v.toUpperCase();
 			var e = this;
 			var len = $.inArray(v, e._AUTHS);
 			return len == -1 ? false : true;

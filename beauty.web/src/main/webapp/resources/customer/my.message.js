@@ -36,7 +36,7 @@
     Message.prototype = {
         constructor: Message,
         init: function () {
-            var url = _PATH('/message/load/page.action');
+            var url = _PATH('/message/load/by/account.action');
             var url_all = '/pages/bracket/sys/message-list.jsp';
             $.ajax({
                 type : 'POST',
@@ -44,9 +44,9 @@
                 dataType : 'JSON',
                 async : false,
                 success : function(data) {
-                    var total = data.recordsTotal;
+                    var total = data.length;
                     var lis = [];
-                    $.each(data.data, function(i, d){
+                    $.each(data, function(i, d){
                         lis.push(msg_li.format(d.messageHead));
                     });
 

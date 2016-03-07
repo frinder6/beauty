@@ -48,7 +48,7 @@ public class QueueEntity {
      * @param type         队列类型
      * @param delegate     消息处理器
      */
-    public QueueEntity(CachingConnectionFactory rabbitConnectionFactory, String queueName, String exchangeName, String routingKey, int type, Object delegate) {
+    public QueueEntity(CachingConnectionFactory rabbitConnectionFactory, RabbitAdmin rabbitAdmin, String queueName, String exchangeName, String routingKey, int type, Object delegate) {
         super();
         logger.info("queue...................init.................begin!");
         this.queueName = queueName;
@@ -61,9 +61,8 @@ public class QueueEntity {
         setBinding();
         setRabbitTemplate(rabbitConnectionFactory);
         setContainer(rabbitConnectionFactory);
-        if (!_QUEUES_MAP.containsKey(queueName)) {
-            _QUEUES_MAP.put(queueName, this);
-        }
+        declare(rabbitAdmin);
+        _QUEUES_MAP.put(queueName, this);
         logger.info("queue...................init.................end!");
     }
 
@@ -156,7 +155,6 @@ public class QueueEntity {
         adapter.setDelegate(delegate);
         container.addQueues(queue);
         container.setMessageListener(adapter);
-        // container.setAutoStartup(false);
         logger.info("SimpleMessageListenerContainer...................init.................end!");
     }
 
@@ -170,10 +168,10 @@ public class QueueEntity {
 
     public void setBinding() {
         logger.info("binding...................init.................begin!");
-        if (!StringUtil.isEmpty(exchangeName) && !StringUtil.isEmpty(routingKey)) {
-            if (1 == type) {
+        if (!StringUtil.isEmpty(exchangeName)) {
+            if (1 == type && !StringUtil.isEmpty(routingKey)) {
                 this.binding = BindingBuilder.bind(queue).to((DirectExchange) exchange).with(routingKey);
-            } else if (2 == type) {
+            } else if (2 == type && !StringUtil.isEmpty(routingKey)) {
                 this.binding = BindingBuilder.bind(queue).to((TopicExchange) exchange).with(routingKey);
             } else if (3 == type) {
                 this.binding = BindingBuilder.bind(queue).to((FanoutExchange) exchange);

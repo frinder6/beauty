@@ -30,8 +30,8 @@ import java.util.Map;
 /**
  * Created by frinder_liu on 2016/2/29.
  */
-@Controller
-@RequestMapping("/init")
+//@Controller
+//@RequestMapping("/init")
 public class InitController implements InitializingBean, ApplicationContextAware {
 
     private ApplicationContext applicationContext;
@@ -43,6 +43,12 @@ public class InitController implements InitializingBean, ApplicationContextAware
 
     @Override
     public void afterPropertiesSet() throws Exception {
-
+        System.out.println("****************************************************");
+        System.out.println("****************************************************");
+        System.out.println("****************************************************");
+        System.out.println("****************************************************");
+        System.out.println("****************************************************");
+        System.out.println("****************************************************");
+        System.out.println("****************************************************");
     }
 }

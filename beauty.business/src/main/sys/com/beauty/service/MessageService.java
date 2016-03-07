@@ -57,4 +57,12 @@ public class MessageService extends BaseService<BeautyMessage> {
         // TODO Auto-generated method stub
         this.beautyMessageMapper.insertSelective(entity);
     }
+
+    public void batchMark(List<Object> list) {
+        this.beautyMessageMapperImpl.batchMark(list);
+    }
+
+    public List<?> selectByAccount(Map<String, Object> params){
+        return this.beautyMessageMapperImpl.selectByAccount(params);
+    }
 }

@@ -5,16 +5,13 @@ import com.beauty.model.Value;
 import com.beauty.quartz.entity.ScheduleJob;
 import com.beauty.service.JobService;
 import com.beauty.util.CodeUtil;
-import org.quartz.*;
+import org.quartz.JobKey;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
 import org.quartz.impl.matchers.GroupMatcher;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.*;
@@ -24,9 +21,8 @@ import java.util.*;
  */
 @Controller
 @RequestMapping("/qz/manager")
-public class QuartzManagerController implements InitializingBean, ApplicationContextAware {
+public class QuartzManagerController {
 
-    private ApplicationContext applicationContext;
 
     @Autowired
     private Scheduler scheduler;
@@ -34,8 +30,6 @@ public class QuartzManagerController implements InitializingBean, ApplicationCon
     @Autowired
     private JobService jobService;
 
-    @Autowired
-    private CronTrigger amqpItemReaderTrigger;
 
     @RequestMapping(value = "/job/start", produces = "application/json; charset=utf-8")
     @ResponseBody
@@ -112,7 +106,7 @@ public class QuartzManagerController implements InitializingBean, ApplicationCon
         try {
             if (!scheduler.isStarted() || !scheduler.isShutdown()) {
                 scheduler.start();
-                scheduler.resumeAll();
+                // scheduler.resumeAll();
             }
         } catch (SchedulerException e) {
             e.printStackTrace();
@@ -121,18 +115,7 @@ public class QuartzManagerController implements InitializingBean, ApplicationCon
     }
 
 
-    @RequestMapping("/scheduler/pause")
-    @ResponseBody
-    public Value pause() {
-        try {
-            scheduler.pauseJob(amqpItemReaderTrigger.getJobKey());
-        } catch (SchedulerException e) {
-            e.printStackTrace();
-        }
-        return new Value(CodeUtil.SUCCESS);
-    }
-
-    @RequestMapping("list")
+    @RequestMapping("/scheduler/list")
     @ResponseBody
     public Map<?, ?> list() throws Exception {
         Map<String, Object> map = new HashMap<>();
@@ -150,55 +133,7 @@ public class QuartzManagerController implements InitializingBean, ApplicationCon
     }
 
 
-    @RequestMapping("change")
-    @ResponseBody
-    public Value changeTrigger() {
-        String cronExpression = "0/5 * * * * ?";
-        try {
-            TriggerKey triggerKey = amqpItemReaderTrigger.getKey();
-            CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(cronExpression);
-            amqpItemReaderTrigger = amqpItemReaderTrigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();
-            scheduler.rescheduleJob(triggerKey, amqpItemReaderTrigger);
-        } catch (SchedulerException e) {
-            e.printStackTrace();
-        }
-        return new Value(CodeUtil.SUCCESS);
-    }
 
 
-    @RequestMapping("test")
-    @ResponseBody
-    public Value test() {
-        try {
-            Map<String, Object> params = new HashMap<>();
-            params.put("from", 0);
-            params.put("size", 10);
-            List<?> list = this.jobService.selectPage(params);
-            for (Object obj : list) {
-                BeautyJob job = (BeautyJob) obj;
-                new ScheduleJob(job.getName(), job.getGroupName(), job.getClassPath(), job.getMethodName(), job.getCronExpression(), scheduler);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return new Value(CodeUtil.SUCCESS);
-    }
 
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        Map<String, Object> params = new HashMap<>();
-        params.put("from", 0);
-        params.put("size", 100);
-        List<?> list = this.jobService.selectPage(params);
-        for (Object obj : list) {
-            BeautyJob job = (BeautyJob) obj;
-            new ScheduleJob(job.getName(), job.getGroupName(), job.getClassPath(), job.getMethodName(), job.getCronExpression(), scheduler);
-        }
-    }
 }

@@ -26,7 +26,7 @@ $(function () {
         $(window.document).find('div.pageheader').html(nav.format(data.icon, data.title, data.stitle));
     });
 
-
+    $(this).Auth();
 });
 
 /**

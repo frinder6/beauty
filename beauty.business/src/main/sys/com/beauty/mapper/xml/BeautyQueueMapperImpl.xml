@@ -41,4 +41,29 @@
 		<include refid="Base_Where_Clause" />
 	</select>
 
+
+	<delete id="deleteByPrimaryKeys" parameterType="java.util.List">
+		delete from beauty_queue
+		where 1 != 1
+		<if test="list.size() > 0">
+			or id in
+			<foreach collection="list" open="(" close=")" item="id" separator=",">
+				#{id}
+			</foreach>
+		</if>
+	</delete>
+
+	<select id="selectByPrimaryKeys" parameterType="java.util.List" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM beauty_queue
+		where 1 != 1
+		<if test="list.size() > 0">
+			or id in
+			<foreach collection="list" open="(" close=")" item="id" separator=",">
+				#{id}
+			</foreach>
+		</if>
+	</select>
+
 </mapper>
