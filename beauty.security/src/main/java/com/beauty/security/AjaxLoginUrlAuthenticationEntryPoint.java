@@ -31,25 +31,19 @@ public class AjaxLoginUrlAuthenticationEntryPoint extends LoginUrlAuthentication
 	@SuppressWarnings("deprecation")
 	public AjaxLoginUrlAuthenticationEntryPoint() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @param loginFormUrl
-	 */
-	public AjaxLoginUrlAuthenticationEntryPoint(String loginFormUrl) {
-		super(loginFormUrl);
-	}
 
 	private String ajaxInvalidSessionUrl;
 
 	/**
 	 * @param ajaxInvalidSessionUrl
-	 *            the ajaxInvalidSessionUrl to set
 	 */
-	public void setAjaxInvalidSessionUrl(String ajaxInvalidSessionUrl) {
+	public AjaxLoginUrlAuthenticationEntryPoint(String ajaxInvalidSessionUrl) {
+		super(ajaxInvalidSessionUrl);
 		this.ajaxInvalidSessionUrl = ajaxInvalidSessionUrl;
 	}
+
 
 	@Override
 	protected String determineUrlToUseForThisRequest(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) {

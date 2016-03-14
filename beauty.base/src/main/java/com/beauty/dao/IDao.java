@@ -1,102 +1,11 @@
 package com.beauty.dao;
 
+import com.beauty.entity.Page;
+
 import java.util.List;
 import java.util.Map;
 
-import org.hibernate.criterion.DetachedCriteria;
-
-import com.beauty.entity.Page;
-
 public interface IDao<T> {
-
-	/**
-	 * 
-	 * @Title: persist
-	 * @Description: TODO(新增)
-	 * @author frinder_liu
-	 * @param entity
-	 * @return void
-	 * @date 2015年7月25日 下午2:21:50
-	 * @throws
-	 */
-	public void persist(T entity);
-
-	/**
-	 * 
-	 * @Title: remove
-	 * @Description: TODO(删除)
-	 * @author frinder_liu
-	 * @param entity
-	 * @return void
-	 * @date 2015年7月25日 下午2:22:02
-	 * @throws
-	 */
-	public void remove(T entity);
-
-	/**
-	 * 
-	 * @Title: merge
-	 * @Description: TODO(修改)
-	 * @author frinder_liu
-	 * @param entity
-	 * @return void
-	 * @date 2015年7月25日 下午2:22:11
-	 * @throws
-	 */
-	public void merge(T entity);
-
-	/**
-	 * 
-	 * @Title: findById
-	 * @Description: TODO(加载单个实体)
-	 * @author frinder_liu
-	 * @param clazz
-	 * @param id
-	 * @return
-	 * @return T
-	 * @date 2015年7月25日 下午2:22:25
-	 * @throws
-	 */
-	public T findById(Class<T> clazz, Long id);
-
-	/**
-	 * 
-	 * @Title: query
-	 * @Description: TODO(hibernate查询)
-	 * @author frinder_liu
-	 * @param clazz
-	 * @return
-	 * @return List<?>
-	 * @date 2015年7月25日 下午10:20:33
-	 * @throws
-	 */
-	public List<?> query(DetachedCriteria criteria);
-
-	/**
-	 * 
-	 * @Title: queryPageCount
-	 * @Description: TODO(分页记录数)
-	 * @author frinder_liu
-	 * @param criteria
-	 * @return
-	 * @return int
-	 * @date 2015年8月2日 下午2:15:58
-	 * @throws
-	 */
-	public int queryPageCount(DetachedCriteria criteria);
-
-	/**
-	 * 
-	 * @Title: query
-	 * @Description: TODO(hibernate分页查询)
-	 * @author frinder_liu
-	 * @param dc
-	 * @param page
-	 * @return
-	 * @date 2015年8月2日 下午12:52:11
-	 * @throws
-	 */
-	public void queryPage(DetachedCriteria criteria, Page page);
 
 	/**
 	 * 

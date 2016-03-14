@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -15,6 +16,7 @@
 <body style="background-color: #E4E7EA;">
 
 	<h1>Welcome to the System!</h1>
+
 
 
 </body>

@@ -7,13 +7,12 @@
 	<!-- ibatis的sqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<!-- <property name="configLocation" value="/WEB-INF/db-conf/mybatis-config.xml" /> -->
 		<property name="mapperLocations" value="classpath*:com/beauty/**/*Mapper*.xml" />
 	</bean>
 
 	<!-- 配置sqlSessionTemplate -->
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
-		<constructor-arg index="0" ref="sqlSessionFactory" />
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 
 	<!-- 自动为接口创建代理类 -->

@@ -35,6 +35,7 @@
 
     <!-- 跳转目录设置prefix+point+suffix -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/pages/bracket/"/>
         <property name="suffix" value=".jsp"/>
     </bean>

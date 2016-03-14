@@ -19,6 +19,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -41,16 +42,15 @@ public class LogHandler {
     private final Logger logger = LogManager.getLogger(getClass());
 
     @Autowired
-    private HttpServletRequest request;
-
-    @Autowired
     private HttpSession session;
+
+
+    @Resource(name = "logDirectTemplate")
+    private RabbitTemplate logDirectTemplate;
 
     @Autowired
     private LogService logService;
 
-    @Resource(name = "logDirectTemplate")
-    private RabbitTemplate logDirectTemplate;
 
     /**
      *
@@ -58,75 +58,103 @@ public class LogHandler {
     public LogHandler() {
     }
 
-    // 声明切入点
+    @Pointcut("execution(* com.beauty..*.*(..)) && !execution(* com.beauty.mapper..*.*(..))")
+    public void allPointCut() {
+    }
+
+
     @Pointcut("execution(* com.beauty.controller..*.*(..))")
-    public void anyMethod() {
+    public void controllerPointCut() {
     }
 
-    // 前置通知
-    // @Before("anyMethod()")
-    public void dobefore() {
-        System.out.println("我是前置通知。");
+
+    /**
+     * print all log
+     * @param point
+     * @return
+     * @throws Throwable
+     */
+    @Around("allPointCut()")
+    public Object logger(ProceedingJoinPoint point) throws Throwable {
+        long beginTime = System.currentTimeMillis();
+        logger.info("before processing at : [" + beginTime + "]");
+        try {
+            logger.info("ip : " + session.getAttribute("IP"));
+            logger.info("account : " + session.getAttribute("CURRENT_USER_ACCOUNT"));
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        try {
+            logger.info("ProceedingJoinPoint : " + JSON.toJSONString(point));
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        logger.info("class : " + point.getTarget().getClass().getName());
+        logger.info("method : " + point.getSignature().getName());
+        Object retValue = point.proceed();
+        try {
+            logger.info("retValue : " + JSON.toJSONString(retValue));
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        long endTime = System.currentTimeMillis();
+        logger.info("after processing at : [" + endTime + "]");
+        logger.info("the process cast : [" + (endTime - beginTime) + "] millisecond!");
+        return retValue;
     }
 
-    // 后置通知
-    // @AfterReturning("anyMethod()")
-    public void doafterReturning() {
-        System.out.println("我是后置通知。");
+
+    /**
+     *
+     * @param point
+     * @return
+     * @throws Throwable
+     */
+    @Around("controllerPointCut()")
+    public Object loggerDB(ProceedingJoinPoint point) throws Throwable {
+        long beginTime = System.currentTimeMillis();
+        Object retValue = point.proceed();
+        long endTime = System.currentTimeMillis();
+        BeautyHandlerLogs log = convert2Log(point, retValue, beginTime, endTime);
+        try {
+            this.logDirectTemplate.convertAndSend(log);
+        } catch (AmqpException e) {
+            logger.error(e.getMessage());
+        }
+        return retValue;
     }
 
-    // 最终置通知
-    // @After("anyMethod()")
-    public void doafter() {
-        System.out.println("我是最终通知。");
-    }
-
-    // 异常通知
-    // @AfterThrowing(value = "anyMethod()", throwing = "e")
-    public void doException(JoinPoint point, Throwable e) {
-        System.out.println("我是异常通知。");
-    }
 
     /**
      * @param point
-     * @return Object
-     * @throws Throwable
-     * @throws
-     * @Title: doInfoLog
-     * @Description: TODO(输出日志)
-     * @author frinder_liu
-     * @date 2015年4月6日 下午2:05:17
+     * @param retValue
+     * @param beginTime
+     * @param endTime
+     * @return
      */
-    @Around("anyMethod()")
-    public Object doInfoLog(ProceedingJoinPoint point) throws Throwable {
+    private BeautyHandlerLogs convert2Log(ProceedingJoinPoint point, Object retValue, long beginTime, long endTime) {
         BeautyHandlerLogs log = new BeautyHandlerLogs();
-        String account = StringUtil.valueOf(session.getAttribute("CURRENT_USER_ACCOUNT")).concat(":").concat(StringUtil.valueOf(session.getAttribute("IP")));
-        log.setAccount(account);
-        log.setBeginTime(new Date());
-        String className = point.getTarget().getClass().getName();
-        log.setClassName(className);
-        String methodName = point.getSignature().getName();
-        log.setMethodName(methodName);
         try {
-            Object[] args = point.getArgs();
-            log.setArgs(JSON.toJSONString(args));
+            log.setAccount(StringUtil.valueOf(session.getAttribute("CURRENT_USER_ACCOUNT")).concat(":").concat(StringUtil.valueOf(session.getAttribute("IP"))));
         } catch (Exception e) {
-            log.setArgs(JSON.toJSONString(e.getMessage()));
+            log.setAccount("account");
         }
-        logger.info("begin to execute : " + JSON.toJSONString(log));
-        // 返回结果
-        Object retValue = point.proceed();
         try {
-            log.setReturnValue(JSON.toJSONString(retValue));
+            log.setArgs(StringUtil.valueOf(point.getArgs()));
         } catch (Exception e) {
-            log.setReturnValue(e.getMessage());
+            log.setArgs("");
         }
-        log.setEndTime(new Date());
+        try {
+            log.setReturnValue(StringUtil.valueOf(retValue));
+        } catch (Exception e) {
+            log.setReturnValue("");
+        }
+        log.setClassName(point.getTarget().getClass().getName());
+        log.setMethodName(point.getSignature().getName());
+        log.setBeginTime(new Date(beginTime));
+        log.setEndTime(new Date(endTime));
         log.setCreateTime(new Date());
-        // this.logService.insertSelective(log);
-        this.logDirectTemplate.convertAndSend(log);
-        logger.info("end of execute : " + JSON.toJSONString(log));
-        return retValue;
+        return log;
     }
 
 }

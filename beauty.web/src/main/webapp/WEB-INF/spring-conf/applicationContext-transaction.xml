@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:aop="http://www.springframework.org/schema/aop"
-	   xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/aop
@@ -11,47 +11,41 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<tx:annotation-driven transaction-manager="txManager" />
 
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
 
-	<bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
-
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="batch*" propagation="REQUIRED" />
-			<tx:method name="persist*" propagation="REQUIRED" />
-			<tx:method name="insert*" propagation="REQUIRED" />
-			<tx:method name="remove*" propagation="REQUIRED" />
-			<tx:method name="merge*" propagation="REQUIRED" />
-			<tx:method name="add*" propagation="REQUIRED" />
-			<tx:method name="delete*" propagation="REQUIRED" />
-			<tx:method name="update*" propagation="REQUIRED" />
-			<tx:method name="select*" read-only="true" propagation="REQUIRED" />
-			<tx:method name="load*" read-only="true" propagation="REQUIRED" />
-			<tx:method name="find*" read-only="true" propagation="REQUIRED" />
-			<tx:method name="get*" read-only="true" propagation="REQUIRED" />
-			<tx:method name="query*" read-only="true" propagation="REQUIRED" />
-			<tx:method name="*" read-only="true" propagation="REQUIRED" />
-		</tx:attributes>
-	</tx:advice>
-
-	<aop:config>
-		<aop:pointcut id="txPointcut" expression="execution(* com.beauty.service..*.*(..))" />
-		<aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice" />
-	</aop:config>
+    
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
 
-	<!-- 事务管理机制 -->
-	<!-- <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> <property name="dataSource" ref="dataSource" /> </bean> -->
+    <bean id="persistenceExceptionTranslationPostProcessor"
+          class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
-	<!-- 拦截器式事务管理策略 -->
-	<!-- <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor"> <property name="transactionManager" ref="transactionManager" /> <property name="transactionAttributes"> <props> <prop key="batch*">PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-Exception</prop> <prop key="insert*">PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-Exception</prop> <prop key="query*">PROPAGATION_SUPPORTS,ISOLATION_DEFAULT,readOnly</prop> <prop key="show*">PROPAGATION_SUPPORTS,ISOLATION_DEFAULT,readOnly</prop> <prop key="desc*">PROPAGATION_SUPPORTS,ISOLATION_DEFAULT,readOnly</prop> </props> </property> </bean> -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="batch*" propagation="REQUIRED"/>
+            <tx:method name="persist*" propagation="REQUIRED"/>
+            <tx:method name="insert*" propagation="REQUIRED"/>
+            <tx:method name="remove*" propagation="REQUIRED"/>
+            <tx:method name="merge*" propagation="REQUIRED"/>
+            <tx:method name="add*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="select*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="load*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="find*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="get*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="query*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="*" read-only="true" propagation="SUPPORTS"/>
+        </tx:attributes>
+    </tx:advice>
 
-	<!-- 根据Bean的名字自动创建代理类 -->
-	<!-- <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator"> <property name="beanNames"> <list> <value>*Service</value> </list> </property> <property name="interceptorNames"> <list> <value>transactionInterceptor</value> </list> </property> </bean> -->
+    <aop:config>
+        <aop:pointcut id="txPointcut" expression="execution(* com.beauty.service..*.*(..))"/>
+        <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
+    </aop:config>
 
 
 </beans>

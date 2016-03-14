@@ -9,34 +9,25 @@
  */
 package com.beauty.security;
 
-import org.apache.log4j.Logger;
-import org.springframework.security.authentication.encoding.PasswordEncoder;
-import org.springframework.stereotype.Component;
-
 import com.beauty.util.EncodeUtil;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 /**
  * 
  */
-@SuppressWarnings("deprecation")
 @Component("passwordEncoder")
 public class MyPasswordEncoder implements PasswordEncoder {
 
-	private final Logger logger = Logger.getLogger(getClass());
-
 	@Override
-	public boolean isPasswordValid(String encPass, String rawPass, Object salt) {
-		logger.info("MyPasswordEncoder.isPasswordValid... encPass : " + encPass + ", rawPass : " + rawPass + ", salt : " + salt);
-		// TODO Auto-generated method stub
-		String inputPass = encodePassword(rawPass, salt);
-		return inputPass.equals(encPass);
+	public String encode(CharSequence rawPassword) {
+		return EncodeUtil.encryptPassword(rawPassword);
 	}
 
 	@Override
-	public String encodePassword(String rawPass, Object salt) {
-		logger.info("MyPasswordEncoder.encodePassword... rawPass : " + rawPass + ", salt : " + salt);
+	public boolean matches(CharSequence rawPassword, String encodedPassword) {
 		// TODO Auto-generated method stub
-		return EncodeUtil.encryptPassword(rawPass);
+		String inputPass = encode(rawPassword);
+		return inputPass.equals(encodedPassword);
 	}
-
 }

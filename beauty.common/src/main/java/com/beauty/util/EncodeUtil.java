@@ -10,6 +10,7 @@ package com.beauty.util;
 
 import java.security.MessageDigest;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.security.crypto.codec.Utf8;
 
@@ -27,22 +28,23 @@ public class EncodeUtil {
 	 * @Title: encryptPassword 
 	 * @Description: TODO(MD5加密)  
 	 * @author frinder_liu 
-	 * @param strPasswd
+	 * @param password
 	 * @return
 	 * @return String
 	 * @date 2015年6月4日 下午9:56:59
 	 * @throws
 	 */
 	@SuppressWarnings("restriction")
-	public static String encryptPassword(String strPasswd) {
-		if (strPasswd == null || strPasswd.equals("")) {
-			return "";
+	public static String encryptPassword(Object password) {
+		String strPass = StringUtil.valueOf(password);
+		if (StringUtils.isBlank(strPass)) {
+			return strPass;
 		}
 		MessageDigest md;
 		byte[] ebytes = { 0 };
 		try {
 			md = MessageDigest.getInstance("MD5", "SUN");
-			md.update(strPasswd.getBytes());
+			md.update(strPass.getBytes());
 			ebytes = md.digest();
 		} catch (Exception e) {
 			e.printStackTrace();

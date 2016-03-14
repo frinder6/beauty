@@ -21,64 +21,6 @@ public class BaseDao<T> implements IDao<T> {
 	@Autowired(required = true)
 	protected SqlSession sqlSessionTemplate;
 
-	// @Autowired(required = true)
-	protected HibernateTemplate hibernateTemplate;
-
-	// @Autowired(required = true)
-	protected SessionFactory sessionFactory;
-
-	public Session getSession() {
-		return sessionFactory.getCurrentSession();
-	}
-
-	// @Autowired
-	// private JdbcTemplate jdbcTemplate;
-
-	@Override
-	public void persist(T entity) {
-		// TODO Auto-generated method stub
-		this.hibernateTemplate.persist(entity);
-	}
-
-	@Override
-	public void remove(T entity) {
-		// TODO Auto-generated method stub
-		this.hibernateTemplate.delete(entity);
-	}
-
-	@Override
-	public void merge(T entity) {
-		// TODO Auto-generated method stub
-		this.hibernateTemplate.merge(entity);
-	}
-
-	@Override
-	public T findById(Class<T> clazz, Long id) {
-		// TODO Auto-generated method stub
-		return this.hibernateTemplate.load(clazz, id);
-	}
-
-	@Override
-	public List<?> query(DetachedCriteria criteria) {
-		// TODO Auto-generated method stub
-		return this.hibernateTemplate.findByCriteria(criteria);
-	}
-
-	@Override
-	public int queryPageCount(DetachedCriteria criteria) {
-		// TODO Auto-generated method stub
-		return ((Long) this.hibernateTemplate.findByCriteria(criteria.setProjection(Projections.rowCount())).get(0)).intValue();
-	}
-
-	@Override
-	public void queryPage(DetachedCriteria criteria, Page page) {
-		// TODO Auto-generated method stub
-		int count = ((Long) this.hibernateTemplate.findByCriteria(criteria.setProjection(Projections.rowCount())).get(0)).intValue();
-		criteria.setProjection(null);
-		criteria.setResultTransformer(CriteriaSpecification.ROOT_ENTITY);
-		List<?> data = this.hibernateTemplate.findByCriteria(criteria, Integer.parseInt(page.getStart()), Integer.parseInt(page.getLength()));
-		page.setResult(data, count + "", count + "");
-	}
 
 	@Override
 	public List<T> query(String sql) {

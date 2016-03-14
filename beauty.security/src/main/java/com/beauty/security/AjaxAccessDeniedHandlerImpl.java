@@ -43,7 +43,7 @@ public class AjaxAccessDeniedHandlerImpl extends AccessDeniedHandlerImpl {
 		if (isAjax) {
 			logger.info("AjaxAccessDeniedHandlerImpl.handle....................... is an ajax request !");
 			PrintWriter out = response.getWriter();
-			out.print("no right...");
+			out.print("你的权限不足以执行此操作，详细信息请联系管理员！");
 			out.flush();
 			out.close();
 		} else {
