@@ -11,7 +11,7 @@
     </bean>
 
     <!-- 验证调用链 -->
-    <bean id="filterInvocationInterceptor"
+    <bean id="selfDefinedFilterInvocationInterceptor"
           class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
         <!-- securityMetadataSource>安全资源管理 -->
         <property name="securityMetadataSource" ref="securityMetadataSource"/>
@@ -23,7 +23,7 @@
 
 
     <!-- form-login实现，登陆成功、失败的具体处理逻辑 -->
-    <bean id="formLoginFilter"
+    <bean id="selfDefinedFormLoginFilter"
           class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
         <property name="authenticationManager" ref="authenticationManager"/>
         <property name="authenticationSuccessHandler">
@@ -56,8 +56,14 @@
     </bean>
 
 
+    <!-- 支持ajax请求权限处理的自定义实现 -->
+    <bean id="selfDefinedAccessDeniedHandler" class="com.beauty.security.AjaxAccessDeniedHandlerImpl">
+        <property name="errorPage" value="/errors/accessDenied.html"/>
+    </bean>
+
+
     <!-- 认证管理 -->
-    <bean id="myAuthenticationProvider"
+    <bean id="selfDefinedAuthenticationProvider"
           class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
         <property name="userDetailsService" ref="myUserDetailsService"/>
         <property name="hideUserNotFoundExceptions" value="false"/>
@@ -65,18 +71,6 @@
     </bean>
 
 
-    <!-- 认证异常处理 -->
-    <bean id="exceptionTranslationFilter" class="org.springframework.security.web.access.ExceptionTranslationFilter">
-        <constructor-arg name="authenticationEntryPoint">
-            <bean class="com.beauty.security.AjaxLoginUrlAuthenticationEntryPoint">
-                <constructor-arg name="ajaxInvalidSessionUrl" value="/errors/accessDenied.html"/>
-            </bean>
-        </constructor-arg>
-        <property name="accessDeniedHandler" ref="accessDeniedHandler"/>
-    </bean>
 
-    <bean id="accessDeniedHandler" class="com.beauty.security.AjaxAccessDeniedHandlerImpl">
-        <property name="errorPage" value="/errors/accessDenied.html"/>
-    </bean>
 
 </beans>

@@ -302,6 +302,9 @@
 					if ($opts.drawCallback) {
 						$opts.drawCallback();
 					}
+
+					// 权限处理
+					$(this).Auth();
 				},
 				fnRowCallback : function(nRow, aData, iDisplayIndex) {
 					e.xedit(nRow, aData);

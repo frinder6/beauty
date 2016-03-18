@@ -33,13 +33,11 @@
                      remember-me-parameter="beauty.user"
                      user-service-ref="myUserDetailsService"/>
         <!-- security认证之前走自己的认证 -->
-        <custom-filter before="FILTER_SECURITY_INTERCEPTOR" ref="filterInvocationInterceptor"/>
+        <custom-filter before="FILTER_SECURITY_INTERCEPTOR" ref="selfDefinedFilterInvocationInterceptor"/>
         <!-- 自定义登陆器 -->
-        <custom-filter position="FORM_LOGIN_FILTER" ref="formLoginFilter"/>
-        <!-- security异常策略之前走自己的异常策略 -->
-        <custom-filter before="EXCEPTION_TRANSLATION_FILTER" ref="exceptionTranslationFilter"/>
+        <custom-filter position="FORM_LOGIN_FILTER" ref="selfDefinedFormLoginFilter"/>
         <!-- 自定义权限不足处理（添加ajax支持） -->
-        <access-denied-handler ref="accessDeniedHandler"/>
+        <access-denied-handler ref="selfDefinedAccessDeniedHandler"/>
         <!-- session失效，防重复登陆 -->
         <session-management invalid-session-url="/errors/sessionTimeout.html"
                             session-authentication-error-url="/errors/secondLogin.html">
@@ -52,7 +50,7 @@
 
     <!-- 认证管理 -->
     <authentication-manager alias="authenticationManager" erase-credentials="false">
-        <authentication-provider ref="myAuthenticationProvider"/>
+        <authentication-provider ref="selfDefinedAuthenticationProvider"/>
     </authentication-manager>
 
 

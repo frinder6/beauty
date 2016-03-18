@@ -1,6 +1,9 @@
 package com.beauty.util;
 
+import com.alibaba.fastjson.JSON;
+
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
@@ -9,8 +12,24 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class HttpUtil {
+
+
+    /**
+     *
+     * @param response
+     * @param obj
+     * @throws IOException
+     */
+    public static void writeJSON(HttpServletResponse response, Object obj) throws IOException {
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        out.write(JSON.toJSONString(obj));
+        out.flush();
+        out.close();
+    }
 
 
     /**

@@ -16,6 +16,11 @@ public class Value implements Serializable {
         // TODO Auto-generated constructor stub
     }
 
+    public Value(Byte type, String value) {
+        this.type = type;
+        this.value = value;
+    }
+
     public Value(String value) {
         super();
         this.value = value;
