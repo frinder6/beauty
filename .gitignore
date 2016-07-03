@@ -13,3 +13,8 @@
 /beauty.compile.iml
 /beauty.pom.iml
 /beauty.security.iml
+/beauty.common/target
+/beauty.compile/.idea
+/beauty.rabbit/target
+/beauty.web/*
+/beauty.web/*.classpath
