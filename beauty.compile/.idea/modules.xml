@@ -12,7 +12,6 @@
       <module fileurl="file://$PROJECT_DIR$/../beauty.rabbit/beauty.rabbit.iml" filepath="$PROJECT_DIR$/../beauty.rabbit/beauty.rabbit.iml" />
       <module fileurl="file://$PROJECT_DIR$/../beauty.security/beauty.security.iml" filepath="$PROJECT_DIR$/../beauty.security/beauty.security.iml" />
       <module fileurl="file://$PROJECT_DIR$/../beauty.web/beauty.web.iml" filepath="$PROJECT_DIR$/../beauty.web/beauty.web.iml" />
-      <module fileurl="file://D:/LEARN/workspace/hibernate/hibernate.iml" filepath="D:/LEARN/workspace/hibernate/hibernate.iml" />
     </modules>
   </component>
 </project>

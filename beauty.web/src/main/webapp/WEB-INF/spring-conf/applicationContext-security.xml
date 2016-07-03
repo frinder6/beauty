@@ -26,6 +26,7 @@
     <http pattern="/pages/index.jsp" security="none"/>
     <http pattern="/pages/bracket/login.jsp" security="none"/>
     <http pattern="/**/login.action*" security="none"/>
+    <http pattern="/**/**" security="none"/>
     <http auto-config="false" use-expressions="true" entry-point-ref="loginUrlEntryPoint">
         <intercept-url pattern="/**" access="permitAll"/>
         <remember-me data-source-ref="dataSource"
