@@ -10,7 +10,11 @@
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
         <sourceRoots>
+          <root url="file://$MODULE_DIR$/src/main/biz" />
+          <root url="file://$MODULE_DIR$/src/main/filters" />
           <root url="file://$MODULE_DIR$/src/main/resources" />
+          <root url="file://$MODULE_DIR$/src/main/tags" />
+          <root url="file://$MODULE_DIR$/src/main/util" />
         </sourceRoots>
       </configuration>
     </facet>
